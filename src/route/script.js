@@ -7,5 +7,6 @@ Router.init("mainArea", [
   new Page("#home", "src/view/home.html"),
   new Page("#community", "src/view/community.html"), // 1st Page is default if no URL match
   new Page("#profile", "src/view/profile.html"),
+  new Page("#recipe", "src/view/recipe.html"),
   // add new pages here
 ]);
