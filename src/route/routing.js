@@ -1,7 +1,7 @@
 "use strict";
 
 class Page {
-  constructor(name, htmlName, jsName, apiJs) {
+  constructor(name, htmlName, jsName) {
     this.name = name;
     this.htmlName = htmlName;
     this.jsName = jsName ? jsName : htmlName.substring(0, htmlName.lastIndexOf(".")) + ".js";
@@ -42,7 +42,7 @@ class Router {
       const txt = await response.text();
       Router.rootElem.innerHTML = txt;
 
-      // //append JS part to run.
+      //append JS part to run.
       // const script = document.createElement("script");
       // script.setAttribute("src", page.jsName);
       // script.setAttribute("type", "text/javascript");
