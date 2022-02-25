@@ -38,19 +38,19 @@
         role="tabpanel"
         aria-labelledby="nav-ingredients-tab"
       >
-        <form action="">
+        <div id="ingForm">
           <legend>Get recipes by ingredients</legend>
           <label>
-            <input type="text" placeholder="Hungry for something?" />
+            <input id="ing1" type="text" placeholder="Hungry for something?" />
           </label>
           <label>
-            <input type="text" placeholder="Hungry for something?" />
+            <input id="ing2" type="text" placeholder="Hungry for something?" />
           </label>
           <label>
-            <input type="text" placeholder="Hungry for something?" />
+            <input id="ing3" type="text" placeholder="Hungry for something?" />
           </label>
-          <input type="submit" value="Search" />
-        </form>
+          <input type="submit" value="Search" id="ingSearch" />
+        </div>
       </div>
       <div
         class="tab-pane fade"
@@ -58,7 +58,7 @@
         role="tabpanel"
         aria-labelledby="nav-recipes-tab"
       >
-        <form action="">
+        <form action="" id="recipeForm">
           <legend>Hungry for something?</legend>
           <label>
             <input type="text" placeholder="Hungry for something?" />
@@ -93,6 +93,19 @@
     </div>
   </div>
 </section>
+
+<!-- ********** TEST RESULTS SECTION ************** -->
+<section>
+  <div class="container">
+    <div class="section-heading">
+      <h2>Results</h2>
+      <a href="#">view all</a>
+    </div>
+
+    <div id="resultTest"></div>
+  </div>
+</section>
+<!-- ********* END TEST RESULTS SECTION ************* -->
 
 <!-- What's Hot section -->
 
