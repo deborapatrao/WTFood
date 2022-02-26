@@ -2,21 +2,37 @@
 
 // `https://api.spoonacular.com/recipes/complexSearch?apiKey=1da81bb3780f42a6a0ceb11f31a38886&query=pasta`
 
+//DECLARATIONS
 const apiKey = '458fa3b63d9e4e0b8c6b85edb81edd4b';
 let requestIng = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}`;
+let requestRecipe = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}`;
 
 let inputIng1 = "";
 let inputIng2 = "";
 let inputIng3 = "";
+let inputRecipe = "";
 
 let recipesArray = [];
 
-async function getRecipes(url) {
+//FUNCTIONS
+//Get recipes by ingredients
+async function getRecipesI(url) {
     const response = await fetch(url);
     const recipes = await response.json();
     console.log(recipes);
 
     recipesArray = recipes;
+
+    outputCards(recipesArray);
+}
+
+//get recipes by recipe
+async function getRecipesR(url) {
+    const response = await fetch(url);
+    const recipes = await response.json();
+    console.log(recipes.results);
+
+    recipesArray = recipes.results;
 
     outputCards(recipesArray);
 }
@@ -62,11 +78,25 @@ async function init() {
 
         requestIng += `&ingredients=${inputIng1},${inputIng2},${inputIng3}`;
 
-        window.location.href = '#recipe'
+        window.location.href = '#results'
 
-        getRecipes(requestIng);
+        getRecipesI(requestIng);
 
     });
+
+    //RECIPES SEARCH  event listener
+    recipeSearch.addEventListener('click', () => {
+
+        inputRecipe = recipeQuery.value;
+
+        requestRecipe += `&query=${inputRecipe}`;
+
+        window.location.href = '#results';
+
+        getRecipesR(requestRecipe);
+
+    });
+
 }
 
 init();
