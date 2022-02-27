@@ -40,19 +40,22 @@ class Router {
     try {
       const response = await fetch(page.htmlName);
       const txt = await response.text();
+      const jsSRC = page.jsName;
+ 
+
       Router.rootElem.innerHTML = txt;
-
       //append JS part to run.
-      // const script = document.createElement("script");
-      // script.setAttribute("src", page.jsName);
-      // script.setAttribute("type", "text/javascript");
-      // Router.rootElem.appendChild(script);
-
+      const script = document.createElement("script");
+      script.setAttribute("src", jsSRC.replace('view','assets/js'));
+      script.setAttribute("type", "module");
+      Router.rootElem.appendChild(script);
+  
       //append API JS part to run.
       const scriptAPI = document.createElement("script");
       scriptAPI.setAttribute("src", "src/assets/js/api.js");
       scriptAPI.setAttribute("type", "text/javascript");
       Router.rootElem.appendChild(scriptAPI);
+      
     } catch (error) {
       console.error(error);
     }
