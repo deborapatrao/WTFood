@@ -1,5 +1,5 @@
 <h1>Home</h1>
-<div class="hero-banner">
+<div class="banner">
   <div class="container">
     <!-- banner tabs  -->
 
@@ -32,6 +32,7 @@
       </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">
+      <!-- SEARCH BY INGREDIENTS TAB -->
       <div
         class="tab-pane fade show active"
         id="nav-ingredients"
@@ -52,19 +53,25 @@
           <input type="submit" value="Search" id="ingSearch" />
         </div>
       </div>
+
+      <!-- SEARCH BY RECIPES TAB -->
       <div
         class="tab-pane fade"
         id="nav-recipes"
         role="tabpanel"
         aria-labelledby="nav-recipes-tab"
       >
-        <form action="" id="recipeForm">
+        <div action="" id="recipeForm">
           <legend>Hungry for something?</legend>
           <label>
-            <input type="text" placeholder="Hungry for something?" />
+            <input
+              type="text"
+              placeholder="Hungry for something?"
+              id="recipeQuery"
+            />
           </label>
-          <input type="submit" value="Search" />
-        </form>
+          <input type="submit" value="Search" id="recipeSearch" />
+        </div>
       </div>
     </div>
   </div>
@@ -73,11 +80,11 @@
 <!-- Food of the World section -->
 <section>
   <div class="container">
-    <div class="section-heading">
+    <div class="section__heading">
       <h2>Food of the world</h2>
       <a href="#">view all</a>
     </div>
-    <div class="world-food-items">
+    <div>
       <a href="">
         <img src="" alt="" />
         <h3>Asian</h3>
@@ -98,7 +105,7 @@
 
 <section>
   <div class="container">
-    <div class="section-heading">
+    <div class="section__heading">
       <h2>What's Hot</h2>
       <a href="#">view all</a>
     </div>
@@ -117,7 +124,7 @@
 
 <section>
   <div class="container">
-    <div class="section-heading">
+    <div class="section__heading">
       <h2>Easy recipe for any occasions</h2>
       <a href="#">view all</a>
     </div>
@@ -140,7 +147,7 @@
 <!-- Community section -->
 <section>
   <div class="container">
-    <div class="section-heading">
+    <div class="section__heading">
       <h2>The community</h2>
       <a href="#">view all</a>
     </div>
