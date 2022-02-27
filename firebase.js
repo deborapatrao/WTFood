@@ -6,9 +6,17 @@
 import { getFirestore} from "https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
 import {
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL,
+} from "https://www.gstatic.com/firebasejs/9.6.7/firebase-storage.js";
+import {
   getAuth,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  updateProfile,
 } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js"
 
 const firebaseConfig = {
@@ -24,8 +32,20 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-
+const storage = getStorage(app);
 const auth = getAuth(app);
 
 
-export {db, auth, createUserWithEmailAndPassword, signInWithEmailAndPassword };
+export {
+  db,
+  auth,
+  storage,
+  updateProfile,
+  uploadBytes,
+  getDownloadURL,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  getStorage,
+  ref
+};
