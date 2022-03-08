@@ -22,6 +22,7 @@ module.exports = {
     api: "./src/js/api.js",
     login: "./src/js/login.js",
     profile: "./src/js/profile.js",
+    sw: "./src/js/sw.js"
   },
 
   output: {
@@ -49,6 +50,16 @@ module.exports = {
         generator: {
           outputPath: "images/",
           filename: "[name][ext]",
+        },
+      },
+      {
+        test: /\.webmanifest$/i,
+        // type: "asset/resource", //or asset
+        use: {
+          loader: "file-loader",
+          options: {
+            name: '[name].[ext]',
+          },
         },
       },
       {
