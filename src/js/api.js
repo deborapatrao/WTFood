@@ -81,7 +81,7 @@ function init() {
 
       requestIng += `&ingredients=${inputIng1},${inputIng2},${inputIng3}`;
 
-      window.location.href = "#results";
+      window.location.href = "#recipes";
 
       await getRecipesI(requestIng);
     });
@@ -95,7 +95,7 @@ function init() {
 
       requestRecipe += `&query=${inputRecipe}`;
 
-      window.location.href = "#results";
+      window.location.href = "#recipes";
 
       await getRecipesR(requestRecipe);
     });
