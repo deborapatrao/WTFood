@@ -1,0 +1,88 @@
+@use "variables";
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Source+Serif+Pro:wght@600&display=swap");
+
+/* COLOURS */
+:root {
+  --primary-dark: #fd8722;
+  --primary-medium: #fda75e;
+  --primary-light: #ffcb9e;
+  --secondary-dark: #ffbc3a;
+  --secondary-medium: #ffd686;
+  --secondary-light: #ffe3ad;
+  --text-white: #fff;
+  --text-black: #28231e;
+  --text-dark-grey: #58514d;
+  --text-medium-grey: #827873;
+  --text-light-grey: #b7aeaa;
+  --support-white: #f7fafb;
+  --support-light: #d7dce1;
+  --support-medium: #b9bec8;
+  --supportdark: #9ba0a5;
+  --warning: #fd5722;
+}
+
+/* FONTS */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Source Serif Pro", serif;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+h1 {
+  font-size: 5rem;
+}
+
+h2 {
+  font-size: 4rem;
+}
+
+h3 {
+  font-size: 3rem;
+}
+
+h4 {
+  font-size: 1.75rem;
+}
+
+h5 {
+  font-size: 1.5rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+/* Reset styles */
+body {
+  margin: 0;
+  padding: 0;
+
+  font-family: "Roboto", sans-serif;
+  line-height: 1.5;
+}
+
+/* Initial CSS - to check */
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* header */
+.header__navigation ul {
+  display: flex;
+  justify-content: end;
+}
+
+/* footer */
+footer {
+  background-color: var(--primary-dark);
+}
