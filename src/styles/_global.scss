@@ -61,6 +61,7 @@ h6 {
 
 /* Reset styles */
 body {
+  // background-color: red;
   margin: 0;
   padding: 0;
 
@@ -80,6 +81,13 @@ ul {
 .header__navigation ul {
   display: flex;
   justify-content: end;
+}
+
+.login-avatar {
+  width: 20px;
+  height: auto;
+
+  border-radius: 50%;
 }
 
 /* footer */

@@ -10,6 +10,6 @@ Router.init("mainArea", [
   new Page("#profile", "pages/profile.html"),
   new Page("#recipe", "pages/recipe.html"),
   new Page("#recipes", "pages/recipes.html"),
-  new Page("#login", "pages/login.html"),
+  // new Page("#login", "pages/login.html"),
   // add new pages here
 ]);
