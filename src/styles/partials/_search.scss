@@ -1,0 +1,35 @@
+.tab__search-form {
+  background-color: $color-white;
+  padding: $padding-small;
+  @include flex(column, center, start);
+  gap: 0.5rem;
+  border-radius: 0 0 $std-border-radius $std-border-radius;
+  box-shadow: $box-shadow;
+
+  legend {
+    @include fontBody1();
+    color: $color-text-medium-grey;
+  }
+
+  input[type="text"] {
+    border-radius: $std-border-radius;
+    border: $std-border;
+    padding: $padding-small;
+    width: 100%;
+  }
+
+  input[type="submit"] {
+    width: 100%;
+    padding: $padding-small;
+    background-color: $color-primary-dark;
+    color: $color-white;
+    @include fontButton();
+    border-radius: $std-border-radius;
+    text-align: center;
+  }
+}
+
+.nav-link[aria-selected="false"] {
+  background-color: $color-support-medium;
+  color: $color-text-medium-grey;
+}
