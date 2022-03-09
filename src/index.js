@@ -15,8 +15,7 @@ import oneRecipeHTML from "./pages/oneRecipe.html";
 // JS
 // import router from "./route/routing.js";
 // import firebase from "firebase";
-// import "./database.js";
-import './app.webmanifest';
+// import { db } from "./database";
 import script from "./route/script.js";
 // import api from "./js/api";
 // import home from "./js/home";
@@ -27,6 +26,7 @@ import script from "./route/script.js";
 import imgLogo from "./images/logo.png";
 import imgFaviconSmall from "./images/icon-192x192.png";
 import imgFaviconBig from "./images/icon-512x512.png";
+
 
 //Hamburguer menu
 const mainNav = document.getElementById('mainNav');
