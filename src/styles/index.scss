@@ -1,4 +1,36 @@
-@use "global";
-
 // Bootstrap
 // @import "../../node_modules/bootstrap/scss/bootstrap";
+
+/* 
+TABLE OF CONTENTS
+
+1. Reset
+2. TYPOGRAPHY
+3. GLOBAL
+4. NAVIGATION
+5. HEADER - FOOTER
+6. SEARCH TABS
+
+*/
+
+//ARIABLES & MIXINS
+@import "partials/variables";
+@import "partials/mixins";
+
+/* *** RESET *** */
+@import "partials/reset";
+
+/* *** TYPOGRAPHY *** */
+@import "partials/typography";
+
+/* *** GLOBAL *** */
+@import "partials/global";
+
+/* *** NAVIGATION *** */
+@import "partials/navigation";
+
+/* *** HEADER - FOOTER *** */
+@import "partials/header-footer";
+
+/* *** SEARCH TABS *** */
+@import "partials/search";

@@ -10,6 +10,7 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+
     <title>WTFood</title>
   </head>
   <body>
@@ -20,7 +21,15 @@
           <img src="./images/logo.png" alt="WTFood" />
         </a>
         <nav class="header__navigation">
-          <ul style="display: flex; gap: 1rem">
+          <button
+            class="navigation__toggle"
+            aria-controls="mainNav"
+            aria-expanded="false"
+          >
+            <span class="visually-hidden">Menu</span>
+            <span class="hamburguer"></span>
+          </button>
+          <ul id="mainNav" class="navigation__list" data-visible="false">
             <li><a href="#home">home</a></li>
             <li><a href="#recipes">recipes</a></li>
             <li><a href="#community">community</a></li>
@@ -30,6 +39,9 @@
             </li>
           </ul>
         </nav>
+        <div class="header__shopping">
+          <span>S</span><span class="visually-hidden">Shopping List</span>
+        </div>
       </div>
     </header>
 

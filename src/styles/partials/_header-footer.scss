@@ -1,0 +1,58 @@
+// header .container {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+// }
+
+// .header__navigation {
+//   order: 0;
+// }
+
+// .header__logo {
+//   order: 1;
+// }
+
+// .header__shopping {
+//   order: 2;
+// }
+
+//NOT SURE IF IT IS BETTER TO DO GRID OR FLEX FOR THIS
+
+header {
+  position: sticky;
+  top: 0;
+  background-color: $color-white;
+  z-index: 10;
+}
+
+header .container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  padding: $std-section-padding;
+}
+
+.header__navigation {
+  grid-column: 1/2;
+}
+
+.header__logo {
+  grid-column: 2/3;
+}
+
+.header__shopping {
+  grid-column: 3/4;
+  justify-self: end;
+}
+
+.header__navigation,
+.header__logo,
+.header__shopping {
+  grid-row: 1/2;
+}
+
+//FOOTER
+
+footer {
+  background-color: $color-primary-dark;
+}

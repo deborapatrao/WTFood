@@ -1,0 +1,65 @@
+@mixin flex($direction, $justify, $align) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+//TEXT STYLES
+
+@mixin fontSubtitle1() {
+  font-family: $font-body;
+  font-size: 1rem;
+}
+
+@mixin fontSubtitle2() {
+  font-family: $font-body;
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+@mixin fontBody1() {
+  font-family: $font-body;
+  font-size: 1rem;
+}
+
+@mixin fontBody1Semibold() {
+  font-family: $font-body;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+@mixin fontBody2() {
+  font-family: $font-body;
+  font-size: 0.875rem;
+}
+
+@mixin fontBody2Semibold() {
+  font-family: $font-body;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+@mixin fontButton() {
+  font-family: $font-body;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+@mixin fontCaption() {
+  font-family: $font-body;
+  font-size: 0.75rem;
+}
+
+@mixin fontOverline() {
+  font-family: $font-body;
+  font-weight: 500;
+  font-size: 0.625rem;
+  text-transform: uppercase;
+}
+
+//Images
+@mixin roundImg {
+  border-radius: 50%;
+}

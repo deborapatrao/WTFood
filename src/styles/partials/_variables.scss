@@ -1,0 +1,36 @@
+:root {
+  --text: #222;
+}
+
+$bg: peachpuff;
+
+//COLOURS
+
+$color-primary-dark: #fd8722;
+$color-primary-medium: #fda75e;
+$color-primary-light: #ffcb9e;
+$color-secondary-dark: #ffbc3a;
+$color-secondary-medium: #ffd686;
+$color-secondary-light: #ffe3ad;
+$color-white: #fff;
+$color-black: #28231e;
+$color-text-dark-grey: #58514d;
+$color-text-medium-grey: #827873;
+$color-text-light-grey: #b7aeaa;
+$color-support-white: #f7fafb;
+$color-support-light: #d7dce1;
+$color-support-medium: #b9bec8;
+$color-supportdark: #9ba0a5;
+$color-warning: #fd5722;
+
+$box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+//FONTS
+$font-heading: "Source Serif Pro", serif;
+$font-body: "Roboto", sans-serif;
+
+//Measurements & other things
+$std-border-radius: 7px;
+$std-section-padding: 2rem 2%;
+$padding-small: 0.5rem;
+$std-border: 2px solid $color-support-medium;
