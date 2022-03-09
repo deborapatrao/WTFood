@@ -10,8 +10,19 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
-
-    <title>WTFood</title>
+    <link  rel="manifest"  href="app.webmanifest">
+    <script>
+      if ('serviceWorker' in navigator) {  
+        navigator.serviceWorker.register('./js/sw.js').then( function (reg) {
+          console.log(`Service Worker Registered`);
+        }).catch( function (error) {
+          console.log(`Service Worker Error (${error})`);       
+        });
+      } else {
+        console.error("This browser doesn't support Service Worker");
+      }
+      </script>
+      <title>WTFood</title>
   </head>
   <body>
     <header>
