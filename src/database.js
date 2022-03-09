@@ -52,7 +52,6 @@ export {
     doc,
     addDoc,
     setDoc,
-    collection,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     onAuthStateChanged,
