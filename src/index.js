@@ -24,6 +24,8 @@ import script from "./route/script.js";
 
 // Images
 import imgLogo from "./images/logo.png";
+import imgFaviconSmall from "./images/icon-192x192.png";
+import imgFaviconBig from "./images/icon-512x512.png";
 
 
 //Hamburguer menu
