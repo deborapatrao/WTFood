@@ -56,6 +56,12 @@ export class Router {
       scriptAPI.setAttribute("src", "js/api.js");
       scriptAPI.setAttribute("type", "text/javascript");
       Router.rootElem.appendChild(scriptAPI);
+
+      //append API JS part to run.
+      const scriptLogin = document.createElement("script");
+      scriptLogin.setAttribute("src", "js/login.js");
+      scriptLogin.setAttribute("type", "text/javascript");
+      Router.rootElem.appendChild(scriptLogin);
     } catch (error) {
       console.error(error);
     }
