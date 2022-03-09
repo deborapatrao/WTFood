@@ -10,6 +10,7 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
   updateProfile,
+  signOut
 } from "firebase/auth";
 
 // import firebase from "firebase/compat";
@@ -37,6 +38,7 @@ export {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
+  signOut,
   updateProfile,
   ref,
   uploadBytes,

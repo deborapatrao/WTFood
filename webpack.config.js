@@ -93,8 +93,12 @@ module.exports = {
     }),
   ],
 
+  devtool: 'source-map',
   devServer: {
     static: "./dist",
     hot: true, //no refreshing after saving css
   },
+  optimization: {
+    runtimeChunk: 'single'
+},
 };
