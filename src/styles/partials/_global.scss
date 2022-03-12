@@ -41,22 +41,3 @@ h6 {
   background: linear-gradient($color-primary-dark, $color-primary-light);
   padding: $std-section-padding;
 }
-
-//Sections
-
-section {
-  padding: $std-section-padding;
-}
-
-.section__heading {
-  @include flex(row, space-between, center);
-
-  h2 {
-    font-size: 2rem;
-  }
-}
-
-.round-image {
-  @include roundImg();
-  border: $std-border;
-}

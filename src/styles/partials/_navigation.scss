@@ -59,3 +59,11 @@ nav a {
 .navigation__list[data-visible="true"] {
   transform: translateX(0%);
 }
+
+// Login popup and Login button
+.login-avatar {
+  width: 40px;
+  height: auto;
+
+  @include roundImg();
+}

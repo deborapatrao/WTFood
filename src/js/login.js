@@ -38,7 +38,7 @@ signIn.addEventListener("click", () => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
-      const user = userCredential.user;
+      // const user = userCredential.user;
       // ...
       alert("User Sign in");
     })
