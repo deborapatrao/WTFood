@@ -20,9 +20,9 @@
     <link rel="manifest" href="app.webmanifest" />
     <script>
       if ("serviceWorker" in navigator) {
-        console.log("service worker registrations starts");
         navigator.serviceWorker
-          .register("./sw.js")
+          .register("./js/sw.js")
+
           .then(function (reg) {
             console.log(`Service Worker Registered`);
           })
@@ -52,6 +52,7 @@
             <li><a href="#recipes">recipes</a></li>
             <li><a href="#community">community</a></li>
             <li><a href="#profile">profile</a></li>
+
           </ul>
         </nav>
         <div class="header__shopping">

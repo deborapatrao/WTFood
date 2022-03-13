@@ -1,32 +1,32 @@
-<style>
-    #nav_profile a {
-        text-decoration: none;
-        color: #fd8722;
+<!-- <style>
+  #nav_profile a {
+    text-decoration: none;
+    color: #fd8722;
+  }
 
-    }
+  #nav_profile {
+    margin: 0.3em;
+  }
 
-    #nav_profile {
-        margin: 0.3em;
-    }
-
-    #nav_profile li {
-        text-align: center;
-        border: 1px solid #fd8722;
-        background-color: white;
-    }
-#myRecipes{
+  #nav_profile li {
+    text-align: center;
+    border: 1px solid #fd8722;
+    background-color: white;
+  }
+  #myRecipes {
     display: none;
     margin-left: 10rem;
-}
-.profile_body{
+  }
+  .profile_body {
     flex-direction: column;
     align-items: center;
     gap: 0.3em;
-}
-</style>
+  }
+</style> -->
 <h1>Profile</h1>
 
 <main>
+
     <div class="profile">
         <div class="aside ">
             <!-- <img width="100" height="100" src="#" alt="" id="userPhoto"/> -->
@@ -86,8 +86,85 @@
             <label for="instruction">Instructions</label>
             <textarea name="instruction0" id="instruction" cols="10" rows="5    "></textarea>
 
-            <input type="button" value="Publish" id="publish">
+  <div class="profile">
+    <div class="aside">
+      <img width="100" height="100" src="#" alt="" id="userPhoto" />
 
-        </div>
+      <!-- *** CHANGES *** -->
+      <!-- enclosed username and email on a div each / added profile__data class /set name and email as visually-hidden-->
+      <div class="profile__data">
+        <div class="visually-hidden">Name:</div>
+        <div id="userName"></div>
+      </div>
+
+      <div class="profile__data">
+        <div class="visually-hidden">Email:</div>
+        <div id="userEmail"></div>
+      </div>
+
+      <!-- *** CHANGES *** -->
+      <!-- added class to nav -->
+      <nav class="profile__navigation">
+        <ul id="nav_profile">
+          <li>
+            <a class="profile-menu" href="#myProfile" id="profile_info"
+              >My Profile</a
+            >
+          </li>
+          <li>
+            <a class="profile-menu" href="#myRecipes" id="profile_recipe"
+              >My Recipes</a
+            >
+          </li>
+          <li><a class="profile-menu">Saved Recipes</a></li>
+          <li><a class="profile-menu">Shopping List</a></li>
+          <li><a class="profile-menu">Notifications</a></li>
+        </ul>
+      </nav>
     </div>
+
+
+    <div class="profile_body" id="myProfile">
+      <div>
+        <input type="text" id="displayName" placeholder="Name" required />
+        <input type="file" id="photoFile" name="filename" />
+        <button id="update">Update</button>
+        <button id="resetPassword">Reset password</button>
+      </div>
+      <div style="display: none"></div>
+
+      <button id="start-camera">Start Camera</button>
+      <video id="video" width="320" height="240" autoplay></video>
+      <button id="click-photo">Click Photo</button>
+      <canvas id="canvas" width="320" height="240"></canvas>
+    </div>
+
+    <div class="profile_body" id="myRecipes">
+      <label for="recipe_name">Title</label>
+      <input type="text" id="recipe_name" />
+      <label for="cooking_time">Cooking time</label>
+      <input type="number" id="cooking_time" placeholder="minutes" />
+      <label for="prep_time">Prep Time</label>
+      <input type="text" id="prep_time" />
+      <label for="serving">Serving </label>
+      <input type="number" id="serving" />
+
+      <label for="ingredient_1">Ingredient 1</label>
+      <input type="text" id="ingredient_1" />
+      <label for="ingredient_2">Ingredient 2</label>
+      <input type="text" id="ingredient_2" />
+      <label for="ingredient_3">Ingredient 3</label>
+      <input type="text" id="ingredient_3" />
+
+      <label for="instruction">Instructions</label>
+      <textarea
+        name="instruction0"
+        id="instruction"
+        cols="10"
+        rows="5    "
+      ></textarea>
+
+      <input type="button" value="Publish" id="publish" />
+    </div>
+  </div>
 </main>
