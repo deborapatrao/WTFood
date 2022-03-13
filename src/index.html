@@ -10,20 +10,30 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link  rel="manifest"  href="app.webmanifest">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="manifest" href="app.webmanifest" />
     <script>
-      if ('serviceWorker' in navigator) {  
-        navigator.serviceWorker.register('./js/sw.js').then( function (reg) {
-          console.log(`Service Worker Registered`);
-        }).catch( function (error) {
-          console.log(`Service Worker Error (${error})`);       
-        });
+      if ("serviceWorker" in navigator) {
+        console.log("service worker registrations starts");
+        navigator.serviceWorker
+          .register("./sw.js")
+          .then(function (reg) {
+            console.log(`Service Worker Registered`);
+          })
+          .catch(function (error) {
+            console.log(`Service Worker Error (${error})`);
+          });
       } else {
         console.error("This browser doesn't support Service Worker");
       }
-      </script>
-      <title>WTFood</title>
+    </script>
+    <title>WTFood</title>
   </head>
   <body>
     <header>
@@ -33,11 +43,7 @@
           <img src="./images/logo.png" alt="WTFood" />
         </a>
         <nav class="header__navigation">
-          <button
-            class="navigation__toggle"
-            aria-controls="mainNav"
-            aria-expanded="false"
-          >
+          <button class="navigation__toggle" aria-controls="mainNav" aria-expanded="false">
             <span class="visually-hidden">Menu</span>
             <span class="hamburguer"></span>
           </button>
@@ -46,66 +52,71 @@
             <li><a href="#recipes">recipes</a></li>
             <li><a href="#community">community</a></li>
             <li><a href="#profile">profile</a></li>
-
           </ul>
         </nav>
         <div class="header__shopping">
-          <a href="#login" id="login-nav" data-bs-toggle="modal" data-bs-target="#exampleModal">login</a>
+          <a href="#login" id="login-nav" data-bs-toggle="modal" data-bs-target="#exampleModal"
+            >login</a
+          >
           <a href="">
             <i class="fa-solid fa-bag-shopping"></i>
             <span class="visually-hidden">Shopping List</span>
           </a>
-          
         </div>
       </div>
     </header>
 
-<!-- Modal -->
-<div
-class="modal fade"
-id="exampleModal"
-tabindex="-1"
-aria-labelledby="exampleModalLabel"
-aria-hidden="true"
->
-<div class="modal-dialog modal-lg modal-fullscreen-sm-down">
-  <div class="modal-content">
-    <div class="modal-header">
-     <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-    <div class="modal-body">
-      <div class="popup__container">
-        <h3>Welcome back!</h3>
-        <p>
-          Discover the most delicious recipes based on your available ingredients and inspire the
-          chef in you.
-        </p>
-
-        <form class="popup__container--form">
-          <div class="popup__container--form-email">
-            <label for="email1">Username or Email</label>
-            <input type="email" placeholder="email" id="email1" />
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-fullscreen-sm-down">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
           </div>
-          <div class="popup__container--form-email">
-            <label for="password1">Password</label>
-            <input type="password" placeholder="password" id="password1" />
-          </div>
+          <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+          <div class="modal-body">
+            <div class="popup__container">
+              <h3>Welcome back!</h3>
+              <p>
+                Discover the most delicious recipes based on your available ingredients and inspire
+                the chef in you.
+              </p>
 
-          <button id="signIn">Sign In</button>
-          <div>Don't have an account? <a id="signUp">Sign Up</a></div>
-          <button id="signOut">Sign Out</button>
-        </form>
-      </div>
-    </div>
-    <!-- <div class="modal-footer">
+              <form class="popup__container--form">
+                <div class="popup__container--form-email">
+                  <label for="email1">Username or Email</label>
+                  <input type="email" placeholder="email" id="email1" />
+                </div>
+                <div class="popup__container--form-email">
+                  <label for="password1">Password</label>
+                  <input type="password" placeholder="password" id="password1" />
+                </div>
+
+                <button id="signIn">Sign In</button>
+                <div>Don't have an account? <a id="signUp">Sign Up</a></div>
+                <button id="signOut">Sign Out</button>
+              </form>
+            </div>
+          </div>
+          <!-- <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       <button type="button" class="btn btn-primary">Save changes</button>
     </div> -->
-  </div>
-</div>
-</div>
+        </div>
+      </div>
+    </div>
 
     <div id="mainArea"></div>
 
