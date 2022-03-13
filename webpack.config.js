@@ -22,7 +22,6 @@ module.exports = {
     api: "./src/js/api.js",
     login: "./src/js/login.js",
     profile: "./src/js/profile.js",
-    sw: "./src/js/sw.js"
   },
 
   output: {
@@ -58,7 +57,17 @@ module.exports = {
         use: {
           loader: "file-loader",
           options: {
-            name: '[name].[ext]',
+            name: "[name].[ext]",
+          },
+        },
+      },
+      {
+        test: /sw.js/i,
+        //type: "asset/resource", //or asset
+        use: {
+          loader: "file-loader",
+          options: {
+            name: "[name].[ext]",
           },
         },
       },
@@ -68,6 +77,7 @@ module.exports = {
           {
             loader: MiniCssExtractPlugin.loader,
             options: { publicPath: "" },
+            // sourceMap: true,
           },
           "css-loader",
           "postcss-loader",
@@ -93,12 +103,12 @@ module.exports = {
     }),
   ],
 
-  devtool: 'source-map',
+  devtool: "eval-source-map",
   devServer: {
     static: "./dist",
     hot: true, //no refreshing after saving css
   },
   optimization: {
-    runtimeChunk: 'single'
-},
+    runtimeChunk: "single",
+  },
 };

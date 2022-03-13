@@ -10,11 +10,19 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="manifest" href="app.webmanifest" />
     <script>
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker
           .register("./js/sw.js")
+
           .then(function (reg) {
             console.log(`Service Worker Registered`);
           })
@@ -35,11 +43,7 @@
           <img src="./images/logo.png" alt="WTFood" />
         </a>
         <nav class="header__navigation">
-          <button
-            class="navigation__toggle"
-            aria-controls="mainNav"
-            aria-expanded="false"
-          >
+          <button class="navigation__toggle" aria-controls="mainNav" aria-expanded="false">
             <span class="visually-hidden">Menu</span>
             <span class="hamburguer"></span>
           </button>
@@ -48,29 +52,20 @@
             <li><a href="#recipes">recipes</a></li>
             <li><a href="#community">community</a></li>
             <li><a href="#profile">profile</a></li>
-            <li>
 
-              <a
-                href="#login"
-                id="login-nav"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-                >login</a
-              >
-
-   
-
-            </li>
           </ul>
         </nav>
         <div class="header__shopping">
-          <span>S</span><span class="visually-hidden">Shopping List</span>
+          <a href="#login" id="login-nav" data-bs-toggle="modal" data-bs-target="#exampleModal"
+            >login</a
+          >
+          <a href="">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span class="visually-hidden">Shopping List</span>
+          </a>
         </div>
       </div>
     </header>
-
-    <!-- Button trigger modal -->
-    <!-- <a class="link" data-bs-toggle="modal" data-bs-target="#exampleModal"> Launch demo modal </a> -->
 
     <!-- Modal -->
     <div
@@ -83,7 +78,7 @@
       <div class="modal-dialog modal-lg modal-fullscreen-sm-down">
         <div class="modal-content">
           <div class="modal-header">
-            <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
             <button
               type="button"
               class="btn-close"
@@ -91,12 +86,13 @@
               aria-label="Close"
             ></button>
           </div>
+          <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
           <div class="modal-body">
             <div class="popup__container">
               <h3>Welcome back!</h3>
               <p>
-                Discover the most delicious recipes based on your available
-                ingredients and inspire the chef in you.
+                Discover the most delicious recipes based on your available ingredients and inspire
+                the chef in you.
               </p>
 
               <form class="popup__container--form">
@@ -106,11 +102,7 @@
                 </div>
                 <div class="popup__container--form-email">
                   <label for="password1">Password</label>
-                  <input
-                    type="password"
-                    placeholder="password"
-                    id="password1"
-                  />
+                  <input type="password" placeholder="password" id="password1" />
                 </div>
 
                 <button id="signIn">Sign In</button>
