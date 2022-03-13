@@ -43,20 +43,37 @@
           <img src="./images/logo.png" alt="WTFood" />
         </a>
         <nav class="header__navigation">
-          <button class="navigation__toggle" aria-controls="mainNav" aria-expanded="false">
-            <span class="visually-hidden">Menu</span>
-            <span class="hamburguer"></span>
+          <button
+            class="navigation__toggle"
+            aria-controls="mainNav"
+            aria-expanded="false"
+          >
+            <div>
+              <span class="visually-hidden">Menu</span>
+              <span class="hamburger"></span>
+            </div>
           </button>
           <ul id="mainNav" class="navigation__list" data-visible="false">
-            <li><a href="#home">home</a></li>
-            <li><a href="#recipes">recipes</a></li>
-            <li><a href="#community">community</a></li>
-            <li><a href="#profile">profile</a></li>
-
+            <li class="nav__item">
+              <a href="#home" class="nav__link">home</a>
+            </li>
+            <li class="nav__item">
+              <a href="#recipes" class="nav__link">recipes</a>
+            </li>
+            <li class="nav__item">
+              <a href="#community" class="nav__link">community</a>
+            </li>
+            <li class="nav__item">
+              <a href="#profile" class="nav__link">profile</a>
+            </li>
           </ul>
         </nav>
         <div class="header__shopping">
-          <a href="#login" id="login-nav" data-bs-toggle="modal" data-bs-target="#exampleModal"
+          <a
+            href="#login"
+            id="login-nav"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
             >login</a
           >
           <a href="">
@@ -91,8 +108,8 @@
             <div class="popup__container">
               <h3>Welcome back!</h3>
               <p>
-                Discover the most delicious recipes based on your available ingredients and inspire
-                the chef in you.
+                Discover the most delicious recipes based on your available
+                ingredients and inspire the chef in you.
               </p>
 
               <form class="popup__container--form">
@@ -102,7 +119,11 @@
                 </div>
                 <div class="popup__container--form-email">
                   <label for="password1">Password</label>
-                  <input type="password" placeholder="password" id="password1" />
+                  <input
+                    type="password"
+                    placeholder="password"
+                    id="password1"
+                  />
                 </div>
 
                 <button id="signIn">Sign In</button>

@@ -1,0 +1,31 @@
+#userPhoto {
+  @include roundImg();
+  margin: auto;
+}
+
+.profile .aside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile__navigation {
+  width: 100%;
+}
+.profile__navigation ul {
+  @include flex(column, center, start);
+  gap: 0.5rem;
+
+  li {
+    width: 100%;
+
+    a {
+      display: block;
+      border: $border-orange;
+      color: $color-primary-dark;
+      border-radius: $std-border-radius;
+      padding: $padding-small;
+    }
+  }
+}
