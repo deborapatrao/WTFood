@@ -1,0 +1,41 @@
+.banner {
+  /* CHANGE CHANGE CHANGE CHANGE CHANGE CHANGE CHANGE CHANGE CHANGE CHANGE */
+  background: linear-gradient(45deg, $color-primary-dark, $color-primary-light);
+  padding: $std-section-padding;
+  min-height: 44vh;
+}
+
+.view-all {
+  min-width: 100px;
+  text-align: right;
+}
+
+.home section {
+  padding: 3rem 0;
+}
+
+.home .section__heading {
+  padding-bottom: 1rem;
+}
+
+//Food of the world section
+.section__food-world-wrapper {
+  gap: 0.5rem;
+}
+
+.food-world__card a {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+
+  .food-world__img {
+    grid-column: 1/-1;
+    grid-row: 1/2;
+  }
+
+  .food-world__card-title {
+    grid-column: 1/-1;
+    grid-row: 1/2;
+    text-align: center;
+  }
+}

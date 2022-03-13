@@ -1,0 +1,20 @@
+.food-world__img-wrapper {
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border: $border-light-grey;
+}
+
+.food-world__img {
+  height: 100%;
+}
+
+.food-world__orverlay {
+  @include flex(row, center, center);
+  position: absolute;
+  inset: 0 0 0 0;
+  z-index: 1;
+  background: $color-black-overlay;
+}

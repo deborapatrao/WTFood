@@ -1,31 +1,3 @@
-.hamburguer {
-  display: block;
-  position: relative;
-}
-
-.hamburguer,
-.hamburguer::before,
-.hamburguer::after {
-  width: 20px;
-  height: 2px;
-  background-color: $color-black;
-  z-index: 1000;
-}
-
-.hamburguer::before,
-.hamburguer::after {
-  content: "";
-  position: absolute;
-  left: 0;
-}
-
-.hamburguer::before {
-  bottom: 6px;
-}
-.hamburguer::after {
-  top: 6px;
-}
-
 //mobile menu
 nav a {
   text-decoration: none;

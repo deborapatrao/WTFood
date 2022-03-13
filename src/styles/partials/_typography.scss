@@ -1,4 +1,5 @@
 /* FONTS */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Source+Serif+Pro:wght@600&display=swap");
 
 h1,
 h2,
@@ -16,7 +17,7 @@ h1 {
 }
 
 h2 {
-  font-size: 4rem;
+  font-size: 2rem;
 }
 
 h3 {
@@ -37,4 +38,9 @@ h6 {
 
 body {
   font-family: $font-body;
+}
+
+.food-world__card-title {
+  @include fontSubtitle1();
+  color: $color-support-white;
 }

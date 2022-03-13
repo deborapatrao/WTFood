@@ -33,6 +33,9 @@ $font-body: "Roboto", sans-serif;
 $std-border-radius: 7px;
 $std-section-padding: 2rem 2%;
 $padding-small: 0.5rem;
-$std-border: 2px solid $color-support-medium;
+$border-grey: 2px solid $color-support-medium;
+$border-light-grey: 2px solid $color-support-light;
 $border-orange: 2px solid $color-primary-dark;
 $border-white: 2px solid $color-white;
+
+$color-black-overlay: rgba($color-black, 0.7);

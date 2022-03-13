@@ -37,7 +37,9 @@ const navToggle = document.querySelector(".navigation__toggle");
 
 navToggle.addEventListener("click", () => {
   const visibility = mainNav.getAttribute("data-visible");
+  const body = document.body;
 
+  body.classList.toggle('black-overlay');
   if (visibility === "false") {
     mainNav.setAttribute("data-visible", true);
     navToggle.setAttribute("aria-expanded", true);
