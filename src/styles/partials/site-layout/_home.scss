@@ -5,6 +5,9 @@
   min-height: 44vh;
 }
 
+.home {
+  overflow-x: hidden;
+}
 .view-all {
   min-width: 100px;
   text-align: right;
@@ -20,7 +23,19 @@
 
 //Food of the world section
 .section__food-world-wrapper {
+  --imgIndex: 0;
   gap: 0.5rem;
+  --nOfImg: 1;
+  width: 100%;
+  width: calc(var(--nOfImg) * 33%);
+  transform: translate(calc(var(--imgIndex) / var(--nOfImg) * -100%));
+  transition: transform 500ms ease-out;
+
+  .food-world__card {
+    width: 100%;
+    width: calc(100% / var(--nOfImg));
+    pointer-events: none;
+  }
 }
 
 .food-world__card a {
