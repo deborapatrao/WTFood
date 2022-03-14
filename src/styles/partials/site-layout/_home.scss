@@ -25,17 +25,18 @@
 
 //Food of the world section
 .section__food-world-wrapper {
-  --imgIndex: 0;
+  --imgIndex3: 0;
+  --nOfImg3: 1;
+
   gap: 0.5rem;
-  --nOfImg: 1;
   width: 100%;
-  width: calc(var(--nOfImg) * 33%);
-  transform: translate(calc(var(--imgIndex) / var(--nOfImg) * -100%));
-  transition: transform 500ms ease-out;
+  width: calc(var(--nOfImg3) * 33%);
+  transform: translate(calc(var(--imgIndex3) / var(--nOfImg3) * -100%));
+  transition: transform 400ms ease-out;
 
   .food-world__card {
     width: 100%;
-    width: calc(100% / var(--nOfImg));
+    width: calc(100% / var(--nOfImg3));
     pointer-events: none;
   }
 }
