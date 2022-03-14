@@ -23,6 +23,7 @@ import {
     signInWithEmailAndPassword,
     onAuthStateChanged,
     updateProfile,
+    updateEmail,
    signOut
 
 } from "firebase/auth";
@@ -57,6 +58,7 @@ export {
     onAuthStateChanged,
     signOut,
     updateProfile,
+    updateEmail,
     ref,
     uploadBytes,
     getDownloadURL,
