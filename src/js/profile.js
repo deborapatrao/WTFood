@@ -6,6 +6,7 @@ import {
     db,
     onAuthStateChanged,
     updateProfile,
+    updateEmail,
     uploadBytes,
     getDownloadURL,
     doc,
@@ -18,85 +19,143 @@ import {
 function init() {
 
     onAuthStateChanged(auth, (user) => {
-        let userName = document.getElementById("userName");
-        let userEmail = document.getElementById("userEmail");
-        let userPhoto = document.getElementById("userPhoto");
+        const userName = document.getElementById("userName");
+        const userEmail = document.getElementById("userEmail");
+        const userPhoto = document.getElementById("userPhoto");
+        const fnamePlaceholder = document.getElementById("updateFName");
+        const snamePlaceholder = document.getElementById("updateSName");
+        const emailPlaceholder = document.getElementById("updateEmail");
 
         if (user) {
             const uid = user.uid;
-            console.log(user.displayName);
             //-------------get User picture--------\\
-            getDownloadURL(ref(storage, `${uid}/profile/photo`))
-                .then((url) => {
-                    const userPhoto = document.getElementById("userPhoto");
-                    userPhoto.setAttribute("src", url);
-                })
-                .catch((error) => {
-                    // Handle any errors
-                });
+            // getDownloadURL(ref(storage, `users/${uid}/profile/photo`))
+            //     .then((url) => {
+            //         const userPhoto = document.getElementById("userPhoto");
+            //
+            //     })
+            //     .catch((error) => {
+            //         // Handle any errors
+            //     });
 
             //-----------------Check Sign In user------------\\
 
             const displayName = user.displayName;
-            const email = user.email;
-            const photoURL = user.photoURL;
+            const displayEmail = user.email;
+            const displayPhoto = user.photoURL;
+            const displayPassword = user.photoURL;
             // User is signed in, see docs for a list of available properties
             // https://firebase.google.com/docs/reference/js/firebase.User
-            console.log(displayName);
+            const [firstName, lastName] = displayName.split(' ');
+
             userName.innerHTML = displayName;
-            userEmail.innerHTML = email;
+            userEmail.innerHTML = displayEmail;
+            userPhoto.setAttribute('src', displayPhoto);
+            fnamePlaceholder.value = firstName;
+            snamePlaceholder.value = lastName;
+
+            emailPlaceholder.value = displayEmail;
+
         }
     });
 
 
 }
 
-update.addEventListener("click", () => {
-    userUpdate();
-    window.top.location.reload(true);
+
+updateButton.addEventListener("click", () => {
+    const file = document.getElementById("photoFile").files.length;
+    console.log(file);
+    if (file > 0) {
+        userUpdatePhoto();
+        updateUserEmail();
+    } else {
+        userUpdate();
+        updateUserEmail();
+    }
+
+    // window.top.location.reload(true);
 });
 
 //-----------------------Upload Photo-----------------------\\
 
-function photoUpload() {
-    let photo = document.getElementById("photoFile").files[0];
-    let photoCamera = image_data_url;
+function userUpdatePhoto() {
+    const photo = document.getElementById("photoFile").files[0];
+    const user = auth.currentUser;
+    const uid = user.uid;
+    const profilePhoto = ref(storage, `users/${uid}/profile/photo`);
 
-    onAuthStateChanged(auth, (user) => {
-        const uid = user.uid;
-        const profilePhoto = ref(storage, `${uid}/profile/photo`);
+    if (user) {
+
         uploadBytes(profilePhoto, photo)
             .then((snapshot) => {
                 console.log("Uploaded a blob or file!");
+                getDownloadURL(ref(storage, `users/${uid}/profile/photo`))
+                    .then((url) => {
+
+                        userUpdate(url);
+                    })
+                    .catch((error) => {
+                        const errorCode = error.code;
+                        const errorMessage = error.message;
+                        console.log('URL photo:' + errorCode + errorMessage);
+                    });
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 console.log(errorCode + errorMessage);
             });
-    });
+    }
+
 }
 
 //----------------------Update User info-------------------\\
-function userUpdate() {
-    let photo = document.getElementById("photoFile").files[0];
-    let name = document.getElementById("displayName").value;
+function userUpdate(photoStorage) {
+    const fname = document.getElementById("updateFName").value;
+    const sname = document.getElementById("updateSName").value;
+
+    const name = `${fname} ${sname}`;
+
 
     onAuthStateChanged(auth, (user) => {
-        updateProfile(user, {
-            displayName: name,
-            photoURL: photo.name,
-        })
-            .then(() => {
-                photoUpload();
-                alert("user updated");
+        if (user) {
+
+            updateProfile(user, {
+                displayName: name,
+                photoURL: photoStorage,
             })
-            .catch((error) => {
+                .then(() => {
+                    console.log('user updated');
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.log(errorCode + errorMessage);
+                });
+
+        }
+
+    });
+}
+
+function updateUserEmail() {
+    const email = document.getElementById("updateEmail").value;
+    console.log('uhu' + email);
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+
+            updateEmail(user, 'test').then(() => {
+                console.log('email update!')
+            }).catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                console.log(errorCode + errorMessage);
+                console.log('Code: ' + errorCode + '<br>Msg: ' + errorMessage);
             });
+        }
+
     });
+
 }
 
 //----------------------Camera Photo----------------------\\
@@ -124,8 +183,7 @@ function userUpdate() {
 
 
 async function recipeCreate() {
-    // messageRef := client.Collection("rooms").Doc("roomA").
-    // Collection("messages").Doc("message1")
+
     const UID = auth.currentUser.uid;
     const name = document.getElementById('recipe_name').value;
     const time = document.getElementById('cooking_time').value;
@@ -169,9 +227,8 @@ el.addEventListener('click', () => {
 });
 
 
-
 function navigateMenu() {
-    const allPages = document.querySelectorAll("div.profile_body");
+    const allPages = document.querySelectorAll("div.profileMenu");
     allPages[0].style.display = 'flex';
     const pageId = location.hash ? location.hash : '#myProfile';
     console.log(pageId);
