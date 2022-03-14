@@ -1,8 +1,8 @@
-<h1>Recipe</h1>
+<!-- <h1 >Recipe</h1> -->
 <!-- Banner with a carousel -->
 <div class="recipe-banner">
   <!-- Image carousel -->
-  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+  <!-- <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <button
         type="button"
@@ -54,22 +54,23 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
-  </div>
+  </div> -->
+  <div id="recipe-image-wrapper"></div>
   <div class="recipe-summary">
-    <h2>Recipe title</h2>
+    <h2 id="recipe-title">Recipe title</h2>
     <!-- RATING GOES HERE -->
     <div class="recipe-summary-info">
       <ul>
         <li class="recipe-summary-item">
-          <span>Prep time</span>
+          <span>Prep time:</span>
           <span id="prep-time">20 min</span>
         </li>
         <li class="recipe-summary-item">
-          <span>Cooking time</span>
+          <span>Cooking time:</span>
           <span id="cooking-time">45 min</span>
         </li>
         <li class="recipe-summary-item">
-          <span>Serving</span>
+          <span>Serving:</span>
           <span id="serving">2 servings</span>
         </li>
       </ul>
@@ -97,7 +98,7 @@
     </div>
 
     <!-- About the recipe -->
-    <div class="about-recipe">
+    <div class="about-recipe" id="about-recipe">
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi qui beatae laudantium soluta?
         Natus molestiae sint odio perferendis tempore nam mollitia. Praesentium accusamus suscipit
@@ -108,9 +109,68 @@
 </div>
 
 <!-- Recipe details section -->
-
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link active"
+      id="nutrition-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#nutrition"
+      type="button"
+      role="tab"
+      aria-controls="nutrition"
+      aria-selected="true"
+    >
+      Nutrition
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link"
+      id="ingredients-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#ingredients"
+      type="button"
+      role="tab"
+      aria-controls="ingredients"
+      aria-selected="false"
+    >
+      Ingredients
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link"
+      id="insctructions-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#insctructions"
+      type="button"
+      role="tab"
+      aria-controls="insctructions"
+      aria-selected="false"
+    >
+      Insctructions
+    </button>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div
+    class="tab-pane fade show active"
+    id="nutrition"
+    role="tabpanel"
+    aria-labelledby="nutrition-tab"
+  >
+    <div class="nutrition-wrapper">Nutrition</div>
+  </div>
+  <div class="tab-pane fade" id="ingredients" role="tabpanel" aria-labelledby="ingredients-tab">
+    <div class="ingredients-wrapper">Ingredients</div>
+  </div>
+  <div class="tab-pane fade" id="insctructions" role="tabpanel" aria-labelledby="insctructions-tab">
+    <div class="instructions-wrapper">Insctructions</div>
+  </div>
+</div>
 <!-- ********** TEST RESULTS SECTION ************** -->
-<section>
+<!-- <section>
   <div class="container">
     <div class="section-heading">
       <h2>Results</h2>
@@ -119,12 +179,13 @@
 
     <div id="resultTest"></div>
   </div>
-</section>
+</section> -->
 <!-- ********* END TEST RESULTS SECTION ************* -->
 
 <!-- Will need help here!!!! -->
 
 <!-- Related recipes section -->
+<hr />
 <section>
   <div class="container">
     <div class="section-heading">

@@ -22,7 +22,16 @@ export class Router {
   }
 
   static handleHashChange() {
-    const urlHash = window.location.hash;
+    // Magic
+    // const urlHash = window.location.hash;
+    const urlHash = window.location.hash.substring(
+      0,
+      window.location.hash.indexOf("?") !== -1
+        ? window.location.hash.indexOf("?")
+        : window.location.hash.length
+    );
+
+    console.log(urlHash);
     if (urlHash.length > 0) {
       // If there is a hash in URL
       for (let i = 0; i < Router.pages.length; i++) {

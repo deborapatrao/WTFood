@@ -22,6 +22,7 @@ module.exports = {
     api: "./src/js/api.js",
     login: "./src/js/login.js",
     profile: "./src/js/profile.js",
+    oneRecipe: "./src/js/oneRecipe.js",
   },
 
   output: {
