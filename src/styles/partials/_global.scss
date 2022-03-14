@@ -10,3 +10,35 @@ body.black-overlay:after {
   left: 0;
   background-color: $color-black-overlay;
 }
+
+.background-light-grey {
+  background-color: $color-support-lighter;
+}
+
+.card-link {
+  text-decoration: none;
+}
+
+//Rating stars
+.rating-stars {
+  display: inline-block;
+  font-size: 1rem;
+  font-family: Times;
+
+  &::before {
+    --rating: 3.5;
+    --percent: calc(var(--rating) / 5 * 100%);
+
+    content: "★★★★★";
+    letter-spacing: 3px;
+
+    background: linear-gradient(
+      90deg,
+      $color-primary-dark var(--percent),
+      $color-support-medium var(--percent)
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
