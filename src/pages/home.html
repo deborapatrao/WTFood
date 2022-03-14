@@ -94,14 +94,17 @@
   <!-- Food of the World section -->
   <section>
     <div class="container">
-      <div class="section__heading d-flex justify-content-between">
+      <div
+        class="section__heading d-flex justify-content-between align-items-center"
+      >
         <h2>Food of the World</h2>
         <a href="#" class="view-all">view all</a>
       </div>
+
       <div
         class="section__food-world-wrapper d-flex justify-content-between align-items-center"
       >
-        <div class="food-world__card">
+        <div class="food-world__card carousel__item">
           <a href="#" class="food-world__img-wrapper">
             <div class="food-world__orverlay">
               <h3 class="food-world__card-title">Asian</h3>
@@ -113,7 +116,7 @@
             />
           </a>
         </div>
-        <div class="food-world__card">
+        <div class="food-world__card carousel__item">
           <a href="#" class="food-world__img-wrapper">
             <div class="food-world__orverlay">
               <h3 class="food-world__card-title">American</h3>
@@ -125,7 +128,7 @@
             />
           </a>
         </div>
-        <div class="food-world__card">
+        <div class="food-world__card carousel__item">
           <a href="#" class="food-world__img-wrapper">
             <div class="food-world__orverlay">
               <h3 class="food-world__card-title">French</h3>
@@ -137,7 +140,7 @@
             />
           </a>
         </div>
-        <div class="food-world__card">
+        <div class="food-world__card carousel__item">
           <a href="#" class="food-world__img-wrapper">
             <div class="food-world__orverlay">
               <h3 class="food-world__card-title">Chinese</h3>
@@ -149,7 +152,7 @@
             />
           </a>
         </div>
-        <div class="food-world__card">
+        <div class="food-world__card carousel__item">
           <a href="#" class="food-world__img-wrapper">
             <div class="food-world__orverlay">
               <h3 class="food-world__card-title">Mexican</h3>
@@ -161,7 +164,7 @@
             />
           </a>
         </div>
-        <div class="food-world__card">
+        <div class="food-world__card carousel__item">
           <a href="#" class="food-world__img-wrapper">
             <div class="food-world__orverlay">
               <h3 class="food-world__card-title">Grilled</h3>
@@ -179,29 +182,115 @@
 
   <!-- What's Hot section -->
 
-  <section>
+  <section class="background-light-grey">
     <div class="container">
-      <div class="section__heading d-flex justify-content-between">
+      <div
+        class="section__heading d-flex justify-content-between align-items-center"
+      >
         <h2>What's Hot</h2>
         <a href="#" class="view-all">view all</a>
       </div>
 
-      <a href="" class="card-link">
-        <div class="card">
-          <img src="https://picsum.photos/300" alt="" class="card-img-top" />
-          <div class="food-world__img-wrapper">
-            <!-- RATING GOES HERE - no idea how to add this-->
-            <div class="rating-stars">
-              <i class="fa-solid fa-star"></i>
+      <div
+        class="carousel__container2 d-flex justify-content-between align-items-start"
+      >
+        <a href="" class="card-link recipe-card">
+          <div class="card">
+            <div class="recipe-card__img">
+              <button></button>
+              <img
+                src="https://picsum.photos/300"
+                alt=""
+                class="card-img-top"
+              />
             </div>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star-half-stroke"></i>
-            <i class="fa-solid fa-star"></i>
+            <div class="card-body">
+              <div class="rating-stars"></div>
+              <h3 class="card-title">Salmon Salad</h3>
+            </div>
           </div>
-          <h3 class="card-title"></h3>
-        </div>
-      </a>
+        </a>
+        <a href="" class="card-link recipe-card">
+          <div class="card">
+            <div class="recipe-card__img">
+              <button></button>
+              <img
+                src="https://picsum.photos/300"
+                alt=""
+                class="card-img-top"
+              />
+            </div>
+            <div class="card-body">
+              <div class="rating-stars"></div>
+              <h3 class="card-title">Grilled Chicken with Chips</h3>
+            </div>
+          </div>
+        </a>
+        <a href="" class="card-link recipe-card">
+          <div class="card">
+            <div class="recipe-card__img">
+              <button></button>
+              <img
+                src="https://picsum.photos/300"
+                alt=""
+                class="card-img-top"
+              />
+            </div>
+            <div class="card-body">
+              <div class="rating-stars"></div>
+              <h3 class="card-title">Spagetti carbonara</h3>
+            </div>
+          </div>
+        </a>
+        <a href="" class="card-link recipe-card">
+          <div class="card">
+            <div class="recipe-card__img">
+              <button></button>
+              <img
+                src="https://picsum.photos/300"
+                alt=""
+                class="card-img-top"
+              />
+            </div>
+            <div class="card-body">
+              <div class="rating-stars"></div>
+              <h3 class="card-title">Ceaser Salad</h3>
+            </div>
+          </div>
+        </a>
+        <a href="" class="card-link recipe-card">
+          <div class="card">
+            <div class="recipe-card__img">
+              <button></button>
+              <img
+                src="https://picsum.photos/300"
+                alt=""
+                class="card-img-top"
+              />
+            </div>
+            <div class="card-body">
+              <div class="rating-stars"></div>
+              <h3 class="card-title">Pasta with Hot Dogs</h3>
+            </div>
+          </div>
+        </a>
+        <a href="" class="card-link recipe-card">
+          <div class="card">
+            <div class="recipe-card__img">
+              <button></button>
+              <img
+                src="https://picsum.photos/300"
+                alt=""
+                class="card-img-top"
+              />
+            </div>
+            <div class="card-body">
+              <div class="rating-stars"></div>
+              <h3 class="card-title">Empanadas</h3>
+            </div>
+          </div>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -209,12 +298,14 @@
 
   <section>
     <div class="container">
-      <div class="section__heading d-flex justify-content-between">
+      <div
+        class="section__heading d-flex justify-content-between align-items-center"
+      >
         <h2>Easy Recipes for Every Occasions</h2>
         <a href="#" class="view-all">view all</a>
       </div>
 
-      <a href="" class="card-link">
+      <a href="" class="card-link recipe-card">
         <div class="card">
           <img src="#" alt="" class="card-img-top" />
           <!-- RATING GOES HERE - no idea how to add this-->
@@ -232,12 +323,14 @@
   <!-- Community section -->
   <section>
     <div class="container">
-      <div class="section__heading d-flex justify-content-between">
+      <div
+        class="section__heading d-flex justify-content-between align-items-center"
+      >
         <h2>The community</h2>
         <a href="#" class="view-all">view all</a>
       </div>
 
-      <a href="" class="card-link">
+      <a href="" class="card-link recipe-card">
         <div class="card">
           <img src="#" alt="" class="card-img-top" />
           <!-- RATING GOES HERE - no idea how to add this-->
