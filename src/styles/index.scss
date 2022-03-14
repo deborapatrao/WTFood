@@ -11,8 +11,10 @@ TABLE OF CONTENTS
 5. HEADER - FOOTER
 6. SEARCH TABS
 
+MEDIA
 
-PAGES
+BUTTONS
+SITE-LAYOUT
 */
 
 //ARIABLES & MIXINS
@@ -37,7 +39,11 @@ PAGES
 /* *** SEARCH TABS *** */
 @import "partials/search";
 
+/* *** MEDIA *** */
+@import "partials/media";
+
+/* *** BUTTONS *** */
+@import "partials/buttons";
+
 /* *** SITE-LAYOUT *** */
 @import "partials/site-layout/site-layout";
-
-

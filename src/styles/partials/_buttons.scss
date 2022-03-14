@@ -1,0 +1,33 @@
+.navigation__toggle {
+  padding: 7px 0;
+  z-index: 1000;
+  position: absolute;
+}
+
+.hamburger {
+  display: block;
+  position: relative;
+}
+
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+  width: 20px;
+  height: 2px;
+  background: $color-black;
+  z-index: 900;
+}
+
+.hamburger::before,
+.hamburger::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.hamburger::before {
+  bottom: 6px;
+}
+.hamburger::after {
+  top: 6px;
+}
