@@ -1,39 +1,24 @@
 import {
-  auth,
-  getAuth,
-  storage,
-  ref,
-  db,
-  onAuthStateChanged,
-  updateProfile,
-  uploadBytes,
-  getDownloadURL,
-  doc,
-  setDoc,
-  addDoc,
-  collection,
+    auth,
+    getAuth,
+    storage,
+    ref,
+    db,
+    onAuthStateChanged,
+    updateProfile,
+    updateEmail,
+    uploadBytes,
+    getDownloadURL,
+    doc,
+    setDoc,
+    addDoc,
+    collection
 } from "../firebase.js";
 
+
 function init() {
-  onAuthStateChanged(auth, (user) => {
-    let userName = document.getElementById("userName");
-    let userEmail = document.getElementById("userEmail");
-    let userPhoto = document.getElementById("userPhoto");
 
-    if (user) {
-      const uid = user.uid;
-      console.log(user.displayName);
-      //-------------get User picture--------\\
-      getDownloadURL(ref(storage, `${uid}/profile/photo`))
-        .then((url) => {
-          const userPhoto = document.getElementById("userPhoto");
-          userPhoto.setAttribute("src", url);
-        })
-        .catch((error) => {
-          // Handle any errors
-        });
-
-      onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, (user) => {
         const userName = document.getElementById("userName");
         const userEmail = document.getElementById("userEmail");
         const userPhoto = document.getElementById("userPhoto");
@@ -42,134 +27,136 @@ function init() {
         const emailPlaceholder = document.getElementById("updateEmail");
 
         if (user) {
-          const uid = user.uid;
-          //-------------get User picture--------\\
-          // getDownloadURL(ref(storage, `users/${uid}/profile/photo`))
-          //     .then((url) => {
-          //         const userPhoto = document.getElementById("userPhoto");
-          //
-          //     })
-          //     .catch((error) => {
-          //         // Handle any errors
-          //     });
+            const uid = user.uid;
+            //-------------get User picture--------\\
+            // getDownloadURL(ref(storage, `users/${uid}/profile/photo`))
+            //     .then((url) => {
+            //         const userPhoto = document.getElementById("userPhoto");
+            //
+            //     })
+            //     .catch((error) => {
+            //         // Handle any errors
+            //     });
 
-          //-----------------Check Sign In user------------\\
+            //-----------------Check Sign In user------------\\
 
-          const displayName = user.displayName;
-          const displayEmail = user.email;
-          const displayPhoto = user.photoURL;
-          const displayPassword = user.photoURL;
-          // User is signed in, see docs for a list of available properties
-          // https://firebase.google.com/docs/reference/js/firebase.User
-          const [firstName, lastName] = displayName.split(" ");
+            const displayName = user.displayName;
+            const displayEmail = user.email;
+            const displayPhoto = user.photoURL
+                ? user.photoURL
+                : "https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg"
+            // const displayPassword = user.photoURL;
+            // User is signed in, see docs for a list of available properties
+            // https://firebase.google.com/docs/reference/js/firebase.User
+            const [firstName, lastName] = displayName.split(' ');
 
-          userName.innerHTML = displayName;
-          userEmail.innerHTML = displayEmail;
-          userPhoto.setAttribute("src", displayPhoto);
-          fnamePlaceholder.value = firstName;
-          snamePlaceholder.value = lastName;
+            userName.innerHTML = displayName;
+            userEmail.innerHTML = displayEmail;
+            userPhoto.setAttribute('src', displayPhoto);
+            fnamePlaceholder.value = firstName;
+            snamePlaceholder.value = lastName;
 
-          emailPlaceholder.value = displayEmail;
+            emailPlaceholder.value = displayEmail;
+
         }
-      });
+    });
 
-      const displayName = user.displayName;
-      const email = user.email;
-      const photoURL = user.photoURL;
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
-      console.log(displayName);
-      userName.innerHTML = displayName;
-      userEmail.innerHTML = email;
-    }
-  });
 
-  updateButton.addEventListener("click", () => {
+}
+
+
+updateButton.addEventListener("click", () => {
     const file = document.getElementById("photoFile").files.length;
     console.log(file);
     if (file > 0) {
-      userUpdatePhoto();
-      updateUserEmail();
+        userUpdatePhoto();
+        updateUserEmail();
     } else {
-      userUpdate();
-      updateUserEmail();
+        userUpdate();
+        updateUserEmail();
     }
 
     // window.top.location.reload(true);
-  });
+});
 
-  //-----------------------Upload Photo-----------------------\\
+//-----------------------Upload Photo-----------------------\\
 
-  function userUpdatePhoto() {
+function userUpdatePhoto() {
     const photo = document.getElementById("photoFile").files[0];
     const user = auth.currentUser;
     const uid = user.uid;
     const profilePhoto = ref(storage, `users/${uid}/profile/photo`);
 
     if (user) {
-      uploadBytes(profilePhoto, photo)
-        .then((snapshot) => {
-          console.log("Uploaded a blob or file!");
-          getDownloadURL(ref(storage, `users/${uid}/profile/photo`))
-            .then((url) => {
-              userUpdate(url);
+
+        uploadBytes(profilePhoto, photo)
+            .then((snapshot) => {
+                console.log("Uploaded a blob or file!");
+                getDownloadURL(ref(storage, `users/${uid}/profile/photo`))
+                    .then((url) => {
+
+                        userUpdate(url);
+                    })
+                    .catch((error) => {
+                        const errorCode = error.code;
+                        const errorMessage = error.message;
+                        console.log('URL photo:' + errorCode + errorMessage);
+                    });
             })
             .catch((error) => {
-              const errorCode = error.code;
-              const errorMessage = error.message;
-              console.log("URL photo:" + errorCode + errorMessage);
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorCode + errorMessage);
             });
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(errorCode + errorMessage);
-        });
     }
-  }
 
-  //----------------------Update User info-------------------\\
-  function userUpdate(photoStorage) {
+}
+
+//----------------------Update User info-------------------\\
+function userUpdate(photoStorage) {
     const fname = document.getElementById("updateFName").value;
     const sname = document.getElementById("updateSName").value;
 
     const name = `${fname} ${sname}`;
 
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        updateProfile(user, {
-          displayName: name,
-          photoURL: photoStorage,
-        })
-          .then(() => {
-            console.log("user updated");
-          })
-          .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode + errorMessage);
-          });
-      }
-    });
-  }
 
-  function updateUserEmail() {
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+
+            updateProfile(user, {
+                displayName: name,
+                photoURL: photoStorage,
+            })
+                .then(() => {
+                    console.log('user updated');
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.log(errorCode + errorMessage);
+                });
+
+        }
+
+    });
+}
+
+function updateUserEmail() {
     const email = document.getElementById("updateEmail").value;
-    console.log("uhu" + email);
+    console.log('uhu' + email);
     onAuthStateChanged(auth, (user) => {
-      if (user) {
-        updateEmail(user, "test")
-          .then(() => {
-            console.log("email update!");
-          })
-          .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log("Code: " + errorCode + "<br>Msg: " + errorMessage);
-          });
-      }
-    });
+        if (user) {
 
+            updateEmail(user, 'test').then(() => {
+                console.log('email update!')
+            }).catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log('Code: ' + errorCode + '<br>Msg: ' + errorMessage);
+            });
+        }
+
+    });
 
 }
 
@@ -208,13 +195,14 @@ async function recipeCreate() {
     const typeRecipe = document.getElementById('typeRecipe').value;
     const dietaryPref = document.getElementById('dietaryPref').value;
     const instructions = document.getElementById('instruction').value;
+    const ingredient_1 = document.getElementById('ingredient_1').value;
+    const ingredient_2 = document.getElementById('ingredient_2').value;
+    const ingredient_3 = document.getElementById('ingredient_3').value;
+    const ingredient_4 = document.getElementById('ingredient_4').value;
+    const ingredient_5 = document.getElementById('ingredient_5').value;
 
-    // const ingredient_1 = document.getElementById('ingredient_1').value;
-    // const ingredient_2 = document.getElementById('ingredient_2').value;
-    // const ingredient_3 = document.getElementById('ingredient_3').value;
-
+console.log(name);
     const docData = {
-
         name: name,
         time: time,
         prep_time: prep_time,
@@ -222,20 +210,23 @@ async function recipeCreate() {
         type_recipe: typeRecipe,
         dietary_pref: dietaryPref,
         instructions: instructions,
+        ingredient_1: ingredient_1,
+        ingredient_2: ingredient_2,
+        ingredient_3: ingredient_3,
+        ingredient_4: ingredient_4,
+        ingredient_5: ingredient_5,
     }
 
     try {
         console.log('tentei salvar');
-        doc(db, `users/${UID}`)
-      await db.collection('users').doc(`${UID}`).collection('recipes').doc(name)
-          .set(docData);
+        // doc(db, `users/${UID}/recipe`)
+        await setDoc(doc(db, `users/${UID}/recipe`, name), docData)
 
     } catch (error) {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode + errorMessage);
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode + errorMessage);
     }
-
 }
 
 const el = document.getElementById('publish');
@@ -243,19 +234,17 @@ const el = document.getElementById('publish');
 el.addEventListener('click', () => {
     try {
         recipeCreate();
-
     } catch (error) {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode + errorMessage);
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode + errorMessage);
     }
-
 });
 
 
 //----------------------Add/Remove Ingrediente Input----------------------\\
 let i = 0;
-addBtn.addEventListener('click', () => {
+/*addBtn.addEventListener('click', () => {
 
     const inputAppend = document.getElementById('input-ingredient');
     const inputIngredient = document.createElement('input');
@@ -263,7 +252,7 @@ addBtn.addEventListener('click', () => {
     const inputAmount = document.createElement('input');
     const labelAmount = document.createElement('label');
 
-    /*Ingredients*/
+    /!*Ingredients*!/
     labelIngredient.innerHTML = 'Ingredient Name'
     labelIngredient.setAttribute('for', `ingredient_${i}`);
     labelIngredient.setAttribute('id', `ingredientLabel_${i}`);
@@ -272,32 +261,26 @@ addBtn.addEventListener('click', () => {
     inputIngredient.setAttribute('id', `ingredient_${i}`);
     inputIngredient.setAttribute('class', `ingredient`);
 
-    /*Amounts*/
+    /!*Amounts*!/
     labelAmount.innerHTML = 'Amount'
     labelAmount.setAttribute('for', `amount_${i}`);
     labelAmount.setAttribute('for', `amountLabel_${i}`);
     inputAmount.setAttribute('type', 'number');
     inputAmount.setAttribute('id', `amount_${i}`);
 
+
     inputAppend.appendChild(labelIngredient);
     inputAppend.appendChild(inputIngredient);
     inputAppend.appendChild(labelAmount);
     inputAppend.appendChild(inputAmount);
     i++;
-  });
-
-  //----------------------Add/Remove Ingrediente Input----------------------\\
-
-
-
     console.log('addbtn:' + i);
-});
+});*/
 
 
-removeBtn.addEventListener('click', () => {
+/*removeBtn.addEventListener('click', () => {
     console.log('removebtn:' + i);
     const inputsRemove = document.getElementById('input-ingredient');
-
     const ingredientInputRemove = document.getElementById(`ingredient_${i}`);
     const ingredientLabelRemove = document.getElementById(`ingredientLabel_${i}`);
     const amountInputRemove = document.getElementById(`amount_${i}`);
@@ -308,31 +291,27 @@ removeBtn.addEventListener('click', () => {
     inputsRemove.remove(amountInputRemove);
     inputsRemove.remove(amountLabelRemove);
     i--;
-
-});
+});*/
 
 
 //----------------------Navigate Menu Pages Profile SPA----------------------\\
 
 function navigateMenu() {
-
-  });
     const allPages = document.querySelectorAll("div.profileMenu");
-    allPages[0].style.display = "flex";
-    const pageId = location.hash ? location.hash : "#myProfile";
+    allPages[0].style.display = 'flex';
+    const pageId = location.hash ? location.hash : '#myProfile';
     console.log(pageId);
     for (let page of allPages) {
-      if (pageId === "#" + page.id) {
-        page.style.display = "flex";
-      } else {
-        page.style.display = "none";
-      }
+        if (pageId === '#' + page.id) {
+            page.style.display = 'flex';
+        } else {
+            page.style.display = 'none';
+        }
     }
-  }
+
 }
 
 window.addEventListener('hashchange', navigateMenu);
 //---------------------Initialization of the JS----------------------\\
 
 init();
-
