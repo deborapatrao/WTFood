@@ -23,7 +23,6 @@
     gap: 0.3em;
   }
 </style> -->
-
 <h1 class="visually-hidden">Profile</h1>
 
 
@@ -81,7 +80,9 @@
       </div>-->
 
     <div class="profileMenu" id="myRecipes">
+
       <a href="#createRecipes">Create Recipes</a>
+        <div id="userRecipes"></div>
     </div>
 
         <div class="profileMenu" id="createRecipes">
@@ -95,8 +96,9 @@
                     <option disabled selected value="">Select an Option</option>
                     <option value="japanese">Japanese</option>
                     <option value="chinese">Chinese</option>
-                    <option value="italian">italian</option>
-                    <option value="french">french</option>
+                    <option value="italian">Italian</option>
+                    <option value="french">French</option>
+                    <option value="other">Other</option>
                 </select>
                 <label for="dietaryPref">Dietary Preference</label>
                 <select name="dietaryPref" id="dietaryPref">

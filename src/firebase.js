@@ -2,12 +2,13 @@
 
 import {initializeApp} from "firebase/app";
 import {
-
     getFirestore,
     collection,
     addDoc,
     doc,
-    setDoc
+    setDoc,
+    getDoc,
+    getDocs,
 }
     from "firebase/firestore";
 import {
@@ -53,6 +54,8 @@ export {
     doc,
     addDoc,
     setDoc,
+    getDoc,
+    getDocs,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     onAuthStateChanged,
