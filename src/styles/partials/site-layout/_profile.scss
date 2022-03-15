@@ -7,7 +7,7 @@
   margin: 1rem;
   display: flex;
   flex-direction: row;
-  gap: 20rem;
+  gap: 2rem;
 
   .aside {
     display: flex;
@@ -15,6 +15,16 @@
     align-items: center;
     //justify-content: center;
   }
+  input{
+    border: 1px solid black;
+  }
+
+  .recipe--information{
+display: flex;
+    flex-flow: column nowrap  ;
+  }
+
+
 }
 
 .profileMenu {
@@ -65,5 +75,5 @@
 }
 #createRecipes{
   display: none;
-  margin-left: 10rem;
+
 }

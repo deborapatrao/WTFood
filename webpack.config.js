@@ -17,7 +17,7 @@ module.exports = {
   // entry: ["babel-polyfill", "./src/index.js"],
   entry: {
     index: "./src/index.js",
-    database: "./src/database.js",
+    firebase: "./src/firebase.js",
     home: "./src/js/home.js",
     api: "./src/js/api.js",
     login: "./src/js/login.js",
