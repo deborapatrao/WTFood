@@ -74,21 +74,42 @@
 
 
         <div class="profileMenu" id="createRecipes">
-            <label for="recipeName">Title</label>
-            <input type="text" id="recipeName"/>
-            <label for="cookingTime">Cooking time</label>
-            <input type="number" id="cookingTime" placeholder="minutes"/>
-            <label for="prepTime">Prep Time</label>
-            <input type="text" id="prepTime"/>
-            <label for="serving">Serving </label>
-            <input type="number" id="serving"/>
+            <h4>Recipe Information</h4>
+            <div class="recipe--information">
+                <label for="recipeTitle">RecipeTitle</label>
+                <input type="text" id="recipeTitle"/>
 
-            <label for="ingredient_1">Ingredient 1</label>
-            <input type="text" id="ingredient_1"/>
-            <label for="ingredient_2">Ingredient 2</label>
-            <input type="text" id="ingredient_2"/>
-            <label for="ingredient_3">Ingredient 3</label>
-            <input type="text" id="ingredient_3"/>
+                <label for="typeRecipe">Type of Recipe</label>
+                <select name="typeRecipe" id="typeRecipe">
+                    <option disabled selected value="">Select an Option</option>
+                    <option value="japanese">Japanese</option>
+                    <option value="chinese">Chinese</option>
+                    <option value="italian">italian</option>
+                    <option value="french">french</option>
+                </select>
+                <label for="dietaryPref">Dietary Preference</label>
+                <select name="dietaryPref" id="dietaryPref">
+                    <option disabled selected value="">Select an Option</option>
+                    <option value="meatLovers">Meat Lovers</option>
+                    <option value="gluten">Gluten Free</option>
+                    <option value="vegan">Vegan</option>
+                    <option value="vegetarian">Vegetarian</option>
+                </select>
+
+                <label for="cookingTime">Cooking time</label>
+                <input type="number" id="cookingTime" placeholder="minutes"/>
+                <label for="prepTime">Prep Time</label>
+                <input type="text" id="prepTime" placeholder="minutes"/>
+                <label for="serving">Serving </label>
+                <input type="number" id="serving"/>
+            </div>
+            <div class="recipe--ingredients" id="ingredients">
+                <div id="input-ingredient"></div>
+                <div class="add--remove--buttons">
+                    <button type="button" id="addBtn">Add More</button>
+                    <button type="button" id="removeBtn">Remove</button>
+                </div>
+            </div>
 
             <label for="instruction">Instructions</label>
             <textarea name="instruction" id="instruction" cols="10" rows="5    "></textarea>

@@ -182,43 +182,48 @@ function updateUserEmail() {
 // });
 
 
+//----------------------Create Recipe----------------------\\
 async function recipeCreate() {
 
     const UID = auth.currentUser.uid;
-    const name = document.getElementById('recipe_name').value;
-    const time = document.getElementById('cooking_time').value;
-    const prep_time = document.getElementById('prep_time').value;
+    const name = document.getElementById('recipeTitle').value;
+    const time = document.getElementById('cookingTime').value;
+    const prep_time = document.getElementById('prepTime').value;
     const serving = document.getElementById('serving').value;
-    const ingredient_1 = document.getElementById('ingredient_1').value;
-    const ingredient_2 = document.getElementById('ingredient_2').value;
-    const ingredient_3 = document.getElementById('ingredient_3').value;
+    const typeRecipe = document.getElementById('typeRecipe').value;
+    const dietaryPref = document.getElementById('dietaryPref').value;
     const instructions = document.getElementById('instruction').value;
+    // const ingredient_1 = document.getElementById('ingredient_1').value;
+    // const ingredient_2 = document.getElementById('ingredient_2').value;
+    // const ingredient_3 = document.getElementById('ingredient_3').value;
+
+    const docData = {
+        name: name,
+        time: time,
+        prep_time: prep_time,
+        serving: serving,
+        type_recipe: typeRecipe,
+        dietary_pref: dietaryPref,
+        instructions: instructions,
+    }
+
     try {
-        await addDoc(collection(db, `recipes/${UID}/${name}`), {
-            name: name,
-            time: time,
-            prep_time: prep_time,
-            serving: serving,
-            ingredient_1: ingredient_1,
-            ingredient_2: ingredient_2,
-            ingredient_3: ingredient_3,
-            instructions: instructions,
-        });
+        console.log('tentei salvar');
+        doc(db, `users/${UID}`)
+      await db.collection('users').doc(`${UID}`).collection('recipes').doc(name)
+          .set(docData);
     } catch (error) {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode + errorMessage);
     }
-
 }
-
 
 const el = document.getElementById('publish');
 
 el.addEventListener('click', () => {
     try {
-        recipeCreate()
-        alert('Recipe Created');
+        recipeCreate();
     } catch (error) {
         const errorCode = error.code;
         const errorMessage = error.message;
@@ -226,6 +231,60 @@ el.addEventListener('click', () => {
     }
 });
 
+
+//----------------------Add/Remove Ingrediente Input----------------------\\
+let i = 0;
+addBtn.addEventListener('click', () => {
+
+    const inputAppend = document.getElementById('input-ingredient');
+    const inputIngredient = document.createElement('input');
+    const labelIngredient = document.createElement('label');
+    const inputAmount = document.createElement('input');
+    const labelAmount = document.createElement('label');
+
+    /*Ingredients*/
+    labelIngredient.innerHTML = 'Ingredient Name'
+    labelIngredient.setAttribute('for', `ingredient_${i}`);
+    labelIngredient.setAttribute('id', `ingredientLabel_${i}`);
+    labelIngredient.setAttribute('class', `ingredientLabel`);
+    inputIngredient.setAttribute('type', 'text');
+    inputIngredient.setAttribute('id', `ingredient_${i}`);
+    inputIngredient.setAttribute('class', `ingredient`);
+
+    /*Amounts*/
+    labelAmount.innerHTML = 'Amount'
+    labelAmount.setAttribute('for', `amount_${i}`);
+    labelAmount.setAttribute('for', `amountLabel_${i}`);
+    inputAmount.setAttribute('type', 'number');
+    inputAmount.setAttribute('id', `amount_${i}`);
+
+
+    inputAppend.appendChild(labelIngredient);
+    inputAppend.appendChild(inputIngredient);
+    inputAppend.appendChild(labelAmount);
+    inputAppend.appendChild(inputAmount);
+    i++;
+    console.log('addbtn:' + i);
+});
+
+
+removeBtn.addEventListener('click', () => {
+    console.log('removebtn:' + i);
+    const inputsRemove = document.getElementById('input-ingredient');
+    const ingredientInputRemove = document.getElementById(`ingredient_${i}`);
+    const ingredientLabelRemove = document.getElementById(`ingredientLabel_${i}`);
+    const amountInputRemove = document.getElementById(`amount_${i}`);
+    const amountLabelRemove = document.getElementById(`amountLabel_${i}`);
+
+    inputsRemove.remove(ingredientInputRemove);
+    inputsRemove.remove(ingredientLabelRemove);
+    inputsRemove.remove(amountInputRemove);
+    inputsRemove.remove(amountLabelRemove);
+    i--;
+});
+
+
+//----------------------Navigate Menu Pages Profile SPA----------------------\\
 
 function navigateMenu() {
     const allPages = document.querySelectorAll("div.profileMenu");
@@ -243,4 +302,6 @@ function navigateMenu() {
 }
 
 window.addEventListener('hashchange', navigateMenu);
+//---------------------Initialization of the JS----------------------\\
+
 init();
