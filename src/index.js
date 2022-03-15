@@ -30,7 +30,8 @@ import placeHolderImg from "./images/placeholder-donuts.png";
 
 // PWA
 import manifest from "./app.webmanifest";
-import api from "./sw.js";
+import sw from "./sw.js";
+import firebase from "./firebase.js";
 
 //Hamburguer menu
 const mainNav = document.getElementById("mainNav");
@@ -40,8 +41,8 @@ navToggle.addEventListener("click", () => {
   const visibility = mainNav.getAttribute("data-visible");
   const body = document.body;
 
-  body.classList.toggle('black-overlay');
-  
+  body.classList.toggle("black-overlay");
+
   if (visibility === "false") {
     mainNav.setAttribute("data-visible", true);
     navToggle.setAttribute("aria-expanded", true);
@@ -57,7 +58,3 @@ document.body.addEventListener("keydown", (e) => {
     navToggle.setAttribute("aria-expanded", false);
   }
 });
-
-
-
-
