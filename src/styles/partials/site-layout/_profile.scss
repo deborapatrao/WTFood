@@ -5,15 +5,15 @@
 
 .profile {
   margin: 1rem;
-  display: flex;
-  flex-direction: row;
+  @include flex(column, center, center);
   gap: 20rem;
 
-  .aside {
+  .logged-in {
     display: flex;
     flex-direction: column;
     align-items: center;
-    //justify-content: center;
+    justify-content: center;
+    display: none;
   }
 }
 
@@ -30,14 +30,13 @@
 .profile__photo {
   //cursor:pointer;
   input[type="file"]::file-selector-button {
-//visibility: hidden;
+    //visibility: hidden;
     //}
     //[input]::before {
     //  font-family: 'FontAwesome';
     //  content: '\f069'
     //}
   }
-
 }
 
 .profile__navigation ul {
@@ -57,13 +56,12 @@
   }
 }
 
-
 /* Menu display of profile*/
 #myRecipes {
   display: none;
   margin-left: 10rem;
 }
-#createRecipes{
+#createRecipes {
   display: none;
   margin-left: 10rem;
 }
