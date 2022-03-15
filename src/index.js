@@ -28,10 +28,10 @@ import imgFaviconSmall from "./images/icon-192x192.png";
 import imgFaviconBig from "./images/icon-512x512.png";
 import imgLogoWhite from "./images/logo_white.svg";
 
-
 // PWA
 import manifest from "./app.webmanifest";
-import api from "./sw.js";
+import sw from "./sw.js";
+import firebase from "./firebase.js";
 
 //Hamburguer menu
 const mainNav = document.getElementById("mainNav");
@@ -41,8 +41,8 @@ navToggle.addEventListener("click", () => {
   const visibility = mainNav.getAttribute("data-visible");
   const body = document.body;
 
-  body.classList.toggle('black-overlay');
-  
+  body.classList.toggle("black-overlay");
+
   if (visibility === "false") {
     mainNav.setAttribute("data-visible", true);
     navToggle.setAttribute("aria-expanded", true);
@@ -53,12 +53,11 @@ navToggle.addEventListener("click", () => {
 });
 
 document.body.addEventListener("keydown", (e) => {
+  const body = document.body;
+
   if (e.key == "Escape") {
+    body.classList.toggle("black-overlay");
     mainNav.setAttribute("data-visible", false);
     navToggle.setAttribute("aria-expanded", false);
   }
 });
-
-
-
-
