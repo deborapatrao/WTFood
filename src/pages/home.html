@@ -1,176 +1,438 @@
 <h1 class="visually-hidden">Home</h1>
-<div class="banner">
-  <div class="container">
-    <!-- banner tabs  -->
+<div class="home">
+  <div class="banner">
+    <div class="container">
+      <!-- banner tabs  -->
 
-    <div class="search__tab">
-      <nav>
-        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-          <button
-            class="nav-link active"
-            id="nav-ingredients-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#nav-ingredients"
-            type="button"
-            role="tab"
-            aria-controls="nav-ingredients"
-            aria-selected="true"
-          >
-            Ingredients
-          </button>
-          <button
-            class="nav-link"
-            id="nav-recipes-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#nav-recipes"
-            type="button"
-            role="tab"
-            aria-controls="nav-recipes"
-            aria-selected="false"
-          >
-            Recipes
-          </button>
-        </div>
-      </nav>
-      <div class="tab-content" id="nav-tabContent">
-        <!-- SEARCH BY INGREDIENTS TAB -->
-        <div
-          class="tab-pane fade show active"
-          id="nav-ingredients"
-          role="tabpanel"
-          aria-labelledby="nav-ingredients-tab"
-        >
-          <div id="ingForm" class="tab__search-form">
-            <legend>Get recipes by ingredients</legend>
-            <label>
-              <input
-                id="ing1"
-                type="text"
-                placeholder="Hungry for something?"
-              />
-            </label>
-            <label>
-              <input
-                id="ing2"
-                type="text"
-                placeholder="Hungry for something?"
-              />
-            </label>
-            <label>
-              <input
-                id="ing3"
-                type="text"
-                placeholder="Hungry for something?"
-              />
-            </label>
-            <input type="submit" value="Search" id="ingSearch" />
+      <div class="search__tab">
+        <nav>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button
+              class="nav-link active"
+              id="nav-ingredients-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#nav-ingredients"
+              type="button"
+              role="tab"
+              aria-controls="nav-ingredients"
+              aria-selected="true"
+            >
+              🍋 Ingredients
+            </button>
+            <button
+              class="nav-link"
+              id="nav-recipes-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#nav-recipes"
+              type="button"
+              role="tab"
+              aria-controls="nav-recipes"
+              aria-selected="false"
+            >
+              📒 Recipes
+            </button>
           </div>
-        </div>
-        <!-- SEARCH BY RECIPES TAB -->
-        <div
-          class="tab-pane fade"
-          id="nav-recipes"
-          role="tabpanel"
-          aria-labelledby="nav-recipes-tab"
-        >
-          <div id="recipeForm" class="tab__search-form">
-            <legend>Hungry for something?</legend>
-            <label>
-              <input
-                type="text"
-                placeholder="Hungry for something?"
-                id="recipeQuery"
-              />
-            </label>
-            <input type="submit" value="Search" id="recipeSearch" />
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+          <!-- SEARCH BY INGREDIENTS TAB -->
+          <div
+            class="tab-pane fade show active"
+            id="nav-ingredients"
+            role="tabpanel"
+            aria-labelledby="nav-ingredients-tab"
+          >
+            <div id="ingForm" class="tab__search-form">
+              <legend>Get recipes by ingredients</legend>
+              <label>
+                <input
+                  id="ing1"
+                  type="text"
+                  placeholder="Hungry for something?"
+                />
+              </label>
+              <label>
+                <input
+                  id="ing2"
+                  type="text"
+                  placeholder="Hungry for something?"
+                />
+              </label>
+              <label>
+                <input
+                  id="ing3"
+                  type="text"
+                  placeholder="Hungry for something?"
+                />
+              </label>
+              <input type="submit" value="Search" id="ingSearch" />
+            </div>
+          </div>
+          <!-- SEARCH BY RECIPES TAB -->
+          <div
+            class="tab-pane fade"
+            id="nav-recipes"
+            role="tabpanel"
+            aria-labelledby="nav-recipes-tab"
+          >
+            <div id="recipeForm" class="tab__search-form">
+              <legend>Hungry for something?</legend>
+              <label>
+                <input
+                  type="text"
+                  placeholder="Hungry for something?"
+                  id="recipeQuery"
+                />
+              </label>
+              <input type="submit" value="Search" id="recipeSearch" />
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- Food of the World section -->
+  <section>
+    <div class="container">
+      <div
+        class="section__heading d-flex justify-content-between align-items-center"
+      >
+        <h2>Food of the World</h2>
+        <a href="#" class="view-all">view all</a>
+      </div>
+
+      <div
+        class="section__food-world-wrapper d-flex justify-content-between align-items-center"
+      >
+        <div class="food-world__card carousel__item">
+          <a href="#" class="food-world__img-wrapper">
+            <div class="food-world__orverlay">
+              <h3 class="food-world__card-title">Asian</h3>
+            </div>
+            <img
+              src="https://picsum.photos/300"
+              alt=""
+              class="food-world__img"
+            />
+          </a>
+        </div>
+        <div class="food-world__card carousel__item">
+          <a href="#" class="food-world__img-wrapper">
+            <div class="food-world__orverlay">
+              <h3 class="food-world__card-title">American</h3>
+            </div>
+            <img
+              src="https://picsum.photos/300"
+              alt=""
+              class="food-world__img"
+            />
+          </a>
+        </div>
+        <div class="food-world__card carousel__item">
+          <a href="#" class="food-world__img-wrapper">
+            <div class="food-world__orverlay">
+              <h3 class="food-world__card-title">French</h3>
+            </div>
+            <img
+              src="https://picsum.photos/300"
+              alt=""
+              class="food-world__img"
+            />
+          </a>
+        </div>
+        <div class="food-world__card carousel__item">
+          <a href="#" class="food-world__img-wrapper">
+            <div class="food-world__orverlay">
+              <h3 class="food-world__card-title">Chinese</h3>
+            </div>
+            <img
+              src="https://picsum.photos/300"
+              alt=""
+              class="food-world__img"
+            />
+          </a>
+        </div>
+        <div class="food-world__card carousel__item">
+          <a href="#" class="food-world__img-wrapper">
+            <div class="food-world__orverlay">
+              <h3 class="food-world__card-title">Mexican</h3>
+            </div>
+            <img
+              src="https://picsum.photos/300"
+              alt=""
+              class="food-world__img"
+            />
+          </a>
+        </div>
+        <div class="food-world__card carousel__item">
+          <a href="#" class="food-world__img-wrapper">
+            <div class="food-world__orverlay">
+              <h3 class="food-world__card-title">Grilled</h3>
+            </div>
+            <img
+              src="https://picsum.photos/300"
+              alt=""
+              class="food-world__img"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What's Hot section -->
+
+  <section class="background-light-grey">
+    <div class="container">
+      <div
+        class="section__heading d-flex justify-content-between align-items-center"
+      >
+        <h2>What's Hot</h2>
+        <a href="#" class="view-all">view all</a>
+      </div>
+
+      <div
+        class="carousel__container-wh d-flex justify-content-between align-items-start"
+      >
+        <a href="" class="card-link recipe-card">
+          <div class="card">
+            <div class="recipe-card__img">
+              <button></button>
+              <img
+                src="https://picsum.photos/300"
+                alt=""
+                class="card-img-top"
+              />
+            </div>
+            <div class="card-body">
+              <div class="rating-stars"></div>
+              <h3 class="card-title">Salmon Salad</h3>
+            </div>
+          </div>
+        </a>
+        <a href="" class="card-link recipe-card">
+          <div class="card">
+            <div class="recipe-card__img">
+              <button></button>
+              <img
+                src="https://picsum.photos/300"
+                alt=""
+                class="card-img-top"
+              />
+            </div>
+            <div class="card-body">
+              <div class="rating-stars"></div>
+              <h3 class="card-title">Grilled Chicken with Chips</h3>
+            </div>
+          </div>
+        </a>
+        <a href="" class="card-link recipe-card">
+          <div class="card">
+            <div class="recipe-card__img">
+              <button></button>
+              <img
+                src="https://picsum.photos/300"
+                alt=""
+                class="card-img-top"
+              />
+            </div>
+            <div class="card-body">
+              <div class="rating-stars"></div>
+              <h3 class="card-title">Spagetti carbonara</h3>
+            </div>
+          </div>
+        </a>
+        <a href="" class="card-link recipe-card">
+          <div class="card">
+            <div class="recipe-card__img">
+              <button></button>
+              <img
+                src="https://picsum.photos/300"
+                alt=""
+                class="card-img-top"
+              />
+            </div>
+            <div class="card-body">
+              <div class="rating-stars"></div>
+              <h3 class="card-title">Ceaser Salad</h3>
+            </div>
+          </div>
+        </a>
+        <a href="" class="card-link recipe-card">
+          <div class="card">
+            <div class="recipe-card__img">
+              <button></button>
+              <img
+                src="https://picsum.photos/300"
+                alt=""
+                class="card-img-top"
+              />
+            </div>
+            <div class="card-body">
+              <div class="rating-stars"></div>
+              <h3 class="card-title">Pasta with Hot Dogs</h3>
+            </div>
+          </div>
+        </a>
+        <a href="" class="card-link recipe-card">
+          <div class="card">
+            <div class="recipe-card__img">
+              <button></button>
+              <img
+                src="https://picsum.photos/300"
+                alt=""
+                class="card-img-top"
+              />
+            </div>
+            <div class="card-body">
+              <div class="rating-stars"></div>
+              <h3 class="card-title">Empanadas</h3>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Easy Recipe for any occasion section -->
+
+  <section>
+    <div class="container">
+      <div
+        class="section__heading d-flex justify-content-between align-items-center"
+      >
+        <h2>Easy Recipes for Every Occasions</h2>
+        <a href="#" class="view-all">view all</a>
+      </div>
+
+      <div
+        class="carousel__container-er d-flex justify-content-between align-items-start"
+      >
+        <a href="" class="card-link recipe-card">
+          <div class="card">
+            <div class="recipe-card__img">
+              <button></button>
+              <img
+                src="https://picsum.photos/300"
+                alt=""
+                class="card-img-top"
+              />
+            </div>
+            <div class="card-body">
+              <div class="rating-stars"></div>
+              <h3 class="card-title">Salmon Salad</h3>
+            </div>
+          </div>
+        </a>
+        <a href="" class="card-link recipe-card">
+          <div class="card">
+            <div class="recipe-card__img">
+              <button></button>
+              <img
+                src="https://picsum.photos/300"
+                alt=""
+                class="card-img-top"
+              />
+            </div>
+            <div class="card-body">
+              <div class="rating-stars"></div>
+              <h3 class="card-title">Grilled Chicken with Chips</h3>
+            </div>
+          </div>
+        </a>
+        <a href="" class="card-link recipe-card">
+          <div class="card">
+            <div class="recipe-card__img">
+              <button></button>
+              <img
+                src="https://picsum.photos/300"
+                alt=""
+                class="card-img-top"
+              />
+            </div>
+            <div class="card-body">
+              <div class="rating-stars"></div>
+              <h3 class="card-title">Spagetti carbonara</h3>
+            </div>
+          </div>
+        </a>
+        <a href="" class="card-link recipe-card">
+          <div class="card">
+            <div class="recipe-card__img">
+              <button></button>
+              <img
+                src="https://picsum.photos/300"
+                alt=""
+                class="card-img-top"
+              />
+            </div>
+            <div class="card-body">
+              <div class="rating-stars"></div>
+              <h3 class="card-title">Ceaser Salad</h3>
+            </div>
+          </div>
+        </a>
+        <a href="" class="card-link recipe-card">
+          <div class="card">
+            <div class="recipe-card__img">
+              <button></button>
+              <img
+                src="https://picsum.photos/300"
+                alt=""
+                class="card-img-top"
+              />
+            </div>
+            <div class="card-body">
+              <div class="rating-stars"></div>
+              <h3 class="card-title">Pasta with Hot Dogs</h3>
+            </div>
+          </div>
+        </a>
+        <a href="" class="card-link recipe-card">
+          <div class="card">
+            <div class="recipe-card__img">
+              <button></button>
+              <img
+                src="https://picsum.photos/300"
+                alt=""
+                class="card-img-top"
+              />
+            </div>
+            <div class="card-body">
+              <div class="rating-stars"></div>
+              <h3 class="card-title">Empanadas</h3>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Image section -->
+  <section class="section__image-divider">
+    <img
+      src="https://firebasestorage.googleapis.com/v0/b/wtfood-3d70f.appspot.com/o/banner-divider.jpg?alt=media&token=2ff0f1b8-0c1b-4d64-a69c-780cb4e4ad97"
+      alt=""
+    />
+  </section>
+
+  <!-- Community section -->
+  <section>
+    <div class="container">
+      <div
+        class="section__heading d-flex justify-content-between align-items-center"
+      >
+        <h2>The community</h2>
+        <a href="#" class="view-all">view all</a>
+      </div>
+
+      <a href="" class="card-link recipe-card">
+        <div class="card">
+          <img src="#" alt="" class="card-img-top" />
+          <!-- RATING GOES HERE - no idea how to add this-->
+          <h3 class="card-title"></h3>
+        </div>
+      </a>
+    </div>
+  </section>
 </div>
-
-<!-- Food of the World section -->
-<section>
-  <div class="container">
-    <div class="section__heading">
-      <h2>Food of the World</h2>
-      <a href="#">view all</a>
-    </div>
-    <div>
-      <a href="#">
-        <img src="https://picsum.photos/300" alt="" class="round-image" />
-        <h3>Asian</h3>
-      </a>
-      <a href="#">
-        <img src="https://picsum.photos/300" alt="" class="round-image" />
-        <h3>American</h3>
-      </a>
-      <a href="#">
-        <img src="https://picsum.photos/300" alt="" class="round-image" />
-        <h3>French</h3>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- What's Hot section -->
-
-<section>
-  <div class="container">
-    <div class="section__heading">
-      <h2>What's Hot</h2>
-      <a href="#">view all</a>
-    </div>
-
-    <a href="" class="card-link">
-      <div class="card">
-        <img src="#" alt="" class="card-img-top" />
-        <!-- RATING GOES HERE - no idea how to add this-->
-        <h3 class="card-title"></h3>
-      </div>
-    </a>
-  </div>
-</section>
-
-<!-- Easy Recipe for any occasion section -->
-
-<section>
-  <div class="container">
-    <div class="section__heading">
-      <h2>Easy recipe for any occasions</h2>
-      <a href="#">view all</a>
-    </div>
-
-    <a href="" class="card-link">
-      <div class="card">
-        <img src="#" alt="" class="card-img-top" />
-        <!-- RATING GOES HERE - no idea how to add this-->
-        <h3 class="card-title"></h3>
-      </div>
-    </a>
-  </div>
-</section>
-
-<!-- Image section -->
-<section>
-  <img src="#" alt="" />
-</section>
-
-<!-- Community section -->
-<section>
-  <div class="container">
-    <div class="section__heading">
-      <h2>The community</h2>
-      <a href="#">view all</a>
-    </div>
-
-    <a href="" class="card-link">
-      <div class="card">
-        <img src="#" alt="" class="card-img-top" />
-        <!-- RATING GOES HERE - no idea how to add this-->
-        <h3 class="card-title"></h3>
-      </div>
-    </a>
-  </div>
-</section>

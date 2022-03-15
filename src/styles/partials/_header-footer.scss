@@ -52,7 +52,102 @@ header .container {
 }
 
 //FOOTER
-
-footer {
+.footer__logo {
+  max-width: 70%;
+}
+.footer__main {
   background-color: $color-primary-dark;
+  @include flex(column, center, center);
+  padding: 2rem 0;
+  text-align: center;
+  gap: 2rem;
+
+  .footer__nav {
+    border-bottom: 1px solid $color-white;
+    width: 90%;
+    li {
+      margin-bottom: 2rem;
+    }
+    a {
+      color: $color-white;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+  }
+
+  .footer__social-menu {
+    border-bottom: 1px solid $color-white;
+    padding-bottom: 2rem;
+    width: 90%;
+
+    ul {
+      @include flex(row, center, center);
+      gap: 0.75rem;
+    }
+
+    li {
+      border: 1px solid $color-white;
+      border-radius: $std-border-radius;
+      width: 32px;
+      height: 32px;
+      position: relative;
+    }
+
+    a {
+      color: $color-white;
+      font-size: 1.2rem;
+      position: absolute;
+      right: 0;
+      top: 2px;
+      left: 0;
+    }
+  }
+
+  .footer__subscription {
+    width: 90%;
+    form {
+      @include flex(row, center, center);
+      gap: 0.5rem;
+
+      label {
+        flex-grow: 2;
+        background-color: $color-white;
+      }
+
+      input[type="submit"] {
+        flex-grow: 1;
+        border: $border-white;
+        @include fontButton();
+        color: $color-white;
+      }
+
+      label,
+      input[type="submit"] {
+        border-radius: $std-border-radius;
+        padding: 0.5rem;
+      }
+    }
+  }
+}
+
+.footer__social-menu h3,
+.footer__subscription h3 {
+  font-family: $font-body;
+  font-size: 1rem;
+  color: $color-white;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.footer__copyright {
+  background-color: $color-black;
+  color: $color-white;
+  @include flex(column, center, center);
+  @include fontBody2();
+  padding: 1.5rem 0;
+}
+
+.home .section__image-divider {
+  padding: 0;
 }

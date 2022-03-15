@@ -1,62 +1,123 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Source+Serif+Pro:wght@600&display=swap");
-
-//HEADINGS
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 600;
-  line-height: 1.5;
+//body overlay when you open the menu
+body.black-overlay:after {
+  content: "";
+  display: block;
+  position: fixed;
+  padding: 100px 0;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: $color-black-overlay;
 }
 
-h1 {
-  font-size: 5rem;
+.background-light-grey {
+  background-color: $color-support-lighter;
 }
 
-h2 {
-  font-size: 4rem;
+.card-link {
+  text-decoration: none;
 }
 
-h3 {
-  font-size: 3rem;
-}
-
-h4 {
-  font-size: 1.75rem;
-}
-
-h5 {
-  font-size: 1.5rem;
-}
-
-h6 {
+//Rating stars
+.rating-stars {
+  display: inline-block;
   font-size: 1rem;
-}
+  font-family: Times;
 
-.banner {
-  /* CHANGE CHANGE CHANGE CHANGE CHANGE CHANGE CHANGE CHANGE CHANGE CHANGE */
-  background: linear-gradient($color-primary-dark, $color-primary-light);
-  padding: $std-section-padding;
-}
+  &::before {
+    --rating: 3.5;
+    --percent: calc(var(--rating) / 5 * 100%);
 
-//Sections
+    content: "★★★★★";
+    letter-spacing: 3px;
 
-section {
-  padding: $std-section-padding;
-}
-
-.section__heading {
-  @include flex(row, space-between, center);
-
-  h2 {
-    font-size: 2rem;
+    background: linear-gradient(
+      90deg,
+      $color-primary-dark var(--percent),
+      $color-support-medium var(--percent)
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 }
 
-.round-image {
-  @include roundImg();
-  border: $std-border;
+//Recipe cards
+.recipe-card {
+  display: block;
+
+  &.card-link {
+    margin: 0;
+  }
+  .card {
+    border: none;
+    background-color: unset;
+  }
+
+  .recipe-card__img {
+    border-radius: $std-border-radius;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 0.5rem auto 0.5rem;
+    grid-template-rows: 0.5rem auto 0.5rem;
+
+    img {
+      grid-column: 1/-1;
+      grid-row: 1/-1;
+    }
+
+    button {
+      grid-column: 2;
+      grid-row: 2;
+      z-index: 1;
+      align-self: start;
+      justify-self: end;
+      color: $color-support-dark;
+      background-color: $color-white;
+      border-radius: 50%;
+      padding: 12px;
+      position: relative;
+      &::before {
+        content: "•••";
+        position: absolute;
+        inset: 1px 0 0 4px;
+      }
+    }
+  }
+
+  .card-body {
+    padding: 0;
+  }
+  .card-title {
+    @include fontBody1Semibold();
+    color: $color-black;
+  }
+}
+
+.carousel__container-wh,
+.carousel__container-er {
+  --imgIndexWH: 0;
+  --imgIndexER: 0;
+  --nOfImg2: 6;
+
+  gap: 0.5rem;
+  width: 100%;
+  width: calc(6 * 50%);
+
+  .recipe-card {
+    width: 100%;
+    width: calc(100% / 6);
+    pointer-events: none;
+  }
+}
+
+.carousel__container-wh {
+  transform: translate(calc(var(--imgIndexWH) / 6 * -100%));
+  transition: transform 400ms ease-out;
+}
+
+.carousel__container-er {
+  transform: translate(calc(var(--imgIndexER) / 6 * -100%));
+  transition: transform 400ms ease-out;
 }

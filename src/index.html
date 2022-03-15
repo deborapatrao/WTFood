@@ -10,11 +10,19 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="manifest" href="app.webmanifest" />
     <script>
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker
           .register("./js/sw.js")
+
           .then(function (reg) {
             console.log(`Service Worker Registered`);
           })
@@ -40,37 +48,41 @@
             aria-controls="mainNav"
             aria-expanded="false"
           >
-            <span class="visually-hidden">Menu</span>
-            <span class="hamburguer"></span>
+            <div>
+              <span class="visually-hidden">Menu</span>
+              <span class="hamburger"></span>
+            </div>
           </button>
           <ul id="mainNav" class="navigation__list" data-visible="false">
-            <li><a href="#home">home</a></li>
-            <li><a href="#recipes">recipes</a></li>
-            <li><a href="#community">community</a></li>
-            <li><a href="#profile">profile</a></li>
-            <li>
-
-              <a
-                href="#login"
-                id="login-nav"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-                >login</a
-              >
-
-   
-
+            <li class="nav__item">
+              <a href="#home" class="nav__link">home</a>
+            </li>
+            <li class="nav__item">
+              <a href="#recipes" class="nav__link">recipes</a>
+            </li>
+            <li class="nav__item">
+              <a href="#community" class="nav__link">community</a>
+            </li>
+            <li class="nav__item">
+              <a href="#profile" class="nav__link">profile</a>
             </li>
           </ul>
         </nav>
         <div class="header__shopping">
-          <span>S</span><span class="visually-hidden">Shopping List</span>
+          <a
+            href="#login"
+            id="login-nav"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            >login</a
+          >
+          <a href="">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span class="visually-hidden">Shopping List</span>
+          </a>
         </div>
       </div>
     </header>
-
-    <!-- Button trigger modal -->
-    <!-- <a class="link" data-bs-toggle="modal" data-bs-target="#exampleModal"> Launch demo modal </a> -->
 
     <!-- Modal -->
     <div
@@ -83,7 +95,7 @@
       <div class="modal-dialog modal-lg modal-fullscreen-sm-down">
         <div class="modal-content">
           <div class="modal-header">
-            <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
             <button
               type="button"
               class="btn-close"
@@ -91,6 +103,7 @@
               aria-label="Close"
             ></button>
           </div>
+          <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
           <div class="modal-body">
             <div class="popup__container">
               <h3>Welcome back!</h3>
@@ -129,6 +142,78 @@
 
     <div id="mainArea"></div>
 
-    <footer>FOOTER</footer>
+    <footer>
+      <div class="footer__main container">
+        <div class="footer__logo-container">
+          <h2 class="visually-hidden">WTFood</h2>
+          <img
+            src="./images/logo_white.svg"
+            alt="WTFood"
+            class="footer__logo"
+          />
+        </div>
+        <div class="footer__nav">
+          <div class="footer-main-nav">
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Recipe</a></li>
+              <li><a href="#">Community</a></li>
+              <li><a href="#">Contact us</a></li>
+            </ul>
+          </div>
+          <div class="footer__secondary-nav">
+            <ul>
+              <li><a href="#">About us</a></li>
+              <li><a href="#">Terms of use</a></li>
+              <li><a href="#">FAQ</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer__social-menu">
+          <h3>Follow us</h3>
+          <ul>
+            <li>
+              <a href="#">
+                <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+                <span class="visually-hidden">Facebook</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa-brands fa-twitter" aria-hidden="true"></i>
+                <span class="visually-hidden">Twitter</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                <span class="visually-hidden">Instagram</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa-brands fa-pinterest" aria-hidden="true"></i>
+                <span class="visually-hidden">Pinterest</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer__subscription">
+          <h3>Subscribe now</h3>
+          <form action="">
+            <label for="">
+              <input type="email" placeholder="Email Address" />
+            </label>
+            <input type="submit" value="Sign up" />
+          </form>
+        </div>
+      </div>
+
+      <div class="footer__copyright container">
+        <span>&copy;WTFOOD WMDD-4885 - Group 2</span>
+        <span>Langara The College of Higher Learning</span>
+      </div>
+    </footer>
   </body>
 </html>
