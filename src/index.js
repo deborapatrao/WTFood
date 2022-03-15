@@ -26,7 +26,7 @@ import script from "./route/script.js";
 import imgLogo from "./images/logo.png";
 import imgFaviconSmall from "./images/icon-192x192.png";
 import imgFaviconBig from "./images/icon-512x512.png";
-import placeHolderImg from "./images/placeholder-donuts.png";
+import imgLogoWhite from "./images/logo_white.svg";
 
 // PWA
 import manifest from "./app.webmanifest";
@@ -53,7 +53,10 @@ navToggle.addEventListener("click", () => {
 });
 
 document.body.addEventListener("keydown", (e) => {
+  const body = document.body;
+
   if (e.key == "Escape") {
+    body.classList.toggle("black-overlay");
     mainNav.setAttribute("data-visible", false);
     navToggle.setAttribute("aria-expanded", false);
   }

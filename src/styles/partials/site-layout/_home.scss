@@ -1,6 +1,9 @@
 .banner {
-  /* CHANGE CHANGE CHANGE CHANGE CHANGE CHANGE CHANGE CHANGE CHANGE CHANGE */
-  background: linear-gradient(45deg, $color-primary-dark, $color-primary-light);
+  background-image: url(https://firebasestorage.googleapis.com/v0/b/wtfood-3d70f.appspot.com/o/banner-header.jpg?alt=media&token=4a042c17-f1ac-420f-94ac-f411a9518ae5);
+  background-position: top right;
+  background-size: cover;
+  background-repeat: no-repeat;
+
   padding: $std-section-padding;
   min-height: 44vh;
 }
