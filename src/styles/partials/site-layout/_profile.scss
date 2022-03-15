@@ -1,18 +1,55 @@
 #userPhoto {
   @include roundImg();
-  margin: auto;
+  //margin: auto;
 }
 
-.profile .aside {
+.profile {
+  margin: 1rem;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  gap: 2rem;
+
+  .aside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    //justify-content: center;
+  }
+  input{
+    border: 1px solid black;
+  }
+
+  .recipe--information{
+display: flex;
+    flex-flow: column nowrap  ;
+  }
+
+
+}
+
+.profileMenu {
+  display: flex;
+  flex-flow: column nowrap;
   justify-content: center;
 }
 
 .profile__navigation {
   width: 100%;
 }
+
+.profile__photo {
+  //cursor:pointer;
+  input[type="file"]::file-selector-button {
+//visibility: hidden;
+    //}
+    //[input]::before {
+    //  font-family: 'FontAwesome';
+    //  content: '\f069'
+    //}
+  }
+
+}
+
 .profile__navigation ul {
   @include flex(column, center, start);
   gap: 0.5rem;
@@ -28,4 +65,15 @@
       padding: $padding-small;
     }
   }
+}
+
+
+/* Menu display of profile*/
+#myRecipes {
+  display: none;
+  margin-left: 10rem;
+}
+#createRecipes{
+  display: none;
+
 }
