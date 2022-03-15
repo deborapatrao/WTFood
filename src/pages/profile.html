@@ -23,63 +23,66 @@
     gap: 0.3em;
   }
 </style> -->
-<style>
 
-    #input-ingredient{
-        display: flex;
-        flex-direction: column;
-        gap: 0.1rem;
-    }
-</style>
-<h1>Profile</h1>
+<h1 class="visually-hidden">Profile</h1>
+
 
 <main>
-    <div class="profile">
-        <div class="aside">
-            <img width="100" height="100" src="#" alt="" id="userPhoto"/>
-            <div class="profile__photo fa-solid fa-camera">
-                <input type="file" id="photoFile" name="filename"/>
+  <div class="profile">
+    <!-- View if logged in -->
+    <div class="logged-in">
+      <img width="100" height="100" src="#" alt="" id="userPhoto" />
+      <div class="profile__photo fa-solid fa-camera">
+        <input type="file" id="photoFile" name="filename" />
+      </div>
 
-            </div>
+      <div>Name:</div>
+      <div id="userName"></div>
 
-            <div>Name:</div>
-            <div id="userName"></div>
+      <div>Email:</div>
+      <div id="userEmail"></div>
 
-            <div>Email:</div>
-            <div id="userEmail"></div>
+      <nav class="profile__navigation">
+        <ul id="nav_profile">
+          <li>
+            <a class="profile-menu" href="#myProfile" id="profileInfo"
+              >My Profile</a
+            >
+          </li>
+          <li>
+            <a class="profile-menu" href="#myRecipes" id="profileRecipe"
+              >My Recipes</a
+            >
+          </li>
+          <li><a class="profile-menu">Saved Recipes</a></li>
+          <li><a class="profile-menu">Shopping List</a></li>
+          <li><a class="profile-menu">Notifications</a></li>
+        </ul>
+      </nav>
+    </div>
 
-            <nav class="profile__navigation">
-                <ul id="nav_profile">
-                    <li><a class="profile-menu" href="#myProfile" id="profileInfo">My Profile</a></li>
-                    <li><a class="profile-menu" href="#myRecipes" id="profileRecipe">My Recipes</a></li>
-                    <li><a class="profile-menu">Saved Recipes</a></li>
-                    <li><a class="profile-menu">Shopping List</a></li>
-                    <li><a class="profile-menu">Notifications</a></li>
-                </ul>
-            </nav>
-        </div>
-
-        <div class="profileMenu" id="myProfile">
-            <label for="updateFName">First Name</label>
-            <input type="text" id="updateFName"/>
-            <label for="updateSName">Second Name</label>
-            <input type="text" id="updateSName"/>
-            <label for="updateEmail">Email</label>
-            <input type="text" id="updateEmail"/>
-            <button id="updateButton">Update</button>
-            <!--            <button id="resetPassword">Reset password</button>-->
-        </div>
-        <!--<div style="display: none"></div>
+    <div class="logged-out">
+      <div class="profileMenu" id="myProfile">
+        <label for="updateFName">First Name</label>
+        <input type="text" id="updateFName" />
+        <label for="updateSName">Last Name</label>
+        <input type="text" id="updateSName" />
+        <label for="updateEmail">Email</label>
+        <input type="text" id="updateEmail" />
+        <button id="updateButton">Update</button>
+        <!--            <button id="resetPassword">Reset password</button>-->
+      </div>
+    </div>
+    <!--<div style="display: none"></div>
         <button id="start-camera">Start Camera</button>
         <video id="video" width="320" height="240" autoplay></video>
         <button id="click-photo">Click Photo</button>
         <canvas id="canvas" width="320" height="240"></canvas>
       </div>-->
 
-        <div class="profileMenu" id="myRecipes">
-            <a href="#createRecipes">Create Recipes</a>
-        </div>
-
+    <div class="profileMenu" id="myRecipes">
+      <a href="#createRecipes">Create Recipes</a>
+    </div>
 
         <div class="profileMenu" id="createRecipes">
             <h4>Recipe Information</h4>
@@ -140,10 +143,15 @@
                 </div>-->
             </div>
 
-            <label for="instruction">Instructions</label>
-            <textarea name="instruction" id="instruction" cols="10" rows="5    "></textarea>
+      <label for="instruction">Instructions</label>
+      <textarea
+        name="instruction"
+        id="instruction"
+        cols="10"
+        rows="5    "
+      ></textarea>
 
-            <input type="button" value="Publish" id="publish"/>
-        </div>
+      <input type="button" value="Publish" id="publish" />
     </div>
+  </div>
 </main>
