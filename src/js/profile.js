@@ -12,6 +12,8 @@ import {
     doc,
     setDoc,
     addDoc,
+    getDoc,
+    getDocs,
     collection
 } from "../firebase.js";
 
@@ -57,7 +59,7 @@ function init() {
             snamePlaceholder.value = lastName;
 
             emailPlaceholder.value = displayEmail;
-
+            myRecipes()
         }
     });
 
@@ -76,7 +78,7 @@ updateButton.addEventListener("click", () => {
         updateUserEmail();
     }
 
-    // window.top.location.reload(true);
+    window.top.location.reload(true);
 });
 
 //-----------------------Upload Photo-----------------------\\
@@ -201,10 +203,11 @@ async function recipeCreate() {
     const ingredient_4 = document.getElementById('ingredient_4').value;
     const ingredient_5 = document.getElementById('ingredient_5').value;
 
-console.log(name);
+    console.log(name);
     const docData = {
-        name: name,
+        name: name.toUpperCase(),
         time: time,
+        photo: 'https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg',
         prep_time: prep_time,
         serving: serving,
         type_recipe: typeRecipe,
@@ -218,9 +221,14 @@ console.log(name);
     }
 
     try {
-        console.log('tentei salvar');
+
         // doc(db, `users/${UID}/recipe`)
-        await setDoc(doc(db, `users/${UID}/recipe`, name), docData)
+        await setDoc(doc(db, `users/${UID}/recipes`, name), docData);
+        const resetInput = document.querySelectorAll('input');
+        resetInput.forEach(item => {
+            item.innerHTML = '';
+        });
+        document.getElementById('instruction').innerHTML = '';
 
     } catch (error) {
         const errorCode = error.code;
@@ -234,12 +242,48 @@ const el = document.getElementById('publish');
 el.addEventListener('click', () => {
     try {
         recipeCreate();
+        alert('recipe Created');
     } catch (error) {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode + errorMessage);
     }
 });
+//----------------------Load Recipes----------------------\\
+async function myRecipes(){
+    const UID = auth.currentUser.uid;
+    const userRecipes = document.getElementById('userRecipes');
+    // await collection(`users/${UID}/recipes`).get()
+    const snapshot = collection(db, `users/${UID}/recipes`);
+
+    const allRecipes = await getDocs(snapshot);
+
+    allRecipes.forEach((recipe)=>{
+        const cardLink = document.createElement("a");
+        // cardLink.href = `#oneRecipe?${recipes[i].id}`;
+        cardLink.classList.add("card-link");
+
+        const card = document.createElement("div");
+        card.classList.add("card");
+
+        const cardImage = document.createElement("img");
+        cardImage.classList.add("card-img-top");
+
+        const cardTitle = document.createElement("h3");
+        cardTitle.classList.add("card-title");
+
+        const cardTitleText = document.createTextNode(`${recipe.data().name.toUpperCase()}`);
+        cardTitle.appendChild(cardTitleText);
+
+        cardImage.src = `${recipe.data().photo}`;
+
+        card.appendChild(cardImage);
+        card.appendChild(cardTitle);
+        cardLink.appendChild(card);
+
+        userRecipes.appendChild(cardLink);
+    })
+}
 
 
 //----------------------Add/Remove Ingrediente Input----------------------\\
@@ -294,7 +338,7 @@ let i = 0;
 });*/
 
 
-//----------------------Navigate Menu Pages Profile SPA----------------------\\
+//----------------------Navigate Menu Pages Profile----------------------\\
 
 function navigateMenu() {
     const allPages = document.querySelectorAll("div.profileMenu");
@@ -308,10 +352,10 @@ function navigateMenu() {
             page.style.display = 'none';
         }
     }
-
 }
 
 window.addEventListener('hashchange', navigateMenu);
+
 //---------------------Initialization of the JS----------------------\\
 
 init();
