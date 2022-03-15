@@ -26,7 +26,8 @@ import script from "./route/script.js";
 import imgLogo from "./images/logo.png";
 import imgFaviconSmall from "./images/icon-192x192.png";
 import imgFaviconBig from "./images/icon-512x512.png";
-import placeHolderImg from "./images/placeholder-donuts.png";
+import imgLogoWhite from "./images/logo_white.svg";
+
 
 // PWA
 import manifest from "./app.webmanifest";
