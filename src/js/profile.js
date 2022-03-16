@@ -236,6 +236,7 @@ async function recipeCreate() {
         const errorMessage = error.message;
         console.log(errorCode + errorMessage);
     }
+    window.top.location.reload(true);
 }
 
 const el = document.getElementById('publish');
@@ -254,7 +255,7 @@ el.addEventListener('click', () => {
 //----------------------Load Recipes----------------------\\
 async function recipes() {
     const UID = auth.currentUser.uid;
-    const userRecipes = document.getElementById('userRecipes');
+    const recipesCards = document.getElementById('recipesCards');
     // await collection(`users/${UID}/recipes`).get()
     const snapshot = collection(db, `users/${UID}/recipes`);
 
@@ -283,7 +284,7 @@ async function recipes() {
         card.appendChild(cardTitle);
         cardLink.appendChild(card);
 
-        userRecipes.appendChild(cardLink);
+        recipesCards.appendChild(cardLink);
     })
 }
 
@@ -354,11 +355,13 @@ allPages.forEach(menu => {
         if (menu.id === 'profileInfo') {
             myProfile.style.display = 'block';
             myRecipes.style.display = 'none';
+            writeRecipe.style.display = "none";
             console.log('profile info');
         } else if (menu.id === 'profileRecipe') {
             console.log('profile recipe');
             myProfile.style.display = 'none'
             myRecipes.style.display = 'block'
+            writeRecipe.style.display = "none";
         }
     });
 });
