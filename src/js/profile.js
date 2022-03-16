@@ -24,7 +24,7 @@ function init() {
         const userName = document.getElementById("userName");
         const userEmail = document.getElementById("userEmail");
         const userPhoto = document.getElementById("userPhoto");
-        
+
         const fnamePlaceholder = document.getElementById("updateFName");
         const snamePlaceholder = document.getElementById("updateSName");
         const emailPlaceholder = document.getElementById("updateEmail");
@@ -343,46 +343,33 @@ let i = 0;
 //----------------------Navigate Menu Pages Profile----------------------\\
 
 
-const allPages = document.querySelectorAll("button.profile-menu");
-
-
-function navigateMenu() {
-    
-    allPages[0].style.display = 'block';
-    const pageId = location.hash ? location.hash : '#myProfile';
-    console.log(pageId);
-    for (let page of allPages) {
-        if (pageId === '#' + page.id) {
-            page.style.display = 'block';
-        } else {
-            page.style.display = 'none';
-        }
-    }
-
-}
-
-// // createRecipes.addEventListener('click', () => {
-// // console.log('clicked');
-// // });
-const myProfile =document.getElementById('myProfile');
-const myRecipes =document.getElementById('myRecipes');
+const allPages = document.querySelectorAll("a.profile-menu");
+const myProfile = document.getElementById('myProfile');
+const myRecipes = document.getElementById('myRecipes');
+const writeRecipeBtn = document.getElementById('createRecipesBtn');
+const writeRecipe = document.getElementById('createRecipes');
 allPages.forEach(menu => {
     menu.addEventListener('click', () => {
-        console.log('id '+ menu.id)
+        console.log('id ' + menu.id)
         if (menu.id === 'profileInfo') {
             myProfile.style.display = 'block';
             myRecipes.style.display = 'none';
             console.log('profile info');
-        }
-        else if(menu.id === 'profileRecipe'){
+        } else if (menu.id === 'profileRecipe') {
             console.log('profile recipe');
             myProfile.style.display = 'none'
             myRecipes.style.display = 'block'
         }
     });
+});
+
+writeRecipeBtn.addEventListener('click', () => {
+    writeRecipe.style.display = "block";
+    myProfile.style.display = 'none';
+    myRecipes.style.display = 'none';
 
 });
 
 //---------------------Initialization of the JS----------------------\\
-navigateMenu()
+
 init();
