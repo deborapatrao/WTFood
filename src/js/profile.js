@@ -24,7 +24,7 @@ function init() {
         const userName = document.getElementById("userName");
         const userEmail = document.getElementById("userEmail");
         const userPhoto = document.getElementById("userPhoto");
-        
+
         const fnamePlaceholder = document.getElementById("updateFName");
         const snamePlaceholder = document.getElementById("updateSName");
         const emailPlaceholder = document.getElementById("updateEmail");
@@ -60,7 +60,7 @@ function init() {
             snamePlaceholder.value = lastName;
 
             emailPlaceholder.value = displayEmail;
-            myRecipes()
+            recipes()
         }
     });
 
@@ -250,8 +250,9 @@ el.addEventListener('click', () => {
         console.log(errorCode + errorMessage);
     }
 });
+
 //----------------------Load Recipes----------------------\\
-async function myRecipes(){
+async function recipes() {
     const UID = auth.currentUser.uid;
     const userRecipes = document.getElementById('userRecipes');
     // await collection(`users/${UID}/recipes`).get()
@@ -259,7 +260,7 @@ async function myRecipes(){
 
     const allRecipes = await getDocs(snapshot);
 
-    allRecipes.forEach((recipe)=>{
+    allRecipes.forEach((recipe) => {
         const cardLink = document.createElement("a");
         // cardLink.href = `#oneRecipe?${recipes[i].id}`;
         cardLink.classList.add("card-link");
@@ -341,21 +342,33 @@ let i = 0;
 
 //----------------------Navigate Menu Pages Profile----------------------\\
 
-function navigateMenu() {
-    const allPages = document.querySelectorAll("div.profileMenu");
-    allPages[0].style.display = 'block';
-    const pageId = location.hash ? location.hash : '#myProfile';
-    console.log(pageId);
-    for (let page of allPages) {
-        if (pageId === '#' + page.id) {
-            page.style.display = 'block';
-        } else {
-            page.style.display = 'none';
-        }
-    }
-}
 
-window.addEventListener('hashchange', navigateMenu);
+const allPages = document.querySelectorAll("a.profile-menu");
+const myProfile = document.getElementById('myProfile');
+const myRecipes = document.getElementById('myRecipes');
+const writeRecipeBtn = document.getElementById('createRecipesBtn');
+const writeRecipe = document.getElementById('createRecipes');
+allPages.forEach(menu => {
+    menu.addEventListener('click', () => {
+        console.log('id ' + menu.id)
+        if (menu.id === 'profileInfo') {
+            myProfile.style.display = 'block';
+            myRecipes.style.display = 'none';
+            console.log('profile info');
+        } else if (menu.id === 'profileRecipe') {
+            console.log('profile recipe');
+            myProfile.style.display = 'none'
+            myRecipes.style.display = 'block'
+        }
+    });
+});
+
+writeRecipeBtn.addEventListener('click', () => {
+    writeRecipe.style.display = "block";
+    myProfile.style.display = 'none';
+    myRecipes.style.display = 'none';
+
+});
 
 //---------------------Initialization of the JS----------------------\\
 

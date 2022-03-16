@@ -60,14 +60,14 @@
       <nav class="profile__navigation">
         <ul id="nav_profile">
           <li>
-            <a class="profile-menu" href="#myProfile" id="profileInfo"
-              >✸ My Profile</a
-            >
+
+            <a class="profile-menu" id="profileInfo"
+              >✸ My Profile</a>
           </li>
           <li>
-            <a class="profile-menu" href="#myRecipes" id="profileRecipe">
-              ✸ My Recipes</a
-            >
+            <a class="profile-menu" id="profileRecipe"
+              >✸ My Recipes</a>
+
           </li>
           <li>
             <a class="profile-menu">✸ Saved Recipes</a>
@@ -82,8 +82,9 @@
       </nav>
     </div>
 
+
     <!-- Update profile area -->
-    <div class="profileMenu" id="myProfile">
+    <div id="myProfile">
       <div class="profile__update">
         <h2>Account Information</h2>
         <div class="profile__update-field">
@@ -104,6 +105,7 @@
         </div>
         
         <button class="btn-orange" id="updateButton">Save</button>
+
       </div>
       <!--            <button id="resetPassword">Reset password</button>-->
     </div>
@@ -116,18 +118,18 @@
       </div>-->
 
       <!-- My Recipes sections -->
-    <div class="profileMenu" id="myRecipes">
+    <div id="myRecipes">
 
       <div class="profile__my-recipes">
         <div class="my-recipes__heading">
           <h2>My Recipes</h2>
-          <a href="#createRecipes" class="btn-white">Write a Recipe</a>
+          <a id="createRecipesBtn" class="btn-white">Write a Recipe</a>
         </div>
       </div>
     </div>
 
     <!-- Create recipes section -->
-    <div class="profileMenu" id="createRecipes">
+    <div id="createRecipes">
 
       <div class="profile__create-rec">
         <div class="create-rec__heading">
@@ -208,6 +210,7 @@
             <div class="create-rec__field">
               <label for="amount_2" id="amountLabel_2">Amount</label>
               <input type="text" id="amount_2" />
+
 
             </div>
             

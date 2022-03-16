@@ -11,6 +11,7 @@
   gap: 2rem;
 }
 
+
 //Main area
 .profile__main {
   @include flex(column, center, center);
@@ -24,6 +25,7 @@
 .profile__summary {
   @include flex(row, center, center);
   gap: 0.5rem;
+
 
   &-data:not(:last-child) {
     border-right: $border-light-grey;
@@ -135,6 +137,9 @@
 }
 #createRecipes {
   display: none;
+}
+.menu{
+  display: none
 }
 
 .recipe--information {
