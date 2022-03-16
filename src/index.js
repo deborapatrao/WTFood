@@ -36,6 +36,7 @@ import firebase from "./firebase.js";
 //Hamburguer menu
 const mainNav = document.getElementById("mainNav");
 const navToggle = document.getElementById("navToggle");
+const navLinks = document.querySelectorAll(".nav__link");
 
 navToggle.addEventListener("click", () => {
   const visibility = mainNav.getAttribute("data-visible");
@@ -58,4 +59,15 @@ navToggle.addEventListener("click", () => {
       }
     });
   }
+});
+
+// on clicking the link
+navLinks.forEach((navLink) => {
+  navLink.addEventListener("click", () => {
+    console.log("works");
+    const body = document.body;
+    body.classList.toggle("black-overlay");
+    mainNav.setAttribute("data-visible", false);
+    navToggle.setAttribute("aria-expanded", false);
+  });
 });
