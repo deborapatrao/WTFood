@@ -3,16 +3,17 @@
 // `https://api.spoonacular.com/recipes/complexSearch?apiKey=1da81bb3780f42a6a0ceb11f31a38886&query=pasta`
 // console.log("WORKS");
 //FUNCTIONS
+
 //Get recipes by ingredients
-async function getRecipesI(url) {
-  const response = await fetch(url);
-  const recipes = await response.json();
-  // console.log(recipes);
+// async function getRecipesI(url) {
+//   const response = await fetch(url);
+//   const recipes = await response.json();
+//   // console.log(recipes);
 
-  recipesArray = recipes;
+//   recipesArray = recipes;
 
-  outputCards(recipesArray);
-}
+//   outputCards(recipesArray);
+// }
 
 //get recipes by recipe
 async function getRecipesR(url) {
@@ -69,8 +70,8 @@ function init() {
 
   let recipesArray = [];
 
-  const searchBtnIng = document.querySelector("#ingSearch");
-  const searchBtnRecipe = document.querySelector("#recipeSearch");
+  let searchBtnIng = document.querySelector("#ingSearch");
+  let searchBtnRecipe = document.querySelector("#recipeSearch");
 
   // Check first whether searchBtnIng element exists on the given page or not
   if (searchBtnIng) {
@@ -91,14 +92,15 @@ function init() {
   // Check first whether searchBtnRecipe element exists on the given page or not
   if (searchBtnRecipe) {
     //RECIPES SEARCH  event listener
+
     searchBtnRecipe.addEventListener("click", async () => {
       inputRecipe = recipeQuery.value;
 
-      requestRecipe += `&query=${inputRecipe}`;
+      // requestRecipe += `&query=${inputRecipe}`;
 
-      window.location.href = "#recipes";
+      window.location.href = `#recipes?${inputRecipe}`;
 
-      await getRecipesR(requestRecipe);
+      // await getRecipesR(requestRecipe);
     });
   }
 }

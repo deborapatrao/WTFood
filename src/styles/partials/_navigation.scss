@@ -39,3 +39,7 @@ nav a {
 
   @include roundImg();
 }
+
+.nav__link {
+  cursor: pointer;
+}
