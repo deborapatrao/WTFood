@@ -146,21 +146,18 @@ function userUpdate(photoStorage) {
 
 function updateUserEmail() {
     const email = document.getElementById("updateEmail").value;
+    const user = auth.currentUser;
     console.log('uhu' + email);
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
 
-            updateEmail(user, 'test').then(() => {
-                console.log('email update!')
+        if (user) {
+            updateEmail(user, email).then(() => {
+                console.log('email update!');
             }).catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 console.log('Code: ' + errorCode + '<br>Msg: ' + errorMessage);
             });
         }
-
-    });
-
 }
 
 //----------------------Camera Photo----------------------\\
