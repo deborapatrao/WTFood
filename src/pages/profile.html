@@ -44,14 +44,12 @@
       <nav class="profile__navigation">
         <ul id="nav_profile">
           <li>
-            <a class="profile-menu" href="#myProfile" id="profileInfo"
-              >My Profile</a
-            >
+            <button class="profile-menu" id="profileInfo"
+              >My Profile</button>
           </li>
           <li>
-            <a class="profile-menu" href="#myRecipes" id="profileRecipe"
-              >My Recipes</a
-            >
+            <button class="profile-menu" id="profileRecipe"
+              >My Recipes</button>
           </li>
           <li><a class="profile-menu">Saved Recipes</a></li>
           <li><a class="profile-menu">Shopping List</a></li>
@@ -61,7 +59,7 @@
     </div>
 
     <div class="logged-out">
-      <div class="profileMenu" id="myProfile">
+      <div class="profileMenu showMenu" id="myProfile">
         <label for="updateFName">First Name</label>
         <input type="text" id="updateFName" />
         <label for="updateSName">Last Name</label>
@@ -81,11 +79,11 @@
 
     <div class="profileMenu" id="myRecipes">
 
-      <a href="#createRecipes">Write a Recipe</a>
+      <a href="#createRecipe ">Write a Recipe</a>
         <div id="userRecipes"></div>
     </div>
 
-        <div class="profileMenu" id="createRecipes">
+        <div id="createRecipes">
             <h4>Recipe Information</h4>
             <div class="recipe--information">
                 <label for="recipeTitle">RecipeTitle</label>

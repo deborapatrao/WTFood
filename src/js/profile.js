@@ -59,7 +59,7 @@ function init() {
             snamePlaceholder.value = lastName;
 
             emailPlaceholder.value = displayEmail;
-            myRecipes()
+            recipes()
         }
     });
 
@@ -249,8 +249,9 @@ el.addEventListener('click', () => {
         console.log(errorCode + errorMessage);
     }
 });
+
 //----------------------Load Recipes----------------------\\
-async function myRecipes(){
+async function recipes() {
     const UID = auth.currentUser.uid;
     const userRecipes = document.getElementById('userRecipes');
     // await collection(`users/${UID}/recipes`).get()
@@ -258,7 +259,7 @@ async function myRecipes(){
 
     const allRecipes = await getDocs(snapshot);
 
-    allRecipes.forEach((recipe)=>{
+    allRecipes.forEach((recipe) => {
         const cardLink = document.createElement("a");
         // cardLink.href = `#oneRecipe?${recipes[i].id}`;
         cardLink.classList.add("card-link");
@@ -340,22 +341,37 @@ let i = 0;
 
 //----------------------Navigate Menu Pages Profile----------------------\\
 
-function navigateMenu() {
-    const allPages = document.querySelectorAll("div.profileMenu");
-    allPages[0].style.display = 'flex';
-    const pageId = location.hash ? location.hash : '#myProfile';
-    console.log(pageId);
-    for (let page of allPages) {
-        if (pageId === '#' + page.id) {
-            page.style.display = 'flex';
-        } else {
-            page.style.display = 'none';
-        }
-    }
+const allPages = document.querySelectorAll("button.profile-menu");
+
+function navigateMenu(menu) {
+
+    const page = document.querySelectorAll('.profileMenu');
+
+    console.log(menu);
 }
 
-window.addEventListener('hashchange', navigateMenu);
+// // createRecipes.addEventListener('click', () => {
+// // console.log('clicked');
+// // });
+const myProfile =document.getElementById('myProfile');
+const myRecipes =document.getElementById('myRecipes');
+allPages.forEach(menu => {
+    menu.addEventListener('click', () => {
+        console.log('id '+ menu.id)
+        if (menu.id === 'profileInfo') {
+            myProfile.style.display = 'block';
+            myRecipes.style.display = 'none';
+            console.log('profile info');
+        }
+        else if(menu.id === 'profileRecipe'){
+            console.log('profile recipe');
+            myProfile.style.display = 'none'
+            myRecipes.style.display = 'block'
+        }
+    });
+
+});
 
 //---------------------Initialization of the JS----------------------\\
-
+navigateMenu()
 init();
