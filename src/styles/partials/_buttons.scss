@@ -1,3 +1,4 @@
+//Hamburguer
 .navigation__toggle {
   padding: 7px 0;
   z-index: 1000;
@@ -31,4 +32,26 @@
 .hamburger::after {
   top: 6px;
   font-size: 3rem;
+}
+
+//Button Orange full width
+
+.btn-orange {
+  padding: $padding-small;
+  background-color: $color-primary-dark;
+  color: $color-white;
+  @include fontButton();
+  border-radius: $std-border-radius;
+  text-align: center;
+}
+
+.btn-white {
+  padding: $padding-small;
+  background-color: $color-white;
+  color: $color-primary-dark;
+  @include fontButton();
+  border-radius: $std-border-radius;
+  border: $border-orange;
+  text-align: center;
+  text-decoration: none;
 }

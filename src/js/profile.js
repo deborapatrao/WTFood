@@ -24,6 +24,7 @@ function init() {
         const userName = document.getElementById("userName");
         const userEmail = document.getElementById("userEmail");
         const userPhoto = document.getElementById("userPhoto");
+        
         const fnamePlaceholder = document.getElementById("updateFName");
         const snamePlaceholder = document.getElementById("updateSName");
         const emailPlaceholder = document.getElementById("updateEmail");
@@ -341,13 +342,23 @@ let i = 0;
 
 //----------------------Navigate Menu Pages Profile----------------------\\
 
+
 const allPages = document.querySelectorAll("button.profile-menu");
 
-function navigateMenu(menu) {
 
-    const page = document.querySelectorAll('.profileMenu');
+function navigateMenu() {
+    
+    allPages[0].style.display = 'block';
+    const pageId = location.hash ? location.hash : '#myProfile';
+    console.log(pageId);
+    for (let page of allPages) {
+        if (pageId === '#' + page.id) {
+            page.style.display = 'block';
+        } else {
+            page.style.display = 'none';
+        }
+    }
 
-    console.log(menu);
 }
 
 // // createRecipes.addEventListener('click', () => {

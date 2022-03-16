@@ -4,80 +4,145 @@
 }
 
 .profile {
-  margin: 1rem;
-
-  @include flex(row, center, center);
-  gap: 20rem;
-
-  .logged-in {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    //display: none;
-  }
-  input{
-    border: 1px solid black;
-  }
-
-  .recipe--information{
-display: flex;
-    flex-flow: column nowrap  ;
-  }
-
-
+  padding: 2rem 0;
+  margin: auto;
+  width: 100%;
+  @include flex(column, center, stretch);
+  gap: 2rem;
 }
 
-.profileMenu {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
+
+//Main area
+.profile__main {
+  @include flex(column, center, center);
+  gap: 2rem;
+}
+
+.profile__avatar {
+  @include flex(column, center, center);
+}
+
+.profile__summary {
+  @include flex(row, center, center);
+  gap: 0.5rem;
+
+
+  &-data:not(:last-child) {
+    border-right: $border-light-grey;
+    padding-right: $padding-small;
+  }
+
+  &-data {
+    @include flex(column, space-between, center);
+  }
+
+  &-title {
+    @include fontBody2Semibold();
+  }
+
+  &-number {
+    @include fontBody2();
+  }
 }
 
 .profile__navigation {
   width: 100%;
-}
+  ul {
+    @include flex(column, center, start);
+    gap: 0.5rem;
 
-.profile__photo {
-  //cursor:pointer;
-  input[type="file"]::file-selector-button {
-    //visibility: hidden;
-    //}
-    //[input]::before {
-    //  font-family: 'FontAwesome';
-    //  content: '\f069'
-    //}
-  }
-}
+    li {
+      width: 100%;
 
-.profile__navigation ul {
-  @include flex(column, center, start);
-  gap: 0.5rem;
-
-  li {
-    width: 100%;
-
-    a {
-      display: block;
-      border: $border-orange;
-      color: $color-primary-dark;
-      border-radius: $std-border-radius;
-      padding: $padding-small;
+      a {
+        display: block;
+        border: $border-orange;
+        color: $color-primary-dark;
+        border-radius: $std-border-radius;
+        padding: $padding-small;
+      }
     }
   }
 }
 
+// Update Profile Information section
+.profile__update,
+.create-rec__information,
+.create-rec__ingredients {
+  @include flex(column, center, stretch);
+  max-width: 100%;
+  gap: 1rem;
+
+  label {
+    @include fontBody2Semibold();
+    padding-left: 1rem;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+//Update profile & create recipes forms
+.profile__update-field,
+.create-rec__field {
+  @include flex(column, center, start);
+  input,
+  select,
+  textarea {
+    border: $border-grey;
+    border-radius: $std-border-radius;
+    padding: $padding-small;
+    width: 100%;
+  }
+}
+
+//Create Recipes section
+.profile__create-rec {
+  @include flex(column, center, stretch);
+  gap: 2rem;
+  h3 {
+    @include fontBody1Semibold();
+  }
+}
+
+.create-rec__information,
+.create-rec__ingredients {
+  border-bottom: $border-light-grey;
+  padding-bottom: 2rem;
+}
+
+//My recipes section
+.profile__my-recipes {
+  .my-recipes__heading {
+    @include flex(row, space-between, center);
+  }
+}
+
+// .profile__photo {
+//   //cursor:pointer;
+//   input[type="file"]::file-selector-button {
+//     //visibility: hidden;
+//     //}
+//     //[input]::before {
+//     //  font-family: 'FontAwesome';
+//     //  content: '\f069'
+//     //}
+//   }
+// }
+
 /* Menu display of profile*/
 #myRecipes {
   display: none;
-  margin-left: 10rem;
 }
 #createRecipes {
   display: none;
-
-  margin-left: 10rem;
 }
 .menu{
   display: none
 }
 
+.recipe--information {
+  display: flex;
+  flex-flow: column nowrap;
+}
