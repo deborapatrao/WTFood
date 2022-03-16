@@ -51,13 +51,17 @@ function init() {
             // const displayPassword = user.photoURL;
             // User is signed in, see docs for a list of available properties
             // https://firebase.google.com/docs/reference/js/firebase.User
+            if (displayName !== null){
+
             const [firstName, lastName] = displayName.split(' ');
+                fnamePlaceholder.value = firstName;
+                snamePlaceholder.value = lastName;
+            }
 
             userName.innerHTML = displayName;
             userEmail.innerHTML = displayEmail;
             userPhoto.setAttribute('src', displayPhoto);
-            fnamePlaceholder.value = firstName;
-            snamePlaceholder.value = lastName;
+
 
             emailPlaceholder.value = displayEmail;
             recipes()
@@ -97,7 +101,7 @@ function userUpdatePhoto() {
                 console.log("Uploaded a blob or file!");
                 getDownloadURL(ref(storage, `users/${uid}/profile/photo`))
                     .then((url) => {
-
+                        console.log('photo updated');
                         userUpdate(url);
                     })
                     .catch((error) => {
