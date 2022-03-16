@@ -24,6 +24,7 @@ function init() {
         const userName = document.getElementById("userName");
         const userEmail = document.getElementById("userEmail");
         const userPhoto = document.getElementById("userPhoto");
+        
         const fnamePlaceholder = document.getElementById("updateFName");
         const snamePlaceholder = document.getElementById("updateSName");
         const emailPlaceholder = document.getElementById("updateEmail");
@@ -342,12 +343,12 @@ let i = 0;
 
 function navigateMenu() {
     const allPages = document.querySelectorAll("div.profileMenu");
-    allPages[0].style.display = 'flex';
+    allPages[0].style.display = 'block';
     const pageId = location.hash ? location.hash : '#myProfile';
     console.log(pageId);
     for (let page of allPages) {
         if (pageId === '#' + page.id) {
-            page.style.display = 'flex';
+            page.style.display = 'block';
         } else {
             page.style.display = 'none';
         }
