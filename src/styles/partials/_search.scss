@@ -26,12 +26,6 @@
 
   input[type="submit"] {
     width: 100%;
-    padding: $padding-small;
-    background-color: $color-primary-dark;
-    color: $color-white;
-    @include fontButton();
-    border-radius: $std-border-radius;
-    text-align: center;
   }
 }
 
