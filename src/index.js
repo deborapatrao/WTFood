@@ -51,18 +51,11 @@ navToggle.addEventListener("click", () => {
     navToggle.setAttribute("aria-expanded", false);
 
     document.body.addEventListener("keydown", (e) => {
-
       if (e.key == "Escape") {
         body.classList.remove("black-overlay");
         mainNav.setAttribute("data-visible", false);
         navToggle.setAttribute("aria-expanded", false);
       }
     });
-    
   }
 });
-
-
-
-
-

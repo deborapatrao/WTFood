@@ -23,6 +23,7 @@ module.exports = {
     login: "./src/js/login.js",
     profile: "./src/js/profile.js",
     oneRecipe: "./src/js/oneRecipe.js",
+    recipes: "./src/js/recipes.js",
   },
 
   output: {
