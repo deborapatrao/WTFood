@@ -63,11 +63,38 @@ navToggle.addEventListener("click", () => {
 
 // on clicking the link
 navLinks.forEach((navLink) => {
-  navLink.addEventListener("click", () => {
-    console.log("works");
+  console.log('Loop has started')
+  navLink.addEventListener("click", (e) => {
+    // console.log("works");
     const body = document.body;
     body.classList.toggle("black-overlay");
     mainNav.setAttribute("data-visible", false);
     navToggle.setAttribute("aria-expanded", false);
+
+    // location.assign(location.pathname)
+    // hash from <a> tag
+    const hash = navLink.textContent.toLowerCase();
+    // console.log(hash);
+
+    // Clear search query
+    e.preventDefault();
+    window.location.hash = hash;
+  
+    if(window.location.search) {
+
+      window.location.search = "";
+     
+    }
+    // window.location.search = "";
+    // location.href = `#${hash}`;
+    // console.log(`${window.location.origin}${hash}`)
   });
 });
+
+// navLinks[0].addEventListener("click", (e) => {
+//   console.log("works");
+//   const hash = navLinks[0].textContent.toLowerCase();
+
+//   window.location.search = "";
+//   location.href = `#${hash}`;
+// });

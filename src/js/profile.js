@@ -1,163 +1,152 @@
 import {
-    auth,
-    getAuth,
-    storage,
-    ref,
-    db,
-    onAuthStateChanged,
-    updateProfile,
-    updateEmail,
-    uploadBytes,
-    getDownloadURL,
-    doc,
-    setDoc,
-    addDoc,
-    getDoc,
-    getDocs,
-    collection
+  auth,
+  getAuth,
+  storage,
+  ref,
+  db,
+  onAuthStateChanged,
+  updateProfile,
+  updateEmail,
+  uploadBytes,
+  getDownloadURL,
+  doc,
+  setDoc,
+  addDoc,
+  getDoc,
+  getDocs,
+  collection,
 } from "../firebase.js";
 
 
 function init() {
+  onAuthStateChanged(auth, (user) => {
+    const userName = document.getElementById("userName");
+    const userEmail = document.getElementById("userEmail");
+    const userPhoto = document.getElementById("userPhoto");
 
-    onAuthStateChanged(auth, (user) => {
-        const userName = document.getElementById("userName");
-        const userEmail = document.getElementById("userEmail");
-        const userPhoto = document.getElementById("userPhoto");
+    const fnamePlaceholder = document.getElementById("updateFName");
+    const snamePlaceholder = document.getElementById("updateSName");
+    const emailPlaceholder = document.getElementById("updateEmail");
 
-        const fnamePlaceholder = document.getElementById("updateFName");
-        const snamePlaceholder = document.getElementById("updateSName");
-        const emailPlaceholder = document.getElementById("updateEmail");
+    if (user) {
+      const uid = user.uid;
+      //-------------get User picture--------\\
+      // getDownloadURL(ref(storage, `users/${uid}/profile/photo`))
+      //     .then((url) => {
+      //         const userPhoto = document.getElementById("userPhoto");
+      //
+      //     })
+      //     .catch((error) => {
+      //         // Handle any errors
+      //     });
 
-        if (user) {
-            const uid = user.uid;
-            //-------------get User picture--------\\
-            // getDownloadURL(ref(storage, `users/${uid}/profile/photo`))
-            //     .then((url) => {
-            //         const userPhoto = document.getElementById("userPhoto");
-            //
-            //     })
-            //     .catch((error) => {
-            //         // Handle any errors
-            //     });
+      //-----------------Check Sign In user------------\\
 
-            //-----------------Check Sign In user------------\\
+      const displayName = user.displayName;
+      const displayEmail = user.email;
+      const displayPhoto = user.photoURL
+        ? user.photoURL
+        : "https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg";
+      // const displayPassword = user.photoURL;
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      // const [firstName, lastName] = displayName.split(' ');
 
-            const displayName = user.displayName;
-            const displayEmail = user.email;
-            const displayPhoto = user.photoURL
-                ? user.photoURL
-                : "https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg"
-            // const displayPassword = user.photoURL;
-            // User is signed in, see docs for a list of available properties
-            // https://firebase.google.com/docs/reference/js/firebase.User
-            const [firstName, lastName] = displayName.split(' ');
+      userName.innerHTML = displayName;
+      userEmail.innerHTML = displayEmail;
+      userPhoto.setAttribute("src", displayPhoto);
+      // fnamePlaceholder.value = firstName;
+      // snamePlaceholder.value = lastName;
 
-            userName.innerHTML = displayName;
-            userEmail.innerHTML = displayEmail;
-            userPhoto.setAttribute('src', displayPhoto);
-            fnamePlaceholder.value = firstName;
-            snamePlaceholder.value = lastName;
-
-            emailPlaceholder.value = displayEmail;
-            recipes()
-        }
-    });
-
-
+      emailPlaceholder.value = displayEmail;
+      recipes();
+    }
+  });
 }
 
-
 updateButton.addEventListener("click", () => {
-    const file = document.getElementById("photoFile").files.length;
-    console.log(file);
-    if (file > 0) {
-        userUpdatePhoto();
-        updateUserEmail();
-    } else {
-        userUpdate();
-        updateUserEmail();
-    }
+  const file = document.getElementById("photoFile").files.length;
+  console.log(file);
+  if (file > 0) {
+    userUpdatePhoto();
+    updateUserEmail();
+  } else {
+    userUpdate();
+    updateUserEmail();
+  }
 
-    window.top.location.reload(true);
+  window.top.location.reload(true);
 });
 
 //-----------------------Upload Photo-----------------------\\
 
 function userUpdatePhoto() {
-    const photo = document.getElementById("photoFile").files[0];
-    const user = auth.currentUser;
-    const uid = user.uid;
-    const profilePhoto = ref(storage, `users/${uid}/profile/photo`);
+  const photo = document.getElementById("photoFile").files[0];
+  const user = auth.currentUser;
+  const uid = user.uid;
+  const profilePhoto = ref(storage, `users/${uid}/profile/photo`);
 
-    if (user) {
-
-        uploadBytes(profilePhoto, photo)
-            .then((snapshot) => {
-                console.log("Uploaded a blob or file!");
-                getDownloadURL(ref(storage, `users/${uid}/profile/photo`))
-                    .then((url) => {
-
-                        userUpdate(url);
-                    })
-                    .catch((error) => {
-                        const errorCode = error.code;
-                        const errorMessage = error.message;
-                        console.log('URL photo:' + errorCode + errorMessage);
-                    });
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log(errorCode + errorMessage);
-            });
-    }
-
+  if (user) {
+    uploadBytes(profilePhoto, photo)
+      .then((snapshot) => {
+        console.log("Uploaded a blob or file!");
+        getDownloadURL(ref(storage, `users/${uid}/profile/photo`))
+          .then((url) => {
+            userUpdate(url);
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log("URL photo:" + errorCode + errorMessage);
+          });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode + errorMessage);
+      });
+  }
 }
 
 //----------------------Update User info-------------------\\
 function userUpdate(photoStorage) {
-    const fname = document.getElementById("updateFName").value;
-    const sname = document.getElementById("updateSName").value;
+  const fname = document.getElementById("updateFName").value;
+  const sname = document.getElementById("updateSName").value;
 
-    const name = `${fname} ${sname}`;
-
-
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-
-            updateProfile(user, {
-                displayName: name,
-                photoURL: photoStorage,
-            })
-                .then(() => {
-                    console.log('user updated');
-                })
-                .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                    console.log(errorCode + errorMessage);
-                });
-
-        }
-
-    });
+  const name = `${fname} ${sname}`;
+  const user = auth.currentUser;
+  if (user) {
+    updateProfile(user, {
+      displayName: name,
+      photoURL: photoStorage,
+    })
+      .then(() => {
+        console.log("user updated");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode + errorMessage);
+      });
+  }
 }
 
 function updateUserEmail() {
-    const email = document.getElementById("updateEmail").value;
-    const user = auth.currentUser;
-    console.log('uhu' + email);
+  const email = document.getElementById("updateEmail").value;
+  const user = auth.currentUser;
+  console.log("uhu" + email);
 
-        if (user) {
-            updateEmail(user, email).then(() => {
-                console.log('email update!');
-            }).catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log('Code: ' + errorCode + '<br>Msg: ' + errorMessage);
-            });
-        }
+  if (user) {
+    updateEmail(user, email)
+      .then(() => {
+        console.log("email update!");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log("Code: " + errorCode + "<br>Msg: " + errorMessage);
+      });
+  }
 }
 
 //----------------------Camera Photo----------------------\\
@@ -183,108 +172,103 @@ function updateUserEmail() {
 //   console.log(blob);
 // });
 
-
 //----------------------Create Recipe----------------------\\
 async function recipeCreate() {
+  const UID = auth.currentUser.uid;
+  const name = document.getElementById("recipeTitle").value;
+  const time = document.getElementById("cookingTime").value;
+  const prep_time = document.getElementById("prepTime").value;
+  const serving = document.getElementById("serving").value;
+  const typeRecipe = document.getElementById("typeRecipe").value;
+  const dietaryPref = document.getElementById("dietaryPref").value;
+  const instructions = document.getElementById("instruction").value;
+  const ingredient_1 = document.getElementById("ingredient_1").value;
+  const ingredient_2 = document.getElementById("ingredient_2").value;
+  const ingredient_3 = document.getElementById("ingredient_3").value;
+  const ingredient_4 = document.getElementById("ingredient_4").value;
+  const ingredient_5 = document.getElementById("ingredient_5").value;
 
-    const UID = auth.currentUser.uid;
-    const name = document.getElementById('recipeTitle').value;
-    const time = document.getElementById('cookingTime').value;
-    const prep_time = document.getElementById('prepTime').value;
-    const serving = document.getElementById('serving').value;
-    const typeRecipe = document.getElementById('typeRecipe').value;
-    const dietaryPref = document.getElementById('dietaryPref').value;
-    const instructions = document.getElementById('instruction').value;
-    const ingredient_1 = document.getElementById('ingredient_1').value;
-    const ingredient_2 = document.getElementById('ingredient_2').value;
-    const ingredient_3 = document.getElementById('ingredient_3').value;
-    const ingredient_4 = document.getElementById('ingredient_4').value;
-    const ingredient_5 = document.getElementById('ingredient_5').value;
+  console.log(name);
+  const docData = {
+    name: name.toUpperCase(),
+    time: time,
+    photo: `https://picsum.photos/200/300?random=${Math.floor(Math.random() * 10)}`,
+    prep_time: prep_time,
+    serving: serving,
+    type_recipe: typeRecipe,
+    dietary_pref: dietaryPref,
+    instructions: instructions,
+    ingredient_1: ingredient_1,
+    ingredient_2: ingredient_2,
+    ingredient_3: ingredient_3,
+    ingredient_4: ingredient_4,
+    ingredient_5: ingredient_5,
+  };
 
-    console.log(name);
-    const docData = {
-        name: name.toUpperCase(),
-        time: time,
-        photo: 'https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg',
-        prep_time: prep_time,
-        serving: serving,
-        type_recipe: typeRecipe,
-        dietary_pref: dietaryPref,
-        instructions: instructions,
-        ingredient_1: ingredient_1,
-        ingredient_2: ingredient_2,
-        ingredient_3: ingredient_3,
-        ingredient_4: ingredient_4,
-        ingredient_5: ingredient_5,
-    }
-
-    try {
-
-        // doc(db, `users/${UID}/recipe`)
-        await setDoc(doc(db, `users/${UID}/recipes`, name), docData);
-        const resetInput = document.querySelectorAll('input');
-        resetInput.forEach(item => {
-            item.innerHTML = '';
-        });
-        document.getElementById('instruction').innerHTML = '';
-
-    } catch (error) {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode + errorMessage);
-    }
-    window.top.location.reload(true);
+  try {
+    // doc(db, `users/${UID}/recipe`)
+    await setDoc(doc(db, `users/${UID}/recipes`, name), docData);
+    const resetInput = document.querySelectorAll("input");
+    resetInput.forEach((item) => {
+      item.innerHTML = "";
+    });
+    document.getElementById("instruction").innerHTML = "";
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorCode + errorMessage);
+  }
+  window.top.location.reload(true);
 }
 
-const el = document.getElementById('publish');
+const el = document.getElementById("publish");
 
-el.addEventListener('click', () => {
-    try {
-        recipeCreate();
-        alert('recipe Created');
-    } catch (error) {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode + errorMessage);
-    }
+el.addEventListener("click", () => {
+  try {
+    recipeCreate();
+    alert("recipe Created");
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorCode + errorMessage);
+  }
 });
 
 //----------------------Load Recipes----------------------\\
 async function recipes() {
-    const UID = auth.currentUser.uid;
-    const recipesCards = document.getElementById('recipesCards');
-    // await collection(`users/${UID}/recipes`).get()
-    const snapshot = collection(db, `users/${UID}/recipes`);
+  const UID = auth.currentUser.uid;
+  const recipesCards = document.getElementById("recipesCards");
+  // await collection(`users/${UID}/recipes`).get()
+  const snapshot = collection(db, `users/${UID}/recipes`);
 
-    const allRecipes = await getDocs(snapshot);
+  const allRecipes = await getDocs(snapshot);
 
-    allRecipes.forEach((recipe) => {
-        const cardLink = document.createElement("a");
-        // cardLink.href = `#oneRecipe?${recipes[i].id}`;
-        cardLink.classList.add("card-link");
+  allRecipes.forEach((recipe) => {
+    const cardLink = document.createElement("a");
+    // cardLink.href = `#oneRecipe?${recipes[i].id}`;
+    cardLink.classList.add("card-link");
 
-        const card = document.createElement("div");
-        card.classList.add("card");
+    const card = document.createElement("div");
+    card.classList.add("card");
 
-        const cardImage = document.createElement("img");
-        cardImage.classList.add("card-img-top");
+    const cardImage = document.createElement("img");
+    cardImage.classList.add("card-img-top");
 
-        const cardTitle = document.createElement("h3");
-        cardTitle.classList.add("card-title");
+    const cardTitle = document.createElement("h3");
+    cardTitle.classList.add("card-title");
 
-        const cardTitleText = document.createTextNode(`${recipe.data().name.toUpperCase()}`);
-        cardTitle.appendChild(cardTitleText);
+    const cardTitleText = document.createTextNode(`${recipe.data().name.toUpperCase()}`);
+    cardTitle.appendChild(cardTitleText);
 
-        cardImage.src = `${recipe.data().photo}`;
+    cardImage.src = `${recipe.data().photo}`;
 
-        card.appendChild(cardImage);
-        card.appendChild(cardTitle);
-        cardLink.appendChild(card);
+    card.appendChild(cardImage);
+    card.appendChild(cardTitle);
+    cardLink.appendChild(card);
 
-        recipesCards.appendChild(cardLink);
-    })
+    recipesCards.appendChild(cardLink);
+  });
 }
-
 
 //----------------------Add/Remove Ingrediente Input----------------------\\
 let i = 0;
@@ -321,7 +305,6 @@ let i = 0;
     console.log('addbtn:' + i);
 });*/
 
-
 /*removeBtn.addEventListener('click', () => {
     console.log('removebtn:' + i);
     const inputsRemove = document.getElementById('input-ingredient');
@@ -337,37 +320,34 @@ let i = 0;
     i--;
 });*/
 
-
 //----------------------Navigate Menu Pages Profile----------------------\\
 
-
 const allPages = document.querySelectorAll("a.profile-menu");
-const myProfile = document.getElementById('myProfile');
-const myRecipes = document.getElementById('myRecipes');
-const writeRecipeBtn = document.getElementById('createRecipesBtn');
-const writeRecipe = document.getElementById('createRecipes');
-allPages.forEach(menu => {
-    menu.addEventListener('click', () => {
-        console.log('id ' + menu.id)
-        if (menu.id === 'profileInfo') {
-            myProfile.style.display = 'block';
-            myRecipes.style.display = 'none';
-            writeRecipe.style.display = "none";
-            console.log('profile info');
-        } else if (menu.id === 'profileRecipe') {
-            console.log('profile recipe');
-            myProfile.style.display = 'none'
-            myRecipes.style.display = 'block'
-            writeRecipe.style.display = "none";
-        }
-    });
+const myProfile = document.getElementById("myProfile");
+const myRecipes = document.getElementById("myRecipes");
+const writeRecipeBtn = document.getElementById("createRecipesBtn");
+const writeRecipe = document.getElementById("createRecipes");
+allPages.forEach((menu) => {
+  menu.addEventListener("click", () => {
+    console.log("id " + menu.id);
+    if (menu.id === "profileInfo") {
+      myProfile.style.display = "block";
+      myRecipes.style.display = "none";
+      writeRecipe.style.display = "none";
+      console.log("profile info");
+    } else if (menu.id === "profileRecipe") {
+      console.log("profile recipe");
+      myProfile.style.display = "none";
+      myRecipes.style.display = "block";
+      writeRecipe.style.display = "none";
+    }
+  });
 });
 
-writeRecipeBtn.addEventListener('click', () => {
-    writeRecipe.style.display = "block";
-    myProfile.style.display = 'none';
-    myRecipes.style.display = 'none';
-
+writeRecipeBtn.addEventListener("click", () => {
+  writeRecipe.style.display = "block";
+  myProfile.style.display = "none";
+  myRecipes.style.display = "none";
 });
 
 //---------------------Initialization of the JS----------------------\\

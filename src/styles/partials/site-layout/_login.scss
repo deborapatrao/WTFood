@@ -1,0 +1,17 @@
+.popup__container {
+  &--form {
+    margin: 2rem 0;
+
+    &-email,
+    &-password {
+      display: flex;
+      flex-direction: column;
+
+      input {
+        border: 1px solid lightgrey;
+        border-radius: 7px;
+        padding: 0.2rem 0.3rem;
+      }
+    }
+  }
+}
