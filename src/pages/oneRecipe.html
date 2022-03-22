@@ -56,26 +56,26 @@
     </button>
   </div> -->
   <div id="recipe-image-wrapper"></div>
-  <div class="recipe-summary">
+  <div class="recipe-summary container">
     <h2 id="recipe-title">Recipe title</h2>
     <!-- RATING GOES HERE -->
     <div class="recipe-summary-info">
       <ul>
         <li class="recipe-summary-item">
-          <span>Prep time:</span>
+          <span>Prep time</span>
           <span id="prep-time">20 min</span>
         </li>
         <li class="recipe-summary-item">
-          <span>Cooking time:</span>
+          <span>Cooking time</span>
           <span id="cooking-time">45 min</span>
         </li>
         <li class="recipe-summary-item">
-          <span>Serving:</span>
+          <span>Serving</span>
           <span id="serving">2 servings</span>
         </li>
       </ul>
     </div>
-
+    <div class="rating-stars"></div>
     <!-- Social Share Buttons -->
     <div class="social-share">
       <ul>
@@ -100,73 +100,86 @@
     <!-- About the recipe -->
     <div class="about-recipe" id="about-recipe">
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi qui beatae laudantium soluta?
-        Natus molestiae sint odio perferendis tempore nam mollitia. Praesentium accusamus suscipit
-        sint dolor, illo sapiente blanditiis minima!
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi qui
+        beatae laudantium soluta? Natus molestiae sint odio perferendis tempore
+        nam mollitia. Praesentium accusamus suscipit sint dolor, illo sapiente
+        blanditiis minima!
       </p>
     </div>
   </div>
 </div>
 
 <!-- Recipe details section -->
-<ul class="nav nav-tabs" id="myTab" role="tablist">
-  <li class="nav-item" role="presentation">
-    <button
-      class="nav-link active"
-      id="nutrition-tab"
-      data-bs-toggle="tab"
-      data-bs-target="#nutrition"
-      type="button"
-      role="tab"
-      aria-controls="nutrition"
-      aria-selected="true"
+<div class="recipe__details-tab container">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link active"
+        id="nutrition-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#nutrition"
+        type="button"
+        role="tab"
+        aria-controls="nutrition"
+        aria-selected="true"
+      >
+        Nutrition
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="ingredients-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#ingredients"
+        type="button"
+        role="tab"
+        aria-controls="ingredients"
+        aria-selected="false"
+      >
+        Ingredients
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="insctructions-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#insctructions"
+        type="button"
+        role="tab"
+        aria-controls="insctructions"
+        aria-selected="false"
+      >
+        Insctructions
+      </button>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div
+      class="tab-pane fade show active"
+      id="nutrition"
+      role="tabpanel"
+      aria-labelledby="nutrition-tab"
     >
-      Nutrition
-    </button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button
-      class="nav-link"
-      id="ingredients-tab"
-      data-bs-toggle="tab"
-      data-bs-target="#ingredients"
-      type="button"
-      role="tab"
-      aria-controls="ingredients"
-      aria-selected="false"
+      <div class="nutrition-wrapper"></div>
+    </div>
+    <div
+      class="tab-pane fade"
+      id="ingredients"
+      role="tabpanel"
+      aria-labelledby="ingredients-tab"
     >
-      Ingredients
-    </button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button
-      class="nav-link"
-      id="insctructions-tab"
-      data-bs-toggle="tab"
-      data-bs-target="#insctructions"
-      type="button"
-      role="tab"
-      aria-controls="insctructions"
-      aria-selected="false"
+      <div class="ingredients-wrapper"></div>
+    </div>
+    <div
+      class="tab-pane fade"
+      id="insctructions"
+      role="tabpanel"
+      aria-labelledby="insctructions-tab"
     >
-      Insctructions
-    </button>
-  </li>
-</ul>
-<div class="tab-content" id="myTabContent">
-  <div
-    class="tab-pane fade show active"
-    id="nutrition"
-    role="tabpanel"
-    aria-labelledby="nutrition-tab"
-  >
-    <div class="nutrition-wrapper">Nutrition</div>
-  </div>
-  <div class="tab-pane fade" id="ingredients" role="tabpanel" aria-labelledby="ingredients-tab">
-    <div class="ingredients-wrapper">Ingredients</div>
-  </div>
-  <div class="tab-pane fade" id="insctructions" role="tabpanel" aria-labelledby="insctructions-tab">
-    <div class="instructions-wrapper">Insctructions</div>
+      <div class="instructions-wrapper"></div>
+    </div>
   </div>
 </div>
 <!-- ********** TEST RESULTS SECTION ************** -->
@@ -210,9 +223,9 @@
     <div>
       <h2>Share your recipe?</h2>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur aliquid ea provident
-        voluptate ipsa cupiditate totam debitis at est praesentium. Laudantium non vero fugiat culpa
-        sunt, consequatur magnam quidem quam?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur aliquid
+        ea provident voluptate ipsa cupiditate totam debitis at est praesentium.
+        Laudantium non vero fugiat culpa sunt, consequatur magnam quidem quam?
       </p>
       <a href="">Share recipe</a>
     </div>
@@ -231,8 +244,15 @@
       </div>
       <div class="mb-3">
         <label for="inputEmail1" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="inputEmail1" aria-describedby="emailHelp" />
-        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        <input
+          type="email"
+          class="form-control"
+          id="inputEmail1"
+          aria-describedby="emailHelp"
+        />
+        <div id="emailHelp" class="form-text">
+          We'll never share your email with anyone else.
+        </div>
       </div>
       <div class="mb-3">
         <label for="inputMessage" class="form-label">Comment</label>
@@ -260,9 +280,10 @@
           </div>
         </div>
         <p class="card-text">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, illum, nostrum accusantium
-          beatae et dicta amet doloremque consequatur facere accusamus esse quis, assumenda est quos
-          in culpa voluptatum reprehenderit cum.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, illum,
+          nostrum accusantium beatae et dicta amet doloremque consequatur facere
+          accusamus esse quis, assumenda est quos in culpa voluptatum
+          reprehenderit cum.
         </p>
       </div>
       <img src="#" class="card-img-bottom" alt="..." />
