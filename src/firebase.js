@@ -15,7 +15,9 @@ import {
     getStorage,
     ref,
     uploadBytes,
-    getDownloadURL
+    getDownloadURL,
+    listAll
+
 }
     from "firebase/storage";
 import {
@@ -63,6 +65,7 @@ export {
     updateProfile,
     updateEmail,
     ref,
+    listAll,
     uploadBytes,
     getDownloadURL,
 };
