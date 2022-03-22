@@ -23,6 +23,7 @@
     gap: 0.3em;
   }
 </style> -->
+
 <h1 class="visually-hidden">Profile</h1>
 
 <main>
@@ -103,23 +104,129 @@
         <!--            <button id="resetPassword">Reset password</button>-->
       </div>
 
-      <!--<div style="display: none"></div>
-                <button id="start-camera">Start Camera</button>
-                <video id="video" width="320" height="240" autoplay></video>
-                <button id="click-photo">Click Photo</button>
-                <canvas id="canvas" width="320" height="240"></canvas>
-              </div>-->
 
-      <!-- My Recipes sections -->
-      <div id="myRecipes">
-        <div class="profile__my-recipes">
-          <div class="my-recipes__heading">
-            <h2>My Recipes</h2>
-            <a id="createRecipesBtn" class="btn-white">Write a Recipe</a>
-          </div>
-          <div id="recipesCards" class="my-recipes__cards"></div>
-        </div>
-      </div>
+
+            <!-- My Recipes sections -->
+            <div id="myRecipes">
+
+                <div class="profile__my-recipes">
+                    <div class="my-recipes__heading">
+                        <h2>My Recipes</h2>
+                        <a id="createRecipesBtn" class="btn-white">Write a Recipe</a>
+                    </div>
+                    <div id="recipesCards"></div>
+                </div>
+            </div>
+
+            <!-- Create recipes section -->
+            <div id="createRecipes">
+
+                <div class="profile__create-rec">
+                    <div class="create-rec__heading">
+                        <h2>Write Your Recipe</h2>
+                    </div>
+
+                    <div class="display-cover">
+                        <video autoplay></video>
+                        <canvas class="d-none"></canvas>
+
+                        <div style="visibility: hidden" class="video-options">
+                            <select name="" id="" class="custom-select">
+                                <option value="">Select camera</option>
+                            </select>
+                        </div>
+
+                        <img class="screenshot-image d-none" alt="">
+
+                        <div class="controls">
+                            <button class="btn btn-danger play" title="Play"><i data-feather="play-circle"></i></button>
+                            <button class="btn btn-info pause d-none" title="Pause"><i data-feather="pause"></i></button>
+                            <button class="btn btn-outline-success screenshot d-none" title="ScreenShot"><i data-feather="image"></i></button>
+                        </div>
+                    </div>
+
+                </div>
+
+                    <!-- Create Recipes - Recipe Information -->
+                    <div class="create-rec__information">
+                        <h3>Recipe Information</h3>
+
+                        <div class="create-rec__field">
+                            <label for="recipeTitle">RecipeTitle</label>
+                            <input type="text" id="recipeTitle"/>
+                        </div>
+
+                        <div class="create-rec__field">
+                            <label for="typeRecipe">Type of Recipe</label>
+                            <select name="typeRecipe" id="typeRecipe">
+                                <option disabled selected value="">Select</option>
+                                <option value="japanese">Japanese</option>
+                                <option value="chinese">Chinese</option>
+                                <option value="italian">Italian</option>
+                                <option value="french">French</option>
+                            </select>
+                        </div>
+
+                        <div class="create-rec__field">
+                            <label for="dietaryPref">Dietary Preference</label>
+                            <select name="dietaryPref" id="dietaryPref">
+                                <option disabled selected value="">Select an Option</option>
+                                <option value="meatLovers">Meat Lovers</option>
+                                <option value="gluten">Gluten Free</option>
+                                <option value="vegan">Vegan</option>
+                                <option value="vegetarian">Vegetarian</option>
+                            </select>
+                        </div>
+
+                        <div class="create-rec__field">
+                            <label for="cookingTime">Cooking time</label>
+                            <input type="number" id="cookingTime" placeholder="minutes"/>
+                        </div>
+
+                        <div class="create-rec__field">
+                            <label for="prepTime">Prep Time</label>
+                            <input type="text" id="prepTime" placeholder="minutes"/>
+                        </div>
+
+                        <div class="create-rec__field">
+                            <label for="serving">Serving (person)</label>
+                            <input type="number" id="serving"/>
+                        </div>
+
+                    </div>
+
+                    <!-- Create Recipe - Recipe Ingredients -->
+                    <div id="ingredients">
+                        <div id="input-ingredient" class="create-rec__ingredients">
+                            <h3>Ingredients</h3>
+
+                            <div class="create-rec__field">
+                                <label for="ingredient_1" id="ingredientLabel_1">Ingredient</label>
+                                <input type="text" id="ingredient_1"/>
+                            </div>
+
+                            <div class="create-rec__field">
+                                <label for="amount_1" id="amountLabel_1">Amount</label>
+                                <input type="text" id="amount_1"/>
+                            </div>
+
+                            <div class="create-rec__field">
+                                <label for="ingredient_2" id="ingredientLabel_2">Ingredient</label>
+                                <input type="text" id="ingredient_2"/>
+                            </div>
+
+                            <div class="create-rec__field">
+                                <label for="amount_2" id="amountLabel_2">Amount</label>
+                                <input type="text" id="amount_2"/>
+
+
+                            </div>
+
+                            <div class="create-rec__field">
+                                <label for="ingredient_3" id="ingredientLabel_3">Ingredient</label>
+                                <input type="text" id="ingredient_3"/>
+                            </div>
+
 
       <!-- Create recipes section -->
       <div id="createRecipes">

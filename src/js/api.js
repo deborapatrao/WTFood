@@ -1,9 +1,8 @@
 //Debora's API key - 458fa3b63d9e4e0b8c6b85edb81edd4b
 
 // `https://api.spoonacular.com/recipes/complexSearch?apiKey=1da81bb3780f42a6a0ceb11f31a38886&query=pasta`
-// console.log("WORKS");
-//FUNCTIONS
 
+<<<<<<< HEAD
 //Get recipes by ingredients
 // async function getRecipesI(url) {
 //   const response = await fetch(url);
@@ -122,3 +121,6 @@ function init() {
 }
 
 init();
+=======
+(function tryBro() {console.log('API')})();
+>>>>>>> 80f1c3bb19a588ca1c6c0ba14e890185c9135a75

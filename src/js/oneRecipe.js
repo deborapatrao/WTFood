@@ -1,8 +1,5 @@
 async function init() {
-  const recipeID = window.location.hash.substring(
-    window.location.hash.indexOf("?") + 1,
-    window.location.hash.length
-  );
+  const recipeID = window.location.search.substring(4);
 
   console.log(recipeID);
 
