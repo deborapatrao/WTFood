@@ -31,29 +31,45 @@ function outputCards(recipes) {
   let resultArea = document.getElementById("resultTest");
 
   for (let i = 0; i < recipes.length; i++) {
-    let cardLink = document.createElement("a");
+    const cardLink = document.createElement("a");
     cardLink.href = `#oneRecipe?${recipes[i].id}`;
     cardLink.classList.add("card-link");
 
-    let card = document.createElement("div");
+    const card = document.createElement("div");
     card.classList.add("card");
 
-    let cardImage = document.createElement("img");
+    const cardImgContainer = document.createElement("div");
+    cardImgContainer.classList.add("recipe-card__img");
+
+    const cardButton = document.createElement("button");
+
+    const cardImage = document.createElement("img");
     cardImage.classList.add("card-img-top");
 
-    let cardTitle = document.createElement("h3");
+    const cardBody = document.createElement("div");
+    cardBody.classList.add("card-body");
+
+    const cardStars = document.createElement("div");
+    cardStars.classList.add("rating-stars");
+
+    const cardTitle = document.createElement("h3");
     cardTitle.classList.add("card-title");
 
-    let cardTitleText = document.createTextNode(`${recipes[i].title}`);
+    const cardTitleText = document.createTextNode(`${recipes[i].title}`);
     cardTitle.appendChild(cardTitleText);
 
     cardImage.src = `${recipes[i].image}`;
 
-    card.appendChild(cardImage);
-    card.appendChild(cardTitle);
-    cardLink.appendChild(card);
+    cardImgContainer.appendChild(cardButton);
+        cardImgContainer.appendChild(cardImage);
+        cardBody.appendChild(cardStars);
+        cardBody.appendChild(cardTitle);
 
-    resultArea.appendChild(cardLink);
+        card.appendChild(cardImgContainer);
+        card.appendChild(cardBody);
+        cardLink.appendChild(card);
+
+        recipesCards.appendChild(cardLink);
   }
 }
 
