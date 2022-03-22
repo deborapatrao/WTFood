@@ -360,23 +360,40 @@ async function recipes() {
         const cardLink = document.createElement("a");
         // cardLink.href = `#oneRecipe?${recipes[i].id}`;
         cardLink.classList.add("card-link");
+        cardLink.classList.add("recipe-card");
 
         const card = document.createElement("div");
         card.classList.add("card");
+        
+        const cardImgContainer = document.createElement("div");
+        cardImgContainer.classList.add("recipe-card__img");
+
+        const cardButton = document.createElement("button");
 
         const cardImage = document.createElement("img");
         cardImage.classList.add("card-img-top");
 
+        const cardBody = document.createElement("div");
+        cardBody.classList.add("card-body");
+
+        const cardStars = document.createElement("div");
+        cardStars.classList.add("rating-stars");
+
         const cardTitle = document.createElement("h3");
         cardTitle.classList.add("card-title");
 
-        const cardTitleText = document.createTextNode(`${recipe.data().name.toUpperCase()}`);
+        const cardTitleText = document.createTextNode(`${recipe.data().name}`);
         cardTitle.appendChild(cardTitleText);
 
         cardImage.src = `${recipe.data().photo}`;
 
-        card.appendChild(cardImage);
-        card.appendChild(cardTitle);
+        cardImgContainer.appendChild(cardButton);
+        cardImgContainer.appendChild(cardImage);
+        cardBody.appendChild(cardStars);
+        cardBody.appendChild(cardTitle);
+
+        card.appendChild(cardImgContainer);
+        card.appendChild(cardBody);
         cardLink.appendChild(card);
 
         recipesCards.appendChild(cardLink);
