@@ -23,6 +23,7 @@
     gap: 0.3em;
   }
 </style> -->
+
 <h1 class="visually-hidden">Profile</h1>
 
 <main>
@@ -110,12 +111,6 @@
                 <!--            <button id="resetPassword">Reset password</button>-->
             </div>
 
-            <!--<div style="display: none"></div>
-                <button id="start-camera">Start Camera</button>
-                <video id="video" width="320" height="240" autoplay></video>
-                <button id="click-photo">Click Photo</button>
-                <canvas id="canvas" width="320" height="240"></canvas>
-              </div>-->
 
             <!-- My Recipes sections -->
             <div id="myRecipes">
@@ -137,8 +132,26 @@
                         <h2>Write Your Recipe</h2>
                     </div>
 
-                    <div class="create-rec__pictures">
+                    <div class="display-cover">
+                        <video autoplay></video>
+                        <canvas class="d-none"></canvas>
+
+                        <div style="visibility: hidden" class="video-options">
+                            <select name="" id="" class="custom-select">
+                                <option value="">Select camera</option>
+                            </select>
+                        </div>
+
+                        <img class="screenshot-image d-none" alt="">
+
+                        <div class="controls">
+                            <button class="btn btn-danger play" title="Play"><i data-feather="play-circle"></i></button>
+                            <button class="btn btn-info pause d-none" title="Pause"><i data-feather="pause"></i></button>
+                            <button class="btn btn-outline-success screenshot d-none" title="ScreenShot"><i data-feather="image"></i></button>
+                        </div>
                     </div>
+
+                </div>
 
                     <!-- Create Recipes - Recipe Information -->
                     <div class="create-rec__information">
