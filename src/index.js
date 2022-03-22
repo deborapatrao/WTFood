@@ -63,7 +63,6 @@ navToggle.addEventListener("click", () => {
 
 // on clicking the link
 navLinks.forEach((navLink) => {
-  console.log('Loop has started')
   navLink.addEventListener("click", (e) => {
     // console.log("works");
     const body = document.body;
