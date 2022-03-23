@@ -1,4 +1,6 @@
-async function init() {
+import { auth, db, addDoc, collection } from "../firebase.js";
+
+export default async function init() {
   const recipeID = window.location.search.substring(4);
 
   console.log(recipeID);
@@ -43,6 +45,7 @@ async function init() {
         <p>Fat: <span>${ingredients.fat}</span></p>
         <p>Protein: <span>${ingredients.protein}</span></p>
     `;
+
   // Ingredients
   //   ingredientsContainer.innerHTML = recipe.extendedIngredients;
   recipe.extendedIngredients.forEach((ing) => {
@@ -63,6 +66,35 @@ async function init() {
     checkboxContainer.appendChild(checkboxLabel);
     ingredientsContainer.appendChild(checkboxContainer);
   });
+  const addIngsBtnContainer = document.createElement("div");
+  const addIngsBtn = document.createElement("button");
+  addIngsBtn.textContent = "Add Ingredients to Shopping List";
+  addIngsBtnContainer.appendChild(addIngsBtn);
+  ingredientsContainer.appendChild(addIngsBtnContainer);
+
+  addIngsBtn.addEventListener("click", () => {
+    const labels = document.querySelectorAll(".form-check-label");
+    labels.forEach(async (label) => {
+      const input = document.getElementById(`${label.getAttribute("for")}`);
+      if (input.checked) {
+        console.log(label.textContent);
+        const docData = {
+          ingredient: label.textContent,
+        };
+
+        const UID = auth.currentUser.uid;
+        try {
+          await addDoc(collection(db, `users/${UID}/shoppinglist`), docData);
+          console.log("ingredients added");
+        } catch (error) {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode + errorMessage);
+        }
+      }
+    });
+  });
+
   // Instructions
   recipe.analyzedInstructions[0].steps.forEach((step) => {
     const p = document.createElement("p");
@@ -71,5 +103,3 @@ async function init() {
   });
   //   instructionsContainer.innerHTML = recipe.instructions;
 }
-
-init();
