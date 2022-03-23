@@ -13,10 +13,12 @@ import profileHTML from "./pages/profile.html";
 import oneRecipeHTML from "./pages/oneRecipe.html";
 
 // JS
+// import 'sweetalert2';
 // import router from "./route/routing.js";
 // import firebase from "firebase";
 // import { db } from "./database";
 import script from "./route/script.js";
+
 // import api from "./js/api";
 // import home from "./js/home";
 // import login from "./js/login";
