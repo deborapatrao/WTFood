@@ -66,7 +66,7 @@ updateButton.addEventListener("click", () => {
     if (file > 0) {
         console.log('there photo');
         userUpdatePhoto();
-        window.top.location.reload(true);
+
     } else {
         console.log('there NO photo');
         userUpdate();
@@ -81,7 +81,7 @@ function userUpdatePhoto() {
     const user = auth.currentUser;
     const uid = user.uid;
     if (user) {
-    const profilePhoto = ref(storage, `users/${uid}/profile/photo`);
+        const profilePhoto = ref(storage, `users/${uid}/profile/photo`);
         uploadBytes(profilePhoto, photo)
             .then((snapshot) => {
                 console.log("Uploaded a blob or file!");
@@ -119,8 +119,7 @@ function userUpdate(photoStorage) {
             photoURL: photoStorage,
         })
             .then(() => {
-
-
+                window.top.location.reload(true);
             })
             .catch((error) => {
                 const errorCode = error.code;
