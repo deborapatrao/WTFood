@@ -8,7 +8,7 @@ import {
   signOut,
 } from "../firebase.js";
 
-function init() {
+export default function init() {
   const signUp = document.getElementById("signUp");
   const signIn = document.getElementById("signIn");
   const signOutBtn = document.getElementById("signOut");
@@ -38,7 +38,7 @@ function init() {
   signIn.addEventListener("click", () => {
     let email = document.getElementById("email1").value;
     let password = document.getElementById("password1").value;
-
+    console.log(email, password)
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in

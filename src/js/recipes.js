@@ -17,7 +17,7 @@ async function getRecipes(url) {
 }
 
 
-async function init() {
+export default async function init() {
   console.log('recipes works')
   const apiKey = "458fa3b63d9e4e0b8c6b85edb81edd4b";
   let requestRecipe = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}`;
@@ -104,4 +104,3 @@ function outputCards(recipes) {
   }
 }
 
-init();
