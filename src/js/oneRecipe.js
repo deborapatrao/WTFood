@@ -86,7 +86,9 @@ export default async function init() {
         const UID = auth.currentUser.uid;
         try {
           await addDoc(collection(db, `users/${UID}/shoppinglist`), docData);
-          console.log("ingredients added");
+          alert(
+            `ingredients added, ${auth?.currentUser ? auth?.currentUser?.displayName : "Bro"}!`
+          );
         } catch (error) {
           const errorCode = error.code;
           const errorMessage = error.message;

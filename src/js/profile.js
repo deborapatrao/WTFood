@@ -19,7 +19,20 @@ import {
 } from "../firebase.js";
 
 export default function init() {
-  onAuthStateChanged(auth, (user) => {
+  onAuthStateChanged(auth, async (user) => {
+    const container = document.getElementById("shoppingListContainer");
+    const userNew = auth.currentUser;
+    const docsRef = collection(db, `users/${userNew.uid}/shoppinglist`);
+    const querySnapshot = await getDocs(docsRef);
+
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      console.log(doc.id, " => ", doc.data());
+      const div = document.createElement("div");
+      div.innerHTML = `<p>${doc.data().ingredient}</p>`;
+      container.appendChild(div);
+    });
+
     const userName = document.getElementById("userName");
     const userEmail = document.getElementById("userEmail");
     const userPhoto = document.getElementById("userPhoto");
@@ -152,31 +165,28 @@ let streamStarted = false;
 const [play, pause, screenshot] = buttons;
 
 const constraints = {
-    video: {
-        width: {
-            min: 1280,
-            ideal: 1920,
-            max: 2560,
-        },
-        height: {
-            min: 720,
-            ideal: 1080,
-            max: 1440
-        },
-        facingMode: { exact: "environment" }
-    }
-
+  video: {
+    width: {
+      min: 1280,
+      ideal: 1920,
+      max: 2560,
+    },
+    height: {
+      min: 720,
+      ideal: 1080,
+      max: 1440,
+    },
+    facingMode: { exact: "environment" },
+  },
 };
 cameraOptions.onchange = () => {
-
-    const updatedConstraints = {
-        ...constraints,
-        deviceId: {
-            exact: cameraOptions.value
-        }
-    };
-    startStream(updatedConstraints);
-
+  const updatedConstraints = {
+    ...constraints,
+    deviceId: {
+      exact: cameraOptions.value,
+    },
+  };
+  startStream(updatedConstraints);
 };
 
 play.onclick = () => {
@@ -433,6 +443,7 @@ let i = 0;
 const allPages = document.querySelectorAll("a.profile-menu");
 const myProfile = document.getElementById("myProfile");
 const myRecipes = document.getElementById("myRecipes");
+const shoppingListContainer = document.getElementById("shoppingListContainer");
 const writeRecipeBtn = document.getElementById("createRecipesBtn");
 const writeRecipe = document.getElementById("createRecipes");
 allPages.forEach((menu) => {
@@ -447,6 +458,11 @@ allPages.forEach((menu) => {
       console.log("profile recipe");
       myProfile.style.display = "none";
       myRecipes.style.display = "block";
+      writeRecipe.style.display = "none";
+    } else if (menu.id === "shoppingList") {
+      myProfile.style.display = "none";
+      myRecipes.style.display = "none";
+      shoppingListContainer.style.display = "block";
       writeRecipe.style.display = "none";
     }
   });
