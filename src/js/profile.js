@@ -19,7 +19,20 @@ import {
 } from "../firebase.js";
 
 export default function init() {
-  onAuthStateChanged(auth, (user) => {
+  onAuthStateChanged(auth, async (user) => {
+    const container = document.getElementById("shoppingListContainer");
+    const userNew = auth.currentUser;
+    const docsRef = collection(db, `users/${userNew.uid}/shoppinglist`);
+    const querySnapshot = await getDocs(docsRef);
+
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      console.log(doc.id, " => ", doc.data());
+      const div = document.createElement("div");
+      div.innerHTML = `<p>${doc.data().ingredient}</p>`;
+      container.appendChild(div);
+    });
+
     const userName = document.getElementById("userName");
     const userEmail = document.getElementById("userEmail");
     const userPhoto = document.getElementById("userPhoto");
@@ -152,30 +165,27 @@ let streamStarted = false;
 const [play, pause, screenshot] = buttons;
 
 const constraints = {
-    video: {
-        width: {
-            min: 1280,
-            ideal: 1920,
-            max: 2560,
-        },
-        height: {
-            min: 720,
-            ideal: 1080,
-            max: 1440
-        },
-    }
-
+  video: {
+    width: {
+      min: 1280,
+      ideal: 1920,
+      max: 2560,
+    },
+    height: {
+      min: 720,
+      ideal: 1080,
+      max: 1440,
+    },
+  },
 };
 cameraOptions.onchange = () => {
-
-    const updatedConstraints = {
-        ...constraints,
-        deviceId: {
-            exact: cameraOptions.value
-        }
-    };
-    startStream(updatedConstraints);
-
+  const updatedConstraints = {
+    ...constraints,
+    deviceId: {
+      exact: cameraOptions.value,
+    },
+  };
+  startStream(updatedConstraints);
 };
 
 play.onclick = () => {
@@ -203,37 +213,35 @@ const pauseStream = () => {
 };
 let photoURL = "";
 const doScreenshot = () => {
-    const user = auth.currentUser
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    canvas.getContext('2d').drawImage(video, 0, 0);
-    screenshotImage.src = canvas.toDataURL('image/webp');
-    screenshotImage.classList.remove('d-none');
-    canvas.toBlob(function (blob) {
-
-        if (user) {
-            const profilePhoto = ref(storage, `users/${auth.currentUser.uid}/recipes/${Date.now()}`);
-            photoURL = Date.now();
-            uploadBytes(profilePhoto, blob)
-                .then((snapshot) => {
-                    getDownloadURL(ref(storage, `users/${auth.currentUser.uid}/recipes/${photoURL}`))
-                        .then((url) => {
-                            photoURL = url;
-                        })
-                        .catch((error) => {
-                            const errorCode = error.code;
-                            const errorMessage = error.message;
-                            console.log(errorCode + errorMessage);
-                        });
-                })
-                .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                    console.log(errorCode + errorMessage);
-                });
-
-        }
-    });
+  const user = auth.currentUser;
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  canvas.getContext("2d").drawImage(video, 0, 0);
+  screenshotImage.src = canvas.toDataURL("image/webp");
+  screenshotImage.classList.remove("d-none");
+  canvas.toBlob(function (blob) {
+    if (user) {
+      const profilePhoto = ref(storage, `users/${auth.currentUser.uid}/recipes/${Date.now()}`);
+      photoURL = Date.now();
+      uploadBytes(profilePhoto, blob)
+        .then((snapshot) => {
+          getDownloadURL(ref(storage, `users/${auth.currentUser.uid}/recipes/${photoURL}`))
+            .then((url) => {
+              photoURL = url;
+            })
+            .catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              console.log(errorCode + errorMessage);
+            });
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode + errorMessage);
+        });
+    }
+  });
 };
 pause.onclick = pauseStream;
 screenshot.onclick = doScreenshot;
@@ -263,60 +271,54 @@ getCameraSelection();
 
 //----------------------Create Recipe----------------------\\
 async function recipeCreate(photoURL) {
+  const UID = auth.currentUser.uid;
+  const name = document.getElementById("recipeTitle").value;
+  const time = document.getElementById("cookingTime").value;
+  const prep_time = document.getElementById("prepTime").value;
+  const serving = document.getElementById("serving").value;
+  const typeRecipe = document.getElementById("typeRecipe").value;
+  const dietaryPref = document.getElementById("dietaryPref").value;
+  const instructions = document.getElementById("instruction").value;
+  const ingredient_1 = document.getElementById("ingredient_1").value;
+  const ingredient_2 = document.getElementById("ingredient_2").value;
+  const ingredient_3 = document.getElementById("ingredient_3").value;
+  const ingredient_4 = document.getElementById("ingredient_4").value;
+  const ingredient_5 = document.getElementById("ingredient_5").value;
 
-    const UID = auth.currentUser.uid;
-    const name = document.getElementById('recipeTitle').value;
-    const time = document.getElementById('cookingTime').value;
-    const prep_time = document.getElementById('prepTime').value;
-    const serving = document.getElementById('serving').value;
-    const typeRecipe = document.getElementById('typeRecipe').value;
-    const dietaryPref = document.getElementById('dietaryPref').value;
-    const instructions = document.getElementById('instruction').value;
-    const ingredient_1 = document.getElementById('ingredient_1').value;
-    const ingredient_2 = document.getElementById('ingredient_2').value;
-    const ingredient_3 = document.getElementById('ingredient_3').value;
-    const ingredient_4 = document.getElementById('ingredient_4').value;
-    const ingredient_5 = document.getElementById('ingredient_5').value;
+  console.log("a foto veio?");
+  console.log(photoURL);
 
+  const docData = {
+    name: name.toUpperCase(),
+    time: time,
+    photo: photoURL,
+    prep_time: prep_time,
+    serving: serving,
+    type_recipe: typeRecipe,
+    dietary_pref: dietaryPref,
+    instructions: instructions,
+    ingredient_1: ingredient_1,
+    ingredient_2: ingredient_2,
+    ingredient_3: ingredient_3,
+    ingredient_4: ingredient_4,
+    ingredient_5: ingredient_5,
+  };
 
-    console.log('a foto veio?');
-    console.log(photoURL);
+  try {
+    await addDoc(collection(db, `users/${UID}/recipes`), docData);
 
-    const docData = {
-        name: name.toUpperCase(),
-        time: time,
-        photo: photoURL,
-        prep_time: prep_time,
-        serving: serving,
-        type_recipe: typeRecipe,
-        dietary_pref: dietaryPref,
-        instructions: instructions,
-        ingredient_1: ingredient_1,
-        ingredient_2: ingredient_2,
-        ingredient_3: ingredient_3,
-        ingredient_4: ingredient_4,
-        ingredient_5: ingredient_5,
-    }
+    const resetInput = document.querySelectorAll("input");
+    resetInput.forEach((item) => {
+      item.value = "";
+    });
+    document.getElementById("instruction").value = "";
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorCode + errorMessage);
+  }
 
-    try {
-
-        await addDoc(collection(db, `users/${UID}/recipes`), docData);
-
-        const resetInput = document.querySelectorAll('input');
-        resetInput.forEach(item => {
-            item.value = '';
-        });
-        document.getElementById('instruction').value = '';
-
-    } catch
-        (error) {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode + errorMessage);
-
-    }
-
-// window.top.location.reload(true);
+  // window.top.location.reload(true);
 }
 
 const el = document.getElementById("publish");
@@ -440,6 +442,7 @@ let i = 0;
 const allPages = document.querySelectorAll("a.profile-menu");
 const myProfile = document.getElementById("myProfile");
 const myRecipes = document.getElementById("myRecipes");
+const shoppingListContainer = document.getElementById("shoppingListContainer");
 const writeRecipeBtn = document.getElementById("createRecipesBtn");
 const writeRecipe = document.getElementById("createRecipes");
 allPages.forEach((menu) => {
@@ -454,6 +457,11 @@ allPages.forEach((menu) => {
       console.log("profile recipe");
       myProfile.style.display = "none";
       myRecipes.style.display = "block";
+      writeRecipe.style.display = "none";
+    } else if (menu.id === "shoppingList") {
+      myProfile.style.display = "none";
+      myRecipes.style.display = "none";
+      shoppingListContainer.style.display = "block";
       writeRecipe.style.display = "none";
     }
   });
