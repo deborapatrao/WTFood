@@ -69,6 +69,7 @@ export default async function init() {
   const addIngsBtnContainer = document.createElement("div");
   const addIngsBtn = document.createElement("button");
   addIngsBtn.textContent = "Add Ingredients to Shopping List";
+  addIngsBtn.classList.add("btn-orange");
   addIngsBtnContainer.appendChild(addIngsBtn);
   ingredientsContainer.appendChild(addIngsBtnContainer);
 
