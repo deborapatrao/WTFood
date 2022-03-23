@@ -171,8 +171,10 @@ const constraints = {
             ideal: 1080,
             max: 1440
         },
+        facingMode: { exact: "environment" }
     }
 };
+
 cameraOptions.onchange = () => {
     const updatedConstraints = {
         ...constraints,
@@ -180,6 +182,7 @@ cameraOptions.onchange = () => {
             exact: cameraOptions.value
         }
     };
+
     startStream(updatedConstraints);
 };
 
@@ -218,13 +221,12 @@ const doScreenshot = () => {
 
         if (user) {
             const profilePhoto = ref(storage, `users/${auth.currentUser.uid}/recipes/${Date.now()}`);
-            photoURL = Date.now();
+            let photoID = Date.now();
             uploadBytes(profilePhoto, blob)
                 .then((snapshot) => {
-                    getDownloadURL(ref(storage, `users/${auth.currentUser.uid}/recipes/${photoURL}`))
+                    getDownloadURL(ref(storage, `users/${auth.currentUser.uid}/recipes/${photoID}`))
                         .then((url) => {
                             photoURL = url;
-
                         })
                         .catch((error) => {
                             const errorCode = error.code;
