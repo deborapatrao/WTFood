@@ -20,7 +20,10 @@ import {
 
 
 function init() {
-
+  onAuthStateChanged(auth, (user) => {
+    const userName = document.getElementById("userName");
+    const userEmail = document.getElementById("userEmail");
+    const userPhoto = document.getElementById("userPhoto");
 
     onAuthStateChanged(auth, (user) => {
         const userName = document.getElementById("userName");
@@ -30,7 +33,6 @@ function init() {
         const fnamePlaceholder = document.getElementById("updateFName");
         const snamePlaceholder = document.getElementById("updateSName");
         const emailPlaceholder = document.getElementById("updateEmail");
-
 
         if (user) {
             console.log('init' + user.uid);
@@ -62,12 +64,49 @@ function init() {
 
             userName.innerHTML = displayName;
             userEmail.innerHTML = displayEmail;
-            userPhoto.src = displayPhoto;
+            userPhoto.setAttribute('src', displayPhoto);
+
 
             emailPlaceholder.value = displayEmail;
-            recipes();
+            recipes()
         }
     });
+
+
+    if (user) {
+      const uid = user.uid;
+      //-------------get User picture--------\\
+      // getDownloadURL(ref(storage, `users/${uid}/profile/photo`))
+      //     .then((url) => {
+      //         const userPhoto = document.getElementById("userPhoto");
+      //
+      //     })
+      //     .catch((error) => {
+      //         // Handle any errors
+      //     });
+
+      //-----------------Check Sign In user------------\\
+
+      const displayName = user.displayName;
+      const displayEmail = user.email;
+      const displayPhoto = user.photoURL
+        ? user.photoURL
+        : "https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg";
+      // const displayPassword = user.photoURL;
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      // const [firstName, lastName] = displayName.split(' ');
+
+      userName.innerHTML = displayName;
+      userEmail.innerHTML = displayEmail;
+      userPhoto.setAttribute("src", displayPhoto);
+      // fnamePlaceholder.value = firstName;
+      // snamePlaceholder.value = lastName;
+
+      emailPlaceholder.value = displayEmail;
+      recipes();
+    }
+  });
 }
 
 updateButton.addEventListener("click", () => {
@@ -360,12 +399,12 @@ el.addEventListener('click', () => {
 
 //----------------------Load Recipes----------------------\\
 async function recipes() {
-    const UID = auth.currentUser.uid;
-    const recipesCards = document.getElementById("recipesCards");
-    // await collection(`users/${UID}/recipes`).get()
-    const snapshot = collection(db, `users/${UID}/recipes`);
+  const UID = auth.currentUser.uid;
+  const recipesCards = document.getElementById("recipesCards");
+  // await collection(`users/${UID}/recipes`).get()
+  const snapshot = collection(db, `users/${UID}/recipes`);
 
-    const allRecipes = await getDocs(snapshot);
+  const allRecipes = await getDocs(snapshot);
 
     allRecipes.forEach((recipe) => {
         const cardLink = document.createElement("a");
@@ -375,14 +414,14 @@ async function recipes() {
 
         const card = document.createElement("div");
         card.classList.add("card");
-
+        
         const cardImgContainer = document.createElement("div");
         cardImgContainer.classList.add("recipe-card__img");
 
         const cardButton = document.createElement("button");
 
-        const cardImage = document.createElement("img");
-        cardImage.classList.add("card-img-top");
+    const cardImage = document.createElement("img");
+    cardImage.classList.add("card-img-top");
 
         const cardBody = document.createElement("div");
         cardBody.classList.add("card-body");
@@ -396,7 +435,7 @@ async function recipes() {
         const cardTitleText = document.createTextNode(`${recipe.data().name}`);
         cardTitle.appendChild(cardTitleText);
 
-        cardImage.src = `${recipe.data().photo}`;
+    cardImage.src = `${recipe.data().photo}`;
 
         cardImgContainer.appendChild(cardButton);
         cardImgContainer.appendChild(cardImage);
@@ -407,8 +446,8 @@ async function recipes() {
         card.appendChild(cardBody);
         cardLink.appendChild(card);
 
-        recipesCards.appendChild(cardLink);
-    });
+    recipesCards.appendChild(cardLink);
+  });
 }
 
 //----------------------Add/Remove Ingrediente Input----------------------\\
@@ -469,26 +508,26 @@ const myRecipes = document.getElementById("myRecipes");
 const writeRecipeBtn = document.getElementById("createRecipesBtn");
 const writeRecipe = document.getElementById("createRecipes");
 allPages.forEach((menu) => {
-    menu.addEventListener("click", () => {
-        console.log("id " + menu.id);
-        if (menu.id === "profileInfo") {
-            myProfile.style.display = "block";
-            myRecipes.style.display = "none";
-            writeRecipe.style.display = "none";
-            console.log("profile info");
-        } else if (menu.id === "profileRecipe") {
-            console.log("profile recipe");
-            myProfile.style.display = "none";
-            myRecipes.style.display = "block";
-            writeRecipe.style.display = "none";
-        }
-    });
+  menu.addEventListener("click", () => {
+    console.log("id " + menu.id);
+    if (menu.id === "profileInfo") {
+      myProfile.style.display = "block";
+      myRecipes.style.display = "none";
+      writeRecipe.style.display = "none";
+      console.log("profile info");
+    } else if (menu.id === "profileRecipe") {
+      console.log("profile recipe");
+      myProfile.style.display = "none";
+      myRecipes.style.display = "block";
+      writeRecipe.style.display = "none";
+    }
+  });
 });
 
 writeRecipeBtn.addEventListener("click", () => {
-    writeRecipe.style.display = "block";
-    myProfile.style.display = "none";
-    myRecipes.style.display = "none";
+  writeRecipe.style.display = "block";
+  myProfile.style.display = "none";
+  myRecipes.style.display = "none";
 });
 
 //---------------------Initialization of the JS----------------------\\
