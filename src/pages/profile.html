@@ -70,7 +70,7 @@
               <a class="profile-menu">✸ Saved Recipes</a>
             </li>
             <li>
-              <a class="profile-menu">✸ Shopping List</a>
+              <a class="profile-menu" id="shoppingList">✸ Shopping List</a>
             </li>
             <li>
               <a class="profile-menu">✸ Notifications</a>
@@ -132,6 +132,7 @@
 <!--                </select>-->
 <!--              </div>-->
 
+
 <!--              <img class="screenshot-image d-none" alt="" />-->
 
 <!--              <div class="controls">-->
@@ -152,6 +153,7 @@
             <div class="photo-recipe">
               <label for="recipeTitle">Lets put a picture:</label>
               <input type="file" id="recipePhoto" name="filename" />
+
             </div>
           </div>
 
@@ -209,9 +211,7 @@
               <h3>Ingredients</h3>
 
               <div class="create-rec__field">
-                <label for="ingredient_1" id="ingredientLabel_1"
-                  >Ingredient</label
-                >
+                <label for="ingredient_1" id="ingredientLabel_1">Ingredient</label>
                 <input type="text" id="ingredient_1" />
               </div>
 
@@ -221,9 +221,7 @@
               </div>
 
               <div class="create-rec__field">
-                <label for="ingredient_2" id="ingredientLabel_2"
-                  >Ingredient</label
-                >
+                <label for="ingredient_2" id="ingredientLabel_2">Ingredient</label>
                 <input type="text" id="ingredient_2" />
               </div>
 
@@ -233,9 +231,7 @@
               </div>
 
               <div class="create-rec__field">
-                <label for="ingredient_3" id="ingredientLabel_3"
-                  >Ingredient</label
-                >
+                <label for="ingredient_3" id="ingredientLabel_3">Ingredient</label>
                 <input type="text" id="ingredient_3" />
               </div>
 
@@ -245,9 +241,7 @@
               </div>
 
               <div class="create-rec__field">
-                <label for="ingredient_4" id="ingredientLabel_4"
-                  >Ingredient</label
-                >
+                <label for="ingredient_4" id="ingredientLabel_4">Ingredient</label>
                 <input type="text" id="ingredient_4" />
               </div>
 
@@ -257,9 +251,7 @@
               </div>
 
               <div class="create-rec__field">
-                <label for="ingredient_5" id="ingredientLabel_5"
-                  >Ingredient</label
-                >
+                <label for="ingredient_5" id="ingredientLabel_5">Ingredient</label>
                 <input type="text" id="ingredient_5" />
               </div>
 
@@ -279,25 +271,16 @@
           <div class="create-rec__instructions">
             <h3>Instructions</h3>
             <div class="create-rec__field">
-              <label for="instruction" class="visually-hidden"
-                >Instructions</label
-              >
-              <textarea
-                name="instruction"
-                id="instruction"
-                cols="10"
-                rows="5"
-              ></textarea>
+              <label for="instruction" class="visually-hidden">Instructions</label>
+              <textarea name="instruction" id="instruction" cols="10" rows="5"></textarea>
             </div>
-            <input
-              type="button"
-              value="Publish"
-              id="publish"
-              class="btn-orange"
-            />
+            <input type="button" value="Publish" id="publish" class="btn-orange" />
           </div>
         </div>
       </div>
+
+      <!-- Shopping List Section -->
+      <div id="shoppingListContainer"></div>
     </div>
   </div>
 </main>

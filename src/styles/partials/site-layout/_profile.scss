@@ -146,17 +146,18 @@
 .menu {
   display: none;
 }
+#shoppingListContainer {
+  display: none;
+}
 
 .recipe--information {
   display: flex;
   flex-flow: column nowrap;
 }
 
-.hidden-camera{
+.hidden-camera {
   visibility: hidden;
 }
-
-
 
 .screenshot-image {
   width: 150px;
@@ -182,7 +183,7 @@
 video {
   //margin: 5% auto;
   width: 100%;
-  background: rgba(0,0,0,0.2);
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .video-options {
@@ -196,7 +197,6 @@ video {
   right: 20px;
   top: 20px;
   display: flex;
-
 }
 
 .controls > button {
@@ -214,11 +214,7 @@ video {
   }
 }
 
-@media screen and (max-width: 425px){
-  .display-cover{
-    visibility: hidden;
-  }
-}
+
 @media (min-width: 300px) and (max-width: 400px) {
   .controls {
     flex-direction: column;
@@ -238,11 +234,10 @@ video {
 }
 
 .controls button:nth-child(1) {
-  border: 2px solid #D2002E;
+  border: 2px solid #d2002e;
 
   svg {
-    color: #D2002E;
-
+    color: #d2002e;
   }
 }
 
@@ -255,10 +250,10 @@ video {
 }
 
 .controls button:nth-child(3) {
-  border: 2px solid #00B541;
+  border: 2px solid #00b541;
 
   svg {
-    color: #00B541;
+    color: #00b541;
   }
 }
 
