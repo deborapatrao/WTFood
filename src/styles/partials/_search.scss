@@ -1,37 +1,38 @@
-.tab__search-form {
-  background-color: $color-white;
-  padding: 1rem;
-  @include flex(column, center, start);
-  gap: 0.5rem;
-  border-radius: 0 0 $std-border-radius $std-border-radius;
-  box-shadow: $box-shadow;
+.search__tab {
+  .tab__search-form {
+    background-color: $color-white;
+    padding: 1rem;
+    @include flex(column, center, start);
+    gap: 0.5rem;
+    border-radius: 0 0 $std-border-radius $std-border-radius;
+    box-shadow: $box-shadow;
 
-  legend {
-    @include fontBody1();
+    legend {
+      @include fontBody1();
+      color: $color-text-medium-grey;
+      padding-top: 0.5rem;
+    }
+
+    input[type="text"] {
+      border-radius: $std-border-radius;
+      border: $border-grey;
+      padding: $padding-small;
+      width: 100%;
+    }
+
+    label {
+      width: 100%;
+      padding: 0.125rem 0;
+    }
+
+    input[type="submit"] {
+      width: 100%;
+    }
+  }
+  .nav-link[aria-selected="false"] {
+    background-color: $color-support-medium;
     color: $color-text-medium-grey;
-    padding-top: 0.5rem;
   }
-
-  input[type="text"] {
-    border-radius: $std-border-radius;
-    border: $border-grey;
-    padding: $padding-small;
-    width: 100%;
-  }
-
-  label {
-    width: 100%;
-    padding: 0.125rem 0;
-  }
-
-  input[type="submit"] {
-    width: 100%;
-  }
-}
-
-.nav-link[aria-selected="false"] {
-  background-color: $color-support-medium;
-  color: $color-text-medium-grey;
 }
 
 //reset bootstrap style

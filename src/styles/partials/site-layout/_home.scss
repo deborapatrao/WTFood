@@ -8,14 +8,15 @@
   min-height: 44vh;
 }
 
-.home {
+.home,
+.one-recipe {
   overflow-x: hidden;
 }
 .view-all {
-  min-width: 100px;
   text-align: right;
   text-decoration: none;
   color: $color-primary-dark;
+  white-space: nowrap;
 }
 
 .home section {
@@ -24,6 +25,7 @@
 
 .home .section__heading {
   padding-bottom: 1rem;
+  gap: 1rem;
 }
 
 //Food of the world section

@@ -1,23 +1,22 @@
 import {
-    auth,
-    getAuth,
-    storage,
-    ref,
-    db,
-    onAuthStateChanged,
-    updateProfile,
-    updateEmail,
-    uploadBytes,
-    getDownloadURL,
-    doc,
-    setDoc,
-    listAll,
-    addDoc,
-    getDoc,
-    getDocs,
-    collection
+  auth,
+  getAuth,
+  storage,
+  ref,
+  db,
+  onAuthStateChanged,
+  updateProfile,
+  updateEmail,
+  uploadBytes,
+  getDownloadURL,
+  doc,
+  setDoc,
+  listAll,
+  addDoc,
+  getDoc,
+  getDocs,
+  collection,
 } from "../firebase.js";
-
 
 export default function init() {
   onAuthStateChanged(auth, (user) => {
@@ -25,55 +24,13 @@ export default function init() {
     const userEmail = document.getElementById("userEmail");
     const userPhoto = document.getElementById("userPhoto");
 
-    onAuthStateChanged(auth, (user) => {
-        const userName = document.getElementById("userName");
-        const userEmail = document.getElementById("userEmail");
-        const userPhoto = document.getElementById("userPhoto");
-
-        const fnamePlaceholder = document.getElementById("updateFName");
-        const snamePlaceholder = document.getElementById("updateSName");
-        const emailPlaceholder = document.getElementById("updateEmail");
-
-        if (user) {
-
-
-            //-----------------Check Sign In user------------\\
-
-            const displayName = user.displayName;
-            const displayEmail = user.email;
-
-            const displayPhoto = user.photoURL;
-
-            if (displayName !== null) {
-
-                const [firstName, lastName] = displayName.split(' ');
-                fnamePlaceholder.value = firstName;
-                snamePlaceholder.value = lastName;
-            }
-
-            userName.innerHTML = displayName;
-            userEmail.innerHTML = displayEmail;
-            userPhoto.setAttribute('src', displayPhoto);
-
-
-            emailPlaceholder.value = displayEmail;
-            recipes()
-        }
-    });
-
+    const fnamePlaceholder = document.getElementById("updateFName");
+    const snamePlaceholder = document.getElementById("updateSName");
+    const emailPlaceholder = document.getElementById("updateEmail");
 
     if (user) {
+      console.log("init" + user.uid);
       const uid = user.uid;
-      //-------------get User picture--------\\
-      // getDownloadURL(ref(storage, `users/${uid}/profile/photo`))
-      //     .then((url) => {
-      //         const userPhoto = document.getElementById("userPhoto");
-      //
-      //     })
-      //     .catch((error) => {
-      //         // Handle any errors
-      //     });
-
       //-----------------Check Sign In user------------\\
 
       const displayName = user.displayName;
@@ -81,16 +38,17 @@ export default function init() {
       const displayPhoto = user.photoURL
         ? user.photoURL
         : "https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg";
-      // const displayPassword = user.photoURL;
       // User is signed in, see docs for a list of available properties
       // https://firebase.google.com/docs/reference/js/firebase.User
-      // const [firstName, lastName] = displayName.split(' ');
+      if (displayName !== null) {
+        const [firstName, lastName] = displayName.split(" ");
+        fnamePlaceholder.value = firstName;
+        snamePlaceholder.value = lastName;
+      }
 
       userName.innerHTML = displayName;
       userEmail.innerHTML = displayEmail;
-      userPhoto.setAttribute("src", displayPhoto);
-      // fnamePlaceholder.value = firstName;
-      // snamePlaceholder.value = lastName;
+      userPhoto.src = displayPhoto;
 
       emailPlaceholder.value = displayEmail;
       recipes();
@@ -99,289 +57,274 @@ export default function init() {
 }
 
 updateButton.addEventListener("click", () => {
-    const file = document.getElementById("photoFile").files.length;
-    console.log(file);
-    if (file > 0) {
-        userUpdatePhoto();
-        console.log('there photo');
-        updateUserEmail();
-    } else {
-        console.log('there NO photo');
-        userUpdate();
-        updateUserEmail();
-    }
-    window.top.location.reload(true);
+  const file = document.getElementById("photoFile").files.length;
+  if (file > 0) {
+    console.log("there photo");
+    userUpdatePhoto();
+  } else {
+    console.log("there NO photo");
+    userUpdate();
+  }
 });
 
 //-----------------------Upload Photo-----------------------\\
 
 function userUpdatePhoto() {
-    const photo = document.getElementById("photoFile").files[0];
-    const user = auth.currentUser;
-    const uid = user.uid;
+  const photo = document.getElementById("photoFile").files[0];
+  const user = auth.currentUser;
+  const uid = user.uid;
+  if (user) {
     const profilePhoto = ref(storage, `users/${uid}/profile/photo`);
-
-    if (user) {
-        uploadBytes(profilePhoto, photo)
-            .then((snapshot) => {
-                console.log("Uploaded a blob or file!");
-                getDownloadURL(ref(storage, `users/${uid}/profile/photo`))
-                    .then((url) => {
-                        console.log('photo updated');
-                        userUpdate(url);
-                    })
-                    .catch((error) => {
-                        const errorCode = error.code;
-                        const errorMessage = error.message;
-                        console.log('URL photo:' + errorCode + errorMessage);
-                    });
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log(errorCode + errorMessage);
-            });
-    }
-
+    uploadBytes(profilePhoto, photo)
+      .then((snapshot) => {
+        console.log("Uploaded a blob or file!");
+        getDownloadURL(profilePhoto)
+          .then((url) => {
+            console.log("photo updated");
+            userUpdate(url);
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log("URL photo:" + errorCode + errorMessage);
+          });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(`Code: ${errorCode}`);
+        console.log(`MSG: ${errorMessage}`);
+      });
+  }
 }
 
 //----------------------Update User info-------------------\\
 function userUpdate(photoStorage) {
-    const fname = document.getElementById("updateFName").value;
-    const sname = document.getElementById("updateSName").value;
-    const user = auth.currentUser;
-    const name = `${fname} ${sname}`;
-    console.log(name);
-    if (user) {
-
-        updateProfile(user, {
-            displayName: name,
-            photoURL: photoStorage,
-        })
-            .then(() => {
-                console.log('user updated');
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log(errorCode + errorMessage);
-            });
-    }
+  const fname = document.getElementById("updateFName").value;
+  const sname = document.getElementById("updateSName").value;
+  const user = auth.currentUser;
+  const name = `${fname} ${sname}`;
+  console.log(photoStorage);
+  if (user) {
+    updateProfile(user, {
+      displayName: name,
+      photoURL: photoStorage,
+    })
+      .then(() => {
+        window.top.location.reload(true);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode + errorMessage);
+      });
+  }
 }
 
-function updateUserEmail() {
-    const email = document.getElementById("updateEmail").value;
-    const user = auth.currentUser;
-    console.log('uhu' + email);
-
-    if (user) {
-        updateEmail(user, email).then(() => {
-            console.log('email update!');
-        }).catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log('Code: ' + errorCode + '<br>Msg: ' + errorMessage);
-        });
-    }
-}
+// function updateUserEmail() {
+//     const email = document.getElementById("updateEmail").value;
+//     const user = auth.currentUser;
+//     console.log('uhu' + email);
+//
+//     if (user) {
+//         updateEmail(user, email).then(() => {
+//             console.log('email update!');
+//         }).catch((error) => {
+//             const errorCode = error.code;
+//             const errorMessage = error.message;
+//             console.log('Code: ' + errorCode + '<br>Msg: ' + errorMessage);
+//         });
+//     }
+// }
 
 //----------------------Camera Photo----------------------\\
 
 feather.replace();
 
-const controls = document.querySelector('.controls');
-const cameraOptions = document.querySelector('.video-options>select');
-const video = document.querySelector('video');
-const canvas = document.querySelector('canvas');
-const screenshotImage = document.querySelector('img');
-const buttons = [...controls.querySelectorAll('button')];
+const controls = document.querySelector(".controls");
+const cameraOptions = document.querySelector(".video-options>select");
+const video = document.querySelector("video");
+const canvas = document.querySelector("canvas");
+const screenshotImage = document.querySelector("img");
+const buttons = [...controls.querySelectorAll("button")];
 let streamStarted = false;
 
 const [play, pause, screenshot] = buttons;
 
 const constraints = {
-    video: {
-        width: {
-            min: 1280,
-            ideal: 1920,
-            max: 2560,
-        },
-        height: {
-            min: 720,
-            ideal: 1080,
-            max: 1440
-        },
-    }
+  video: {
+    width: {
+      min: 1280,
+      ideal: 1920,
+      max: 2560,
+    },
+    height: {
+      min: 720,
+      ideal: 1080,
+      max: 1440,
+    },
+    facingMode: {
+      exact: "environment",
+    },
+  },
 };
 
 cameraOptions.onchange = () => {
-    const updatedConstraints = {
-        ...constraints,
-        deviceId: {
-            exact: cameraOptions.value
-        }
-    };
+  const updatedConstraints = {
+    ...constraints,
+    deviceId: {
+      exact: cameraOptions.value,
+    },
+  };
 
-    startStream(updatedConstraints);
+  startStream(updatedConstraints);
 };
 
 play.onclick = () => {
-    if (streamStarted) {
-        video.play();
-        play.classList.add('d-none');
-        pause.classList.remove('d-none');
-        return;
-    }
-    if ('mediaDevices' in navigator && navigator.mediaDevices.getUserMedia) {
-        const updatedConstraints = {
-            ...constraints,
-            deviceId: {
-                exact: cameraOptions.value
-            }
-        };
-        startStream(updatedConstraints);
-    }
+  if (streamStarted) {
+    video.play();
+    play.classList.add("d-none");
+    pause.classList.remove("d-none");
+    return;
+  }
+  if ("mediaDevices" in navigator && navigator.mediaDevices.getUserMedia) {
+    const updatedConstraints = {
+      ...constraints,
+      deviceId: {
+        exact: cameraOptions.value,
+      },
+    };
+    startStream(updatedConstraints);
+  }
 };
 
 const pauseStream = () => {
-    video.pause();
-    play.classList.remove('d-none');
-    pause.classList.add('d-none');
+  video.pause();
+  play.classList.remove("d-none");
+  pause.classList.add("d-none");
 };
-let photoURL = ''
+let photoURL = "";
 const doScreenshot = () => {
-    const user = auth.currentUser
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    canvas.getContext('2d').drawImage(video, 0, 0);
-    screenshotImage.src = canvas.toDataURL('image/webp');
-    screenshotImage.classList.remove('d-none');
-    canvas.toBlob(function (blob) {
-
-        if (user) {
-            const profilePhoto = ref(storage, `users/${auth.currentUser.uid}/recipes/${Date.now()}`);
-            photoURL = Date.now();
-            uploadBytes(profilePhoto, blob)
-                .then((snapshot) => {
-                    getDownloadURL(ref(storage, `users/${auth.currentUser.uid}/recipes/${photoURL}`))
-                        .then((url) => {
-                            photoURL = url;
-
-                        })
-                        .catch((error) => {
-                            const errorCode = error.code;
-                            const errorMessage = error.message;
-                            console.log(errorCode + errorMessage);
-                        });
-                })
-                .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                    console.log(errorCode + errorMessage);
-                });
-
-        }
-    });
+  const user = auth.currentUser;
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  canvas.getContext("2d").drawImage(video, 0, 0);
+  screenshotImage.src = canvas.toDataURL("image/webp");
+  screenshotImage.classList.remove("d-none");
+  canvas.toBlob(function (blob) {
+    if (user) {
+      const profilePhoto = ref(storage, `users/${auth.currentUser.uid}/recipes/${Date.now()}`);
+      photoURL = Date.now();
+      uploadBytes(profilePhoto, blob)
+        .then((snapshot) => {
+          getDownloadURL(ref(storage, `users/${auth.currentUser.uid}/recipes/${photoURL}`))
+            .then((url) => {
+              photoURL = url;
+            })
+            .catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              console.log(errorCode + errorMessage);
+            });
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode + errorMessage);
+        });
+    }
+  });
 };
 pause.onclick = pauseStream;
 screenshot.onclick = doScreenshot;
 
 const startStream = async (constraints) => {
-    const stream = await navigator.mediaDevices.getUserMedia(constraints);
-    handleStream(stream);
+  const stream = await navigator.mediaDevices.getUserMedia(constraints);
+  handleStream(stream);
 };
-
 
 const handleStream = (stream) => {
-    video.srcObject = stream;
-    play.classList.add('d-none');
-    pause.classList.remove('d-none');
-    screenshot.classList.remove('d-none');
-
+  video.srcObject = stream;
+  play.classList.add("d-none");
+  pause.classList.remove("d-none");
+  screenshot.classList.remove("d-none");
 };
 
-
 const getCameraSelection = async () => {
-    const devices = await navigator.mediaDevices.enumerateDevices();
-    const videoDevices = devices.filter(device => device.kind === 'videoinput');
-    const options = videoDevices.map(videoDevice => {
-        return `<option value="${videoDevice.deviceId}">${videoDevice.label}</option>`;
-    });
-    cameraOptions.innerHTML = options.join('');
+  const devices = await navigator.mediaDevices.enumerateDevices();
+  const videoDevices = devices.filter((device) => device.kind === "videoinput");
+  const options = videoDevices.map((videoDevice) => {
+    return `<option value="${videoDevice.deviceId}">${videoDevice.label}</option>`;
+  });
+  cameraOptions.innerHTML = options.join("");
 };
 
 getCameraSelection();
 
-
 //----------------------Create Recipe----------------------\\
 async function recipeCreate(photoURL) {
-    console.log(photoURL);
-    const UID = auth.currentUser.uid;
-    const name = document.getElementById('recipeTitle').value;
-    const time = document.getElementById('cookingTime').value;
-    const prep_time = document.getElementById('prepTime').value;
-    const serving = document.getElementById('serving').value;
-    const typeRecipe = document.getElementById('typeRecipe').value;
-    const dietaryPref = document.getElementById('dietaryPref').value;
-    const instructions = document.getElementById('instruction').value;
-    const ingredient_1 = document.getElementById('ingredient_1').value;
-    const ingredient_2 = document.getElementById('ingredient_2').value;
-    const ingredient_3 = document.getElementById('ingredient_3').value;
-    const ingredient_4 = document.getElementById('ingredient_4').value;
-    const ingredient_5 = document.getElementById('ingredient_5').value;
+  console.log(photoURL);
+  const UID = auth.currentUser.uid;
+  const name = document.getElementById("recipeTitle").value;
+  const time = document.getElementById("cookingTime").value;
+  const prep_time = document.getElementById("prepTime").value;
+  const serving = document.getElementById("serving").value;
+  const typeRecipe = document.getElementById("typeRecipe").value;
+  const dietaryPref = document.getElementById("dietaryPref").value;
+  const instructions = document.getElementById("instruction").value;
+  const ingredient_1 = document.getElementById("ingredient_1").value;
+  const ingredient_2 = document.getElementById("ingredient_2").value;
+  const ingredient_3 = document.getElementById("ingredient_3").value;
+  const ingredient_4 = document.getElementById("ingredient_4").value;
+  const ingredient_5 = document.getElementById("ingredient_5").value;
 
+  console.log("a foto veio?");
+  console.log(photoURL);
 
-    console.log('a foto veio?');
-    console.log(photoURL);
+  const docData = {
+    name: name.toUpperCase(),
+    time: time,
+    photo: photoURL,
+    prep_time: prep_time,
+    serving: serving,
+    type_recipe: typeRecipe,
+    dietary_pref: dietaryPref,
+    instructions: instructions,
+    ingredient_1: ingredient_1,
+    ingredient_2: ingredient_2,
+    ingredient_3: ingredient_3,
+    ingredient_4: ingredient_4,
+    ingredient_5: ingredient_5,
+  };
 
-    const docData = {
-        name: name.toUpperCase(),
-        time: time,
-        photo: photoURL,
-        prep_time: prep_time,
-        serving: serving,
-        type_recipe: typeRecipe,
-        dietary_pref: dietaryPref,
-        instructions: instructions,
-        ingredient_1: ingredient_1,
-        ingredient_2: ingredient_2,
-        ingredient_3: ingredient_3,
-        ingredient_4: ingredient_4,
-        ingredient_5: ingredient_5,
-    }
+  try {
+    await addDoc(collection(db, `users/${UID}/recipes`), docData);
 
-    try {
+    const resetInput = document.querySelectorAll("input");
+    resetInput.forEach((item) => {
+      item.value = "";
+    });
+    document.getElementById("instruction").value = "";
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorCode + errorMessage);
+  }
 
-        await addDoc(collection(db, `users/${UID}/recipes`), docData);
-
-        const resetInput = document.querySelectorAll('input');
-        resetInput.forEach(item => {
-            item.value = '';
-        });
-        document.getElementById('instruction').value = '';
-
-    } catch
-        (error) {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode + errorMessage);
-
-    }
-
-// window.top.location.reload(true);
+  window.top.location.reload(true);
 }
 
-const el = document.getElementById('publish');
+const el = document.getElementById("publish");
 
-el.addEventListener('click', () => {
-    try {
-        recipeCreate(photoURL);
-        alert('recipe Created');
-    } catch (error) {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode + errorMessage);
-    }
+el.addEventListener("click", () => {
+  try {
+    recipeCreate(photoURL);
+    alert("recipe Created");
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorCode + errorMessage);
+  }
 });
 
 //----------------------Load Recipes----------------------\\
@@ -393,45 +336,45 @@ async function recipes() {
 
   const allRecipes = await getDocs(snapshot);
 
-    allRecipes.forEach((recipe) => {
-        const cardLink = document.createElement("a");
-        // cardLink.href = `#oneRecipe?${recipes[i].id}`;
-        cardLink.classList.add("card-link");
-        cardLink.classList.add("recipe-card");
+  allRecipes.forEach((recipe) => {
+    const cardLink = document.createElement("a");
+    // cardLink.href = `#oneRecipe?${recipes[i].id}`;
+    cardLink.classList.add("card-link");
+    cardLink.classList.add("recipe-card");
 
-        const card = document.createElement("div");
-        card.classList.add("card");
-        
-        const cardImgContainer = document.createElement("div");
-        cardImgContainer.classList.add("recipe-card__img");
+    const card = document.createElement("div");
+    card.classList.add("card");
 
-        const cardButton = document.createElement("button");
+    const cardImgContainer = document.createElement("div");
+    cardImgContainer.classList.add("recipe-card__img");
+
+    const cardButton = document.createElement("button");
 
     const cardImage = document.createElement("img");
     cardImage.classList.add("card-img-top");
 
-        const cardBody = document.createElement("div");
-        cardBody.classList.add("card-body");
+    const cardBody = document.createElement("div");
+    cardBody.classList.add("card-body");
 
-        const cardStars = document.createElement("div");
-        cardStars.classList.add("rating-stars");
+    const cardStars = document.createElement("div");
+    cardStars.classList.add("rating-stars");
 
-        const cardTitle = document.createElement("h3");
-        cardTitle.classList.add("card-title");
+    const cardTitle = document.createElement("h3");
+    cardTitle.classList.add("card-title");
 
-        const cardTitleText = document.createTextNode(`${recipe.data().name}`);
-        cardTitle.appendChild(cardTitleText);
+    const cardTitleText = document.createTextNode(`${recipe.data().name}`);
+    cardTitle.appendChild(cardTitleText);
 
     cardImage.src = `${recipe.data().photo}`;
 
-        cardImgContainer.appendChild(cardButton);
-        cardImgContainer.appendChild(cardImage);
-        cardBody.appendChild(cardStars);
-        cardBody.appendChild(cardTitle);
+    cardImgContainer.appendChild(cardButton);
+    cardImgContainer.appendChild(cardImage);
+    cardBody.appendChild(cardStars);
+    cardBody.appendChild(cardTitle);
 
-        card.appendChild(cardImgContainer);
-        card.appendChild(cardBody);
-        cardLink.appendChild(card);
+    card.appendChild(cardImgContainer);
+    card.appendChild(cardBody);
+    cardLink.appendChild(card);
 
     recipesCards.appendChild(cardLink);
   });
@@ -518,6 +461,5 @@ writeRecipeBtn.addEventListener("click", () => {
 });
 
 //---------------------Initialization of the JS----------------------\\
-
 
 // init();
