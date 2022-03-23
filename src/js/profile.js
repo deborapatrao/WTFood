@@ -68,7 +68,10 @@ function init() {
 
 
             emailPlaceholder.value = displayEmail;
-            recipes()
+
+            recipes();
+
+
         }
     });
 
