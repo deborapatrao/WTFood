@@ -36,14 +36,6 @@ function init() {
             console.log('init' + user.uid);
             const uid = user.uid;
             //-------------get User picture--------\\
-            // getDownloadURL(ref(storage, `users/${uid}/profile/photo`))
-            //     .then((url) => {
-            //         const userPhoto = document.getElementById("userPhoto");
-            //
-            //     })
-            //     .catch((error) => {
-            //         // Handle any errors
-            //     });
 
             //-----------------Check Sign In user------------\\
 
