@@ -171,12 +171,8 @@ const constraints = {
             ideal: 1080,
             max: 1440
         },
-        facingMode: {
-            exact: 'environment'
-        }
     }
 };
-
 cameraOptions.onchange = () => {
     const updatedConstraints = {
         ...constraints,
@@ -184,7 +180,6 @@ cameraOptions.onchange = () => {
             exact: cameraOptions.value
         }
     };
-
     startStream(updatedConstraints);
 };
 
