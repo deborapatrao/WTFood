@@ -38,7 +38,7 @@ export default function init() {
   signIn.addEventListener("click", () => {
     let email = document.getElementById("email1").value;
     let password = document.getElementById("password1").value;
-    console.log(email, password)
+    console.log(email, password);
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
@@ -89,5 +89,3 @@ export default function init() {
     }
   });
 }
-
-init();
