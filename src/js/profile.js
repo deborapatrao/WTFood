@@ -163,7 +163,6 @@ const constraints = {
             ideal: 1080,
             max: 1440
         },
-        facingMode: { exact: "environment" }
     }
 
 };
@@ -204,34 +203,37 @@ const pauseStream = () => {
 };
 let photoURL = "";
 const doScreenshot = () => {
-  const user = auth.currentUser;
-  canvas.width = video.videoWidth;
-  canvas.height = video.videoHeight;
-  canvas.getContext("2d").drawImage(video, 0, 0);
-  screenshotImage.src = canvas.toDataURL("image/webp");
-  screenshotImage.classList.remove("d-none");
-  canvas.toBlob(function (blob) {
-    if (user) {
-      const profilePhoto = ref(storage, `users/${auth.currentUser.uid}/recipes/${Date.now()}`);
-      uploadBytes(profilePhoto, blob)
-        .then((snapshot) => {
-          getDownloadURL(ref(storage, `users/${auth.currentUser.uid}/recipes/${Date.now()}`))
-            .then((url) => {
-              photoURL = url;
-            })
-            .catch((error) => {
-              const errorCode = error.code;
-              const errorMessage = error.message;
-              console.log(errorCode + errorMessage);
-            });
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(errorCode + errorMessage);
-        });
-    }
-  });
+    const user = auth.currentUser
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    canvas.getContext('2d').drawImage(video, 0, 0);
+    screenshotImage.src = canvas.toDataURL('image/webp');
+    screenshotImage.classList.remove('d-none');
+    canvas.toBlob(function (blob) {
+
+        if (user) {
+            const profilePhoto = ref(storage, `users/${auth.currentUser.uid}/recipes/${Date.now()}`);
+            photoURL = Date.now();
+            uploadBytes(profilePhoto, blob)
+                .then((snapshot) => {
+                    getDownloadURL(ref(storage, `users/${auth.currentUser.uid}/recipes/${photoURL}`))
+                        .then((url) => {
+                            photoURL = url;
+                        })
+                        .catch((error) => {
+                            const errorCode = error.code;
+                            const errorMessage = error.message;
+                            console.log(errorCode + errorMessage);
+                        });
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.log(errorCode + errorMessage);
+                });
+
+        }
+    });
 };
 pause.onclick = pauseStream;
 screenshot.onclick = doScreenshot;
@@ -261,55 +263,60 @@ getCameraSelection();
 
 //----------------------Create Recipe----------------------\\
 async function recipeCreate(photoURL) {
-  console.log(photoURL);
-  const UID = auth.currentUser.uid;
-  const name = document.getElementById("recipeTitle").value;
-  const time = document.getElementById("cookingTime").value;
-  const prep_time = document.getElementById("prepTime").value;
-  const serving = document.getElementById("serving").value;
-  const typeRecipe = document.getElementById("typeRecipe").value;
-  const dietaryPref = document.getElementById("dietaryPref").value;
-  const instructions = document.getElementById("instruction").value;
-  const ingredient_1 = document.getElementById("ingredient_1").value;
-  const ingredient_2 = document.getElementById("ingredient_2").value;
-  const ingredient_3 = document.getElementById("ingredient_3").value;
-  const ingredient_4 = document.getElementById("ingredient_4").value;
-  const ingredient_5 = document.getElementById("ingredient_5").value;
 
-  console.log("a foto veio?");
-  console.log(photoURL);
+    const UID = auth.currentUser.uid;
+    const name = document.getElementById('recipeTitle').value;
+    const time = document.getElementById('cookingTime').value;
+    const prep_time = document.getElementById('prepTime').value;
+    const serving = document.getElementById('serving').value;
+    const typeRecipe = document.getElementById('typeRecipe').value;
+    const dietaryPref = document.getElementById('dietaryPref').value;
+    const instructions = document.getElementById('instruction').value;
+    const ingredient_1 = document.getElementById('ingredient_1').value;
+    const ingredient_2 = document.getElementById('ingredient_2').value;
+    const ingredient_3 = document.getElementById('ingredient_3').value;
+    const ingredient_4 = document.getElementById('ingredient_4').value;
+    const ingredient_5 = document.getElementById('ingredient_5').value;
 
-  const docData = {
-    name: name.toUpperCase(),
-    time: time,
-    photo: photoURL,
-    prep_time: prep_time,
-    serving: serving,
-    type_recipe: typeRecipe,
-    dietary_pref: dietaryPref,
-    instructions: instructions,
-    ingredient_1: ingredient_1,
-    ingredient_2: ingredient_2,
-    ingredient_3: ingredient_3,
-    ingredient_4: ingredient_4,
-    ingredient_5: ingredient_5,
-  };
 
-  try {
-    await addDoc(collection(db, `users/${UID}/recipes`), docData);
+    console.log('a foto veio?');
+    console.log(photoURL);
 
-    const resetInput = document.querySelectorAll("input");
-    resetInput.forEach((item) => {
-      item.value = "";
-    });
-    document.getElementById("instruction").value = "";
-  } catch (error) {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log(errorCode + errorMessage);
-  }
+    const docData = {
+        name: name.toUpperCase(),
+        time: time,
+        photo: photoURL,
+        prep_time: prep_time,
+        serving: serving,
+        type_recipe: typeRecipe,
+        dietary_pref: dietaryPref,
+        instructions: instructions,
+        ingredient_1: ingredient_1,
+        ingredient_2: ingredient_2,
+        ingredient_3: ingredient_3,
+        ingredient_4: ingredient_4,
+        ingredient_5: ingredient_5,
+    }
 
-  window.top.location.reload(true);
+    try {
+
+        await addDoc(collection(db, `users/${UID}/recipes`), docData);
+
+        const resetInput = document.querySelectorAll('input');
+        resetInput.forEach(item => {
+            item.value = '';
+        });
+        document.getElementById('instruction').value = '';
+
+    } catch
+        (error) {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode + errorMessage);
+
+    }
+
+// window.top.location.reload(true);
 }
 
 const el = document.getElementById("publish");
