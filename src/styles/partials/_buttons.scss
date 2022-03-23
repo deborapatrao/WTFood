@@ -45,6 +45,15 @@
   text-align: center;
 }
 
+.btn-orange-light {
+  padding: $padding-small;
+  background-color: $color-primary-medium;
+  color: $color-white;
+  @include fontButton();
+  border-radius: $std-border-radius;
+  text-align: center;
+}
+
 .btn-white {
   padding: $padding-small;
   background-color: $color-white;

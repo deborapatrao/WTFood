@@ -62,3 +62,12 @@
     padding-bottom: 0.5rem;
   }
 }
+
+.one-recipe section {
+  padding: 3rem 0;
+}
+
+.share-recipe__content {
+  @include flex(column, center, start);
+  gap: 1rem;
+}

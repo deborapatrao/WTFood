@@ -1,292 +1,396 @@
 <!-- <h1 >Recipe</h1> -->
 <!-- Banner with a carousel -->
-<div class="recipe-banner">
-  <!-- Image carousel -->
-  <!-- <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
+<div class="one-recipe">
+  <div class="recipe-banner">
+    <!-- Image carousel -->
+    <!-- <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide-to="0"
+          class="active"
+          aria-current="true"
+          aria-label="Slide 1"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide-to="1"
+          aria-label="Slide 2"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide-to="2"
+          aria-label="Slide 3"
+        ></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="#" class="d-block w-100" alt="..." />
+        </div>
+        <div class="carousel-item">
+          <img src="#" class="d-block w-100" alt="..." />
+        </div>
+        <div class="carousel-item">
+          <img src="#" class="d-block w-100" alt="..." />
+        </div>
+      </div>
       <button
+        class="carousel-control-prev"
         type="button"
         data-bs-target="#carouselExampleIndicators"
-        data-bs-slide-to="0"
-        class="active"
-        aria-current="true"
-        aria-label="Slide 1"
-      ></button>
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
       <button
+        class="carousel-control-next"
         type="button"
         data-bs-target="#carouselExampleIndicators"
-        data-bs-slide-to="1"
-        aria-label="Slide 2"
-      ></button>
-      <button
-        type="button"
-        data-bs-target="#carouselExampleIndicators"
-        data-bs-slide-to="2"
-        aria-label="Slide 3"
-      ></button>
-    </div>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="#" class="d-block w-100" alt="..." />
-      </div>
-      <div class="carousel-item">
-        <img src="#" class="d-block w-100" alt="..." />
-      </div>
-      <div class="carousel-item">
-        <img src="#" class="d-block w-100" alt="..." />
-      </div>
-    </div>
-    <button
-      class="carousel-control-prev"
-      type="button"
-      data-bs-target="#carouselExampleIndicators"
-      data-bs-slide="prev"
-    >
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button
-      class="carousel-control-next"
-      type="button"
-      data-bs-target="#carouselExampleIndicators"
-      data-bs-slide="next"
-    >
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div> -->
-  <div id="recipe-image-wrapper"></div>
-  <div class="recipe-summary container">
-    <h2 id="recipe-title">Recipe title</h2>
-    <!-- RATING GOES HERE -->
-    <div class="recipe-summary-info">
-      <ul>
-        <li class="recipe-summary-item">
-          <span>Prep time</span>
-          <span id="prep-time">20 min</span>
-        </li>
-        <li class="recipe-summary-item">
-          <span>Cooking time</span>
-          <span id="cooking-time">45 min</span>
-        </li>
-        <li class="recipe-summary-item">
-          <span>Serving</span>
-          <span id="serving">2 servings</span>
-        </li>
-      </ul>
-    </div>
-    <div class="rating-stars"></div>
-    <!-- Social Share Buttons -->
-    <div class="social-share">
-      <ul>
-        <li>
-          <a href=""><i></i>Facebook</a>
-        </li>
-        <li>
-          <a href=""><i></i>Twitter</a>
-        </li>
-        <li>
-          <a href=""><i></i>Instagram</a>
-        </li>
-        <li>
-          <a href=""><i></i>Pinterest</a>
-        </li>
-        <li>
-          <a href=""><i></i>Share Link</a>
-        </li>
-      </ul>
-    </div>
-
-    <!-- About the recipe -->
-    <div class="about-recipe" id="about-recipe">
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi qui
-        beatae laudantium soluta? Natus molestiae sint odio perferendis tempore
-        nam mollitia. Praesentium accusamus suscipit sint dolor, illo sapiente
-        blanditiis minima!
-      </p>
-    </div>
-  </div>
-</div>
-
-<!-- Recipe details section -->
-<div class="recipe__details-tab container">
-  <ul class="nav nav-tabs" id="myTab" role="tablist">
-    <li class="nav-item" role="presentation">
-      <button
-        class="nav-link active"
-        id="nutrition-tab"
-        data-bs-toggle="tab"
-        data-bs-target="#nutrition"
-        type="button"
-        role="tab"
-        aria-controls="nutrition"
-        aria-selected="true"
+        data-bs-slide="next"
       >
-        Nutrition
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
       </button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button
-        class="nav-link"
-        id="ingredients-tab"
-        data-bs-toggle="tab"
-        data-bs-target="#ingredients"
-        type="button"
-        role="tab"
-        aria-controls="ingredients"
-        aria-selected="false"
-      >
-        Ingredients
-      </button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button
-        class="nav-link"
-        id="insctructions-tab"
-        data-bs-toggle="tab"
-        data-bs-target="#insctructions"
-        type="button"
-        role="tab"
-        aria-controls="insctructions"
-        aria-selected="false"
-      >
-        Insctructions
-      </button>
-    </li>
-  </ul>
-  <div class="tab-content" id="myTabContent">
-    <div
-      class="tab-pane fade show active"
-      id="nutrition"
-      role="tabpanel"
-      aria-labelledby="nutrition-tab"
-    >
-      <div class="nutrition-wrapper"></div>
-    </div>
-    <div
-      class="tab-pane fade"
-      id="ingredients"
-      role="tabpanel"
-      aria-labelledby="ingredients-tab"
-    >
-      <div class="ingredients-wrapper"></div>
-    </div>
-    <div
-      class="tab-pane fade"
-      id="insctructions"
-      role="tabpanel"
-      aria-labelledby="insctructions-tab"
-    >
-      <div class="instructions-wrapper"></div>
-    </div>
-  </div>
-</div>
-<!-- ********** TEST RESULTS SECTION ************** -->
-<!-- <section>
-  <div class="container">
-    <div class="section-heading">
-      <h2>Results</h2>
-      <a href="#">view all</a>
-    </div>
-
-    <div id="resultTest"></div>
-  </div>
-</section> -->
-<!-- ********* END TEST RESULTS SECTION ************* -->
-
-<!-- Will need help here!!!! -->
-
-<!-- Related recipes section -->
-<hr />
-<section>
-  <div class="container">
-    <div class="section-heading">
-      <h2>Related Recipes</h2>
-      <a href="#">view all</a>
-    </div>
-
-    <a href="" class="card-link">
-      <div class="card">
-        <img src="#" alt="" class="card-img-top" />
-        <!-- RATING GOES HERE-->
-        <h3 class="card-title"></h3>
-      </div>
-    </a>
-  </div>
-</section>
-
-<!-- Share recipe section -->
-<section>
-  <div class="container">
-    <img src="#" alt="" />
-    <div>
-      <h2>Share your recipe?</h2>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur aliquid
-        ea provident voluptate ipsa cupiditate totam debitis at est praesentium.
-        Laudantium non vero fugiat culpa sunt, consequatur magnam quidem quam?
-      </p>
-      <a href="">Share recipe</a>
-    </div>
-  </div>
-</section>
-
-<!-- Leave a review section -->
-
-<section>
-  <div class="container">
-    <form>
+    </div> -->
+    <div id="recipe-image-wrapper"></div>
+    <div class="recipe-summary container">
+      <h2 id="recipe-title">Recipe title</h2>
       <!-- RATING GOES HERE -->
-      <div class="mb-3">
-        <label for="inputName" class="form-label">Name</label>
-        <input type="text" class="form-control" id="inputName" />
+      <div class="recipe-summary-info">
+        <ul>
+          <li class="recipe-summary-item">
+            <span>Prep time</span>
+            <span id="prep-time">20 min</span>
+          </li>
+          <li class="recipe-summary-item">
+            <span>Cooking time</span>
+            <span id="cooking-time">45 min</span>
+          </li>
+          <li class="recipe-summary-item">
+            <span>Serving</span>
+            <span id="serving">2 servings</span>
+          </li>
+        </ul>
       </div>
-      <div class="mb-3">
-        <label for="inputEmail1" class="form-label">Email address</label>
-        <input
-          type="email"
-          class="form-control"
-          id="inputEmail1"
-          aria-describedby="emailHelp"
-        />
-        <div id="emailHelp" class="form-text">
-          We'll never share your email with anyone else.
-        </div>
+      <div class="rating-stars"></div>
+      <!-- Social Share Buttons -->
+      <div class="social-share">
+        <ul>
+          <li>
+            <a href=""><i></i>Facebook</a>
+          </li>
+          <li>
+            <a href=""><i></i>Twitter</a>
+          </li>
+          <li>
+            <a href=""><i></i>Instagram</a>
+          </li>
+          <li>
+            <a href=""><i></i>Pinterest</a>
+          </li>
+          <li>
+            <a href=""><i></i>Share Link</a>
+          </li>
+        </ul>
       </div>
-      <div class="mb-3">
-        <label for="inputMessage" class="form-label">Comment</label>
-        <input type="textarea" class="form-control" id="inputMessage" />
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-      <button>Upload Photo</button>
-    </form>
-  </div>
-</section>
 
-<!-- Reviews section -->
-<section>
-  <div class="container">
-    <h2>Reviews</h2>
-    <!-- Review card -->
-    <div class="card">
-      <div class="card-body">
-        <div class="card-user">
-          <img src="#" alt="" />
-          <div class="card-user-info">
-            <span class="card-user-name">User name</span>
-            <span class="card-posting-time">XX time ago</span>
-            <!-- RATING GOES HERE -->
-          </div>
-        </div>
-        <p class="card-text">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, illum,
-          nostrum accusantium beatae et dicta amet doloremque consequatur facere
-          accusamus esse quis, assumenda est quos in culpa voluptatum
-          reprehenderit cum.
+      <!-- About the recipe -->
+      <div class="about-recipe" id="about-recipe">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi qui
+          beatae laudantium soluta? Natus molestiae sint odio perferendis
+          tempore nam mollitia. Praesentium accusamus suscipit sint dolor, illo
+          sapiente blanditiis minima!
         </p>
       </div>
-      <img src="#" class="card-img-bottom" alt="..." />
     </div>
   </div>
-</section>
+
+  <!-- Recipe details section -->
+  <div class="recipe__details-tab container">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link active"
+          id="nutrition-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#nutrition"
+          type="button"
+          role="tab"
+          aria-controls="nutrition"
+          aria-selected="true"
+        >
+          Nutrition
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="ingredients-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#ingredients"
+          type="button"
+          role="tab"
+          aria-controls="ingredients"
+          aria-selected="false"
+        >
+          Ingredients
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="insctructions-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#insctructions"
+          type="button"
+          role="tab"
+          aria-controls="insctructions"
+          aria-selected="false"
+        >
+          Instructions
+        </button>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div
+        class="tab-pane fade show active"
+        id="nutrition"
+        role="tabpanel"
+        aria-labelledby="nutrition-tab"
+      >
+        <div class="nutrition-wrapper"></div>
+      </div>
+      <div
+        class="tab-pane fade"
+        id="ingredients"
+        role="tabpanel"
+        aria-labelledby="ingredients-tab"
+      >
+        <div class="ingredients-wrapper"></div>
+      </div>
+      <div
+        class="tab-pane fade"
+        id="insctructions"
+        role="tabpanel"
+        aria-labelledby="insctructions-tab"
+      >
+        <div class="instructions-wrapper"></div>
+      </div>
+    </div>
+  </div>
+  <!-- ********** TEST RESULTS SECTION ************** -->
+  <!-- <section>
+    <div class="container">
+      <div class="section-heading">
+        <h2>Results</h2>
+        <a href="#">view all</a>
+      </div>
+  
+      <div id="resultTest"></div>
+    </div>
+  </section> -->
+  <!-- ********* END TEST RESULTS SECTION ************* -->
+
+  <!-- Will need help here!!!! -->
+
+  <!-- Related recipes section -->
+
+  <section class="background-light-grey">
+    <div class="container">
+      <div
+        class="section__heading d-flex justify-content-between align-items-center"
+      >
+        <h2>You may also like</h2>
+        <a href="#" class="view-all">view all</a>
+      </div>
+
+      <div
+        class="carousel__container-wh d-flex justify-content-between align-items-start"
+      >
+        <a href="" class="card-link recipe-card">
+          <div class="card">
+            <div class="recipe-card__img">
+              <button></button>
+              <img
+                src="https://picsum.photos/300"
+                alt=""
+                class="card-img-top"
+              />
+            </div>
+            <div class="card-body">
+              <div class="rating-stars"></div>
+              <h3 class="card-title">Salmon Salad</h3>
+            </div>
+          </div>
+        </a>
+
+        <a href="" class="card-link recipe-card">
+          <div class="card">
+            <div class="recipe-card__img">
+              <button></button>
+              <img
+                src="https://picsum.photos/300"
+                alt=""
+                class="card-img-top"
+              />
+            </div>
+            <div class="card-body">
+              <div class="rating-stars"></div>
+              <h3 class="card-title">Grilled Chicken with Chips</h3>
+            </div>
+          </div>
+        </a>
+
+        <a href="" class="card-link recipe-card">
+          <div class="card">
+            <div class="recipe-card__img">
+              <button></button>
+              <img
+                src="https://picsum.photos/300"
+                alt=""
+                class="card-img-top"
+              />
+            </div>
+            <div class="card-body">
+              <div class="rating-stars"></div>
+              <h3 class="card-title">Spagetti carbonara</h3>
+            </div>
+          </div>
+        </a>
+        <a href="" class="card-link recipe-card">
+          <div class="card">
+            <div class="recipe-card__img">
+              <button></button>
+              <img
+                src="https://picsum.photos/300"
+                alt=""
+                class="card-img-top"
+              />
+            </div>
+            <div class="card-body">
+              <div class="rating-stars"></div>
+              <h3 class="card-title">Ceaser Salad</h3>
+            </div>
+          </div>
+        </a>
+        <a href="" class="card-link recipe-card">
+          <div class="card">
+            <div class="recipe-card__img">
+              <button></button>
+              <img
+                src="https://picsum.photos/300"
+                alt=""
+                class="card-img-top"
+              />
+            </div>
+            <div class="card-body">
+              <div class="rating-stars"></div>
+              <h3 class="card-title">Pasta with Hot Dogs</h3>
+            </div>
+          </div>
+        </a>
+        <a href="" class="card-link recipe-card">
+          <div class="card">
+            <div class="recipe-card__img">
+              <button></button>
+              <img
+                src="https://picsum.photos/300"
+                alt=""
+                class="card-img-top"
+              />
+            </div>
+            <div class="card-body">
+              <div class="rating-stars"></div>
+              <h3 class="card-title">Empanadas</h3>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Share recipe section -->
+  <section class="share-recipe">
+    <div class="container">
+      <div class="share-recipe__content">
+        <h2>Share your recipe?</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
+          aliquid ea provident voluptate ipsa cupiditate totam debitis at est
+          praesentium. Laudantium non vero fugiat culpa sunt, consequatur magnam
+          quidem quam?
+        </p>
+        <a href="" class="btn-white">Share recipe</a>
+      </div>
+      <img
+        src="https://firebasestorage.googleapis.com/v0/b/wtfood-3d70f.appspot.com/o/website%20images%2Ffood13.png?alt=media&token=d4419231-7c36-42de-b91a-bb3c608ae4c5"
+        alt=""
+      />
+    </div>
+  </section>
+  <hr />
+  <!-- Leave a review section -->
+
+  <section>
+    <div class="container">
+      <h2>Leave a Review</h2>
+      <form>
+        <!-- RATING GOES HERE -->
+        <div class="mb-3">
+          <label for="inputName" class="form-label">Name</label>
+          <input type="text" class="form-control" id="inputName" />
+        </div>
+        <div class="mb-3">
+          <label for="inputEmail1" class="form-label">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            id="inputEmail1"
+            aria-describedby="emailHelp"
+          />
+          <div id="emailHelp" class="form-text">
+            We'll never share your email with anyone else.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="inputMessage" class="form-label">Comment</label>
+          <input type="textarea" class="form-control" id="inputMessage" />
+        </div>
+        <button type="submit" class="btn btn-orange">Post Comment</button>
+        <button class="btn btn-orange-light">Upload Photo</button>
+      </form>
+    </div>
+  </section>
+  <hr />
+  <!-- Reviews section -->
+  <section>
+    <div class="container">
+      <h2>Reviews</h2>
+      <!-- Review card -->
+      <div class="card">
+        <div class="card-body">
+          <div class="card-user">
+            <img src="#" alt="" />
+            <div class="card-user-info">
+              <span class="card-user-name">User name</span>
+              <span class="card-posting-time">XX time ago</span>
+              <!-- RATING GOES HERE -->
+            </div>
+          </div>
+          <p class="card-text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, illum,
+            nostrum accusantium beatae et dicta amet doloremque consequatur
+            facere accusamus esse quis, assumenda est quos in culpa voluptatum
+            reprehenderit cum.
+          </p>
+        </div>
+        <img src="#" class="card-img-bottom" alt="..." />
+      </div>
+    </div>
+  </section>
+</div>
