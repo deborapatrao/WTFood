@@ -163,6 +163,7 @@ const constraints = {
             ideal: 1080,
             max: 1440
         },
+        facingMode: { exact: "environment" }
     }
 
 };
@@ -212,10 +213,9 @@ const doScreenshot = () => {
   canvas.toBlob(function (blob) {
     if (user) {
       const profilePhoto = ref(storage, `users/${auth.currentUser.uid}/recipes/${Date.now()}`);
-      photoURL = Date.now();
       uploadBytes(profilePhoto, blob)
         .then((snapshot) => {
-          getDownloadURL(ref(storage, `users/${auth.currentUser.uid}/recipes/${photoURL}`))
+          getDownloadURL(ref(storage, `users/${auth.currentUser.uid}/recipes/${Date.now()}`))
             .then((url) => {
               photoURL = url;
             })
