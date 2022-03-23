@@ -176,7 +176,6 @@ const constraints = {
       ideal: 1080,
       max: 1440,
     },
-    facingMode: { exact: "environment" },
   },
 };
 cameraOptions.onchange = () => {
@@ -223,9 +222,10 @@ const doScreenshot = () => {
   canvas.toBlob(function (blob) {
     if (user) {
       const profilePhoto = ref(storage, `users/${auth.currentUser.uid}/recipes/${Date.now()}`);
+      photoURL = Date.now();
       uploadBytes(profilePhoto, blob)
         .then((snapshot) => {
-          getDownloadURL(ref(storage, `users/${auth.currentUser.uid}/recipes/${Date.now()}`))
+          getDownloadURL(ref(storage, `users/${auth.currentUser.uid}/recipes/${photoURL}`))
             .then((url) => {
               photoURL = url;
             })
@@ -271,7 +271,6 @@ getCameraSelection();
 
 //----------------------Create Recipe----------------------\\
 async function recipeCreate(photoURL) {
-  console.log(photoURL);
   const UID = auth.currentUser.uid;
   const name = document.getElementById("recipeTitle").value;
   const time = document.getElementById("cookingTime").value;
@@ -319,7 +318,7 @@ async function recipeCreate(photoURL) {
     console.log(errorCode + errorMessage);
   }
 
-  window.top.location.reload(true);
+  // window.top.location.reload(true);
 }
 
 const el = document.getElementById("publish");
