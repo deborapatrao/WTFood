@@ -19,7 +19,7 @@ import {
 } from "../firebase.js";
 
 
-function init() {
+export default function init() {
   onAuthStateChanged(auth, (user) => {
     const userName = document.getElementById("userName");
     const userEmail = document.getElementById("userEmail");
@@ -520,4 +520,4 @@ writeRecipeBtn.addEventListener("click", () => {
 //---------------------Initialization of the JS----------------------\\
 
 
-init();
+// init();

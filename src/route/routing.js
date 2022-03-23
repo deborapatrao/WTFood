@@ -6,7 +6,10 @@ export class Page {
     this.htmlName = htmlName;
     this.jsName = jsName
       ? jsName
-      : "js" + htmlName.substring(htmlName.lastIndexOf("/"), htmlName.lastIndexOf(".")) + ".js";
+      : htmlName.substring(htmlName.lastIndexOf("/") + 1, htmlName.lastIndexOf(".")) + ".js";
+    // this.jsName = jsName
+    //   ? jsName
+    //   : "js" + htmlName.substring(htmlName.lastIndexOf("/"), htmlName.lastIndexOf(".")) + ".js";
   }
 }
 
@@ -48,52 +51,82 @@ export class Router {
   }
 
   static async goToPage(page) {
-    
     try {
+      // get the HTML pages content
       const response = await fetch(page.htmlName);
       const txt = await response.text();
-      // const jsSRC = page.jsName;
-
       Router.rootElem.innerHTML = txt;
-      // //append JS part to run.
-      
-      const script = document.createElement("script");
-      script.setAttribute("src", `${page.jsName}?cachebuster=${new Date().getTime()}`);
-      script.setAttribute("type", "text/javascript");
-      script.setAttribute("id", 'myscript');
 
-      Router.rootElem.appendChild(script);
-
-      // const oldScript = document.getElementById('myscript');
-      // if(oldScript) {
-      //   const scriptNew = document.createElement('script');
-      //   scriptNew.src= oldScript.src;
-      //   Router.rootElem.appendChild(scriptNew);
-      //   console.log('reloading done')
+      // if the page requires auth, load the header(auth-template) first and then hook the pages in the #mainArea
+      // if (page.authRequired) {
+      //   if (!document.getElementById('header')) {
+      //     await Router.initAuthTemplatePage();
+      //   }
+      //   document.getElementById('mainArea').innerHTML = txt;
+      //   Router.markActiveLink();
       // } else {
-      //   const script = document.createElement("script");
-      // script.setAttribute("src", `${page.jsName}?cachebuster=${new Date().getTime()}`);
-      // script.setAttribute("type", "text/javascript");
-      // script.setAttribute("id", 'myscript');
-
-      // Router.rootElem.appendChild(script);
+      //   Router.rootElem.innerHTML = txt;
       // }
-      
-      
-      // defer
-      //append API JS part to run.
-      // const scriptAPI = document.createElement("script");
-      // scriptAPI.setAttribute("src", "js/api.js");
-      // scriptAPI.setAttribute("type", "text/javascript");
-      // Router.rootElem.appendChild(scriptAPI);
+      //testik
+      console.log(page.jsName)
+      // const cutName = page.jsName.substring(3);
+      let init = await import(`../js/${page.jsName}`); // lazily loading the js files
+      init.default();
 
-      //append API JS part to run.
-      const scriptLogin = document.createElement("script");
-      scriptLogin.setAttribute("src", "js/login.js");
-      scriptLogin.setAttribute("type", "text/javascript");
-      Router.rootElem.appendChild(scriptLogin);
+      let initLogin = await import(`../js/login.js`); // lazily loading the js files
+      initLogin.default();
     } catch (error) {
       console.error(error);
     }
   }
+
+  // static async goToPage(page) {
+    
+  //   try {
+  //     const response = await fetch(page.htmlName);
+  //     const txt = await response.text();
+  //     // const jsSRC = page.jsName;
+
+  //     Router.rootElem.innerHTML = txt;
+  //     // //append JS part to run.
+      
+  //     const script = document.createElement("script");
+  //     script.setAttribute("src", `${page.jsName}?cachebuster=${new Date().getTime()}`);
+  //     script.setAttribute("type", "text/javascript");
+  //     script.setAttribute("id", 'myscript');
+
+  //     Router.rootElem.appendChild(script);
+
+  //     // const oldScript = document.getElementById('myscript');
+  //     // if(oldScript) {
+  //     //   const scriptNew = document.createElement('script');
+  //     //   scriptNew.src= oldScript.src;
+  //     //   Router.rootElem.appendChild(scriptNew);
+  //     //   console.log('reloading done')
+  //     // } else {
+  //     //   const script = document.createElement("script");
+  //     // script.setAttribute("src", `${page.jsName}?cachebuster=${new Date().getTime()}`);
+  //     // script.setAttribute("type", "text/javascript");
+  //     // script.setAttribute("id", 'myscript');
+
+  //     // Router.rootElem.appendChild(script);
+  //     // }
+      
+      
+  //     // defer
+  //     //append API JS part to run.
+  //     // const scriptAPI = document.createElement("script");
+  //     // scriptAPI.setAttribute("src", "js/api.js");
+  //     // scriptAPI.setAttribute("type", "text/javascript");
+  //     // Router.rootElem.appendChild(scriptAPI);
+
+  //     //append API JS part to run.
+  //     const scriptLogin = document.createElement("script");
+  //     scriptLogin.setAttribute("src", "js/login.js");
+  //     scriptLogin.setAttribute("type", "text/javascript");
+  //     Router.rootElem.appendChild(scriptLogin);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
 }
