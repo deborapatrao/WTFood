@@ -56,13 +56,12 @@ function outputCards(recipes) {
   let resultArea = document.getElementById("resultTest");
 
   for (let i = 0; i < recipes.length; i++) {
-<<<<<<< HEAD
+
     const cardLink = document.createElement("a");
     cardLink.href = `#oneRecipe?${recipes[i].id}`;
-=======
-    let cardLink = document.createElement("a");
+
     cardLink.href = `?id=${recipes[i].id}#oneRecipe`;
->>>>>>> 80f1c3bb19a588ca1c6c0ba14e890185c9135a75
+
     cardLink.classList.add("card-link");
     cardLink.classList.add("recipe-card");
 
