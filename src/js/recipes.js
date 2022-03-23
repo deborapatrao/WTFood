@@ -57,8 +57,9 @@ function outputCards(recipes) {
 
   for (let i = 0; i < recipes.length; i++) {
 
-    const cardLink = document.createElement("a");
-    cardLink.href = `#oneRecipe?${recipes[i].id}`;
+
+
+    let cardLink = document.createElement("a");
 
     cardLink.href = `?id=${recipes[i].id}#oneRecipe`;
 
