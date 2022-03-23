@@ -35,17 +35,28 @@ function init() {
         const emailPlaceholder = document.getElementById("updateEmail");
 
         if (user) {
-
+            console.log('init' + user.uid);
+            const uid = user.uid;
+            //-------------get User picture--------\\
+            // getDownloadURL(ref(storage, `users/${uid}/profile/photo`))
+            //     .then((url) => {
+            //         const userPhoto = document.getElementById("userPhoto");
+            //
+            //     })
+            //     .catch((error) => {
+            //         // Handle any errors
+            //     });
 
             //-----------------Check Sign In user------------\\
 
             const displayName = user.displayName;
             const displayEmail = user.email;
-
-            const displayPhoto = user.photoURL;
-
+            const displayPhoto = user.photoURL
+                ? user.photoURL
+                : "https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg";
+            // User is signed in, see docs for a list of available properties
+            // https://firebase.google.com/docs/reference/js/firebase.User
             if (displayName !== null) {
-
                 const [firstName, lastName] = displayName.split(' ');
                 fnamePlaceholder.value = firstName;
                 snamePlaceholder.value = lastName;
@@ -100,17 +111,15 @@ function init() {
 
 updateButton.addEventListener("click", () => {
     const file = document.getElementById("photoFile").files.length;
-    console.log(file);
     if (file > 0) {
-        userUpdatePhoto();
         console.log('there photo');
-        updateUserEmail();
+        userUpdatePhoto();
+        window.top.location.reload(true);
     } else {
         console.log('there NO photo');
         userUpdate();
-        updateUserEmail();
     }
-    window.top.location.reload(true);
+
 });
 
 //-----------------------Upload Photo-----------------------\\
@@ -119,13 +128,12 @@ function userUpdatePhoto() {
     const photo = document.getElementById("photoFile").files[0];
     const user = auth.currentUser;
     const uid = user.uid;
-    const profilePhoto = ref(storage, `users/${uid}/profile/photo`);
-
     if (user) {
+    const profilePhoto = ref(storage, `users/${uid}/profile/photo`);
         uploadBytes(profilePhoto, photo)
             .then((snapshot) => {
                 console.log("Uploaded a blob or file!");
-                getDownloadURL(ref(storage, `users/${uid}/profile/photo`))
+                getDownloadURL(profilePhoto)
                     .then((url) => {
                         console.log('photo updated');
                         userUpdate(url);
@@ -139,10 +147,10 @@ function userUpdatePhoto() {
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                console.log(errorCode + errorMessage);
+                console.log(`Code: ${errorCode}`);
+                console.log(`MSG: ${errorMessage}`);
             });
     }
-
 }
 
 //----------------------Update User info-------------------\\
@@ -151,7 +159,7 @@ function userUpdate(photoStorage) {
     const sname = document.getElementById("updateSName").value;
     const user = auth.currentUser;
     const name = `${fname} ${sname}`;
-    console.log(name);
+    console.log(photoStorage);
     if (user) {
 
         updateProfile(user, {
@@ -159,7 +167,8 @@ function userUpdate(photoStorage) {
             photoURL: photoStorage,
         })
             .then(() => {
-                console.log('user updated');
+
+
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -169,21 +178,21 @@ function userUpdate(photoStorage) {
     }
 }
 
-function updateUserEmail() {
-    const email = document.getElementById("updateEmail").value;
-    const user = auth.currentUser;
-    console.log('uhu' + email);
-
-    if (user) {
-        updateEmail(user, email).then(() => {
-            console.log('email update!');
-        }).catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log('Code: ' + errorCode + '<br>Msg: ' + errorMessage);
-        });
-    }
-}
+// function updateUserEmail() {
+//     const email = document.getElementById("updateEmail").value;
+//     const user = auth.currentUser;
+//     console.log('uhu' + email);
+//
+//     if (user) {
+//         updateEmail(user, email).then(() => {
+//             console.log('email update!');
+//         }).catch((error) => {
+//             const errorCode = error.code;
+//             const errorMessage = error.message;
+//             console.log('Code: ' + errorCode + '<br>Msg: ' + errorMessage);
+//         });
+//     }
+// }
 
 //----------------------Camera Photo----------------------\\
 
@@ -368,7 +377,7 @@ async function recipeCreate(photoURL) {
 
     }
 
-// window.top.location.reload(true);
+    window.top.location.reload(true);
 }
 
 const el = document.getElementById('publish');
@@ -377,6 +386,7 @@ el.addEventListener('click', () => {
     try {
         recipeCreate(photoURL);
         alert('recipe Created');
+
     } catch (error) {
         const errorCode = error.code;
         const errorMessage = error.message;
