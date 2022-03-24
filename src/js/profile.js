@@ -197,11 +197,11 @@ updateButton.addEventListener("click", () => {
   if (file > 0) {
     console.log("there photo");
     userUpdatePhoto();
-  } else if(photoURL !==  '') {
-      userUpdate(photoURL);
-  }else{
-      console.log("there NO photo");
-      userUpdate();
+  } else if (photoURL !== "") {
+    userUpdate(photoURL);
+  } else {
+    console.log("there NO photo");
+    userUpdate();
   }
 });
 
@@ -275,7 +275,6 @@ function userUpdate(photoStorage) {
 //     }
 // }
 
-
 //----------------------Create Recipe----------------------\\
 async function recipeCreate(photoURL) {
   const UID = auth.currentUser.uid;
@@ -311,84 +310,47 @@ async function recipeCreate(photoURL) {
     ingredient_5: ingredient_5,
   };
 
-    const UID = auth.currentUser.uid;
-    const name = document.getElementById('recipeTitle').value;
-    const time = document.getElementById('cookingTime').value;
-    const prep_time = document.getElementById('prepTime').value;
-    const serving = document.getElementById('serving').value;
-    const typeRecipe = document.getElementById('typeRecipe').value;
-    const dietaryPref = document.getElementById('dietaryPref').value;
-    const instructions = document.getElementById('instruction').value;
-    const ingredient_1 = document.getElementById('ingredient_1').value;
-    const ingredient_2 = document.getElementById('ingredient_2').value;
-    const ingredient_3 = document.getElementById('ingredient_3').value;
-    const ingredient_4 = document.getElementById('ingredient_4').value;
-    const ingredient_5 = document.getElementById('ingredient_5').value;
+  try {
+    await addDoc(collection(db, `users/${UID}/recipes`), docData);
 
-
-    console.log('a foto veio?');
-    console.log(photoURL);
-
-    const docData = {
-        name: name.toUpperCase(),
-        time: time,
-        photo: photoURL,
-        prep_time: prep_time,
-        serving: serving,
-        type_recipe: typeRecipe,
-        dietary_pref: dietaryPref,
-        instructions: instructions,
-        ingredient_1: ingredient_1,
-        ingredient_2: ingredient_2,
-        ingredient_3: ingredient_3,
-        ingredient_4: ingredient_4,
-        ingredient_5: ingredient_5,
-    }
-
-    try {
-
-        await addDoc(collection(db, `users/${UID}/recipes`), docData);
-
-        const resetInput = document.querySelectorAll('input');
-        resetInput.forEach(item => {
-            item.value = '';
-        });
-        document.getElementById('instruction').value = '';
-        window.top.location.reload(true);
-    } catch
-        (error) {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode + errorMessage);
-
-
+    const resetInput = document.querySelectorAll("input");
+    resetInput.forEach((item) => {
+      item.value = "";
+    });
+    document.getElementById("instruction").value = "";
+    window.top.location.reload(true);
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorCode + errorMessage);
+  }
 }
 
 const el = document.getElementById("publish");
 
 el.addEventListener("click", () => {
   try {
-          const recipePhotoFile = document.getElementById('recipePhoto').files[0];
-          const recipePhoto = ref(storage, `users/${auth.currentUser.uid}/recipes/${Date.now()}`);
-          uploadBytes(recipePhoto, recipePhotoFile)
-              .then((snapshot) => {
-                  console.log("Uploaded a blob or file!");
-                  getDownloadURL(recipePhoto)
-                      .then((url) => {
-                          console.log("photo updated");
-                          recipeCreate(url);
-                      })
-                      .catch((error) => {
-                          const errorCode = error.code;
-                          const errorMessage = error.message;
-                          console.log("URL photo:" + errorCode + errorMessage);
-                      });
-              }).catch((error) => {
-              const errorCode = error.code;
-              const errorMessage = error.message;
-              console.log("URL photo:" + errorCode + errorMessage);
+    const recipePhotoFile = document.getElementById("recipePhoto").files[0];
+    const recipePhoto = ref(storage, `users/${auth.currentUser.uid}/recipes/${Date.now()}`);
+    uploadBytes(recipePhoto, recipePhotoFile)
+      .then((snapshot) => {
+        console.log("Uploaded a blob or file!");
+        getDownloadURL(recipePhoto)
+          .then((url) => {
+            console.log("photo updated");
+            recipeCreate(url);
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log("URL photo:" + errorCode + errorMessage);
           });
-
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log("URL photo:" + errorCode + errorMessage);
+      });
   } catch (error) {
     const errorCode = error.code;
     const errorMessage = error.message;
@@ -514,12 +476,14 @@ allPages.forEach((menu) => {
       myProfile.style.display = "block";
       myRecipes.style.display = "none";
       writeRecipe.style.display = "none";
+      shoppingListContainer.style.display = "none";
       console.log("profile info");
     } else if (menu.id === "profileRecipe") {
       console.log("profile recipe");
       myProfile.style.display = "none";
       myRecipes.style.display = "block";
       writeRecipe.style.display = "none";
+      shoppingListContainer.style.display = "none";
     } else if (menu.id === "shoppingList") {
       myProfile.style.display = "none";
       myRecipes.style.display = "none";
