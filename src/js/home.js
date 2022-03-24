@@ -1,7 +1,8 @@
 "use strict";
 // console.log('initializing about.js :' + new Date());
 // console.log("home beginning");
-
+import { Swiper, SwiperSlide } from "swiper/bundle";
+import "swiper/css/bundle";
 
 export default function init() {
   // init1();
@@ -11,21 +12,21 @@ export default function init() {
   if (searchBtnIng) {
     //INGREDIENTS SEARCH event listener
     searchBtnIng.addEventListener("click", async (e) => {
-       const message = `test in about page ${Date.now()}`;
+      const message = `test in about page ${Date.now()}`;
       const arrOfIngs = [ing1.value, ing2.value, ing3.value];
-     
-      let ingredients = '';
-      arrOfIngs.forEach((ing, index) => {
-        if(ing) {
-          if(index === 0) {
-            ingredients += `ing1=${ing}`
-          } else {
-            ingredients += `&ing${index + 1}=${ing}`
-          }
-      }
-      })
 
-      if(ingredients) {
+      let ingredients = "";
+      arrOfIngs.forEach((ing, index) => {
+        if (ing) {
+          if (index === 0) {
+            ingredients += `ing1=${ing}`;
+          } else {
+            ingredients += `&ing${index + 1}=${ing}`;
+          }
+        }
+      });
+
+      if (ingredients) {
         e.preventDefault();
         // window.location.hash = `recipes`;
         // window.location.search = `${ingredients}`;
@@ -39,45 +40,33 @@ export default function init() {
     searchBtnRecipe.addEventListener("click", async (e) => {
       const message = `test in about page2 ${Date.now()}`;
       let inputRecipe = recipeQuery.value;
-      
+
       e.preventDefault();
       // window.location.hash = `recipes`;
       // window.location.search = `query=${inputRecipe}`;
       window.location.href = `?query=${inputRecipe}#recipes`;
-
     });
   }
+
+  //=============SWIPER
+  const swiper3 = new Swiper(".swiper-3", {
+    direction: "horizontal",
+    slidesPerView: 3,
+    spaceBetween: 30,
+    freeMode: true,
+    allowTouchMove: true,
+    pagination: {
+      clickable: true,
+    },
+  });
+  const swiper2 = new Swiper(".swiper-2", {
+    direction: "horizontal",
+    slidesPerView: 2,
+    spaceBetween: 30,
+    freeMode: true,
+    allowTouchMove: true,
+    pagination: {
+      clickable: true,
+    },
+  });
 }
-
-
-
-//=============SWIPER
-import {Swiper, SwiperSlide} from 'swiper/bundle';
-  import 'swiper/css/bundle';
-
-
-
-const swiper3 = new Swiper('.swiper-3', {
- 
-  direction: 'horizontal',
-slidesPerView : 3,
-spaceBetween: 30,
-freeMode:true,
-  allowTouchMove:true,
-  pagination: {
-    clickable:true,
-  },
-
-});
-const swiper2 = new Swiper('.swiper-2', {
- 
-  direction: 'horizontal',
-slidesPerView : 2,
-spaceBetween: 30,
-freeMode:true,
-  allowTouchMove:true,
-  pagination: {
-    clickable:true,
-  },
-
-});
