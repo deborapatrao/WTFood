@@ -39,29 +39,38 @@ import firebase from "./firebase.js";
 const mainNav = document.getElementById("mainNav");
 const navToggle = document.getElementById("navToggle");
 const navLinks = document.querySelectorAll(".nav__link");
+const body = document.body;
 
-navToggle.addEventListener("click", () => {
-  const visibility = mainNav.getAttribute("data-visible");
-  const body = document.body;
+const showMenu = () => {
+  navToggle.setAttribute("aria-expanded", true);
+  mainNav.setAttribute("data-visible", true);
+  mainNav.setAttribute("aria-hidden", false);
+  body.classList.add("black-overlay");
+};
 
-  body.classList.toggle("black-overlay");
+const hideMenu = () => {
+  navToggle.setAttribute("aria-expanded", false);
+  mainNav.setAttribute("data-visible", false);
+  mainNav.setAttribute("aria-hidden", true);
+  
+  body.classList.remove("black-overlay");
+};
 
-  if (visibility === "false") {
-    mainNav.setAttribute("data-visible", true);
-    navToggle.setAttribute("aria-expanded", true);
-  } else if (visibility === "true") {
-    mainNav.setAttribute("data-visible", false);
-    navToggle.setAttribute("aria-expanded", false);
-
-    document.body.addEventListener("keydown", (e) => {
-      if (e.key == "Escape") {
-        body.classList.remove("black-overlay");
-        mainNav.setAttribute("data-visible", false);
-        navToggle.setAttribute("aria-expanded", false);
-      }
-    });
-  }
+navToggle.addEventListener('click', event =>{
+event.stopPropagation()
+console.log(JSON.parse(navToggle.getAttribute('aria-expanded')));
+JSON.parse(navToggle.getAttribute('aria-expanded'))? hideMenu() : showMenu();
 });
+
+
+const handleMenuClosure = event => !mainNav.contains(event.target) && hideMenu();
+
+
+window.addEventListener('click', handleMenuClosure);
+window.addEventListener('focusin', handleMenuClosure);
+
+
+
 
 // on clicking the link
 navLinks.forEach((navLink) => {
@@ -98,4 +107,28 @@ navLinks.forEach((navLink) => {
 
 //   window.location.search = "";
 //   location.href = `#${hash}`;
+// });
+
+
+// navToggle.addEventListener("click", () => {
+//   const visibility = mainNav.getAttribute("data-visible");
+//   const body = document.body;
+
+//   body.classList.toggle("black-overlay");
+
+//   if (visibility === "false") {
+//     mainNav.setAttribute("data-visible", true);
+//     navToggle.setAttribute("aria-expanded", true);
+//   } else if (visibility === "true") {
+//     mainNav.setAttribute("data-visible", false);
+//     navToggle.setAttribute("aria-expanded", false);
+
+//     document.body.addEventListener("keydown", (e) => {
+//       if (e.key == "Escape") {
+//         body.classList.remove("black-overlay");
+//         mainNav.setAttribute("data-visible", false);
+//         navToggle.setAttribute("aria-expanded", false);
+//       }
+//     });
+//   }
 // });
