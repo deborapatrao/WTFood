@@ -7,3 +7,24 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+#accordionDesktop {
+  // display: none;
+}
+
+#mobileFilterBtn {
+  margin: 2rem 0;
+}
+
+@media screen and (min-width: 902px) {
+  #mobileFilterBtn,
+  #filtersModal,
+  .modal-backdrop,
+  .modal.show .modal-dialog {
+    display: none;
+  }
+
+  #accordionDesktop {
+    display: block;
+  }
+}
