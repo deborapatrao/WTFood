@@ -27,11 +27,12 @@ async function getRecipes(url) {
 
 export default async function init() {
   console.log("recipes works");
-  const apiKey = "458fa3b63d9e4e0b8c6b85edb81edd4b";
+  const apiKey = "dbdd76ad6ede4920a8db046580d6d5fe";
   let requestRecipe = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}`;
   let requestIng = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}`;
-  const filterBtn = document.querySelector("#filterBtn");
+  const filterBtn = document.querySelectorAll(".filterBtn");
   let offset = 0;
+  console.log(filterBtn);
 
   if (window.location.search.includes("query")) {
     const inputRecipe = window.location.search.substring(1);
@@ -40,7 +41,9 @@ export default async function init() {
 
     // Search by recipe
     await getRecipes(requestRecipe + `&offset=${offset}`);
-    filterBtn.addEventListener("click", async () => await applyFilters(requestRecipe + `&offset=${offset}`));
+    filterBtn.forEach((btn) => {
+      btn.addEventListener("click", async () => await applyFilters(requestRecipe + `&offset=${offset}`));
+    });
   } else if (window.location.search.includes("ing1")) {
     const inputIngredients = window.location.search.substring(1).split("&");
 
@@ -55,10 +58,14 @@ export default async function init() {
     });
 
     await getRecipes(requestIng);
-    filterBtn.addEventListener("click", async () => await applyFilters(requestIng));
+    filterBtn.forEach((btn) => {
+      btn.addEventListener("click", async () => await applyFilters(requestIng));
+    });
   } else {
     await getRecipes(requestRecipe);
-    filterBtn.addEventListener("click", async () => await applyFilters(requestRecipe));
+    filterBtn.forEach((btn) => {
+      btn.addEventListener("click", async () => await applyFilters(requestRecipe));
+    });
   }
 
   // FILTERS section ================================================ //
@@ -115,7 +122,6 @@ function outputCards(recipes) {
   }
 }
 
-
 function filtersShow() {
   // Filters arrays:
   const cuisines = ["American", "Chinese", "European", "Italian", "Japanese", "Korean", "Mexican", "Mediterranean", "Vietnamese"];
@@ -123,67 +129,77 @@ function filtersShow() {
   const types = ["main course", "dessert", "appetizer", "breakfast", "drink", "soup"];
 
   // Cuisine
-  const accordionCuisine = document.querySelector("#accordion-cuisine");
+  const accordionCuisine = document.querySelectorAll(".accordion-cuisine");
   cuisines.forEach((country, i) => {
-    accordionCuisine.innerHTML += `
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="filter${i}" data-cuisine="${country}" />
-      <label class="form-check-label" for="filter${i}">${country}</label>
-    </div>
-    `;
+    accordionCuisine.forEach((accordion) => {
+      accordion.innerHTML += `
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox"  id="filter${i}" data-cuisine="${country}" />
+        <label class="form-check-label" for="filter${i}">${country}</label>
+      </div>
+      `;
+    });
   });
 
   // Diet
-  const accordionDiet = document.querySelector("#accordion-diet");
+  const accordionDiet = document.querySelectorAll(".accordion-diet");
   diets.forEach((diet, i) => {
-    accordionDiet.innerHTML += `
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="filter${i}" data-diet="${diet}" />
-      <label class="form-check-label" for="filter${i}">${diet}</label>
-    </div>
-    `;
+    accordionDiet.forEach((accordion) => {
+      accordion.innerHTML += `
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox"  id="filter${i}" data-diet="${diet}" />
+        <label class="form-check-label" for="filter${i}">${diet}</label>
+      </div>
+      `;
+    });
   });
 
   // Type
-  const accordionType = document.querySelector("#accordion-type");
+  const accordionType = document.querySelectorAll(".accordion-type");
   types.forEach((type, i) => {
-    accordionType.innerHTML += `
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="filter${i}" data-type="${type}" />
-      <label class="form-check-label" for="filter${i}">${type}</label>
-    </div>
-    `;
+    accordionType.forEach((accordion) => {
+      accordion.innerHTML += `
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox"  id="filter${i}" data-type="${type}" />
+        <label class="form-check-label" for="filter${i}">${type}</label>
+      </div>
+      `;
+    });
   });
 }
 
 async function applyFilters(baseURL) {
   const resultArea = document.getElementById("resultTest");
 
-  const inputsCuisine = document.querySelectorAll("#accordion-cuisine .form-check-input");
+  const inputsCuisine = document.querySelectorAll(".accordion-cuisine .form-check-input");
   let cuisineQuery = "&cuisine=";
   inputsCuisine.forEach((input) => {
     if (input.checked) {
-      cuisineQuery += `${input.dataset.cuisine},`;
+      cuisineQuery += `${input.dataset.cuisine.toLowerCase()},`;
     }
   });
 
-  const inputsDiet = document.querySelectorAll("#accordion-diet .form-check-input");
-  let dietQuery = "";
+  const inputsDiet = document.querySelectorAll(".accordion-diet .form-check-input");
+  let dietQuery = "&diet=";
   inputsDiet.forEach((input) => {
     if (input.checked) {
-      dietQuery += `&diet=${input.dataset.diet}`;
+      dietQuery += `${input.dataset.diet.toLowerCase()},`;
     }
   });
 
-  const inputsType = document.querySelectorAll("#accordion-type .form-check-input");
-  let typeQuery = "";
+  const inputsType = document.querySelectorAll(".accordion-type .form-check-input");
+  let typeQuery = "&type=";
   inputsType.forEach((input) => {
     if (input.checked) {
-      typeQuery += `&type=${input.dataset.type}`;
+      typeQuery += `${input.dataset.type.toLowerCase()},`;
     }
   });
 
-  const url = baseURL + cuisineQuery + dietQuery + typeQuery;
+  const cq = cuisineQuery ? cuisineQuery : "";
+  const dq = dietQuery ? dietQuery : "";
+  const tq = typeQuery ? typeQuery : "";
+
+  const url = baseURL + cq + dq + tq;
   console.log(url);
   // const responseDefaultRecipes = await fetch(url);
   // const defaultRecipes = await responseDefaultRecipes.json();
@@ -193,4 +209,3 @@ async function applyFilters(baseURL) {
   // outputCards(defaultRecipes);
   await getRecipes(url);
 }
-

@@ -5,7 +5,7 @@ export default async function init() {
 
   console.log(recipeID);
 
-  const apiKey = "458fa3b63d9e4e0b8c6b85edb81edd4b";
+  const apiKey = "dbdd76ad6ede4920a8db046580d6d5fe";
   const urlRecipeInfo = `https://api.spoonacular.com/recipes/${recipeID}/information?apiKey=${apiKey}`;
   const urlIngredients = `https://api.spoonacular.com/recipes/${recipeID}/nutritionWidget.json?apiKey=${apiKey}`;
   //   https://api.spoonacular.com/recipes/638086/nutritionWidget.json?apiKey=458fa3b63d9e4e0b8c6b85edb81edd4b
@@ -86,9 +86,7 @@ export default async function init() {
         const UID = auth.currentUser.uid;
         try {
           await addDoc(collection(db, `users/${UID}/shoppinglist`), docData);
-          alert(
-            `ingredients added, ${auth?.currentUser ? auth?.currentUser?.displayName : "Bro"}!`
-          );
+          alert(`ingredients added, ${auth?.currentUser ? auth?.currentUser?.displayName : "Bro"}!`);
         } catch (error) {
           const errorCode = error.code;
           const errorMessage = error.message;
@@ -105,8 +103,4 @@ export default async function init() {
     instructionsContainer.appendChild(p);
   });
   //   instructionsContainer.innerHTML = recipe.instructions;
-
 }
-
-
-
