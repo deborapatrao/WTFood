@@ -3,38 +3,38 @@
 <main>
   <div class="profile">
     <div class="container">
-      <div class="profile__main">
+      <div class="profile__main" id="profileNavigation">
         <div class="profile__avatar">
           <img width="100" height="100" src="#" alt="" id="userPhoto" />
           <div class="profile__photo fa-solid fa-camera">
             <input type="file" id="photoFile" name="filename" />
-<!--            <div class="display-cover">-->
-<!--              <video autoplay></video>-->
-<!--              <canvas class="d-none"></canvas>-->
+            <!--            <div class="display-cover">-->
+            <!--              <video autoplay></video>-->
+            <!--              <canvas class="d-none"></canvas>-->
 
-<!--              <div class="video-options">-->
-<!--                <select name="" iclass="custom-select">-->
-<!--                  <option value="">Select camera</option>-->
-<!--                </select>-->
-<!--              </div>-->
+            <!--              <div class="video-options">-->
+            <!--                <select name="" iclass="custom-select">-->
+            <!--                  <option value="">Select camera</option>-->
+            <!--                </select>-->
+            <!--              </div>-->
 
-<!--              <img class="screenshot-image d-none" alt="" />-->
+            <!--              <img class="screenshot-image d-none" alt="" />-->
 
-<!--              <div class="controls">-->
-<!--                <button class="btn btn-danger play" title="Play">-->
-<!--                  <i data-feather="play-circle"></i>-->
-<!--                </button>-->
-<!--                <button class="btn btn-info pause d-none" title="Pause">-->
-<!--                  <i data-feather="pause"></i>-->
-<!--                </button>-->
-<!--                <button-->
-<!--                        class="btn btn-outline-success screenshot d-none"-->
-<!--                        title="ScreenShot"-->
-<!--                >-->
-<!--                  <i data-feather="image"></i>-->
-<!--                </button>-->
-<!--              </div>-->
-<!--            </div>-->
+            <!--              <div class="controls">-->
+            <!--                <button class="btn btn-danger play" title="Play">-->
+            <!--                  <i data-feather="play-circle"></i>-->
+            <!--                </button>-->
+            <!--                <button class="btn btn-info pause d-none" title="Pause">-->
+            <!--                  <i data-feather="pause"></i>-->
+            <!--                </button>-->
+            <!--                <button-->
+            <!--                        class="btn btn-outline-success screenshot d-none"-->
+            <!--                        title="ScreenShot"-->
+            <!--                >-->
+            <!--                  <i data-feather="image"></i>-->
+            <!--                </button>-->
+            <!--              </div>-->
+            <!--            </div>-->
           </div>
           <div>Name:</div>
           <div id="userName"></div>
@@ -77,11 +77,14 @@
             </li>
           </ul>
         </nav>
+
+        <button class="btn-noborder">Sign Out</button>
       </div>
 
       <!-- Update profile area -->
       <div id="myProfile">
         <div class="profile__update">
+          <button class="btn-noborder profile-prev">←</button>
           <h2>Account Information</h2>
           <div class="profile__update-field">
             <label for="updateFName">First Name</label>
@@ -122,38 +125,36 @@
           <div class="create-rec__heading">
             <h2>Write Your Recipe</h2>
 
-<!--            <div class="display-cover">-->
-<!--              <video autoplay></video>-->
-<!--              <canvas class="d-none"></canvas>-->
+            <!--            <div class="display-cover">-->
+            <!--              <video autoplay></video>-->
+            <!--              <canvas class="d-none"></canvas>-->
 
-<!--              <div class="video-options">-->
-<!--                <select name=""  class="custom-select">-->
-<!--                  <option value="">Select camera</option>-->
-<!--                </select>-->
-<!--              </div>-->
+            <!--              <div class="video-options">-->
+            <!--                <select name=""  class="custom-select">-->
+            <!--                  <option value="">Select camera</option>-->
+            <!--                </select>-->
+            <!--              </div>-->
 
+            <!--              <img class="screenshot-image d-none" alt="" />-->
 
-<!--              <img class="screenshot-image d-none" alt="" />-->
-
-<!--              <div class="controls">-->
-<!--                <button class="btn btn-danger play" title="Play">-->
-<!--                  <i data-feather="play-circle"></i>-->
-<!--                </button>-->
-<!--                <button class="btn btn-info pause d-none" title="Pause">-->
-<!--                  <i data-feather="pause"></i>-->
-<!--                </button>-->
-<!--                <button-->
-<!--                  class="btn btn-outline-success screenshot d-none"-->
-<!--                  title="ScreenShot"-->
-<!--                >-->
-<!--                  <i data-feather="image"></i>-->
-<!--                </button>-->
-<!--              </div>-->
-<!--            </div>-->
+            <!--              <div class="controls">-->
+            <!--                <button class="btn btn-danger play" title="Play">-->
+            <!--                  <i data-feather="play-circle"></i>-->
+            <!--                </button>-->
+            <!--                <button class="btn btn-info pause d-none" title="Pause">-->
+            <!--                  <i data-feather="pause"></i>-->
+            <!--                </button>-->
+            <!--                <button-->
+            <!--                  class="btn btn-outline-success screenshot d-none"-->
+            <!--                  title="ScreenShot"-->
+            <!--                >-->
+            <!--                  <i data-feather="image"></i>-->
+            <!--                </button>-->
+            <!--              </div>-->
+            <!--            </div>-->
             <div class="photo-recipe">
               <label for="recipeTitle">Lets put a picture:</label>
               <input type="file" id="recipePhoto" name="filename" />
-
             </div>
           </div>
 
@@ -211,7 +212,9 @@
               <h3>Ingredients</h3>
 
               <div class="create-rec__field">
-                <label for="ingredient_1" id="ingredientLabel_1">Ingredient</label>
+                <label for="ingredient_1" id="ingredientLabel_1"
+                  >Ingredient</label
+                >
                 <input type="text" id="ingredient_1" />
               </div>
 
@@ -221,7 +224,9 @@
               </div>
 
               <div class="create-rec__field">
-                <label for="ingredient_2" id="ingredientLabel_2">Ingredient</label>
+                <label for="ingredient_2" id="ingredientLabel_2"
+                  >Ingredient</label
+                >
                 <input type="text" id="ingredient_2" />
               </div>
 
@@ -231,7 +236,9 @@
               </div>
 
               <div class="create-rec__field">
-                <label for="ingredient_3" id="ingredientLabel_3">Ingredient</label>
+                <label for="ingredient_3" id="ingredientLabel_3"
+                  >Ingredient</label
+                >
                 <input type="text" id="ingredient_3" />
               </div>
 
@@ -241,7 +248,9 @@
               </div>
 
               <div class="create-rec__field">
-                <label for="ingredient_4" id="ingredientLabel_4">Ingredient</label>
+                <label for="ingredient_4" id="ingredientLabel_4"
+                  >Ingredient</label
+                >
                 <input type="text" id="ingredient_4" />
               </div>
 
@@ -251,7 +260,9 @@
               </div>
 
               <div class="create-rec__field">
-                <label for="ingredient_5" id="ingredientLabel_5">Ingredient</label>
+                <label for="ingredient_5" id="ingredientLabel_5"
+                  >Ingredient</label
+                >
                 <input type="text" id="ingredient_5" />
               </div>
 
@@ -271,10 +282,22 @@
           <div class="create-rec__instructions">
             <h3>Instructions</h3>
             <div class="create-rec__field">
-              <label for="instruction" class="visually-hidden">Instructions</label>
-              <textarea name="instruction" id="instruction" cols="10" rows="5"></textarea>
+              <label for="instruction" class="visually-hidden"
+                >Instructions</label
+              >
+              <textarea
+                name="instruction"
+                id="instruction"
+                cols="10"
+                rows="5"
+              ></textarea>
             </div>
-            <input type="button" value="Publish" id="publish" class="btn-orange" />
+            <input
+              type="button"
+              value="Publish"
+              id="publish"
+              class="btn-orange"
+            />
           </div>
         </div>
       </div>

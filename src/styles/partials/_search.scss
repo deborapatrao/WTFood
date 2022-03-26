@@ -1,4 +1,5 @@
 .search__tab {
+  max-width: 500px;
   .tab__search-form {
     background-color: $color-white;
     padding: 1rem;
@@ -29,9 +30,24 @@
       width: 100%;
     }
   }
+  .nav-link {
+    color: $color-primary-dark;
+
+    .b {
+      stroke: $color-primary-dark;
+    }
+  }
+
   .nav-link[aria-selected="false"] {
+    .b {
+      stroke: $color-text-medium-grey;
+    }
     background-color: $color-support-medium;
     color: $color-text-medium-grey;
+  }
+
+  svg {
+    height: 1rem;
   }
 }
 
@@ -48,4 +64,13 @@
 .nav-tabs .nav-link {
   margin-bottom: 0;
   border: none;
+}
+
+//icons
+.b {
+  fill: none;
+
+  stroke-linecap: square;
+  stroke-miterlimit: 10;
+  stroke-width: 2px;
 }

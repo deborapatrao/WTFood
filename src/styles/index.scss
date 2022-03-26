@@ -16,6 +16,7 @@ MEDIA
 BUTTONS
 FORMS
 SITE-LAYOUT
+ANIMATIONS
 */
 
 //ARIABLES & MIXINS
@@ -48,4 +49,6 @@ SITE-LAYOUT
 
 /* *** SITE-LAYOUT *** */
 @import "partials/site-layout/site-layout";
-@import "partials/site-layout/profile";
+
+/* *** ANIMATIONS *** */
+@import "partials/animations";
