@@ -64,3 +64,16 @@
   text-align: center;
   text-decoration: none;
 }
+
+.btn-noborder {
+  padding: $padding-small;
+  background-color: $color-white;
+  color: $color-primary-dark;
+  @include fontButton();
+  text-decoration: none;
+
+  .profile-prev {
+    color: $color-black;
+    text-align: left;
+  }
+}

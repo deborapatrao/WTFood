@@ -64,6 +64,10 @@
 }
 
 // Update Profile Information section
+.profile__update {
+  display: none;
+}
+
 .profile__update,
 .create-rec__information,
 .create-rec__ingredients {
@@ -214,7 +218,6 @@ video {
   }
 }
 
-
 @media (min-width: 300px) and (max-width: 400px) {
   .controls {
     flex-direction: column;
@@ -271,5 +274,3 @@ video {
     }
   }
 }
-
-

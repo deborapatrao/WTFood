@@ -48,25 +48,41 @@ export default function init() {
     });
   }
 
-  //=============SWIPER
-  const swiper3 = new Swiper(".swiper-3", {
-    direction: "horizontal",
-    slidesPerView: 3,
-    spaceBetween: 30,
-    freeMode: true,
-    allowTouchMove: true,
-    pagination: {
-      clickable: true,
+  
+//=============SWIPER
+const swiper3 = new Swiper(".swiper-3", {
+  direction: "horizontal",
+  slidesPerView: 3,
+  spaceBetween: 30,
+  freeMode: true,
+  allowTouchMove: true,
+  pagination: {
+  clickable: true,
+  },
+  breakpoints:{
+    550: {
+      slidesPerView:4,
     },
-  });
-  const swiper2 = new Swiper(".swiper-2", {
-    direction: "horizontal",
-    slidesPerView: 2,
-    spaceBetween: 30,
-    freeMode: true,
-    allowTouchMove: true,
-    pagination: {
-      clickable: true,
+
+    820: {
+      slidesPerView:5,
+    }
+  }
+});
+
+const swiper2 = new Swiper(".swiper-2", {
+  direction: "horizontal",
+  slidesPerView: 2,
+  spaceBetween: 30,
+  freeMode: true,
+  allowTouchMove: true,
+  pagination: {
+    clickable: true,
+  },
+  breakpoints:{
+    820: {
+      slidesPerView:3,
     },
-  });
+  },
+});
 }

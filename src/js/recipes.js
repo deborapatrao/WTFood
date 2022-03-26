@@ -115,6 +115,7 @@ function outputCards(recipes) {
   }
 }
 
+
 function filtersShow() {
   // Filters arrays:
   const cuisines = ["American", "Chinese", "European", "Italian", "Japanese", "Korean", "Mexican", "Mediterranean", "Vietnamese"];
@@ -192,3 +193,4 @@ async function applyFilters(baseURL) {
   // outputCards(defaultRecipes);
   await getRecipes(url);
 }
+
