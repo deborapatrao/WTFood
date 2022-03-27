@@ -106,6 +106,12 @@ export default async function init() {
   });
   //   instructionsContainer.innerHTML = recipe.instructions;
 
+
+  //make links open on a new tab
+  const recipeOutsideLinks = document.querySelectorAll('#about-recipe a');
+  recipeOutsideLinks.forEach((link) =>{
+    link.setAttribute('target', '_blank');
+  });
 }
 
 
