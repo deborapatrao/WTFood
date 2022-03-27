@@ -19,6 +19,7 @@ import userRecipeHTML from "./pages/userRecipe.html";
 // import firebase from "firebase";
 // import { db } from "./database";
 import script from "./route/script.js";
+import { auth, onAuthStateChanged } from "./firebase.js";
 
 // import api from "./js/api";
 // import home from "./js/home";
@@ -30,7 +31,7 @@ import imgLogo from "./images/logo.png";
 import imgFaviconSmall from "./images/icon-192x192.png";
 import imgFaviconBig from "./images/icon-512x512.png";
 import imgLogoWhite from "./images/logo_white.svg";
-import donuts from "./images/placeholder-donuts.png";
+// import donuts from "./images/placeholder-donuts.png";
 
 // PWA
 import manifest from "./app.webmanifest";
@@ -96,33 +97,30 @@ navLinks.forEach((navLink) => {
   });
 });
 
-// navLinks[0].addEventListener("click", (e) => {
-//   console.log("works");
-//   const hash = navLinks[0].textContent.toLowerCase();
+const loginNav = document.getElementById("login-nav");
 
-//   window.location.search = "";
-//   location.href = `#${hash}`;
-// });
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // alert('SIGNED in')
+    const cardImage = document.createElement("img");
+    cardImage.classList.add("login-avatar");
+    cardImage.src = `${
+      user.photoURL
+        ? user.photoURL
+        : "https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg"
+    }`;
+    loginNav.textContent = "";
+    loginNav.appendChild(cardImage);
 
-// navToggle.addEventListener("click", () => {
-//   const visibility = mainNav.getAttribute("data-visible");
-//   const body = document.body;
+    // loginNav.innerHTML = "YOU ARE SIGNED IN";
 
-//   body.classList.toggle("black-overlay");
-
-//   if (visibility === "false") {
-//     mainNav.setAttribute("data-visible", true);
-//     navToggle.setAttribute("aria-expanded", true);
-//   } else if (visibility === "true") {
-//     mainNav.setAttribute("data-visible", false);
-//     navToggle.setAttribute("aria-expanded", false);
-
-//     document.body.addEventListener("keydown", (e) => {
-//       if (e.key == "Escape") {
-//         body.classList.remove("black-overlay");
-//         mainNav.setAttribute("data-visible", false);
-//         navToggle.setAttribute("aria-expanded", false);
-//       }
-//     });
-//   }
-// });
+    // const uid = user.uid;
+    // ...
+  } else {
+    loginNav.innerHTML = "login";
+    // if (window.location.hash == "profile") {
+    //   alert("user is NOT signed in");
+    //   window.location.href = "#home";
+    // }
+  }
+});

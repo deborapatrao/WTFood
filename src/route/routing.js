@@ -1,12 +1,12 @@
 "use strict";
 
+import { auth, onAuthStateChanged } from "../firebase.js";
+
 export class Page {
   constructor(name, htmlName, jsName) {
     this.name = name;
     this.htmlName = htmlName;
-    this.jsName = jsName
-      ? jsName
-      : htmlName.substring(htmlName.lastIndexOf("/") + 1, htmlName.lastIndexOf(".")) + ".js";
+    this.jsName = jsName ? jsName : htmlName.substring(htmlName.lastIndexOf("/") + 1, htmlName.lastIndexOf(".")) + ".js";
     // this.jsName = jsName
     //   ? jsName
     //   : "js" + htmlName.substring(htmlName.lastIndexOf("/"), htmlName.lastIndexOf(".")) + ".js";
@@ -27,14 +27,7 @@ export class Router {
   static handleHashChange() {
     // Magic
     const urlHash = window.location.hash;
-    // const urlHash = window.location.hash.substring(
-    //   0,
-    //   window.location.hash.indexOf("?") !== -1
-    //     ? window.location.hash.indexOf("?")
-    //     : window.location.hash.length
-    // );
 
-    console.log(urlHash);
     if (urlHash.length > 0) {
       // If there is a hash in URL
       for (let i = 0; i < Router.pages.length; i++) {
@@ -55,8 +48,29 @@ export class Router {
       // get the HTML pages content
       const response = await fetch(page.htmlName);
       const txt = await response.text();
+
+      if (window.location.hash == "#profile")
+        onAuthStateChanged(auth, async (user) => {
+          const userCheck = user?.auth?.currentUser;
+          if (userCheck) {
+            Router.rootElem.innerHTML = txt;
+            let init = await import(`../js/${page.jsName}`); // lazily loading the js files
+            init.default();
+          } else {
+            alert("user is NOT signed in");
+            window.location.href = "#home";
+          }
+        });
+
       Router.rootElem.innerHTML = txt;
 
+      if (window.location.hash !== "#profile") {
+        let init = await import(`../js/${page.jsName}`); // lazily loading the js files
+        init.default();
+      }
+
+      let initLogin = await import(`../js/login.js`); // lazily loading the js files
+      initLogin.default();
       // if the page requires auth, load the header(auth-template) first and then hook the pages in the #mainArea
       // if (page.authRequired) {
       //   if (!document.getElementById('header')) {
@@ -68,20 +82,15 @@ export class Router {
       //   Router.rootElem.innerHTML = txt;
       // }
       //testik
-      console.log(page.jsName)
-      // const cutName = page.jsName.substring(3);
-      let init = await import(`../js/${page.jsName}`); // lazily loading the js files
-      init.default();
 
-      let initLogin = await import(`../js/login.js`); // lazily loading the js files
-      initLogin.default();
+      // const cutName = page.jsName.substring(3);
     } catch (error) {
       console.error(error);
     }
   }
 
   // static async goToPage(page) {
-    
+
   //   try {
   //     const response = await fetch(page.htmlName);
   //     const txt = await response.text();
@@ -89,7 +98,7 @@ export class Router {
 
   //     Router.rootElem.innerHTML = txt;
   //     // //append JS part to run.
-      
+
   //     const script = document.createElement("script");
   //     script.setAttribute("src", `${page.jsName}?cachebuster=${new Date().getTime()}`);
   //     script.setAttribute("type", "text/javascript");
@@ -111,8 +120,7 @@ export class Router {
 
   //     // Router.rootElem.appendChild(script);
   //     // }
-      
-      
+
   //     // defer
   //     //append API JS part to run.
   //     // const scriptAPI = document.createElement("script");
