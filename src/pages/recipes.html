@@ -34,13 +34,8 @@
               Cuisine
             </button>
           </h2>
-          <div
-            id="collapseCuisine"
-            class="accordion-collapse collapse show"
-            aria-labelledby="headingOne"
-            data-bs-parent="#accordionDesktop"
-          >
-            <div id="accordion-cuisine" class="accordion-body">
+          <div id="collapseCuisine" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionDesktop">
+            <div class="accordion-body accordion-cuisine">
               <!-- Cuisine checkboxes -->
             </div>
           </div>
@@ -58,13 +53,8 @@
               Diets
             </button>
           </h2>
-          <div
-            id="collapseTwo"
-            class="accordion-collapse collapse"
-            aria-labelledby="headingTwo"
-            data-bs-parent="#accordionDesktop"
-          >
-            <div id="accordion-diet" class="accordion-body">
+          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionDesktop">
+            <div class="accordion-body accordion-diet">
               <!-- Diet checkboxes -->
             </div>
           </div>
@@ -82,48 +72,23 @@
               Types of meals
             </button>
           </h2>
-          <div
-            id="collapseThree"
-            class="accordion-collapse collapse"
-            aria-labelledby="headingThree"
-            data-bs-parent="#accordionDesktop"
-          >
-            <div id="accordion-type" class="accordion-body">
+          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionDesktop">
+            <div class="accordion-body accordion-type">
               <!-- Type checkboxes -->
             </div>
           </div>
         </div>
-        <button type="button" class="btn btn-orange" id="filterBtn">
-          Apply filters
-        </button>
+        <button type="button" class="btn btn-orange filterBtn">Apply filters</button>
       </div>
 
-      <button
-        class="btn-orange"
-        id="mobileFilterBtn"
-        data-bs-toggle="modal"
-        data-bs-target="#filtersModal"
-      >
-        Filters
-      </button>
+      <button class="btn-orange" id="mobileFilterBtn" data-bs-toggle="modal" data-bs-target="#filtersModal">Filters</button>
 
-      <div
-        class="modal fade"
-        id="filtersModal"
-        tabindex="-1"
-        aria-labelledby="filtersModalLabel"
-        aria-hidden="true"
-      >
+      <div class="modal fade" id="filtersModal" tabindex="-1" aria-labelledby="filtersModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="filtersModalLabel">Choose Filters</h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <div class="accordion" id="accordionMobile">
@@ -140,13 +105,8 @@
                       Cuisine
                     </button>
                   </h2>
-                  <div
-                    id="collapseCuisine"
-                    class="accordion-collapse collapse show"
-                    aria-labelledby="headingOne"
-                    data-bs-parent="#accordionMobile"
-                  >
-                    <div id="accordion-cuisine" class="accordion-body">
+                  <div id="collapseCuisine" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionMobile">
+                    <div class="accordion-body accordion-cuisine">
                       <!-- Cuisine checkboxes -->
                     </div>
                   </div>
@@ -164,13 +124,8 @@
                       Diets
                     </button>
                   </h2>
-                  <div
-                    id="collapseTwo"
-                    class="accordion-collapse collapse"
-                    aria-labelledby="headingTwo"
-                    data-bs-parent="#accordionMobile"
-                  >
-                    <div id="accordion-diet" class="accordion-body">
+                  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionMobile">
+                    <div class="accordion-body accordion-diet">
                       <!-- Diet checkboxes -->
                     </div>
                   </div>
@@ -188,26 +143,16 @@
                       Types of meals
                     </button>
                   </h2>
-                  <div
-                    id="collapseThree"
-                    class="accordion-collapse collapse"
-                    aria-labelledby="headingThree"
-                    data-bs-parent="#accordionMobile"
-                  >
-                    <div id="accordion-type" class="accordion-body">
+                  <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionMobile">
+                    <div class="accordion-body accordion-type">
                       <!-- Type checkboxes -->
                     </div>
                   </div>
                 </div>
-                <button type="button" class="btn btn-orange" id="filterBtn">
-                  Apply filters
-                </button>
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-orange" id="filterBtn">
-                Apply filters
-              </button>
+              <button type="button" class="btn btn-orange filterBtn">Apply filters</button>
             </div>
           </div>
         </div>
