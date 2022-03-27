@@ -12,13 +12,24 @@
 }
 
 //Main area
-.profile__main {
+.profile-main__wrapper {
   @include flex(column, center, center);
   gap: 2rem;
 }
 
 .profile__avatar {
   @include flex(column, center, center);
+
+  .user-photo-container {
+    width: 100px;
+    height: 100px;
+    border: 50%;
+    overflow: hidden;
+  }
+
+  #userName {
+    @include fontBody1Semibold();
+  }
 }
 
 .profile__summary {
@@ -60,6 +71,36 @@
         padding: $padding-small;
       }
     }
+  }
+  svg {
+    height: 1.4rem;
+    vertical-align: sub;
+  }
+  .b {
+    fill: none;
+    stroke: $color-primary-dark;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2px;
+  }
+
+  .c {
+    fill: $color-primary-dark;
+  }
+
+  .d,
+  .e,
+  .f {
+    fill: none;
+  }
+  .d {
+    stroke-linecap: square;
+  }
+  .d,
+  .e {
+    stroke: $color-primary-dark;
+    stroke-miterlimit: 10;
+    stroke-width: 2px;
   }
 }
 
@@ -116,11 +157,49 @@
 
 //My recipes section
 .profile__my-recipes {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
   .my-recipes__heading {
     @include flex(row, space-between, center);
   }
 }
 
+//shopping list
+.profile__shopping-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  .shopping-list__heading {
+    h2 {
+      margin-bottom: 1rem;
+    }
+    span {
+      @include fontBody1Semibold();
+    }
+    p {
+      margin-top: 0.5rem;
+    }
+  }
+}
+
+.profile-prev {
+  svg {
+    height: 1rem;
+  }
+  .b {
+    stroke-linecap: square;
+  }
+  .b,
+  .c {
+    fill: none;
+    stroke: $color-black;
+    stroke-miterlimit: 10;
+    stroke-width: 2px;
+  }
+}
 // .profile__photo {
 //   //cursor:pointer;
 //   input[type="file"]::file-selector-button {
@@ -141,18 +220,6 @@
 }
 
 /* Menu display of profile*/
-#myRecipes {
-  display: none;
-}
-#createRecipes {
-  display: none;
-}
-.menu {
-  display: none;
-}
-#shoppingListContainer {
-  display: none;
-}
 
 .recipe--information {
   display: flex;
@@ -273,4 +340,16 @@ video {
       color: white;
     }
   }
+}
+
+//profile change page behaviour
+
+.profile-close {
+  animation: fadeout 400ms ease-in-out;
+  display: none;
+}
+
+.profile-open {
+  animation: fadein 400ms ease-in-out;
+  display: block;
 }

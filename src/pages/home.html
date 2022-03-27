@@ -17,7 +17,21 @@
               aria-controls="nav-ingredients"
               aria-selected="true"
             >
-              🍋 Ingredients
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path
+                  class="b"
+                  d="M15.63,1.56l-.23,.23C12.19,.15,7.65,1.09,4.37,4.38,1.1,7.66,.15,12.19,1.79,15.4l-.23,.23c-.36,.38-.56,.88-.56,1.4,0,.52,.21,1.02,.58,1.39,.37,.37,.87,.58,1.39,.58,.52,0,1.02-.2,1.4-.56l.23-.23c3.21,1.64,7.75,.7,11.02-2.59,3.28-3.28,4.23-7.81,2.59-11.02l.23-.23c.36-.38,.56-.88,.56-1.4,0-.52-.21-1.02-.58-1.39-.37-.37-.87-.58-1.39-.58-.52,0-1.02,.2-1.4,.56h0Z"
+                />
+                <path
+                  class="c"
+                  d="M9,15.97c.55,0,.99-.45,.99-.99s-.45-.99-.99-.99-.99,.45-.99,.99,.45,.99,.99,.99Z"
+                />
+                <path
+                  class="c"
+                  d="M12.98,13.98c.55,0,.99-.45,.99-.99s-.45-.99-.99-.99-.99,.45-.99,.99,.45,.99,.99,.99Z"
+                />
+              </svg>
+              Ingredients
             </button>
             <button
               class="nav-link"
@@ -48,29 +62,65 @@
         </nav>
         <div class="tab-content" id="nav-tabContent">
           <!-- SEARCH BY INGREDIENTS TAB -->
-          <div class="tab-pane fade show active" id="nav-ingredients" role="tabpanel" aria-labelledby="nav-ingredients-tab">
+          <div
+            class="tab-pane fade show active"
+            id="nav-ingredients"
+            role="tabpanel"
+            aria-labelledby="nav-ingredients-tab"
+          >
             <div id="ingForm" class="tab__search-form">
               <legend>Get recipes by ingredients</legend>
               <label>
-                <input id="ing1" type="text" placeholder="Hungry for something?" />
+                <input
+                  id="ing1"
+                  type="text"
+                  placeholder="Hungry for something?"
+                />
               </label>
               <label>
-                <input id="ing2" type="text" placeholder="Hungry for something?" />
+                <input
+                  id="ing2"
+                  type="text"
+                  placeholder="Hungry for something?"
+                />
               </label>
               <label>
-                <input id="ing3" type="text" placeholder="Hungry for something?" />
+                <input
+                  id="ing3"
+                  type="text"
+                  placeholder="Hungry for something?"
+                />
               </label>
-              <input type="submit" value="Search" id="ingSearch" class="btn-orange" />
+              <input
+                type="submit"
+                value="Search"
+                id="ingSearch"
+                class="btn-orange"
+              />
             </div>
           </div>
           <!-- SEARCH BY RECIPES TAB -->
-          <div class="tab-pane fade" id="nav-recipes" role="tabpanel" aria-labelledby="nav-recipes-tab">
+          <div
+            class="tab-pane fade"
+            id="nav-recipes"
+            role="tabpanel"
+            aria-labelledby="nav-recipes-tab"
+          >
             <div id="recipeForm" class="tab__search-form">
               <legend>Hungry for something?</legend>
               <label>
-                <input type="text" placeholder="Hungry for something?" id="recipeQuery" />
+                <input
+                  type="text"
+                  placeholder="Hungry for something?"
+                  id="recipeQuery"
+                />
               </label>
-              <input type="submit" value="Search" id="recipeSearch" class="btn-orange" />
+              <input
+                type="submit"
+                value="Search"
+                id="recipeSearch"
+                class="btn-orange"
+              />
             </div>
           </div>
         </div>
@@ -82,7 +132,9 @@
 
   <section>
     <div class="container">
-      <div class="section__heading d-flex justify-content-between align-items-center">
+      <div
+        class="section__heading d-flex justify-content-between align-items-center"
+      >
         <h2>Food of the World</h2>
         <a href="#" class="view-all">view all</a>
       </div>
@@ -172,7 +224,9 @@
 
   <section class="background-light-grey">
     <div class="container">
-      <div class="section__heading d-flex justify-content-between align-items-center">
+      <div
+        class="section__heading d-flex justify-content-between align-items-center"
+      >
         <h2>What's Hot</h2>
         <a href="#" class="view-all">view all</a>
       </div>
@@ -182,7 +236,17 @@
           <a href="" class="card-link recipe-card swiper-slide">
             <div class="card">
               <div class="recipe-card__img">
-                <button></button>
+                <button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 22 20.13"
+                  >
+                    <path
+                      class="heart"
+                      d="M19.41,2.61c-1.02-1.02-2.41-1.6-3.85-1.6s-2.83,.57-3.85,1.6c-.26,.26-.49,.54-.69,.84-.42-.64-.97-1.18-1.61-1.59-.64-.41-1.36-.68-2.12-.8-.75-.12-1.53-.07-2.26,.13s-1.42,.56-2.01,1.04c-.59,.48-1.07,1.09-1.42,1.77-.34,.68-.54,1.43-.58,2.19-.04,.76,.09,1.52,.36,2.24,.28,.71,.7,1.36,1.24,1.9l8.4,8.4,8.4-8.4c1.02-1.02,1.6-2.41,1.6-3.85s-.57-2.83-1.6-3.85h0Z"
+                    />
+                  </svg>
+                </button>
                 <img
                   src="https://firebasestorage.googleapis.com/v0/b/wtfood-3d70f.appspot.com/o/website%20images%2Ffood1.jpg?alt=media&token=f2153ede-4a01-4df4-94a3-d073fb8f360b"
                   alt=""
@@ -198,7 +262,17 @@
           <a href="" class="card-link recipe-card swiper-slide">
             <div class="card">
               <div class="recipe-card__img">
-                <button></button>
+                <button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 22 20.13"
+                  >
+                    <path
+                      class="heart"
+                      d="M19.41,2.61c-1.02-1.02-2.41-1.6-3.85-1.6s-2.83,.57-3.85,1.6c-.26,.26-.49,.54-.69,.84-.42-.64-.97-1.18-1.61-1.59-.64-.41-1.36-.68-2.12-.8-.75-.12-1.53-.07-2.26,.13s-1.42,.56-2.01,1.04c-.59,.48-1.07,1.09-1.42,1.77-.34,.68-.54,1.43-.58,2.19-.04,.76,.09,1.52,.36,2.24,.28,.71,.7,1.36,1.24,1.9l8.4,8.4,8.4-8.4c1.02-1.02,1.6-2.41,1.6-3.85s-.57-2.83-1.6-3.85h0Z"
+                    />
+                  </svg>
+                </button>
                 <img
                   src="https://firebasestorage.googleapis.com/v0/b/wtfood-3d70f.appspot.com/o/website%20images%2Ffood2.jpg?alt=media&token=9693f148-a14e-4af3-9308-a4d58bf55d94"
                   alt=""
@@ -214,7 +288,17 @@
           <a href="" class="card-link recipe-card swiper-slide">
             <div class="card">
               <div class="recipe-card__img">
-                <button></button>
+                <button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 22 20.13"
+                  >
+                    <path
+                      class="heart"
+                      d="M19.41,2.61c-1.02-1.02-2.41-1.6-3.85-1.6s-2.83,.57-3.85,1.6c-.26,.26-.49,.54-.69,.84-.42-.64-.97-1.18-1.61-1.59-.64-.41-1.36-.68-2.12-.8-.75-.12-1.53-.07-2.26,.13s-1.42,.56-2.01,1.04c-.59,.48-1.07,1.09-1.42,1.77-.34,.68-.54,1.43-.58,2.19-.04,.76,.09,1.52,.36,2.24,.28,.71,.7,1.36,1.24,1.9l8.4,8.4,8.4-8.4c1.02-1.02,1.6-2.41,1.6-3.85s-.57-2.83-1.6-3.85h0Z"
+                    />
+                  </svg>
+                </button>
                 <img
                   src="https://firebasestorage.googleapis.com/v0/b/wtfood-3d70f.appspot.com/o/website%20images%2Ffood3.jpg?alt=media&token=fc110be4-e191-48ab-add7-6221b6d07602"
                   alt=""
@@ -230,7 +314,17 @@
           <a href="" class="card-link recipe-card swiper-slide">
             <div class="card">
               <div class="recipe-card__img">
-                <button></button>
+                <button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 22 20.13"
+                  >
+                    <path
+                      class="heart"
+                      d="M19.41,2.61c-1.02-1.02-2.41-1.6-3.85-1.6s-2.83,.57-3.85,1.6c-.26,.26-.49,.54-.69,.84-.42-.64-.97-1.18-1.61-1.59-.64-.41-1.36-.68-2.12-.8-.75-.12-1.53-.07-2.26,.13s-1.42,.56-2.01,1.04c-.59,.48-1.07,1.09-1.42,1.77-.34,.68-.54,1.43-.58,2.19-.04,.76,.09,1.52,.36,2.24,.28,.71,.7,1.36,1.24,1.9l8.4,8.4,8.4-8.4c1.02-1.02,1.6-2.41,1.6-3.85s-.57-2.83-1.6-3.85h0Z"
+                    />
+                  </svg>
+                </button>
                 <img
                   src="https://firebasestorage.googleapis.com/v0/b/wtfood-3d70f.appspot.com/o/website%20images%2Ffood12.jpg?alt=media&token=80c59297-c878-4d85-b84e-a44f9c059267"
                   alt=""
@@ -246,7 +340,17 @@
           <a href="" class="card-link recipe-card swiper-slide">
             <div class="card">
               <div class="recipe-card__img">
-                <button></button>
+                <button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 22 20.13"
+                  >
+                    <path
+                      class="heart"
+                      d="M19.41,2.61c-1.02-1.02-2.41-1.6-3.85-1.6s-2.83,.57-3.85,1.6c-.26,.26-.49,.54-.69,.84-.42-.64-.97-1.18-1.61-1.59-.64-.41-1.36-.68-2.12-.8-.75-.12-1.53-.07-2.26,.13s-1.42,.56-2.01,1.04c-.59,.48-1.07,1.09-1.42,1.77-.34,.68-.54,1.43-.58,2.19-.04,.76,.09,1.52,.36,2.24,.28,.71,.7,1.36,1.24,1.9l8.4,8.4,8.4-8.4c1.02-1.02,1.6-2.41,1.6-3.85s-.57-2.83-1.6-3.85h0Z"
+                    />
+                  </svg>
+                </button>
                 <img
                   src="https://firebasestorage.googleapis.com/v0/b/wtfood-3d70f.appspot.com/o/website%20images%2Ffood11.jpg?alt=media&token=4f5300a5-cbfe-46eb-8b66-81c1f695d9b1"
                   alt=""
@@ -262,7 +366,17 @@
           <a href="" class="card-link recipe-card swiper-slide">
             <div class="card">
               <div class="recipe-card__img">
-                <button></button>
+                <button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 22 20.13"
+                  >
+                    <path
+                      class="heart"
+                      d="M19.41,2.61c-1.02-1.02-2.41-1.6-3.85-1.6s-2.83,.57-3.85,1.6c-.26,.26-.49,.54-.69,.84-.42-.64-.97-1.18-1.61-1.59-.64-.41-1.36-.68-2.12-.8-.75-.12-1.53-.07-2.26,.13s-1.42,.56-2.01,1.04c-.59,.48-1.07,1.09-1.42,1.77-.34,.68-.54,1.43-.58,2.19-.04,.76,.09,1.52,.36,2.24,.28,.71,.7,1.36,1.24,1.9l8.4,8.4,8.4-8.4c1.02-1.02,1.6-2.41,1.6-3.85s-.57-2.83-1.6-3.85h0Z"
+                    />
+                  </svg>
+                </button>
                 <img
                   src="https://firebasestorage.googleapis.com/v0/b/wtfood-3d70f.appspot.com/o/website%20images%2Ffood10.jpg?alt=media&token=4f9578df-e6b7-4b8c-b400-4dc40f3b47f2"
                   alt=""
@@ -284,7 +398,9 @@
 
   <section>
     <div class="container">
-      <div class="section__heading d-flex justify-content-between align-items-center">
+      <div
+        class="section__heading d-flex justify-content-between align-items-center"
+      >
         <h2>Easy Recipes for Every Occasions</h2>
         <a href="#" class="view-all">view all</a>
       </div>
@@ -294,7 +410,17 @@
           <a href="" class="card-link recipe-card swiper-slide">
             <div class="card">
               <div class="recipe-card__img">
-                <button></button>
+                <button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 22 20.13"
+                  >
+                    <path
+                      class="heart"
+                      d="M19.41,2.61c-1.02-1.02-2.41-1.6-3.85-1.6s-2.83,.57-3.85,1.6c-.26,.26-.49,.54-.69,.84-.42-.64-.97-1.18-1.61-1.59-.64-.41-1.36-.68-2.12-.8-.75-.12-1.53-.07-2.26,.13s-1.42,.56-2.01,1.04c-.59,.48-1.07,1.09-1.42,1.77-.34,.68-.54,1.43-.58,2.19-.04,.76,.09,1.52,.36,2.24,.28,.71,.7,1.36,1.24,1.9l8.4,8.4,8.4-8.4c1.02-1.02,1.6-2.41,1.6-3.85s-.57-2.83-1.6-3.85h0Z"
+                    />
+                  </svg>
+                </button>
                 <img
                   src="https://firebasestorage.googleapis.com/v0/b/wtfood-3d70f.appspot.com/o/website%20images%2Ffood4.jpg?alt=media&token=49507805-bfc4-470c-8275-a4205e40ad1d"
                   alt=""
@@ -310,7 +436,17 @@
           <a href="" class="card-link recipe-card swiper-slide">
             <div class="card">
               <div class="recipe-card__img">
-                <button></button>
+                <button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 22 20.13"
+                  >
+                    <path
+                      class="heart"
+                      d="M19.41,2.61c-1.02-1.02-2.41-1.6-3.85-1.6s-2.83,.57-3.85,1.6c-.26,.26-.49,.54-.69,.84-.42-.64-.97-1.18-1.61-1.59-.64-.41-1.36-.68-2.12-.8-.75-.12-1.53-.07-2.26,.13s-1.42,.56-2.01,1.04c-.59,.48-1.07,1.09-1.42,1.77-.34,.68-.54,1.43-.58,2.19-.04,.76,.09,1.52,.36,2.24,.28,.71,.7,1.36,1.24,1.9l8.4,8.4,8.4-8.4c1.02-1.02,1.6-2.41,1.6-3.85s-.57-2.83-1.6-3.85h0Z"
+                    />
+                  </svg>
+                </button>
                 <img
                   src="https://firebasestorage.googleapis.com/v0/b/wtfood-3d70f.appspot.com/o/website%20images%2Ffood5.jpg?alt=media&token=79e7b75f-fe8a-474b-9f8c-2d622c4b1b33"
                   alt=""
@@ -326,7 +462,17 @@
           <a href="" class="card-link recipe-card swiper-slide">
             <div class="card">
               <div class="recipe-card__img">
-                <button></button>
+                <button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 22 20.13"
+                  >
+                    <path
+                      class="heart"
+                      d="M19.41,2.61c-1.02-1.02-2.41-1.6-3.85-1.6s-2.83,.57-3.85,1.6c-.26,.26-.49,.54-.69,.84-.42-.64-.97-1.18-1.61-1.59-.64-.41-1.36-.68-2.12-.8-.75-.12-1.53-.07-2.26,.13s-1.42,.56-2.01,1.04c-.59,.48-1.07,1.09-1.42,1.77-.34,.68-.54,1.43-.58,2.19-.04,.76,.09,1.52,.36,2.24,.28,.71,.7,1.36,1.24,1.9l8.4,8.4,8.4-8.4c1.02-1.02,1.6-2.41,1.6-3.85s-.57-2.83-1.6-3.85h0Z"
+                    />
+                  </svg>
+                </button>
                 <img
                   src="https://firebasestorage.googleapis.com/v0/b/wtfood-3d70f.appspot.com/o/website%20images%2Ffood6.jpg?alt=media&token=5913ca05-e2b0-4194-a72f-e2d49cb87abb"
                   alt=""
@@ -342,7 +488,17 @@
           <a href="" class="card-link recipe-card swiper-slide">
             <div class="card">
               <div class="recipe-card__img">
-                <button></button>
+                <button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 22 20.13"
+                  >
+                    <path
+                      class="heart"
+                      d="M19.41,2.61c-1.02-1.02-2.41-1.6-3.85-1.6s-2.83,.57-3.85,1.6c-.26,.26-.49,.54-.69,.84-.42-.64-.97-1.18-1.61-1.59-.64-.41-1.36-.68-2.12-.8-.75-.12-1.53-.07-2.26,.13s-1.42,.56-2.01,1.04c-.59,.48-1.07,1.09-1.42,1.77-.34,.68-.54,1.43-.58,2.19-.04,.76,.09,1.52,.36,2.24,.28,.71,.7,1.36,1.24,1.9l8.4,8.4,8.4-8.4c1.02-1.02,1.6-2.41,1.6-3.85s-.57-2.83-1.6-3.85h0Z"
+                    />
+                  </svg>
+                </button>
                 <img
                   src="https://firebasestorage.googleapis.com/v0/b/wtfood-3d70f.appspot.com/o/website%20images%2Ffood7.jpg?alt=media&token=4e487671-d0d1-4834-b4ee-369b77f1795f"
                   alt=""
@@ -358,7 +514,17 @@
           <a href="" class="card-link recipe-card swiper-slide">
             <div class="card">
               <div class="recipe-card__img">
-                <button></button>
+                <button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 22 20.13"
+                  >
+                    <path
+                      class="heart"
+                      d="M19.41,2.61c-1.02-1.02-2.41-1.6-3.85-1.6s-2.83,.57-3.85,1.6c-.26,.26-.49,.54-.69,.84-.42-.64-.97-1.18-1.61-1.59-.64-.41-1.36-.68-2.12-.8-.75-.12-1.53-.07-2.26,.13s-1.42,.56-2.01,1.04c-.59,.48-1.07,1.09-1.42,1.77-.34,.68-.54,1.43-.58,2.19-.04,.76,.09,1.52,.36,2.24,.28,.71,.7,1.36,1.24,1.9l8.4,8.4,8.4-8.4c1.02-1.02,1.6-2.41,1.6-3.85s-.57-2.83-1.6-3.85h0Z"
+                    />
+                  </svg>
+                </button>
                 <img
                   src="https://firebasestorage.googleapis.com/v0/b/wtfood-3d70f.appspot.com/o/website%20images%2Ffood8.jpg?alt=media&token=d4d3e4ab-32a1-4f18-a8fb-24fff271c8a7"
                   alt=""
@@ -374,7 +540,17 @@
           <a href="" class="card-link recipe-card swiper-slide">
             <div class="card">
               <div class="recipe-card__img">
-                <button></button>
+                <button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 22 20.13"
+                  >
+                    <path
+                      class="heart"
+                      d="M19.41,2.61c-1.02-1.02-2.41-1.6-3.85-1.6s-2.83,.57-3.85,1.6c-.26,.26-.49,.54-.69,.84-.42-.64-.97-1.18-1.61-1.59-.64-.41-1.36-.68-2.12-.8-.75-.12-1.53-.07-2.26,.13s-1.42,.56-2.01,1.04c-.59,.48-1.07,1.09-1.42,1.77-.34,.68-.54,1.43-.58,2.19-.04,.76,.09,1.52,.36,2.24,.28,.71,.7,1.36,1.24,1.9l8.4,8.4,8.4-8.4c1.02-1.02,1.6-2.41,1.6-3.85s-.57-2.83-1.6-3.85h0Z"
+                    />
+                  </svg>
+                </button>
                 <img
                   src="https://firebasestorage.googleapis.com/v0/b/wtfood-3d70f.appspot.com/o/website%20images%2Ffood9.jpg?alt=media&token=91df4ae2-d8e8-44c8-8b03-b9efc8d3cfeb"
                   alt=""
@@ -403,7 +579,9 @@
   <!-- Community section -->
   <section>
     <div class="container">
-      <div class="section__heading d-flex justify-content-between align-items-center">
+      <div
+        class="section__heading d-flex justify-content-between align-items-center"
+      >
         <h2>The community</h2>
         <a href="#" class="view-all">view all</a>
       </div>
