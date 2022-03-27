@@ -67,6 +67,7 @@ export default function init() {
 
 
 updateButton.addEventListener("click", () => {
+
     const file = document.getElementById("photoFile").files.length;
     if (file > 0) {
         console.log("there photo");
@@ -77,6 +78,7 @@ updateButton.addEventListener("click", () => {
         console.log("there NO photo");
         userUpdate();
     }
+
 });
 
 //-----------------------Upload Photo-----------------------\\
@@ -149,9 +151,9 @@ function userUpdate(photoStorage) {
 //     }
 // }
 
-
 //----------------------Create Recipe----------------------\\
 async function recipeCreate(photoURL) {
+
     const UID = auth.currentUser.uid;
     const name = document.getElementById('recipeTitle').value;
     const time = document.getElementById('cookingTime').value;
@@ -203,11 +205,13 @@ async function recipeCreate(photoURL) {
 
 
     }
+
 }
 
 const el = document.getElementById("publish");
 
 el.addEventListener("click", () => {
+
     try {
         const recipePhotoFile = document.getElementById('recipePhoto').files[0];
         const recipePhoto = ref(storage, `users/${auth.currentUser.uid}/recipes/${Date.now()}`);
@@ -235,6 +239,7 @@ el.addEventListener("click", () => {
         const errorMessage = error.message;
         console.log(errorCode + errorMessage);
     }
+
 });
 
 //----------------------Load Recipes----------------------\\
@@ -258,7 +263,10 @@ async function recipes() {
         const cardImgContainer = document.createElement("div");
         cardImgContainer.classList.add("recipe-card__img");
 
-        const cardButton = document.createElement("button");
+
+    const cardButton = document.createElement("button");
+    cardButton.classList.add('remove-recipe')
+
 
         const cardImage = document.createElement("img");
         cardImage.classList.add("card-img-top");
@@ -289,6 +297,9 @@ async function recipes() {
         recipesCards.appendChild(cardLink);
     });
 }
+
+// Create heart svg for cards
+
 
 //----------------------Add/Remove Ingrediente Input----------------------\\
 let photoURL = "";
@@ -541,38 +552,77 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 }
 //----------------------Navigate Menu Pages Profile----------------------\\
 
+function profileOpenClose(div){
+  const activeProfile = document.querySelector('.profile-open');
+ 
+  activeProfile.classList.remove('profile-open');
+  activeProfile.classList.add('profile-close');
+
+  div.classList.add('profile-open');
+  div.classList.remove('profile-close');
+};
+
 const allPages = document.querySelectorAll("a.profile-menu");
+const profilePrev = document.querySelectorAll('.profile-prev');
+const profileNavigation = document.getElementById('profileNavigation')
 const myProfile = document.getElementById("myProfile");
 const myRecipes = document.getElementById("myRecipes");
-const shoppingListContainer = document.getElementById("shoppingListContainer");
+const shoppingListContainer = document.getElementById("shoppingListSection");
 const writeRecipeBtn = document.getElementById("createRecipesBtn");
 const writeRecipe = document.getElementById("createRecipes");
 allPages.forEach((menu) => {
-    menu.addEventListener("click", () => {
-        // console.log("id " + menu.id);
-        if (menu.id === "profileInfo") {
-            myProfile.style.display = "block";
-            myRecipes.style.display = "none";
-            writeRecipe.style.display = "none";
-            console.log("profile info");
-        } else if (menu.id === "profileRecipe") {
-            console.log("profile recipe");
-            myProfile.style.display = "none";
-            myRecipes.style.display = "block";
-            writeRecipe.style.display = "none";
-        } else if (menu.id === "shoppingList") {
-            myProfile.style.display = "none";
-            myRecipes.style.display = "none";
-            shoppingListContainer.style.display = "block";
-            writeRecipe.style.display = "none";
-        }
-    });
+
+  menu.addEventListener("click", () => {
+    console.log("id " + menu.id);   
+    switch (menu.id){
+      case 'profileInfo':
+        profileOpenClose(myProfile);
+        break;
+      case 'profileRecipe':
+        profileOpenClose(myRecipes);
+        break;
+      case 'shoppingList':
+        profileOpenClose(shoppingListContainer);
+        break;
+    }
+  });
+
 });
 
+profilePrev.forEach((prev) => {
+  prev.addEventListener('click', () =>{
+    profileOpenClose(profileNavigation);
+  });
+});
+
+// allPages.forEach((menu) => {
+//   menu.addEventListener("click", () => {
+//     console.log("id " + menu.id);
+//     if (menu.id === "profileInfo") {
+//       myProfile.style.display = "block";
+//       myRecipes.style.display = "none";
+//       writeRecipe.style.display = "none";
+//       shoppingListContainer.style.display = "none";
+//       console.log("profile info");
+//     } else if (menu.id === "profileRecipe") {
+//       console.log("profile recipe");
+//       myProfile.style.display = "none";
+//       myRecipes.style.display = "block";
+//       writeRecipe.style.display = "none";
+//       shoppingListContainer.style.display = "none";
+//     } else if (menu.id === "shoppingList") {
+//       myProfile.style.display = "none";
+//       myRecipes.style.display = "none";
+//       shoppingListContainer.style.display = "block";
+//       writeRecipe.style.display = "none";
+//     }
+//   });
+// });
+
 writeRecipeBtn.addEventListener("click", () => {
-    writeRecipe.style.display = "block";
-    myProfile.style.display = "none";
-    myRecipes.style.display = "none";
+
+  profileOpenClose(writeRecipe);
+
 });
 
 //---------------------Initialization of the JS----------------------\\

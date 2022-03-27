@@ -18,3 +18,10 @@
   z-index: 1;
   background: $color-black-overlay;
 }
+
+.oneRecipe-image {
+  text-align: center;
+  img {
+    margin: auto;
+  }
+}

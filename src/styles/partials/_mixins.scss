@@ -64,4 +64,12 @@
   border-radius: 50%;
 }
 
-//Buttons{
+//Media Query
+$tablet: 768px;
+$desktop: 992px;
+
+@mixin mediaQuery($device) {
+  @media only screen and (min-width: $device) {
+    @content;
+  }
+}

@@ -4,6 +4,7 @@
 <main>
   <div class="profile">
     <div class="container">
+
       <div class="profile__main">
         <div class="profile__avatar">
           <img width="100" height="100" src="#" alt="" id="userPhoto" />
@@ -53,38 +54,124 @@
           <div class="profile__summary-data">
             <span class="profile__summary-title">Following</span>
             <span class="profile__summary-number">*123*</span>
-          </div>
-          <div class="profile__summary-data">
-            <span class="profile__summary-title">Followers</span>
-            <span class="profile__summary-number">*123*</span>
-          </div>
-        </div>
 
-        <!-- Main profile navigation -->
-        <nav class="profile__navigation">
-          <ul id="nav_profile">
-            <li>
-              <a class="profile-menu" id="profileInfo">✸ My Profile</a>
-            </li>
-            <li>
-              <a class="profile-menu" id="profileRecipe">✸ My Recipes</a>
-            </li>
-            <li>
-              <a class="profile-menu">✸ Saved Recipes</a>
-            </li>
-            <li>
-              <a class="profile-menu" id="shoppingList">✸ Shopping List</a>
-            </li>
-            <li>
-              <a class="profile-menu">✸ Notifications</a>
-            </li>
-          </ul>
-        </nav>
+          </div>
+          <div class="profile__summary">
+            <div class="profile__summary-data">
+              <span class="profile__summary-title">Recipes</span>
+              <span class="profile__summary-number">*123*</span>
+            </div>
+            <div class="profile__summary-data">
+              <span class="profile__summary-title">Following</span>
+              <span class="profile__summary-number">*123*</span>
+            </div>
+            <div class="profile__summary-data">
+              <span class="profile__summary-title">Followers</span>
+              <span class="profile__summary-number">*123*</span>
+            </div>
+          </div>
+          <!-- Main profile navigation -->
+          <nav class="profile__navigation">
+            <ul id="nav_profile">
+              <li>
+                <a class="profile-menu" id="profileInfo">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
+                    <path
+                      class="b"
+                      d="M11,11.67c1.84,0,3.33-1.49,3.33-3.33s-1.49-3.33-3.33-3.33-3.33,1.49-3.33,3.33,1.49,3.33,3.33,3.33Z"
+                    />
+                    <path
+                      class="b"
+                      d="M17.6,18.49c-.6-1.25-1.53-2.3-2.7-3.03-1.17-.74-2.52-1.13-3.9-1.13s-2.73,.39-3.9,1.13c-1.17,.74-2.11,1.79-2.7,3.03"
+                    />
+                    <path
+                      class="b"
+                      d="M11,21c5.52,0,10-4.48,10-10S16.52,1,11,1,1,5.48,1,11s4.48,10,10,10Z"
+                    />
+                  </svg>
+
+                  My Profile</a
+                >
+              </li>
+              <li>
+                <a class="profile-menu" id="profileRecipe">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 19.18 20"
+                  >
+                    <path
+                      class="b"
+                      d="M10.82,5.91v2.45c0,.9-.73,1.64-1.64,1.64h-1.64c-.9,0-1.64-.73-1.64-1.64v-2.45"
+                    />
+                    <path class="b" d="M8.36,5.91V14.91" />
+                    <path
+                      class="b"
+                      d="M1,1H14.09c.9,0,1.64,.73,1.64,1.64v14.73c0,.9-.73,1.64-1.64,1.64H1V1Z"
+                    />
+                    <path class="b" d="M18.18,4.27v3.27" />
+                    <path class="b" d="M18.18,11v3.27" />
+                  </svg>
+                  My Recipes</a
+                >
+              </li>
+              <li>
+                <a class="profile-menu">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 15.56 20"
+                  >
+                    <path
+                      class="c"
+                      d="M13.33,0H2.22C1,0,.01,1,.01,2.22V20l7.77-3.33,7.78,3.33V2.22c0-1.22-1-2.22-2.22-2.22Zm0,16.67l-5.56-2.42-5.56,2.42V2.22H13.33v14.44Z"
+                    />
+                  </svg>
+                  Saved Recipes</a
+                >
+              </li>
+              <li>
+                <a class="profile-menu" id="shoppingList">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 20 20.33"
+                  >
+                    <defs>
+                      <clipPath>
+                        <rect class="f" y=".17" width="20" height="20" />
+                      </clipPath>
+                    </defs>
+                    <g class="g">
+                      <g>
+                        <path class="e" d="M1.67,4.33H18.33" />
+                        <path
+                          class="d"
+                          d="M18.33,19.33H1.67V4.33L5,1H15l3.33,3.33v15Z"
+                        />
+                        <path
+                          class="d"
+                          d="M14.17,8.5c0,2.33-1.83,4.17-4.17,4.17s-4.17-1.83-4.17-4.17"
+                        />
+                      </g>
+                    </g>
+                  </svg>
+                  Shopping List</a
+                >
+              </li>
+            </ul>
+          </nav>
+          <button class="btn-noborder">Sign Out</button>
+        </div>
       </div>
 
       <!-- Update profile area -->
-      <div id="myProfile">
+      <div id="myProfile" class="profile-close profile-container">
         <div class="profile__update">
+          <a class="btn-noborder profile-prev">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.41 16.83">
+              <path class="c" d="M21.41,8.41H1.41" />
+              <path class="b" d="M8.41,15.41L1.41,8.41,8.41,1.41" />
+            </svg>
+          </a>
           <h2>Account Information</h2>
           <div class="profile__update-field">
             <label for="updateFName">First Name</label>
@@ -109,8 +196,14 @@
       </div>
 
       <!-- My Recipes sections -->
-      <div id="myRecipes">
+      <div id="myRecipes" class="profile-close profile-container">
         <div class="profile__my-recipes">
+          <a class="btn-noborder profile-prev">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.41 16.83">
+              <path class="c" d="M21.41,8.41H1.41" />
+              <path class="b" d="M8.41,15.41L1.41,8.41,8.41,1.41" />
+            </svg>
+          </a>
           <div class="my-recipes__heading">
             <h2>My Recipes</h2>
             <a id="createRecipesBtn" class="btn-white">Write a Recipe</a>
@@ -120,16 +213,19 @@
       </div>
 
       <!-- Create recipes section -->
-      <div id="createRecipes">
+      <div id="createRecipes" class="profile-close profile-container">
         <div class="profile__create-rec">
+          <a class="btn-noborder profile-prev">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.41 16.83">
+              <path class="c" d="M21.41,8.41H1.41" />
+              <path class="b" d="M8.41,15.41L1.41,8.41,8.41,1.41" />
+            </svg>
+          </a>
           <div class="create-rec__heading">
             <h2>Write Your Recipe</h2>
-
-
             <div class="photo-recipe">
               <label for="recipeTitle">Lets put a picture:</label>
               <input type="file" id="recipePhoto" name="filename" />
-
             </div>
           </div>
 
@@ -187,7 +283,9 @@
               <h3>Ingredients</h3>
 
               <div class="create-rec__field">
-                <label for="ingredient_1" id="ingredientLabel_1">Ingredient</label>
+                <label for="ingredient_1" id="ingredientLabel_1"
+                  >Ingredient</label
+                >
                 <input type="text" id="ingredient_1" />
               </div>
 
@@ -197,7 +295,9 @@
               </div>
 
               <div class="create-rec__field">
-                <label for="ingredient_2" id="ingredientLabel_2">Ingredient</label>
+                <label for="ingredient_2" id="ingredientLabel_2"
+                  >Ingredient</label
+                >
                 <input type="text" id="ingredient_2" />
               </div>
 
@@ -207,7 +307,9 @@
               </div>
 
               <div class="create-rec__field">
-                <label for="ingredient_3" id="ingredientLabel_3">Ingredient</label>
+                <label for="ingredient_3" id="ingredientLabel_3"
+                  >Ingredient</label
+                >
                 <input type="text" id="ingredient_3" />
               </div>
 
@@ -217,7 +319,9 @@
               </div>
 
               <div class="create-rec__field">
-                <label for="ingredient_4" id="ingredientLabel_4">Ingredient</label>
+                <label for="ingredient_4" id="ingredientLabel_4"
+                  >Ingredient</label
+                >
                 <input type="text" id="ingredient_4" />
               </div>
 
@@ -227,7 +331,9 @@
               </div>
 
               <div class="create-rec__field">
-                <label for="ingredient_5" id="ingredientLabel_5">Ingredient</label>
+                <label for="ingredient_5" id="ingredientLabel_5"
+                  >Ingredient</label
+                >
                 <input type="text" id="ingredient_5" />
               </div>
 
@@ -247,18 +353,52 @@
           <div class="create-rec__instructions">
             <h3>Instructions</h3>
             <div class="create-rec__field">
-              <label for="instruction" class="visually-hidden">Instructions</label>
-              <textarea name="instruction" id="instruction" cols="10" rows="5"></textarea>
+              <label for="instruction" class="visually-hidden"
+                >Instructions</label
+              >
+              <textarea
+                name="instruction"
+                id="instruction"
+                cols="10"
+                rows="5"
+              ></textarea>
             </div>
-            <input type="button" value="Publish" id="publish" class="btn-orange" />
+            <input
+              type="button"
+              value="Publish"
+              id="publish"
+              class="btn-orange"
+            />
           </div>
         </div>
       </div>
 
       <!-- Shopping List Section -->
-      <div id="shoppingListContainer">
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLR77YqsfcQjR5__v8Jy3g9gc3rBuUMNY&callback=initMap" async defer></script>
+
+      <div id="shoppingListSection" class="profile-close profile-container">
+       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLR77YqsfcQjR5__v8Jy3g9gc3rBuUMNY&callback=initMap" async defer></script>
         <div id="map"></div>
+        <div class="profile__shopping-list">
+          <a class="btn-noborder profile-prev">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.41 16.83">
+              <path class="c" d="M21.41,8.41H1.41" />
+              <path class="b" d="M8.41,15.41L1.41,8.41,8.41,1.41" />
+            </svg>
+          </a>
+          <div class="shopping-list__heading">
+            <h2>Shopping List</h2>
+            <span>All the ingredients you need!</span>
+            <p>
+              Find the nearest stores to buy your ingredients or select and
+              remove if you don't need it anymore
+            </p>
+          </div>
+
+          <div class="shopping-list__container">
+            <button class="btn-noborder">Remove all</button>
+            <div id="shoppingListContainer"></div>
+          </div>
+        </div>
       </div>
 
     </div>

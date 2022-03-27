@@ -1,14 +1,17 @@
 //body overlay when you open the menu
 body.black-overlay:after {
   content: "";
-  display: block;
+
   position: fixed;
   padding: 100px 0;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
+
+  z-index: 1;
   background-color: $color-black-overlay;
+  animation: fadein 400ms ease-in;
 }
 
 .background-light-grey {
@@ -77,13 +80,44 @@ body.black-overlay:after {
       color: $color-support-dark;
       background-color: $color-white;
       border-radius: 50%;
-      padding: 12px;
+      padding: 14px;
       position: relative;
-      &::before {
-        content: "•••";
+    }
+
+    .remove-recipe {
+      &::before,
+      &::after {
+        content: "";
+        width: 18px;
+        height: 2px;
+        background-color: black;
+
         position: absolute;
-        inset: 1px 0 0 4px;
+        inset: 13px 0 0 5px;
       }
+
+      &::before {
+        transform: rotate(45deg);
+      }
+
+      &::after {
+        transform: rotate(135deg);
+      }
+    }
+
+    .heart {
+      fill: none;
+      stroke: $color-support-medium;
+      stroke-linecap: square;
+      stroke-miterlimit: 10;
+      stroke-width: 2px;
+    }
+
+    svg {
+      position: absolute;
+      top: 6px;
+      right: 5px;
+      height: 1rem;
     }
   }
 
@@ -96,29 +130,19 @@ body.black-overlay:after {
   }
 }
 
-.carousel__container-wh,
-.carousel__container-er {
-  --imgIndexWH: 0;
-  --imgIndexER: 0;
-  --nOfImg2: 6;
+//checkboxes
 
-  gap: 0.5rem;
-  width: 100%;
-  width: calc(6 * 50%);
+.form-check-input {
+  border: 1px solid $color-black;
 
-  .recipe-card {
-    width: 100%;
-    width: calc(100% / 6);
-    pointer-events: none;
+  &:checked {
+    border-color: $color-primary-dark;
+    background-color: $color-white;
+
+    &[type="checkbox"] {
+      background-image: url("https://firebasestorage.googleapis.com/v0/b/wtfood-3d70f.appspot.com/o/icons%2Fcheckmark.svg?alt=media&token=a98145ed-bd7c-40b5-afcd-22eae758b78d");
+    }
   }
 }
 
-.carousel__container-wh {
-  transform: translate(calc(var(--imgIndexWH) / 6 * -100%));
-  transition: transform 400ms ease-out;
-}
-
-.carousel__container-er {
-  transform: translate(calc(var(--imgIndexER) / 6 * -100%));
-  transition: transform 400ms ease-out;
-}
+//accordion
