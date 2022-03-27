@@ -1,49 +1,60 @@
+
 <h1 class="visually-hidden">Profile</h1>
 
 <main>
   <div class="profile">
     <div class="container">
-      <!-- Main navigation -->
-      <div
-        class="profile__main profile-open profile-container"
-        id="profileNavigation"
-      >
-        <div class="profile-main__wrapper">
-          <div class="profile__avatar">
-            <div class="user-photo-container">
-              <img src="#" alt="" id="userPhoto" />
-            </div>
-            <div class="profile__photo fa-solid fa-camera">
-              <input type="file" id="photoFile" name="filename" />
-              <!--            <div class="display-cover">-->
-              <!--              <video autoplay></video>-->
-              <!--              <canvas class="d-none"></canvas>-->
-              <!--              <div class="video-options">-->
-              <!--                <select name="" iclass="custom-select">-->
-              <!--                  <option value="">Select camera</option>-->
-              <!--                </select>-->
-              <!--              </div>-->
-              <!--              <img class="screenshot-image d-none" alt="" />-->
-              <!--              <div class="controls">-->
-              <!--                <button class="btn btn-danger play" title="Play">-->
-              <!--                  <i data-feather="play-circle"></i>-->
-              <!--                </button>-->
-              <!--                <button class="btn btn-info pause d-none" title="Pause">-->
-              <!--                  <i data-feather="pause"></i>-->
-              <!--                </button>-->
-              <!--                <button-->
-              <!--                        class="btn btn-outline-success screenshot d-none"-->
-              <!--                        title="ScreenShot"-->
-              <!--                >-->
-              <!--                  <i data-feather="image"></i>-->
-              <!--                </button>-->
-              <!--              </div>-->
-              <!--            </div>-->
-            </div>
-            <div class="visually-hidden">Name:</div>
-            <div id="userName"></div>
-            <div class="visually-hidden">Email:</div>
-            <div id="userEmail"></div>
+
+      <div class="profile__main">
+        <div class="profile__avatar">
+          <img width="100" height="100" src="#" alt="" id="userPhoto" />
+          <div class="profile__photo fa-solid fa-camera">
+
+            <input type="file" id="photoFile" accept="image/*">
+
+                        <div class="display-cover">
+                          <video autoplay></video>
+                          <canvas class="d-none"></canvas>
+
+                          <div style="display: none" class="video-options">
+                            <select name="" class="custom-select">
+                              <option value="">Select camera</option>
+                            </select>
+                          </div>
+
+                          <img class="screenshot-image d-none" alt="" />
+
+                          <div class="controls">
+                            <button class="btn btn-danger play" title="Play">
+                              <i data-feather="play-circle"></i>
+                            </button>
+<!--                            <button class="btn btn-info pause d-none" title="Pause">-->
+<!--                              <i data-feather="pause"></i>-->
+<!--                            </button>-->
+                            <button
+                              class="btn btn-outline-success screenshot d-none"
+                              title="ScreenShot"
+                            >
+<!--                              <i data-feather="image"></i>-->
+                            </button>
+                          </div>
+                        </div>
+          </div>
+          <div>Name:</div>
+          <div id="userName"></div>
+          <div>Email:</div>
+          <div id="userEmail"></div>
+        </div>
+
+        <div class="profile__summary">
+          <div class="profile__summary-data">
+            <span class="profile__summary-title">Recipes</span>
+            <span class="profile__summary-number">*123*</span>
+          </div>
+          <div class="profile__summary-data">
+            <span class="profile__summary-title">Following</span>
+            <span class="profile__summary-number">*123*</span>
+
           </div>
           <div class="profile__summary">
             <div class="profile__summary-data">
@@ -174,10 +185,10 @@
             <label for="updateEmail">Email</label>
             <input type="text" id="updateEmail" />
           </div>
-          <div class="profile__update-field">
-            <label for="updatePassword">Password</label>
-            <input type="text" id="updatePassword" />
-          </div>
+<!--          <div class="profile__update-field">-->
+<!--            <label for="updatePassword">Password</label>-->
+<!--            <input type="text" id="updatePassword" />-->
+<!--          </div>-->
 
           <button class="btn-orange" id="updateButton">Save</button>
         </div>
@@ -212,34 +223,6 @@
           </a>
           <div class="create-rec__heading">
             <h2>Write Your Recipe</h2>
-
-            <!--            <div class="display-cover">-->
-            <!--              <video autoplay></video>-->
-            <!--              <canvas class="d-none"></canvas>-->
-
-            <!--              <div class="video-options">-->
-            <!--                <select name=""  class="custom-select">-->
-            <!--                  <option value="">Select camera</option>-->
-            <!--                </select>-->
-            <!--              </div>-->
-
-            <!--              <img class="screenshot-image d-none" alt="" />-->
-
-            <!--              <div class="controls">-->
-            <!--                <button class="btn btn-danger play" title="Play">-->
-            <!--                  <i data-feather="play-circle"></i>-->
-            <!--                </button>-->
-            <!--                <button class="btn btn-info pause d-none" title="Pause">-->
-            <!--                  <i data-feather="pause"></i>-->
-            <!--                </button>-->
-            <!--                <button-->
-            <!--                  class="btn btn-outline-success screenshot d-none"-->
-            <!--                  title="ScreenShot"-->
-            <!--                >-->
-            <!--                  <i data-feather="image"></i>-->
-            <!--                </button>-->
-            <!--              </div>-->
-            <!--            </div>-->
             <div class="photo-recipe">
               <label for="recipeTitle">Lets put a picture:</label>
               <input type="file" id="recipePhoto" name="filename" />
@@ -391,7 +374,10 @@
       </div>
 
       <!-- Shopping List Section -->
+
       <div id="shoppingListSection" class="profile-close profile-container">
+       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLR77YqsfcQjR5__v8Jy3g9gc3rBuUMNY&callback=initMap" async defer></script>
+        <div id="map"></div>
         <div class="profile__shopping-list">
           <a class="btn-noborder profile-prev">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.41 16.83">
@@ -414,6 +400,7 @@
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </main>
