@@ -9,6 +9,7 @@ Router.init("mainArea", [
   new Page("#community", "pages/community.html"),
   new Page("#profile", "pages/profile.html"),
   new Page("#oneRecipe", "pages/oneRecipe.html"),
+  new Page("#userRecipe", "pages/userRecipe.html"),
   new Page("#recipes", "pages/recipes.html"),
   // new Page("#login", "pages/login.html"),
   // add new pages here
