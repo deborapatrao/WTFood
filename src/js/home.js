@@ -64,7 +64,7 @@ const swiper3 = new Swiper(".swiper-3", {
       slidesPerView:4,
     },
 
-    820: {
+    768: {
       slidesPerView:5,
     }
   }
@@ -80,7 +80,7 @@ const swiper2 = new Swiper(".swiper-2", {
     clickable: true,
   },
   breakpoints:{
-    820: {
+    768: {
       slidesPerView:3,
     },
   },

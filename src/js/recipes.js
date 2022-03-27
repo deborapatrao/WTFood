@@ -91,6 +91,7 @@ function outputCards(recipes) {
     cardImgContainer.classList.add("recipe-card__img");
 
     const cardButton = document.createElement("button");
+    renderHeartIcon(cardButton);
 
     const cardImage = document.createElement("img");
     cardImage.classList.add("card-img-top");
@@ -121,6 +122,23 @@ function outputCards(recipes) {
     resultArea.appendChild(cardLink);
   }
 }
+
+
+// Create heart svg for cards
+function renderHeartIcon(node){
+  const iconSvg = document.createElementNS("http://www.w3.org/2000/svg", 'svg');
+  const iconPath = document.createElementNS("http://www.w3.org/2000/svg", 'path');
+
+  iconSvg.setAttribute('viewBox', "0 0 22 20.13");
+
+  iconPath.setAttribute('d', "M19.41,2.61c-1.02-1.02-2.41-1.6-3.85-1.6s-2.83,.57-3.85,1.6c-.26,.26-.49,.54-.69,.84-.42-.64-.97-1.18-1.61-1.59-.64-.41-1.36-.68-2.12-.8-.75-.12-1.53-.07-2.26,.13s-1.42,.56-2.01,1.04c-.59,.48-1.07,1.09-1.42,1.77-.34,.68-.54,1.43-.58,2.19-.04,.76,.09,1.52,.36,2.24,.28,.71,.7,1.36,1.24,1.9l8.4,8.4,8.4-8.4c1.02-1.02,1.6-2.41,1.6-3.85s-.57-2.83-1.6-3.85h0Z");
+  iconPath.classList.add('heart');
+
+  iconSvg.appendChild(iconPath);
+
+  return node.appendChild(iconSvg);
+};
+
 
 function filtersShow() {
   // Filters arrays:
