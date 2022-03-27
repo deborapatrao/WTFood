@@ -20,14 +20,15 @@ import {
 
 export default function init() {
   onAuthStateChanged(auth, async (user) => {
+    const userCheck = user?.auth?.currentUser;
     const container = document.getElementById("shoppingListContainer");
-    const userNew = auth.currentUser;
-    const docsRef = collection(db, `users/${userNew.uid}/shoppinglist`);
+    // console.log(user.auth.currentUser.uid);
+    const docsRef = collection(db, `users/${userCheck.uid}/shoppinglist`);
     const querySnapshot = await getDocs(docsRef);
 
     querySnapshot.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshots
-      console.log(doc.id, " => ", doc.data());
+      // console.log(doc.id, " => ", doc.data());
       const div = document.createElement("div");
       div.innerHTML = `<p>${doc.data().ingredient}</p>`;
       container.appendChild(div);
@@ -42,7 +43,7 @@ export default function init() {
     const emailPlaceholder = document.getElementById("updateEmail");
 
     if (user) {
-      console.log("init" + user.uid);
+      // console.log("init " + user.uid);
       const uid = user.uid;
       //-----------------Check Sign In user------------\\
 
@@ -65,6 +66,8 @@ export default function init() {
 
       emailPlaceholder.value = displayEmail;
       recipes();
+    } else {
+      alert("user is NOT signed in");
     }
   });
 }
