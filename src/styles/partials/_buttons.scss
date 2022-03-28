@@ -214,3 +214,30 @@
     }
   }
 }
+
+.mobile-filter-btn {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+
+  button {
+    width: 100%;
+    text-align: left;
+    @include mediaQuery($tablet) {
+      max-width: 220px;
+    }
+  }
+  .b {
+    stroke-linecap: square;
+  }
+  .b,
+  .c {
+    fill: none;
+    stroke: $color-primary-dark;
+    stroke-miterlimit: 10;
+    stroke-width: 2px;
+  }
+  svg {
+    height: 1rem;
+  }
+}
