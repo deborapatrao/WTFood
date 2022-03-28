@@ -17,15 +17,38 @@ nav a {
 
   transform: translateX(-100%);
   transition: all ease-in-out 400ms;
+
+  @include mediaQuery($desktop) {
+    position: relative;
+    flex-flow: row nowrap;
+    justify-content: end;
+    transform: none;
+    align-items: center;
+  }
 }
 
 .navigation__list li {
   padding-bottom: 1rem;
   text-transform: capitalize;
-}
 
-.navigation__list li:not(:last-child) {
-  border-bottom: 2px solid $color-support-light;
+  &:not(:last-child) {
+    border-bottom: 2px solid $color-support-light;
+
+    @include mediaQuery($desktop) {
+      border-bottom: none;
+    }
+  }
+
+  @include mediaQuery($desktop) {
+    padding: 0;
+    &:first-of-type {
+      order: 2;
+    }
+
+    &:nth-child(2) {
+      order: 1;
+    }
+  }
 }
 
 .navigation__list[data-visible="true"] {
@@ -42,4 +65,8 @@ nav a {
 
 .nav__link {
   cursor: pointer;
+}
+
+.nav-active {
+  color: $color-primary-dark;
 }

@@ -66,6 +66,15 @@ const swiper3 = new Swiper(".swiper-3", {
 
     768: {
       slidesPerView:5,
+    },
+    992:{
+      slidesPerView:6,
+      allowTouchMove: false,
+      navigation:{
+        nextEl: '.swiper-next',
+        prevEl: '.swiper-prev'
+      },
+      
     }
   }
 });
@@ -83,6 +92,15 @@ const swiper2 = new Swiper(".swiper-2", {
     768: {
       slidesPerView:3,
     },
+    992:{
+      slidesPerView:3,
+      allowTouchMove:false,
+      navigation:{
+        nextEl: '.swiper-next2',
+        prevEl: '.swiper-prev2'
+      },
+    
+    }
   },
 });
 }
