@@ -12,10 +12,6 @@
   display: none;
 }
 
-#mobileFilterBtn {
-  margin: 2rem 0;
-}
-
 .recipes {
   .accordion-button {
     position: relative;
@@ -54,12 +50,12 @@
   .accordion-item {
     border: none;
     border-bottom: $border-grey;
-
-    &:last-of-type .accordion-button.collapsed {
-      border-bottom-right-radius: 0;
-      border-bottom-left-radius: 0;
-    }
   }
+}
+
+.accordion-item:last-of-type {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
 @media screen and (min-width: 992px) {
@@ -72,5 +68,19 @@
 
   #accordionDesktop {
     display: block;
+  }
+}
+
+.recipes__main {
+  display: grid;
+  gap: 2rem;
+  padding: 2rem 0;
+
+  @include mediaQuery($desktop) {
+    grid-template-columns: 1fr 2fr;
+  }
+
+  .accordion-item:last-of-type {
+    margin-bottom: 2rem;
   }
 }

@@ -48,7 +48,7 @@ export class Router {
       // get the HTML pages content
       const response = await fetch(page.htmlName);
       const txt = await response.text();
-
+      
       if (window.location.hash == "#profile")
         onAuthStateChanged(auth, async (user) => {
           const userCheck = user?.auth?.currentUser;
@@ -71,6 +71,7 @@ export class Router {
 
       let initLogin = await import(`../js/login.js`); // lazily loading the js files
       initLogin.default();
+      
       // if the page requires auth, load the header(auth-template) first and then hook the pages in the #mainArea
       // if (page.authRequired) {
       //   if (!document.getElementById('header')) {
