@@ -57,6 +57,13 @@
   .nav-tabs .nav-link.active {
     border-bottom: 3px solid $color-primary-dark;
   }
+
+  @include mediaQuery($desktop) {
+    .tab-content {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
 }
 
 .nutrition-wrapper,
@@ -87,5 +94,50 @@
   color: $color-primary-dark;
   &:hover {
     text-decoration: underline;
+  }
+}
+
+.recipe-banner {
+  @include mediaQuery($desktop) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    align-items: center;
+
+    width: 100%;
+    max-width: 960px;
+    padding-right: var(--bs-gutter-x, 0.75rem);
+    padding-left: var(--bs-gutter-x, 0.75rem);
+    margin-right: auto;
+    margin-left: auto;
+
+    .oneRecipe-image {
+      border-radius: $std-border-radius;
+      overflow: hidden;
+    }
+  }
+}
+
+//TAB mobile-desktop
+
+.recipe__details-tab {
+  h3 {
+    display: none;
+  }
+
+  @include mediaQuery($desktop) {
+    .nav-tabs {
+      display: none;
+    }
+
+    .tab-content > .tab-pane {
+      display: block;
+      opacity: 1;
+    }
+
+    h3 {
+      display: block;
+      margin-bottom: 1rem;
+    }
   }
 }
