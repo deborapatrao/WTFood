@@ -117,6 +117,12 @@ body.black-overlay:after {
       stroke-width: 2px;
     }
 
+    .more-options::after {
+      content: "•••";
+      position: absolute;
+      bottom: 1px;
+      right: 5px;
+    }
     svg {
       position: absolute;
       top: 7px;

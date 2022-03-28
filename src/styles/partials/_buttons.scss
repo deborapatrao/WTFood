@@ -249,3 +249,17 @@
     width: auto;
   }
 }
+
+//Profile Camera buttons
+
+.profile__avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.add-photo-btns {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-top: -30px;
+}
