@@ -58,6 +58,36 @@ export default function init() {
       initMap();
     }
   });
+
+
+//---------------------- Chnage Desktop Layout ------------------\\
+  let screenWidth = window.innerWidth;
+  let myProfile = document.getElementById("myProfile");
+displayUpdate();
+
+  window.addEventListener('resize', () =>{
+    screenWidth = window.innerWidth;
+    
+    displayUpdate();
+  });
+
+
+  function displayUpdate(){
+  if (screenWidth>992){
+    profileNavigation.classList.remove('profile-open');
+    let myProfile = document.getElementById("myProfile");
+
+  
+    myProfile.classList.remove('profile-close');
+    myProfile.classList.add('profile-open');
+  }else{
+    profileNavigation.classList.add('profile-open');
+
+    myProfile.classList.remove('profile-open');
+    myProfile.classList.add('profile-close');
+  }
+  };
+
 }
 //----------------------Camera Photo----------------------\\
 
@@ -249,7 +279,7 @@ async function recipes() {
     cardImgContainer.classList.add("recipe-card__img");
 
     const cardButton = document.createElement("button");
-    cardButton.classList.add("remove-recipe");
+    cardButton.classList.add("more-options");
 
     const cardImage = document.createElement("img");
     cardImage.classList.add("card-img-top");
@@ -528,26 +558,45 @@ function profileOpenClose(div) {
   div.classList.remove("profile-close");
 }
 
+function transformBtnNav(btn){
+  const btnActive = document.querySelector('.profile-active');
+  if(btnActive){
+    btnActive.classList.remove('profile-active')
+  };
+  
+  btn.classList.add('profile-active');
+};
+
 const allPages = document.querySelectorAll("a.profile-menu");
 const profilePrev = document.querySelectorAll(".profile-prev");
 const profileNavigation = document.getElementById("profileNavigation");
-const myProfile = document.getElementById("myProfile");
+
 const myRecipes = document.getElementById("myRecipes");
 const shoppingListContainer = document.getElementById("shoppingListSection");
 const writeRecipeBtn = document.getElementById("createRecipesBtn");
 const writeRecipe = document.getElementById("createRecipes");
+
+const profileInfoBtn = document.getElementById('profileInfo');
+const profileRecipeBtn = document.getElementById('profileRecipe');
+const profileShoppingBtn = document.getElementById('shoppingList');
+
+
 allPages.forEach((menu) => {
   menu.addEventListener("click", () => {
+  
     console.log("id " + menu.id);
     switch (menu.id) {
       case "profileInfo":
         profileOpenClose(myProfile);
+        transformBtnNav(profileInfoBtn);
         break;
       case "profileRecipe":
         profileOpenClose(myRecipes);
+        transformBtnNav(profileRecipeBtn);
         break;
       case "shoppingList":
         profileOpenClose(shoppingListContainer);
+        transformBtnNav(profileShoppingBtn);
         break;
     }
   });
@@ -589,4 +638,4 @@ writeRecipeBtn.addEventListener("click", () => {
 
 //---------------------Initialization of the JS----------------------\\
 
-init();
+
