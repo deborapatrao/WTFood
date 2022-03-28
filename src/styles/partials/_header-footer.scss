@@ -194,6 +194,15 @@ footer {
   @include flex(column, center, center);
   @include fontBody2();
   padding: 1.5rem 0;
+
+  @include mediaQuery($desktop) {
+    flex-flow: row;
+    justify-content: start;
+
+    span:first-child::after {
+      content: " - ";
+    }
+  }
 }
 
 .home .section__image-divider {
