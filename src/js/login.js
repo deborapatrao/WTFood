@@ -9,35 +9,49 @@ import {
   signInWithPopup,
   FacebookAuthProvider,
   getRedirectResult,
+  collection,
+  addDoc,
 } from "../firebase.js";
+
 import Swal from "sweetalert2";
-window.bootstrap = require('bootstrap/dist/js/bootstrap.bundle.js');
+
 export default function init() {
   const signUp = document.getElementById("signUp");
+  const signUp_link = document.getElementById("signUp-link");
   const signIn = document.getElementById("signIn");
   const signInFb = document.getElementById("signInFb");
   const signOutBtn = document.getElementById("signOut");
-  const loginNav = document.getElementById("login-nav");
+  // const loginNav = document.getElementById("login-nav");
+  const back_btn = document.querySelector(".back-login");
+  const signUpContainer = document.querySelector(".sign-up");
+  const signInContainer = document.querySelector(".sign-in");
 
   //--------------------------Sign Up--------------------------//
+  signUp_link.addEventListener("click", () => {
+    openCloseFun(signInContainer, signUpContainer);
+  });
+
+  back_btn.addEventListener("click", () => {
+    openCloseFun(signUpContainer, signInContainer);
+  });
+
   signUp.addEventListener("click", () => {
     const email = document.getElementById("email1").value;
     const password = document.getElementById("password1").value;
 
-    console.log(email + " " + password);
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+      .then(async (userCredential) => {
         // Signed in
         const user = userCredential.user;
-        Swal.fire(
-            'Success',
-            'User Created',
-            'success',
-        ).then((result) => {
-          // Reload the Page
-          // location.reload();
+        await addDoc(collection(db, "users"), {
+          name: user.displayName,
+          email: user.email,
+          photoURL: user.photoURL,
         });
 
+        Swal.fire("Success", "User Created", "success").then((result) => {
+          closeOneModal("exampleModal");
+        });
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -56,17 +70,11 @@ export default function init() {
       .then((userCredential) => {
         // Signed in
         // const user = userCredential.user;
+
         // ...
-
-        Swal.fire(
-            'Success',
-            'User Sign in',
-            'success',
-        ).then((result) => {
-          // const modalSign = document.getElementById('exampleModal');
-          let myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {});
-          myModal.hide();
-
+        Swal.fire("Success", "User Sign in", "success").then((result) => {
+          console.log("wtf");
+          closeOneModal("exampleModal");
         });
       })
       .catch((error) => {
@@ -110,6 +118,9 @@ export default function init() {
     signOut(auth)
       .then(() => {
         console.log("user is signed out");
+        Swal.fire("Success", "User Sign Out", "success").then((result) => {
+          closeOneModal("exampleModal");
+        });
         // Sign-out successful.
       })
       .catch((error) => {
@@ -117,4 +128,29 @@ export default function init() {
         console.log(error.message);
       });
   });
+
+  function openCloseFun(close, open) {
+    close.classList.remove("profile-open");
+    close.classList.add("profile-close");
+
+    open.classList.add("profile-open");
+    open.classList.remove("profile-close");
+  }
+
+  // Working badly for now
+  function closeOneModal(modalId) {
+    // get modal
+    const modal = document.getElementById(modalId);
+
+    // change state like in hidden modal
+    modal.classList.remove("show");
+    modal.setAttribute("aria-hidden", "true");
+    modal.setAttribute("style", "display: none");
+
+    // get modal backdrop
+    const modalBackdrops = document.getElementsByClassName("modal-backdrop");
+
+    // remove opened modal backdrop
+    document.body.removeChild(modalBackdrops[0]);
+  }
 }
