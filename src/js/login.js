@@ -11,7 +11,7 @@ import {
   getRedirectResult,
 } from "../firebase.js";
 import Swal from "sweetalert2";
-
+window.bootstrap = require('bootstrap/dist/js/bootstrap.bundle.js');
 export default function init() {
   const signUp = document.getElementById("signUp");
   const signIn = document.getElementById("signIn");
@@ -53,7 +53,20 @@ export default function init() {
         // const user = userCredential.user;
         // ...
 
+<<<<<<< HEAD
         Swal.fire("Success", "User Sign in", "success");
+=======
+        Swal.fire(
+            'Success',
+            'User Sign in',
+            'success',
+        ).then((result) => {
+          // const modalSign = document.getElementById('exampleModal');
+          let myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {});
+          myModal.hide();
+
+        });
+>>>>>>> 65ea2eb4be5bbe0c6c65022e79bb29dd7df63264
       })
       .catch((error) => {
         const errorCode = error.code;
