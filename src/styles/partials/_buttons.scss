@@ -130,3 +130,136 @@
     }
   }
 }
+
+//Swiper buttons
+
+.swiper-3,
+.swiper-2 {
+  position: relative;
+
+  @include mediaQuery($desktop) {
+    // .swiper-nav {
+    //   display: block;
+    // }
+
+    // div.swiper-button-lock {
+    //   display: block;
+    // }
+    .swiper-prev,
+    .swiper-prev2,
+    .swiper-next,
+    .swiper-next2 {
+      padding: 0.3rem;
+      border: 2px solid $color-primary-dark;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      position: absolute;
+      z-index: 5;
+
+      background-color: $color-white;
+
+      .b {
+        fill: none;
+        stroke: $color-primary-dark;
+        stroke-linecap: square;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+    }
+
+    .swiper-prev {
+      left: -15px;
+
+      svg {
+        height: 1rem;
+        position: absolute;
+        transform: rotate(180deg);
+        left: 7px;
+        top: 6px;
+      }
+    }
+
+    .swiper-next {
+      right: 0;
+      svg {
+        height: 1rem;
+        position: absolute;
+        right: 7px;
+        top: 6px;
+      }
+    }
+
+    .swiper-prev2 {
+      left: -15px;
+      top: calc(50% - 56px);
+      svg {
+        height: 1rem;
+        position: absolute;
+        transform: rotate(180deg);
+        left: 7px;
+        top: 6px;
+      }
+    }
+
+    .swiper-next2 {
+      right: -15px;
+      top: calc(50% - 56px);
+      svg {
+        height: 1rem;
+        position: absolute;
+        right: 7px;
+        top: 6px;
+      }
+    }
+  }
+}
+
+.mobile-filter-btn {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+
+  button {
+    width: 100%;
+    text-align: left;
+    @include mediaQuery($tablet) {
+      max-width: 220px;
+    }
+  }
+  .b {
+    stroke-linecap: square;
+  }
+  .b,
+  .c {
+    fill: none;
+    stroke: $color-primary-dark;
+    stroke-miterlimit: 10;
+    stroke-width: 2px;
+  }
+  svg {
+    height: 1rem;
+  }
+}
+
+.ingredients-wrapper button {
+  width: 100%;
+
+  @include mediaQuery($desktop) {
+    width: auto;
+  }
+}
+
+//Profile Camera buttons
+
+.profile__avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.add-photo-btns {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-top: -30px;
+}

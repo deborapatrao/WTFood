@@ -57,6 +57,13 @@
   .nav-tabs .nav-link.active {
     border-bottom: 3px solid $color-primary-dark;
   }
+
+  @include mediaQuery($desktop) {
+    .tab-content {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
 }
 
 .nutrition-wrapper,
@@ -90,42 +97,47 @@
   }
 }
 
-.recipes {
-  .accordion-button {
-    position: relative;
-    &::before,
-    &::after {
-      content: "";
+.recipe-banner {
+  @include mediaQuery($desktop) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    align-items: center;
 
-      width: 14px;
-      height: 2px;
-      background-color: $color-black;
-    }
+    width: 100%;
+    max-width: 960px;
+    padding-right: var(--bs-gutter-x, 0.75rem);
+    padding-left: var(--bs-gutter-x, 0.75rem);
+    margin-right: auto;
+    margin-left: auto;
 
-    &::before {
-      position: absolute;
-      right: 20px;
-    }
-
-    &::after {
-      transform: rotate(90deg);
-    }
-
-    &:not(.collapsed) {
-      color: $color-black;
-      background-color: $color-white;
-      &::after {
-        transform: rotate(180deg);
-      }
+    .oneRecipe-image {
+      border-radius: $std-border-radius;
+      overflow: hidden;
     }
   }
+}
 
-  .accordion-item {
-    border: none;
-    border-bottom: $border-grey;
+//TAB mobile-desktop
 
-    &:last-of-type .accordion-button.collapsed {
-      border-radius: 0;
+.recipe__details-tab {
+  h3 {
+    display: none;
+  }
+
+  @include mediaQuery($desktop) {
+    .nav-tabs {
+      display: none;
+    }
+
+    .tab-content > .tab-pane {
+      display: block;
+      opacity: 1;
+    }
+
+    h3 {
+      display: block;
+      margin-bottom: 1rem;
     }
   }
 }

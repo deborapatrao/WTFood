@@ -12,6 +12,10 @@ body.black-overlay:after {
   z-index: 1;
   background-color: $color-black-overlay;
   animation: fadein 400ms ease-in;
+
+  @include mediaQuery($desktop) {
+    display: none;
+  }
 }
 
 .background-light-grey {
@@ -113,9 +117,15 @@ body.black-overlay:after {
       stroke-width: 2px;
     }
 
+    .more-options::after {
+      content: "•••";
+      position: absolute;
+      bottom: 1px;
+      right: 5px;
+    }
     svg {
       position: absolute;
-      top: 6px;
+      top: 7px;
       right: 5px;
       height: 1rem;
     }
@@ -145,4 +155,8 @@ body.black-overlay:after {
   }
 }
 
-//accordion
+.hide-desktop {
+  @include mediaQuery($desktop) {
+    display: none;
+  }
+}

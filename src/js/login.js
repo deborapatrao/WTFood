@@ -21,8 +21,8 @@ export default function init() {
 
   //--------------------------Sign Up--------------------------//
   signUp.addEventListener("click", () => {
-    let email = document.getElementById("email1").value;
-    let password = document.getElementById("password1").value;
+    const email = document.getElementById("email1").value;
+    const password = document.getElementById("password1").value;
 
     console.log(email + " " + password);
     createUserWithEmailAndPassword(auth, email, password)
@@ -49,19 +49,21 @@ export default function init() {
   //--------------------------Sign In--------------------------//
 
   signIn.addEventListener("click", () => {
-    let email = document.getElementById("email1").value;
-    let password = document.getElementById("password1").value;
+    const email = document.getElementById("email1").value;
+    const password = document.getElementById("password1").value;
     console.log(email, password);
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         // const user = userCredential.user;
         // ...
+
         Swal.fire(
             'Success',
             'User Sign in',
             'success',
         )
+
 
       })
       .catch((error) => {
@@ -83,7 +85,7 @@ export default function init() {
         // This gives you a Facebook Access Token. You can use it to access the Facebook API.
         const credential = FacebookAuthProvider.credentialFromResult(result);
         const accessToken = credential.accessToken;
-
+        console.log(user, credential);
         // ...
       })
       .catch((error) => {
@@ -104,34 +106,12 @@ export default function init() {
   signOutBtn.addEventListener("click", () => {
     signOut(auth)
       .then(() => {
-        alert("user is signed out");
+        console.log("user is signed out");
         // Sign-out successful.
       })
       .catch((error) => {
         // An error happened.
-        alert(error.message);
+        console.log(error.message);
       });
-  });
-
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      // alert('SIGNED in')
-      let cardImage = document.createElement("img");
-      cardImage.classList.add("login-avatar");
-      cardImage.src = `${
-        user.photoURL
-          ? user.photoURL
-          : "https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg"
-      }`;
-      loginNav.textContent = "";
-      loginNav.appendChild(cardImage);
-
-      // loginNav.innerHTML = "YOU ARE SIGNED IN";
-
-      // const uid = user.uid;
-      // ...
-    } else {
-      loginNav.innerHTML = "login";
-    }
   });
 }

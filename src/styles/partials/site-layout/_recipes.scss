@@ -12,11 +12,53 @@
   display: none;
 }
 
-#mobileFilterBtn {
-  margin: 2rem 0;
+.recipes {
+  .accordion-button {
+    position: relative;
+    &::before,
+    &::after {
+      content: "";
+
+      width: 14px;
+      height: 2px;
+      background-color: $color-black;
+    }
+
+    &:focus {
+      border-color: $color-support-medium;
+      box-shadow: 0 0 0 0.25rem $color-primary-light;
+    }
+
+    &::before {
+      position: absolute;
+      right: 20px;
+    }
+
+    &::after {
+      transform: rotate(90deg);
+    }
+
+    &:not(.collapsed) {
+      color: $color-black;
+      background-color: $color-white;
+      &::after {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .accordion-item {
+    border: none;
+    border-bottom: $border-grey;
+  }
 }
 
-@media screen and (min-width: 902px) {
+.accordion-item:last-of-type {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+@media screen and (min-width: 992px) {
   #mobileFilterBtn,
   #filtersModal,
   .modal-backdrop,
@@ -26,5 +68,19 @@
 
   #accordionDesktop {
     display: block;
+  }
+}
+
+.recipes__main {
+  display: grid;
+  gap: 2rem;
+  padding: 2rem 0;
+
+  @include mediaQuery($desktop) {
+    grid-template-columns: 1fr 2fr;
+  }
+
+  .accordion-item:last-of-type {
+    margin-bottom: 2rem;
   }
 }

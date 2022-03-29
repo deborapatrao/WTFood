@@ -1,44 +1,39 @@
-// header .container {
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-// }
-
-// .header__navigation {
-//   order: 0;
-// }
-
-// .header__logo {
-//   order: 1;
-// }
-
-// .header__shopping {
-//   order: 2;
-// }
-
-//NOT SURE IF IT IS BETTER TO DO GRID OR FLEX FOR THIS
-
 header {
   position: sticky;
   top: 0;
   background-color: $color-white;
   z-index: 10;
+  border-bottom: $border-grey;
 }
 
-header .container {
+.header__wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   align-items: center;
   padding: $std-section-padding;
+
+  @include mediaQuery($desktop) {
+    grid-template-columns: auto 1fr;
+  }
 }
 
 .header__navigation {
   grid-column: 1/2;
+  @include mediaQuery($desktop) {
+    grid-column: 2/-1;
+    justify-self: end;
+  }
 }
 
 .header__logo {
   grid-column: 2/3;
   text-align: center;
+  max-width: 120px;
+
+  @include mediaQuery($desktop) {
+    grid-column: 1/2;
+    text-align: left;
+  }
 }
 
 .header__shopping {
@@ -76,19 +71,33 @@ header .container {
 }
 
 //FOOTER
+footer {
+  background-color: $color-primary-dark;
+}
+
 .footer__logo {
-  max-width: 70%;
+  max-width: 120px;
 }
 .footer__main {
-  background-color: $color-primary-dark;
-  @include flex(column, center, center);
+  display: grid;
   padding: 2rem 0;
   text-align: center;
   gap: 2rem;
 
+  @include mediaQuery($desktop) {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+
+    .footer__logo-container {
+      flex-basis: 100%;
+      text-align: left;
+    }
+  }
+
   .footer__nav {
     border-bottom: 1px solid $color-white;
-    width: 90%;
+
     li {
       margin-bottom: 2rem;
     }
@@ -97,12 +106,24 @@ header .container {
       text-decoration: none;
       text-transform: uppercase;
     }
+
+    @include mediaQuery($desktop) {
+      display: flex;
+      flex-flow: row;
+      text-align: left;
+      justify-content: space-between;
+      gap: 4rem;
+      border: none;
+
+      li {
+        margin-bottom: 1rem;
+      }
+    }
   }
 
   .footer__social-menu {
     border-bottom: 1px solid $color-white;
     padding-bottom: 2rem;
-    width: 90%;
 
     ul {
       @include flex(row, center, center);
@@ -120,10 +141,13 @@ header .container {
       color: $color-white;
       font-size: 1.2rem;
     }
+
+    @include mediaQuery($desktop) {
+      border: none;
+    }
   }
 
   .footer__subscription {
-    width: 90%;
     form {
       @include flex(row, center, center);
       gap: 0.5rem;
@@ -157,6 +181,11 @@ header .container {
   font-weight: 400;
   text-transform: uppercase;
   margin-bottom: 2rem;
+
+  @include mediaQuery($desktop) {
+    text-align: left;
+    margin-bottom: 1rem;
+  }
 }
 
 .footer__copyright {
@@ -165,6 +194,15 @@ header .container {
   @include flex(column, center, center);
   @include fontBody2();
   padding: 1.5rem 0;
+
+  @include mediaQuery($desktop) {
+    flex-flow: row;
+    justify-content: start;
+
+    span:first-child::after {
+      content: " - ";
+    }
+  }
 }
 
 .home .section__image-divider {

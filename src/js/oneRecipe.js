@@ -105,69 +105,71 @@ export default async function init() {
         <p>Protein: <span>${ingredients.protein}</span></p>
     `;
 
-        // Ingredients
-        //   ingredientsContainer.innerHTML = recipe.extendedIngredients;
-        recipe.extendedIngredients.forEach((ing) => {
-            const checkboxContainer = document.createElement("div");
-            checkboxContainer.className = "form-check";
 
-            const checkboxInput = document.createElement("input");
-            checkboxInput.className = "form-check-input";
-            checkboxInput.type = "checkbox";
-            checkboxInput.id = ing.id;
+  // Ingredients
+  //   ingredientsContainer.innerHTML = recipe.extendedIngredients;
+  recipe.extendedIngredients.forEach((ing) => {
+    const checkboxContainer = document.createElement("div");
+    checkboxContainer.className = "form-check";
 
-            const checkboxLabel = document.createElement("label");
-            checkboxLabel.className = "form-check-label";
-            checkboxLabel.htmlFor = ing.id;
+    const checkboxInput = document.createElement("input");
+    checkboxInput.className = "form-check-input";
+    checkboxInput.type = "checkbox";
+    checkboxInput.id = ing.id;
 
-            checkboxLabel.textContent = ing.original;
-            checkboxContainer.appendChild(checkboxInput);
-            checkboxContainer.appendChild(checkboxLabel);
-            ingredientsContainer.appendChild(checkboxContainer);
-        });
-        const addIngsBtnContainer = document.createElement("div");
-        const addIngsBtn = document.createElement("button");
-        addIngsBtn.textContent = "Add Ingredients to Shopping List";
-        addIngsBtn.classList.add("btn-orange");
-        addIngsBtnContainer.appendChild(addIngsBtn);
-        ingredientsContainer.appendChild(addIngsBtnContainer);
+    const checkboxLabel = document.createElement("label");
+    checkboxLabel.className = "form-check-label";
+    checkboxLabel.htmlFor = ing.id;
 
-        addIngsBtn.addEventListener("click", () => {
-            const labels = document.querySelectorAll(".form-check-label");
-            labels.forEach(async (label) => {
-                const input = document.getElementById(`${label.getAttribute("for")}`);
-                if (input.checked) {
-                    console.log(label.textContent);
-                    const docData = {
-                        ingredient: label.textContent,
-                    };
+    checkboxLabel.textContent = ing.original;
+    checkboxContainer.appendChild(checkboxInput);
+    checkboxContainer.appendChild(checkboxLabel);
+    ingredientsContainer.appendChild(checkboxContainer);
+  });
+  const addIngsBtnContainer = document.createElement("div");
+  const addIngsBtn = document.createElement("button");
+  addIngsBtn.textContent = "Add to Shopping List";
+  addIngsBtn.classList.add("btn-orange");
+  addIngsBtnContainer.appendChild(addIngsBtn);
+  ingredientsContainer.appendChild(addIngsBtnContainer);
 
-                    const UID = auth.currentUser.uid;
-                    try {
-                        await addDoc(collection(db, `users/${UID}/shoppinglist`), docData);
-                        alert(`ingredients added, ${auth?.currentUser ? auth?.currentUser?.displayName : "Bro"}!`);
-                    } catch (error) {
-                        const errorCode = error.code;
-                        const errorMessage = error.message;
-                        console.log(errorCode + errorMessage);
-                    }
-                }
-            });
-        });
+  addIngsBtn.addEventListener("click", () => {
+    const labels = document.querySelectorAll(".form-check-label");
+    labels.forEach(async (label) => {
+      const input = document.getElementById(`${label.getAttribute("for")}`);
+      if (input.checked) {
+        console.log(label.textContent);
+        const docData = {
+          ingredient: label.textContent,
+        };
 
-        // Instructions
-        recipe.analyzedInstructions[0].steps.forEach((step) => {
-            const p = document.createElement("p");
-            p.textContent = `${step.number}. ${step.step}`;
-            instructionsContainer.appendChild(p);
-        });
-        //   instructionsContainer.innerHTML = recipe.instructions;
+        const UID = auth.currentUser.uid;
+        try {
+          await addDoc(collection(db, `users/${UID}/shoppinglist`), docData);
+          alert(`ingredients added, ${auth?.currentUser ? auth?.currentUser?.displayName : "Bro"}!`);
+        } catch (error) {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode + errorMessage);
+        }
+      }
+    });
+  });
+
+  // Instructions
+  recipe.analyzedInstructions[0].steps.forEach((step) => {
+    const p = document.createElement("p");
+    p.textContent = `${step.number}. ${step.step}`;
+    instructionsContainer.appendChild(p);
+  });
+  //   instructionsContainer.innerHTML = recipe.instructions;
 
 
-        //make links open on a new tab
-        const recipeOutsideLinks = document.querySelectorAll('#about-recipe a');
-        recipeOutsideLinks.forEach((link) => {
-            link.setAttribute('target', '_blank');
-        });
-    }
+
+  //make links open on a new tab
+  const recipeOutsideLinks = document.querySelectorAll('#about-recipe a');
+  recipeOutsideLinks.forEach((link) =>{
+    link.setAttribute('target', '_blank');
+  });
+
 }
