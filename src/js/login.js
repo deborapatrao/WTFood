@@ -22,7 +22,7 @@ export default function init() {
   const signInFb = document.getElementById("signInFb");
   const signOutBtn = document.getElementById("signOut");
   // const loginNav = document.getElementById("login-nav");
-  const back_btn = document.querySelector(".back-login");
+  const back_btn = document.querySelector("#signInLink");
   const signUpContainer = document.querySelector(".sign-up");
   const signInContainer = document.querySelector(".sign-in");
 
