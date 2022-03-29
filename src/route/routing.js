@@ -1,7 +1,8 @@
 "use strict";
 
 import { auth, onAuthStateChanged } from "../firebase.js";
-
+import Swal from "sweetalert2";
+window.bootstrap = require('bootstrap/dist/js/bootstrap.bundle.js');
 export class Page {
   constructor(name, htmlName, jsName) {
     this.name = name;
@@ -57,8 +58,17 @@ export class Router {
             let init = await import(`../js/${page.jsName}`); // lazily loading the js files
             init.default();
           } else {
-            alert("user is NOT signed in");
-            window.location.href = "#home";
+            Swal.fire(
+                'Warning',
+                'Please sing in to use your profile!',
+                'warning',
+            ).then((result) => {
+              // const modalSign = document.getElementById('exampleModal');
+              let myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {});
+              myModal.show();
+              window.location.href = "#home";
+            });
+
           }
         });
 
