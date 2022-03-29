@@ -10,6 +10,7 @@ import {
   FacebookAuthProvider,
   getRedirectResult,
 } from "../firebase.js";
+import Swal from "sweetalert2";
 
 export default function init() {
   const signUp = document.getElementById("signUp");
@@ -28,7 +29,15 @@ export default function init() {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        alert("User created!");
+        Swal.fire(
+            'Success',
+            'User Created',
+            'success',
+        ).then((result) => {
+          // Reload the Page
+          // location.reload();
+        });
+
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -48,8 +57,14 @@ export default function init() {
         // Signed in
         // const user = userCredential.user;
         // ...
-        // console.log(userCredential);
-        console.log("User Sign in");
+
+        Swal.fire(
+            'Success',
+            'User Sign in',
+            'success',
+        )
+
+
       })
       .catch((error) => {
         const errorCode = error.code;
