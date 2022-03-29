@@ -1,7 +1,7 @@
 "use strict";
 
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc, doc, setDoc, getDoc, getDocs } from "firebase/firestore";
+import { getFirestore, collection, addDoc, doc, setDoc, getDoc, getDocs,Timestamp } from "firebase/firestore";
 
 import { getStorage, ref, uploadBytes, getDownloadURL, listAll } from "firebase/storage";
 import {
@@ -43,6 +43,7 @@ export {
   setDoc,
   getDoc,
   getDocs,
+  Timestamp,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
