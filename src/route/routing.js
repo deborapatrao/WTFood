@@ -2,7 +2,8 @@
 
 import { auth, onAuthStateChanged } from "../firebase.js";
 import Swal from "sweetalert2";
-window.bootstrap = require('bootstrap/dist/js/bootstrap.bundle.js');
+// window.bootstrap = require("bootstrap/dist/js/bootstrap.bundle.js");
+import { Modal } from "bootstrap";
 export class Page {
   constructor(name, htmlName, jsName) {
     this.name = name;
@@ -49,7 +50,7 @@ export class Router {
       // get the HTML pages content
       const response = await fetch(page.htmlName);
       const txt = await response.text();
-      
+
       if (window.location.hash == "#profile")
         onAuthStateChanged(auth, async (user) => {
           const userCheck = user?.auth?.currentUser;
@@ -58,17 +59,12 @@ export class Router {
             let init = await import(`../js/${page.jsName}`); // lazily loading the js files
             init.default();
           } else {
-            Swal.fire(
-                'Warning',
-                'Please sing in to use your profile!',
-                'warning',
-            ).then((result) => {
+            Swal.fire("Warning", "Please sing in to use your profile!", "warning").then((result) => {
               // const modalSign = document.getElementById('exampleModal');
-              let myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {});
-              myModal.show();
+              let myModal = new Modal(document.getElementById("exampleModal"), {});
+              myModal.toggle();
               window.location.href = "#home";
             });
-
           }
         });
 
@@ -81,7 +77,7 @@ export class Router {
 
       let initLogin = await import(`../js/login.js`); // lazily loading the js files
       initLogin.default();
-      
+
       // if the page requires auth, load the header(auth-template) first and then hook the pages in the #mainArea
       // if (page.authRequired) {
       //   if (!document.getElementById('header')) {
