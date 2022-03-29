@@ -58,16 +58,18 @@
   border-bottom-left-radius: 0;
 }
 
-@media screen and (min-width: 992px) {
-  #mobileFilterBtn,
-  #filtersModal,
-  .modal-backdrop,
-  .modal.show .modal-dialog {
-    display: none;
-  }
+.recipes__main {
+  @include mediaQuery($desktop) {
+    #mobileFilterBtn,
+    #filtersModal,
+    .modal-backdrop,
+    .modal.show .modal-dialog {
+      display: none;
+    }
 
-  #accordionDesktop {
-    display: block;
+    #accordionDesktop {
+      display: block;
+    }
   }
 }
 
