@@ -29,15 +29,10 @@ export default function init() {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        Swal.fire(
-            'Success',
-            'User Created',
-            'success',
-        ).then((result) => {
+        Swal.fire("Success", "User Created", "success").then((result) => {
           // Reload the Page
           // location.reload();
         });
-
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -58,13 +53,7 @@ export default function init() {
         // const user = userCredential.user;
         // ...
 
-        Swal.fire(
-            'Success',
-            'User Sign in',
-            'success',
-        )
-
-
+        Swal.fire("Success", "User Sign in", "success");
       })
       .catch((error) => {
         const errorCode = error.code;
