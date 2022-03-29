@@ -141,9 +141,13 @@ export default function init() {
   function closeOneModal(modalId) {
     // get modal
     const modal = document.getElementById(modalId);
-
     // change state like in hidden modal
     modal.classList.remove("show");
+    document.querySelector('body').classList.remove('modal-open');
+    document.querySelector('body').removeAttribute('style');
+
+    modal.removeAttribute("aria-modal");
+
     modal.setAttribute("aria-hidden", "true");
     modal.setAttribute("style", "display: none");
 
