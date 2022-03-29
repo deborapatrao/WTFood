@@ -1,22 +1,136 @@
 .popup__container {
   &--form {
-    margin: 2rem 0;
-
     &-email,
-    &-password {
+    &-password,
+    &-name {
       display: flex;
       flex-direction: column;
 
       input {
-        border: 1px solid lightgrey;
-        border-radius: 7px;
-        padding: 0.2rem 0.3rem;
+        border-radius: $std-border-radius;
+        border: $border-grey;
+        padding: $padding-small;
+      }
+
+      label {
+        @include fontBody2Semibold();
+        padding-left: 1rem;
+      }
+
+      a {
+        @include fontBody2Semibold();
+        text-decoration: underline;
+        color: $color-black;
+        text-align: right;
+      }
+    }
+
+    p {
+      text-align: center;
+      background-color: $color-white;
+
+      position: relative;
+
+      &::before,
+      &::after {
+        content: "";
+        width: 45%;
+        border-bottom: $border-grey;
+        position: absolute;
+
+        bottom: 50%;
+        right: 0;
+      }
+
+      &::before {
+        left: 0;
+      }
+    }
+
+    &-checkbox {
+      label {
+        @include fontBody2();
+      }
+
+      span {
+        @include fontBody2Semibold();
       }
     }
   }
 
+  &--change-page {
+    text-align: center;
+  }
+
+  button {
+    width: 100%;
+    text-align: center;
+  }
   svg {
     height: 1.4rem;
     vertical-align: sub;
+  }
+}
+
+.sign-in {
+  .popup__container--form > * {
+    margin-top: 2rem;
+  }
+}
+
+.sign-up {
+  .popup__container--form > * {
+    margin-top: 1rem;
+  }
+}
+
+.modal-login {
+  .modal-content {
+    overflow: hidden;
+    border-radius: $std-border-radius;
+  }
+
+  .modal-header {
+    border-bottom: none;
+    position: absolute;
+    right: 0;
+    z-index: 1000;
+  }
+
+  .modal-body {
+    padding: 0;
+    @include mediaQuery($desktop) {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+    }
+
+    &-image {
+      display: none;
+      @include mediaQuery($desktop) {
+        display: block;
+        background-image: url(https://firebasestorage.googleapis.com/v0/b/wtfood-3d70f.appspot.com/o/website%20images%2Flogin.jpg?alt=media&token=2ae1fc11-e9c5-49ac-8203-20ec6a84a2e5);
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    }
+    &-content {
+      padding-top: 3rem;
+      @include mediaQuery($tablet) {
+        padding: 3rem 1.5rem 1rem 1.5rem;
+      }
+
+      @include mediaQuery($desktop) {
+        padding: 3rem 1rem 1rem 1rem;
+      }
+      div.profile-open {
+      }
+      h3 {
+        font-size: 2rem;
+      }
+
+      p {
+        @include fontBody2();
+      }
+    }
   }
 }
