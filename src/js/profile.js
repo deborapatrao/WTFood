@@ -127,7 +127,6 @@ export default function init() {
                     console.log("Uploaded a blob or file!");
                     getDownloadURL(profilePhoto)
                         .then((url) => {
-                            console.log("photo updated");
                             userUpdate(url);
                         })
                         .catch((error) => {
@@ -151,14 +150,20 @@ export default function init() {
         const sname = document.getElementById("updateSName").value;
         const user = auth.currentUser;
         const name = `${fname} ${sname}`;
-        // console.log(photoStorage);
+
         if (user) {
             updateProfile(user, {
                 displayName: name,
                 photoURL: photoStorage,
             })
                 .then(() => {
-                    window.top.location.reload(true);
+                    Swal.fire(
+                        'Success',
+                        'User Updated!',
+                        'success',
+                    ).then((result) => {
+                        location.reload();
+                    });
                 })
                 .catch((error) => {
                     const errorCode = error.code;
@@ -229,7 +234,6 @@ export default function init() {
                     'Your Recipe was Created!',
                     'success',
                 ).then((result) => {
-                    // Reload the Page
                     location.reload();
                 });
 
@@ -239,12 +243,6 @@ export default function init() {
                 console.log(errorCode + errorMessage);
             });
 
-            const resetInput = document.querySelectorAll('input');
-            resetInput.forEach(item => {
-                item.value = '';
-            });
-            // document.getElementById('instruction').value = '';
-            // window.top.location.reload(true);
         } catch
             (error) {
             const errorCode = error.code;
@@ -252,7 +250,6 @@ export default function init() {
             console.log(errorCode + errorMessage);
 
         }
-
     }
 
     const el = document.getElementById("publish");
@@ -292,7 +289,6 @@ export default function init() {
 
         const UID = auth.currentUser.uid;
         const recipesCards = document.getElementById("recipesCards");
-        // await collection(`users/${UID}/recipes`).get()
         const snapshot = collection(db, `users/${UID}/recipes`);
         const allRecipes = await getDocs(snapshot);
         console.log(allRecipes)
@@ -467,7 +463,7 @@ export default function init() {
             play.classList.add("d-none");
             screenshot.classList.remove("d-none");
         };
-//
+
         const getCameraSelection = async () => {
             const devices = await navigator.mediaDevices.enumerateDevices();
             const videoDevices = devices.filter((device) => device.kind === "videoinput");
@@ -476,7 +472,7 @@ export default function init() {
             });
             cameraOptions.innerHTML = options.join("");
         };
-//
+
         getCameraSelection();
     }
 
@@ -520,7 +516,6 @@ export default function init() {
     });
 
     removeBtn.addEventListener('click', () => {
-        console.log('removebtn:' + i);
         const inputsRemove = document.getElementById('input-ingredient');
         const ingredientInputRemove = document.getElementById(`ingredient_${i}`);
         const ingredientLabelRemove = document.getElementById(`ingredientLabel_${i}`);
