@@ -25,7 +25,6 @@ export default async function init() {
         const time = recipe.data().time;
         const type_recipe = recipe.data().type_recipe;
         const instructions = recipe.data().instructions;
-
         const img = document.createElement("img");
         const divInstruction = document.createElement("div");
         const ingredientList = document.createElement("ol");
