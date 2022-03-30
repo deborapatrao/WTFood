@@ -216,10 +216,6 @@
 }
 
 .mobile-filter-btn {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
-
   button {
     width: 100%;
     text-align: left;
@@ -280,4 +276,7 @@
 #signInGoogle {
   border: $border-grey;
   margin-top: 1rem;
+}
+#screenshot{
+  transform: translateX(-36px);
 }
