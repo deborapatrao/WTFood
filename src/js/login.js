@@ -65,6 +65,7 @@ export default function init() {
 
           Swal.fire("Success", "User Created", "success").then((result) => {
             closeOneModal("exampleModal");
+            window.location.href = "#profile";
           });
         } catch (e) {
           console.error("Error adding document: ", e);
