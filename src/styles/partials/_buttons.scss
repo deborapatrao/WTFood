@@ -191,7 +191,7 @@
     }
 
     .swiper-prev2 {
-      left: -15px;
+      left: -10px;
       top: calc(50% - 56px);
       svg {
         height: 1rem;
@@ -203,7 +203,7 @@
     }
 
     .swiper-next2 {
-      right: -15px;
+      right: -10px;
       top: calc(50% - 56px);
       svg {
         height: 1rem;
@@ -258,10 +258,9 @@
   align-items: center;
 }
 .add-photo-btns {
-  display: flex;
-  justify-content: center;
-  gap: 50px;
   margin-top: -30px;
+  align-self: end;
+  z-index: 10;
 }
 
 //FB and Google buttons

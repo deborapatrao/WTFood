@@ -12,15 +12,17 @@
           id="profileNavigation"
         >
 
-
-
           <div class="profile-main__wrapper">
             <div class="profile__user-info">
               <div class="profile__avatar">
-                <div class="user-photo-container">
-                  <img src="#" alt="" id="userPhoto" />
                 
-                </div>
+                  <label for="photoFile" class="user-photo-container">
+                    
+                    <img src="#" alt="" id="userPhoto" />
+                  
+                  </label>
+                 <input type="file" id="photoFile" accept="image/*">
+                
                 <div class="add-photo-btns">
                   <button>
                     <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -39,18 +41,11 @@
                       
                   </button>
 
-                  <button>
-                    <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="15.5644" cy="15.4355" r="14.3665" transform="rotate(179.257 15.5644 15.4355)" fill="white" stroke="#FD8722" stroke-width="2"/>
-                      <path d="M16 22.5L16 7.5" stroke="#FD8722" stroke-width="2" stroke-miterlimit="10"/>
-                      <path d="M10.75 12.75L16 7.5L21.25 12.75" stroke="#FD8722" stroke-width="2" stroke-miterlimit="10" stroke-linecap="square"/>
-                      </svg>
-                      
-                  </button>
+                  
                 </div>
               </div>
               <div class="profile__photo ">
-                <input type="file" id="photoFile" accept="image/*" />
+                <!-- <input type="file" id="photoFile" accept="image/*" /> -->
                 <div class="display-cover">
                   <video autoplay></video>
                   <canvas class="d-none"></canvas>
