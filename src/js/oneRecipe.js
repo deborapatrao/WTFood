@@ -27,17 +27,30 @@ export default async function init() {
                 const time = recipe.data().time;
                 const type_recipe = recipe.data().type_recipe;
                 const instructions = recipe.data().instructions;
-                const ingredient_1 = recipe.data().ingredient_1;
-                const ingredient_2 = recipe.data().ingredient_2;
-                const ingredient_3 = recipe.data().ingredient_3;
-                const ingredient_4 = recipe.data().ingredient_4;
-                const ingredient_5 = recipe.data().ingredient_5;
-
-                console.log(recipe.data().ingredient_2);
 
                 const img = document.createElement("img");
                 const divInstruction = document.createElement("div");
                 const ingredientList = document.createElement('ol');
+
+                let list = 1;
+                // for (let field in recipe.data()) {
+                //
+                //     console.log(field);
+                //     if (ingredientN === field) {
+                //
+                //         list++;
+                //         console.log(ingredient)
+                //         console.log(ingredientN)
+                //     }
+                // }
+                for (list; list < 20; list++){
+                    let ingredientN = `ingredient_${list}`;
+                    let ingredient = recipe.data()[ingredientN];
+                    if (ingredient){
+                        ingredientList.innerHTML += `<li>${ingredient}</li>`;
+                    }
+                }
+
 
                 img.src = photo;
 
@@ -46,8 +59,6 @@ export default async function init() {
                 recipeCookTime.innerHTML = `${time} Min`;
                 recipeServing.innerHTML = `${serving} Serving`;
                 recipeIngredients.appendChild(ingredientList);
-                ingredientList.innerHTML = `<li>${ingredient_1}</li>   
-<li>${ingredient_2}</li><li>${ingredient_3}</li><li>${ingredient_4}</li><li>${ingredient_5}</li>`
 
 
                 divInstruction.textContent = instructions;

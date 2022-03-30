@@ -144,11 +144,17 @@ export default function init() {
     // change state like in hidden modal
     modal.classList.remove("show");
     document.querySelector('body').classList.remove('modal-open');
+    setTimeout(ariahidden, 300)
+    function ariahidden(){
+      console.log('here')
+      modal.setAttribute("aria-hidden", "true");
+    }
+
     document.querySelector('body').removeAttribute('style');
 
     modal.removeAttribute("aria-modal");
 
-    modal.setAttribute("aria-hidden", "true");
+
     modal.setAttribute("style", "display: none");
 
     // get modal backdrop
