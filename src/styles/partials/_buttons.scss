@@ -252,11 +252,23 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 .add-photo-btns {
   margin-top: -30px;
   align-self: end;
   z-index: 10;
+  button {
+    position: absolute;
+  }
+
+  #cameraProfile {
+    right: 0;
+  }
+
+  #screenshot {
+    right: 0;
+  }
 }
 
 //FB and Google buttons
@@ -276,7 +288,4 @@
 #signInGoogle {
   border: $border-grey;
   margin-top: 1rem;
-}
-#screenshot{
-  transform: translateX(-36px);
 }

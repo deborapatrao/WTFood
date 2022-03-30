@@ -274,10 +274,10 @@
 
 .shopping-list__items {
   display: grid;
+  gap: 0.5rem;
 
   @include mediaQuery($desktop) {
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.5rem;
   }
 
   div {

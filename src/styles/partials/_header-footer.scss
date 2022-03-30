@@ -5,6 +5,16 @@ header {
   z-index: 90;
   border-bottom: $border-grey;
 }
+.header__avatar-container {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+
+  .login-avatar {
+    max-width: 100%;
+  }
+}
 
 .header__wrapper {
   display: grid;

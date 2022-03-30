@@ -114,7 +114,7 @@
       }
     }
     &-content {
-      padding-top: 3rem;
+      padding: 3rem 1rem 1rem 1rem;
       @include mediaQuery($tablet) {
         padding: 3rem 1.5rem 1rem 1.5rem;
       }
