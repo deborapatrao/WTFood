@@ -56,12 +56,6 @@ nav a {
 }
 
 // Login popup and Login button
-.login-avatar {
-  width: 40px;
-  height: auto;
-
-  @include roundImg();
-}
 
 .nav__link {
   cursor: pointer;
