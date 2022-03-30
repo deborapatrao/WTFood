@@ -17,13 +17,20 @@
   <!-- <div class="recipes">-->
 
   <section>
-    <div class="recipe__heading">
-      <div class="container"></div>
+    <div class="recipe__heading background-light-grey">
+      <div class="container">
+        <p class="results-subheading">Search results for:</p>
+        <h2 class="results-title"></h2>
+      </div>
     </div>
 
     <div class="container">
       <div class="recipes__main">
         <div class="filter-container">
+          <div class="filter__heading">
+            <h2>Filter</h2>
+            <button class="btn-noborder">clear</button>
+          </div>
           <div class="accordion" id="accordionDesktop">
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingOne">
@@ -225,6 +232,20 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="recipes__sort-container">
+          <label for="sortRecipes" class="visually-hidden">Sort recipes</label>
+          <select
+            type="select"
+            name="sortRecipes"
+            id="sortRecipes"
+            class="btn-white"
+          >
+            <option disebled selected value="">Sort</option>
+            <option value="popularity">Most favorited</option>
+            <option value="cookingTime">Cooking time</option>
+            <option value="missingIng">Less missing ingredients</option>
+          </select>
         </div>
         <div class="results-container">
           <div id="resultTest" class="recipes__results"></div>
