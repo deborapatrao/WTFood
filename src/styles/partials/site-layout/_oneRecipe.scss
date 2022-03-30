@@ -99,10 +99,10 @@
 
 .recipe-banner {
   @include mediaQuery($desktop) {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
     gap: 2rem;
     align-items: center;
+    justify-content: space-between;
 
     width: 100%;
     max-width: 960px;
@@ -114,6 +114,7 @@
     .oneRecipe-image {
       border-radius: $std-border-radius;
       overflow: hidden;
+      flex-basis: 100%;
     }
   }
 }
