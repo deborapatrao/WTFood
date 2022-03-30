@@ -348,11 +348,17 @@ export default function init() {
     function camera() {
 
         const controls = document.querySelector(".controls");
+        const divCamera = document.querySelector("#divcamera");
+        // const div = document.getElementById('divCamera')
+        const cameraPlay = document.querySelector("#cameraProfile");
+        const cameraSS = document.querySelector("#screenshot");
         const cameraOptions = document.querySelector(".video-options>select");
         const video = document.querySelector("video");
         const canvas = document.querySelector("canvas");
+        const img = document.querySelector(".screenshot-image");
         const screenshotImage = document.querySelector("img");
         const buttons = [...controls.querySelectorAll("button")];
+
         let streamStarted = false;
 
         const [play, screenshot] = buttons;
@@ -384,10 +390,13 @@ export default function init() {
 
         };
 
-        play.onclick = () => {
+        cameraPlay.onclick = () => {
             if (streamStarted) {
                 video.play();
                 play.classList.add("d-none");
+                divCamera.style.visibility = 'none';
+                // div.removeAttribute('style');
+                console.log('first if');
                 return;
             }
             if ("mediaDevices" in navigator && navigator.mediaDevices.getUserMedia) {
@@ -397,26 +406,17 @@ export default function init() {
                         exact: cameraOptions.value,
                     },
                 };
-                startStream(updatedConstraints);
-            }
-        };
+                console.log('2 if');
+                divCamera.removeAttribute('style');
+                divCamera.style.visibility = 'none';
+                // cameraPlay.removeAttribute('style');
 
 
-        play.onclick = () => {
-            if (streamStarted) {
-                video.play();
-                play.classList.add("d-none");
-                return;
-            }
-            if ("mediaDevices" in navigator && navigator.mediaDevices.getUserMedia) {
-                const updatedConstraints = {
-                    ...constraints,
-                    deviceId: {
-                        exact: cameraOptions.value,
-                    },
-                };
                 startStream(updatedConstraints);
             }
+            cameraSS.removeAttribute('style');
+            cameraSS.style.visibility = 'none';
+            cameraPlay.style.visibility = 'hidden';
         };
 
         const doScreenshot = () => {
@@ -427,7 +427,9 @@ export default function init() {
             screenshotImage.src = canvas.toDataURL('image/webp');
             screenshotImage.classList.remove('d-none');
             canvas.toBlob(function (blob) {
-
+                cameraSS.style.visibility = 'hidde';
+                cameraPlay.removeAttribute('style');
+                cameraPlay.style.visibility = 'none';
                 if (user) {
                     const profilePhoto = ref(storage, `users/${auth.currentUser.uid}/recipes/${Date.now()}`);
                     photoURL = Date.now();
@@ -436,6 +438,7 @@ export default function init() {
                             getDownloadURL(ref(storage, `users/${auth.currentUser.uid}/recipes/${photoURL}`))
                                 .then((url) => {
                                     photoURL = url;
+
                                 })
                                 .catch((error) => {
                                     const errorCode = error.code;
@@ -451,7 +454,7 @@ export default function init() {
                 }
             });
         };
-        screenshot.onclick = doScreenshot;
+        cameraSS.onclick = doScreenshot;
 
         const startStream = async (constraints) => {
             const stream = await navigator.mediaDevices.getUserMedia(constraints);
