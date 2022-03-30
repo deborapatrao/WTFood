@@ -11,6 +11,8 @@ import {
   getRedirectResult,
   collection,
   addDoc,
+  updateProfile,
+  db,
 } from "../firebase.js";
 
 import Swal from "sweetalert2";
@@ -36,27 +38,47 @@ export default function init() {
   });
 
   signUp.addEventListener("click", () => {
-    const email = document.getElementById("email1").value;
-    const password = document.getElementById("password1").value;
+    const email = document.getElementById("email2").value;
+    const password = document.getElementById("password2").value;
+    const fullName = document.getElementById("fullname").value;
 
     createUserWithEmailAndPassword(auth, email, password)
       .then(async (userCredential) => {
-        // Signed in
+        // Signed up
         const user = userCredential.user;
-        await addDoc(collection(db, "users"), {
-          name: user.displayName,
-          email: user.email,
-          photoURL: user.photoURL,
-        });
+        console.log(user.uid);
 
-        Swal.fire("Success", "User Created", "success").then((result) => {
-          closeOneModal("exampleModal");
+        //await is REALLY important ...
+        await updateProfile(user, {
+          displayName: fullName,
+          photoURL:
+            "https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg",
         });
+        console.log(user.displayName);
+        console.log(user.photoURL);
+        try {
+          await addDoc(collection(db, "users"), {
+            name: user.displayName,
+            email: email,
+            photoURL: user.photoURL,
+          });
+
+          Swal.fire("Success", "User Created", "success").then((result) => {
+            closeOneModal("exampleModal");
+          });
+        } catch (e) {
+          console.error("Error adding document: ", e);
+        }
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode + errorMessage);
+        // const errorCode = error.code;
+        // const errorMessage = error.message;
+        // console.log("HERE: ", errorMessage);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong! Please enter valid email or password!",
+        });
       });
   });
 
@@ -78,9 +100,14 @@ export default function init() {
         });
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode + errorMessage);
+        // const errorCode = error.code;
+        // const errorMessage = error.message;
+        // console.log(errorCode + errorMessage);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong! Please enter valid email or password!",
+        });
       });
   });
 
@@ -125,7 +152,12 @@ export default function init() {
       })
       .catch((error) => {
         // An error happened.
-        console.log(error.message);
+        // console.log(error.message);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Cannot finish the session...",
+        });
       });
   });
 
@@ -143,17 +175,16 @@ export default function init() {
     const modal = document.getElementById(modalId);
     // change state like in hidden modal
     modal.classList.remove("show");
-    document.querySelector('body').classList.remove('modal-open');
-    setTimeout(ariahidden, 300)
-    function ariahidden(){
-      console.log('here')
+    document.querySelector("body").classList.remove("modal-open");
+    setTimeout(ariahidden, 300);
+    function ariahidden() {
+      console.log("here");
       modal.setAttribute("aria-hidden", "true");
     }
 
-    document.querySelector('body').removeAttribute('style');
+    document.querySelector("body").removeAttribute("style");
 
     modal.removeAttribute("aria-modal");
-
 
     modal.setAttribute("style", "display: none");
 

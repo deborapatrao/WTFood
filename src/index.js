@@ -111,13 +111,18 @@ onAuthStateChanged(auth, (user) => {
     }`;
     loginNav.textContent = "";
     loginNav.appendChild(cardImage);
-
+    // loginNav.removeAttribute("data-bs-toggle");
+    // loginNav.removeAttribute("data-bs-target");
+    // loginNav.setAttribute("href", "#profile");
     // loginNav.innerHTML = "YOU ARE SIGNED IN";
 
     // const uid = user.uid;
     // ...
   } else {
     loginNav.innerHTML = "login";
+    // loginNav.setAttribute("data-bs-toggle", "modal");
+    // loginNav.setAttribute("data-bs-target", "#exampleModal");
+    // loginNav.removeAttribute("href");
     // if (window.location.hash == "profile") {
     //   alert("user is NOT signed in");
     //   window.location.href = "#home";
