@@ -71,7 +71,7 @@ export default async function init() {
     } else {
         const recipeID = window.location.search.substring(4);
         console.log(`else: ${recipeID}`);
-        const apiKey = "dbdd76ad6ede4920a8db046580d6d5fe";
+        const apiKey = "da72a5b346e844e38a84019d6cd0cbf5";
         const urlRecipeInfo = `https://api.spoonacular.com/recipes/${recipeID}/information?apiKey=${apiKey}`;
         const urlIngredients = `https://api.spoonacular.com/recipes/${recipeID}/nutritionWidget.json?apiKey=${apiKey}`;
         //   https://api.spoonacular.com/recipes/638086/nutritionWidget.json?apiKey=458fa3b63d9e4e0b8c6b85edb81edd4b
