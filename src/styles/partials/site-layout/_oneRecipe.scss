@@ -110,6 +110,7 @@
     padding-left: var(--bs-gutter-x, 0.75rem);
     margin-right: auto;
     margin-left: auto;
+    max-width: 1000px;
 
     .oneRecipe-image {
       border-radius: $std-border-radius;
@@ -141,4 +142,10 @@
       margin-bottom: 1rem;
     }
   }
+}
+
+.newClass {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
 }
