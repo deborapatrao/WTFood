@@ -181,6 +181,13 @@ footer {
         color: $color-white;
       }
 
+      input[type="email"]{
+        width: 290px;
+        @include mediaQuery($desktop){
+          text-align: left;
+        }
+      }
+
       label,
       input[type="submit"] {
         border-radius: $std-border-radius;
