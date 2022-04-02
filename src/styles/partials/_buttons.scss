@@ -238,13 +238,6 @@
   }
 }
 
-.ingredients-wrapper button {
-  width: 100%;
-
-  @include mediaQuery($desktop) {
-    width: auto;
-  }
-}
 
 //Profile Camera buttons
 

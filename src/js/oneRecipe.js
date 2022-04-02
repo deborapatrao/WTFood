@@ -110,6 +110,11 @@ export default async function init() {
 
     // Ingredients
     //   ingredientsContainer.innerHTML = recipe.extendedIngredients;
+    const selectAllBtn = document.createElement("button");
+    selectAllBtn.textContent = "Select all";
+    selectAllBtn.classList.add("btn-noborder");
+    ingredientsContainer.appendChild(selectAllBtn);
+    
     recipe.extendedIngredients.forEach((ing) => {
       const checkboxContainer = document.createElement("div");
       checkboxContainer.className = "form-check";
@@ -129,10 +134,15 @@ export default async function init() {
       ingredientsContainer.appendChild(checkboxContainer);
     });
     const addIngsBtnContainer = document.createElement("div");
+    addIngsBtnContainer.classList.add("ingredients-btn-container");
     const addIngsBtn = document.createElement("button");
+    const clearIngsBtn = document.createElement("button");
     addIngsBtn.textContent = "Add to Shopping List";
     addIngsBtn.classList.add("btn-orange");
+    clearIngsBtn.textContent = "clear";
+    clearIngsBtn.classList.add("btn-white");
     addIngsBtnContainer.appendChild(addIngsBtn);
+    addIngsBtnContainer.appendChild(clearIngsBtn);
     ingredientsContainer.appendChild(addIngsBtnContainer);
 
     addIngsBtn.addEventListener("click", () => {
@@ -178,6 +188,25 @@ export default async function init() {
         });
       });
     });
+
+    //Select all ingredients
+    selectAllBtn.addEventListener('click', () => {
+      const ingCheckbox = document.querySelectorAll(".form-check-input");
+
+      ingCheckbox.forEach((ingredient) => {
+        ingredient.checked = true;
+      });
+    });
+
+    //Clear all ingredients
+    clearIngsBtn.addEventListener('click', () => {
+      const ingCheckbox = document.querySelectorAll(".form-check-input");
+
+      ingCheckbox.forEach((ingredient) => {
+        ingredient.checked = false;
+      });
+    });
+
 
     // Instructions
     recipe.analyzedInstructions[0].steps.forEach((step) => {
