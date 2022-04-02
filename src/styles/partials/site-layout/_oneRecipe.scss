@@ -106,6 +106,7 @@
 
     width: 100%;
     max-width: 960px;
+    padding-top: 2rem;
     padding-right: var(--bs-gutter-x, 0.75rem);
     padding-left: var(--bs-gutter-x, 0.75rem);
     margin-right: auto;
@@ -116,6 +117,12 @@
       border-radius: $std-border-radius;
       overflow: hidden;
       flex-basis: 100%;
+      text-align: left;
+
+      img{
+        border-radius: $std-border-radius;
+        
+      }
     }
   }
 }

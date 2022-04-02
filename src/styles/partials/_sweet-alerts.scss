@@ -1,0 +1,19 @@
+.swal2-styled.swal2-confirm{
+    width: 155px; 
+  @include fontButton();
+  border-radius: $std-border-radius;
+  text-align: center;
+  
+}
+
+h2.swal2-title{
+    @include fontSubtitle1();
+}
+
+.swal2-html-container.toast-body{
+    @include fontBody2();
+}
+
+.swal-noborder{
+    border: none;
+}

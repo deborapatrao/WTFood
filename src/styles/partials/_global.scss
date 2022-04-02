@@ -59,12 +59,15 @@ body.black-overlay:after {
     background-color: unset;
   }
 
-  .recipe-card__img {
+  &__img {
     border-radius: $std-border-radius;
     overflow: hidden;
     display: grid;
     grid-template-columns: 0.5rem auto 0.5rem;
     grid-template-rows: 0.5rem auto 0.5rem;
+    max-width: 318px;
+    max-height: 324px;
+    overflow: hidden;
 
     img {
       grid-column: 1/-1;
@@ -163,4 +166,11 @@ body.black-overlay:after {
 
 .container {
   max-width: 1000px;
+}
+
+a{
+  transition: all 200ms ease-out;
+  &:hover{
+    color: $color-primary-dark;
+  }
 }
