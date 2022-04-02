@@ -28,8 +28,18 @@ import { auth, onAuthStateChanged } from "./firebase.js";
 
 // Images
 import imgLogo from "./images/logo.png";
-import imgFaviconSmall from "./images/icon-192x192.png";
-import imgFaviconBig from "./images/icon-512x512.png";
+import imgFavicon48 from "./images/icon-48x48.png";
+import imgFavicon57 from "./images/icon-57x57.png";
+import imgFavicon72 from "./images/icon-72x72.png";
+import imgFavicon96 from "./images/icon-96x96.png";
+import imgFavicon114 from "./images/icon-114x114.png";
+import imgFavicon144 from "./images/icon-144x144.png";
+import imgFavicon152 from "./images/icon-152x152.png";
+import imgFavicon192 from "./images/icon-192x192.png";
+import imgFavicon256 from "./images/icon-256x256.png";
+import imgFavicon384 from "./images/icon-384x384.png";
+import imgFavicon512 from "./images/icon-512x512.png";
+
 import imgLogoWhite from "./images/logo_white.svg";
 // import donuts from "./images/placeholder-donuts.png";
 
@@ -104,13 +114,16 @@ onAuthStateChanged(auth, (user) => {
     // alert('SIGNED in')
     const cardImage = document.createElement("img");
     cardImage.classList.add("login-avatar");
+    const avatarDiv = document.createElement("div");
+    avatarDiv.classList.add("header__avatar-container");
     cardImage.src = `${
       user.photoURL
         ? user.photoURL
         : "https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg"
     }`;
     loginNav.textContent = "";
-    loginNav.appendChild(cardImage);
+    avatarDiv.appendChild(cardImage);
+    loginNav.appendChild(avatarDiv);
     // loginNav.removeAttribute("data-bs-toggle");
     // loginNav.removeAttribute("data-bs-target");
     // loginNav.setAttribute("href", "#profile");

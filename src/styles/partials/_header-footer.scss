@@ -35,6 +35,13 @@ header {
   }
 }
 
+.nav__link{
+  transition: all 200ms ease-out;
+
+  &:hover{
+    color: $color-primary-dark;
+  }
+}
 .header__logo {
   grid-column: 2/3;
   text-align: center;

@@ -95,7 +95,17 @@ export default function init() {
     signOut(auth)
       .then(() => {
         console.log("user is signed out");
-        Swal.fire("Success", "User Sign Out", "success").then((result) => {
+        Swal.fire({
+          title: "Success", 
+          text: "User Sign Out", 
+          icon: "success",
+          confirmButtonColor: "#fd8722",
+          iconColor: "#ffbc3a",
+          color: "#28231e",
+          customClass: {
+            htmlContainer: "toast-body"
+          }
+        }).then((result) => {
           closeOneModal("exampleModal");
         });
         window.location.href = "#home";
@@ -108,6 +118,12 @@ export default function init() {
           icon: "error",
           title: "Oops...",
           text: "Cannot finish the session...",
+          confirmButtonColor: "#fd8722",
+          iconColor: "#fd5722",
+          color: "#28231e",
+          customClass: {
+            htmlContainer: "toast-body"
+          }
         });
       });
   });
@@ -171,7 +187,17 @@ function userUpdate(photoStorage) {
       photoURL: photoStorage,
     })
       .then(() => {
-        Swal.fire("Success", "User Updated!", "success").then((result) => {
+        Swal.fire({
+          title: "Success", 
+          text: "User Updated!",
+          icon: "success",
+          confirmButtonColor: "#fd8722",
+          iconColor: "#ffbc3a",
+          color: "#28231e",
+          customClass: {
+            htmlContainer: "toast-body"
+          }
+        }).then((result) => {
           location.reload();
         });
       })
@@ -237,7 +263,17 @@ async function recipeCreate(photoURL) {
   try {
     await addDoc(collection(db, `users/${UID}/recipes`), docData)
       .then(() => {
-        Swal.fire("Success", "Your Recipe was Created!", "success").then((result) => {
+        Swal.fire({
+          title: "Your reciped has been posted", 
+          text: "Horray! Now you can review your recipe in your recipes collection.", 
+          icon: "success",
+          confirmButtonColor: "#fd8722",
+          iconColor: "#ffbc3a",
+          color: "#28231e",
+          customClass: {
+          htmlContainer: "toast-body"
+          }
+        }).then((result) => {
           location.reload();
         });
       })

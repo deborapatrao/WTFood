@@ -95,7 +95,17 @@ export default function init() {
         // const user = userCredential.user;
 
         // ...
-        Swal.fire("Success", "User Sign in", "success").then((result) => {
+        Swal.fire({
+          title: "Success", 
+          text: "User Sign in", 
+          icon:"success",
+          confirmButtonColor: "#fd8722",
+          iconColor: "#ffbc3a",
+          color: "#28231e",
+          customClass: {
+            htmlContainer: "toast-body"
+          }
+        }).then((result) => {
           console.log("wtf");
           closeOneModal("exampleModal");
         });
@@ -108,6 +118,12 @@ export default function init() {
           icon: "error",
           title: "Oops...",
           text: "Something went wrong! Please enter valid email or password!",
+          confirmButtonColor: "#fd8722",
+          iconColor: "#fd5722",
+          color: "#28231e",
+          customClass: {
+            htmlContainer: "toast-body"
+          }
         });
       });
   });
