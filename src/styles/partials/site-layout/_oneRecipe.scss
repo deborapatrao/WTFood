@@ -179,3 +179,68 @@
   flex-direction: row;
   gap: 30px;
 }
+
+//Review card
+
+.reviews-container{
+  display: grid;
+  gap: 2rem;
+  
+  @include mediaQuery($tablet){
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @include mediaQuery($desktop){
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .card{
+    border: none;
+    display: block;
+
+    
+    &-body{
+      padding: 1rem 0;
+    }
+
+    &-user{
+      display: grid;
+      grid-template-columns: repeat(2, auto);
+      gap: 1rem;
+      padding: 1rem 0;
+
+      &-img-container{
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+
+      &-info{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: start;
+        align-content: center;
+        
+
+        span{
+          flex-basis: 50%;
+        }
+
+        .card-user-name{
+          @include fontBody2Semibold();
+        }
+
+        .card-posting-time{
+          @include fontBody2();
+          color: $color-support-dark;
+          text-align: right;
+        }
+      }
+    }
+
+    &-img-bottom{
+      border-radius: $std-border-radius;
+    }
+  }
+}
