@@ -122,7 +122,7 @@ export default function init() {
         // ...
         Swal.fire({
           title: "Success",
-          text: "User Sign in",
+          text: "Welcome!",
           icon: "success",
           confirmButtonColor: "#fd8722",
           iconColor: "#ffbc3a",
@@ -132,7 +132,6 @@ export default function init() {
           },
         })
           .then((result) => {
-            console.log("wtf");
             closeOneModal("exampleModal");
           })
           .catch((e) => {
@@ -191,7 +190,17 @@ export default function init() {
     signOut(auth)
       .then(() => {
         console.log("user is signed out");
-        Swal.fire("Success", "User Sign Out", "success").then((result) => {
+        Swal.fire({
+          title: "Success",
+          text: "We will be waiting your return!",
+          icon: "success",
+          confirmButtonColor: "#fd8722",
+          iconColor: "#ffbc3a",
+          color: "#28231e",
+          customClass: {
+            htmlContainer: "toast-body",
+          },
+        }).then((result) => {
           closeOneModal("exampleModal");
         });
         // Sign-out successful.

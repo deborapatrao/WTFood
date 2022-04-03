@@ -24,6 +24,7 @@ import {Modal} from "bootstrap";
 
 let i = 0;
 let timerInterval
+const reloading = sessionStorage.getItem("reloading");
 export default function init() {
     onAuthStateChanged(auth, async (user) => {
         const userName = document.getElementById("userName");
@@ -81,7 +82,7 @@ export default function init() {
                 });
             });
 
-            //--Update Photo
+            //----------------------Update Photo----------------------\\
 
             const file = document.getElementById("photoFile").files.length;
             const photo = document.getElementById("photoFile");
@@ -115,6 +116,13 @@ export default function init() {
                     userUpdatePhoto();
                 }
             }
+            //----------------------Count recipes----------------------\\
+         const recipeCount = document.querySelector('#recipeCount');
+
+            const recipeRef = collection(db,`users/${uid}/recipes` );
+            const queryRecipe =  await getDocs(recipeRef);
+            recipeCount.innerHTML = queryRecipe.size;
+
         }
     });
 
@@ -182,6 +190,12 @@ export default function init() {
                 });
             });
     });
+    if (reloading) {
+        console.log('teste')
+        sessionStorage.removeItem("reloading");
+        profileOpenClose(myRecipes);
+        transformBtnNav(profileRecipeBtn);
+    }
 }
 
 
@@ -301,6 +315,8 @@ async function recipeCreate(photoURL) {
     try {
         await addDoc(collection(db, `users/${UID}/recipes`), docData)
             .then(() => {
+                sessionStorage.setItem("reloading", "true");
+
                 Swal.fire({
                     title: "Your reciped has been posted",
                     text: "Horray! Now you can review your recipe in your recipes collection.",
@@ -312,7 +328,8 @@ async function recipeCreate(photoURL) {
                         htmlContainer: "toast-body"
                     }
                 }).then((result) => {
-                    // location.reload();
+                    location.reload();
+
                 });
             })
             .catch((error) => {
@@ -410,9 +427,9 @@ async function recipes() {
     });
 }
 
-// Create heart svg for cards
 
-//----------------------Add/Remove Ingrediente Input----------------------\\
+
+//----------------------Photo Profile Camera----------------------\\
 let photoURL = "";
 
 function camera() {
@@ -570,7 +587,7 @@ function camera() {
 
     getCameraSelection();
 }
-
+//----------------------Add/Remove Ingrediente Input----------------------\\
 addBtn.addEventListener("click", () => {
     const divIngredient = document.createElement("div");
     const divAmount = document.createElement("div");
@@ -592,7 +609,7 @@ addBtn.addEventListener("click", () => {
     // Amounts
     labelAmount.innerHTML = "Amount";
     labelAmount.setAttribute("for", `amount_${i}`);
-    inputAmount.setAttribute("type", "number");
+    inputAmount.setAttribute("type", "text");
     inputAmount.setAttribute("id", `amount_${i}`);
 
     divIngredient.classList.add("create-rec__field");
