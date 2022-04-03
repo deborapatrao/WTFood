@@ -51,15 +51,15 @@ export default async function init() {
       const ingredient = ing.substring(ing.indexOf("=") + 1);
 
       if (index === 0) {
-        requestIng += `&ingredients=${ingredient}`;
+        requestRecipe += `&includeIngredients=${ingredient}`;
       } else {
-        requestIng += `,${ingredient}`;
+        requestRecipe += `,${ingredient}`;
       }
     });
 
-    await getRecipes(requestIng);
+    await getRecipes(requestRecipe);
     filterBtn.forEach((btn) => {
-      btn.addEventListener("click", async () => await applyFilters(requestIng));
+      btn.addEventListener("click", async () => await applyFilters(requestRecipe));
     });
   } else {
     await getRecipes(requestRecipe);
