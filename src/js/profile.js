@@ -514,7 +514,7 @@ function camera() {
                 Swal.fire({
                     title: 'Saving Picture',
                     html: 'Saving...',
-                    timer: 5000,
+                    timer: 7000,
                     timerProgressBar: true,
                     confirmButtonColor: "#fd8722",
                     iconColor: "#ffbc3a",
