@@ -41,45 +41,70 @@ export default function init() {
     const email = document.getElementById("email2").value;
     const password = document.getElementById("password2").value;
     const fullName = document.getElementById("fullname").value;
+    const spinnerContainer = document.querySelector("#spinner-container");
+    function loadingHandler(check) {
+      if (check) {
+        spinnerContainer.innerHTML = `
+          <div class="spinner-border" role="status">
+            <span class="sr-only"></span>
+          </div>
+        `;
+      } else {
+        spinnerContainer.innerHTML = "";
+      }
+    }
 
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(async (userCredential) => {
-        // Signed up
-        const user = userCredential.user;
-        console.log(user.uid);
+    loadingHandler(true);
 
-        //await is REALLY important ...
-        await updateProfile(user, {
-          displayName: fullName,
-          photoURL:
-            "https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg",
-        });
-        console.log(user.displayName);
-        console.log(user.photoURL);
-        try {
-          await addDoc(collection(db, "users"), {
-            name: user.displayName,
-            email: email,
-            photoURL: user.photoURL,
-          });
+    fetch(`https://app.verify-email.org/api/v1/jKzZK7CN4m0ReG7Ru5lILYbYIuZMKML5KtSk1VKvxgWEzmzyPY/verify/${email}`)
+      .then((response) => response.json())
+      .then((result) => {
+        loadingHandler(false);
 
-          Swal.fire("Success", "User Created", "success").then((result) => {
-            closeOneModal("exampleModal");
-            window.location.href = "#profile";
-          });
-        } catch (e) {
-          console.error("Error adding document: ", e);
+        if (result.status == 1) {
+          createUserWithEmailAndPassword(auth, email, password)
+            .then(async (userCredential) => {
+              // Signed up
+              const user = userCredential.user;
+              console.log(user.uid);
+
+              //await is REALLY important ...
+              await updateProfile(user, {
+                displayName: fullName,
+                photoURL:
+                  "https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg",
+              });
+              console.log(user.displayName);
+              console.log(user.photoURL);
+              try {
+                await addDoc(collection(db, "users"), {
+                  name: user.displayName,
+                  email: email,
+                  photoURL: user.photoURL,
+                });
+
+                Swal.fire("Success", "User Created", "success").then((result) => {
+                  closeOneModal("exampleModal");
+                  window.location.href = "#profile";
+                });
+              } catch (e) {
+                console.error("Error adding document: ", e);
+              }
+            })
+            .catch((error) => {
+              // const errorCode = error.code;
+              // const errorMessage = error.message;
+              // console.log("HERE: ", errorMessage);
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong! Please enter valid email or password!",
+              });
+            });
+        } else {
+          console.log("nope");
+          document.querySelector(".sign-up .popup__container--form-email").innerHTML += '<div style="color:red;">This email is invalid</div>';
         }
-      })
-      .catch((error) => {
-        // const errorCode = error.code;
-        // const errorMessage = error.message;
-        // console.log("HERE: ", errorMessage);
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Something went wrong! Please enter valid email or password!",
-        });
       });
   });
 
@@ -96,19 +121,23 @@ export default function init() {
 
         // ...
         Swal.fire({
-          title: "Success", 
-          text: "User Sign in", 
-          icon:"success",
+          title: "Success",
+          text: "User Sign in",
+          icon: "success",
           confirmButtonColor: "#fd8722",
           iconColor: "#ffbc3a",
           color: "#28231e",
           customClass: {
-            htmlContainer: "toast-body"
-          }
-        }).then((result) => {
-          console.log("wtf");
-          closeOneModal("exampleModal");
-        });
+            htmlContainer: "toast-body",
+          },
+        })
+          .then((result) => {
+            console.log("wtf");
+            closeOneModal("exampleModal");
+          })
+          .catch((e) => {
+            console.log(e.message);
+          });
       })
       .catch((error) => {
         // const errorCode = error.code;
@@ -122,8 +151,8 @@ export default function init() {
           iconColor: "#fd5722",
           color: "#28231e",
           customClass: {
-            htmlContainer: "toast-body"
-          }
+            htmlContainer: "toast-body",
+          },
         });
       });
   });
