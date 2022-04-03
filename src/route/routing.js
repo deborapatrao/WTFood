@@ -59,7 +59,17 @@ export class Router {
             let init = await import(`../js/${page.jsName}`); // lazily loading the js files
             init.default();
           } else {
-            Swal.fire("Warning", "Please sing in to use your profile!", "warning").then((result) => {
+            Swal.fire({
+              title: "Warning", 
+              text: "Please sing in to use your profile!", 
+              icon: "warning", 
+              confirmButtonColor: "#fd8722",
+              iconColor: "#ffbc3a",
+              color: "#28231e",
+              customClass: {
+                htmlContainer: "toast-body",
+              },
+            }).then((result) => {
               // const modalSign = document.getElementById('exampleModal');
               let myModal = new Modal(document.getElementById("exampleModal"), {});
               myModal.toggle();

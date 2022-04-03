@@ -19,7 +19,17 @@
       padding: 2rem 0.7rem;
     }
   }
+
+  &__avatar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin-bottom: 1rem;
+  }
 }
+
+
 
 .profile-overlay {
   @include mediaQuery($desktop) {
@@ -51,6 +61,12 @@
     overflow: hidden;
     position: relative;
 
+    img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
     &::before {
       content: "";
       width: 100%;
@@ -65,7 +81,7 @@
     &::after {
       content: "EDIT";
       position: absolute;
-      inset: 50px 0 0 0;
+      inset: 43px 0 0 0;
       color: $color-white;
       @include fontButton();
       text-align: center;
@@ -179,9 +195,7 @@
 
 // Update Profile Information section
 
-.profile__update,
-.create-rec__information,
-.create-rec__ingredients {
+.profile__update{
   @include flex(column, center, stretch);
   max-width: 100%;
   gap: 1rem;
@@ -203,6 +217,33 @@
 }
 
 //Update profile & create recipes forms
+
+.create-rec__information,
+.create-rec__ingredients,
+.create-rec__instructions {
+  display: grid;
+  gap: 1rem;
+
+  @include mediaQuery($desktop){
+    grid-template-columns: repeat(2, 1fr);
+
+    h3{
+      grid-column: 1/-1;
+    }
+  }
+}
+
+.create-rec__information .create-rec__field:first-of-type{
+  grid-column: 1/-1;
+}
+
+
+.create-rec__instructions{
+  h3, .create-rec__field{
+    grid-column: 1/-1;
+  }
+}
+
 .profile__update-field,
 .create-rec__field {
   @include flex(column, center, start);
@@ -213,6 +254,11 @@
     border-radius: $std-border-radius;
     padding: $padding-small;
     width: 100%;
+  }
+
+  input[type="email"]{
+    background-color: $color-support-light;
+    color: $color-text-medium-grey;
   }
 }
 
@@ -226,7 +272,7 @@
 }
 
 .create-rec__information,
-.create-rec__ingredients {
+.add--remove--buttons {
   border-bottom: $border-light-grey;
   padding-bottom: 2rem;
 }

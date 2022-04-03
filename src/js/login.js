@@ -83,7 +83,17 @@ export default function init() {
                   photoURL: user.photoURL,
                 });
 
-                Swal.fire("Success", "User Created", "success").then((result) => {
+                Swal.fire({
+                  title: "Success",
+                  text: "User Created",
+                  icon: "success",
+                  confirmButtonColor: "#fd8722",
+                  iconColor: "#ffbc3a",
+                  color: "#28231e",
+                  customClass: {
+                  htmlContainer: "toast-body"
+                  }
+                }).then((result) => {
                   closeOneModal("exampleModal");
                   window.location.href = "#profile";
                 });
@@ -99,6 +109,12 @@ export default function init() {
                 icon: "error",
                 title: "Oops...",
                 text: "Something went wrong! Please enter valid email or password!",
+                confirmButtonColor: "#fd8722",
+                iconColor: "#fd5722",
+                color: "#28231e",
+                customClass: {
+                  htmlContainer: "toast-body",
+                },
               });
             });
         } else {
