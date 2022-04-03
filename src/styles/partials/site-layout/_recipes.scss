@@ -43,7 +43,7 @@
 
     &:focus {
       border-color: $color-support-medium;
-      box-shadow: 0 0 0 0.25rem $color-primary-light;
+      box-shadow:$focus-box-shadow;
     }
 
     &::before {

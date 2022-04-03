@@ -244,6 +244,12 @@
   }
 }
 
+.photo-recipe{
+  input{
+    display: none
+  }
+}
+
 .profile__update-field,
 .create-rec__field {
   @include flex(column, center, start);
@@ -511,4 +517,13 @@ video {
 .profile-open {
   animation: fadein 400ms ease-in-out;
   display: block;
+}
+
+
+//modal photo
+
+.modal-photo{
+  .modal-header{
+    border-bottom: none;
+  }
 }

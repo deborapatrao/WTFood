@@ -2,7 +2,7 @@
 <h1 class="visually-hidden">Profile</h1>
 <!-- Camera Modal -->
 <div
-  class="modal fade"
+  class="modal fade modal-photo"
   id="cameraModal"
   tabindex="-1"
   role="dialog"
@@ -24,7 +24,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <button type="button" class="btn btn-primary" id="cameraStart">
+        <button type="button" class="btn-orange" id="cameraStart">
           Start Camera
         </button>
         <div id="divcamera" class="display-cover">
@@ -55,15 +55,11 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary close"
-          data-dismiss="modal"
-        >
-          Close
-        </button>
-        <button type="button" class="btn btn-primary" id="screenshot">
+        <button type="button" class="btn-orange" id="screenshot">
           Take Photo
+        </button>
+        <button type="button" class="btn-noborder close" data-dismiss="modal">
+          Close
         </button>
       </div>
     </div>
@@ -80,7 +76,7 @@
           <div class="profile__user-info">
             <div class="profile__avatar">
               <label for="photoFile" class="user-photo-container">
-                <img src="#" alt="" id="userPhoto" />
+                <img src="#" alt="user picture" id="userPhoto" />
               </label>
               <input type="file" id="photoFile" accept="image/*" />
 
@@ -315,7 +311,12 @@
           <div class="create-rec__heading">
             <h2>Write Your Recipe</h2>
             <div class="photo-recipe">
-              <label for="recipeTitle">Lets put a picture:</label>
+              <label for="recipePhoto">
+                <img
+                  src="https://firebasestorage.googleapis.com/v0/b/wtfood-3d70f.appspot.com/o/website%20images%2Frecipephoto.png?alt=media&token=8949b853-9231-411e-aad3-70b3d6486a19"
+                  alt="add a picture"
+                />
+              </label>
               <input type="file" id="recipePhoto" name="filename" />
             </div>
           </div>

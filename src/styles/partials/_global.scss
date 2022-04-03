@@ -174,3 +174,12 @@ a{
     color: $color-primary-dark;
   }
 }
+
+.form-check-input:focus{
+  border-color: $color-primary-dark;
+  box-shadow: $focus-box-shadow;
+}
+
+.swal2-styled.swal2-default-outline:focus{
+box-shadow: $focus-box-shadow !important;
+}
