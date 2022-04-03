@@ -33,7 +33,6 @@
                                 class="btn btn-outline-success screenshot d-none"
                                 title="ScreenShot"
                         >
-
                         </button>
                     </div>
                 </div>
@@ -41,7 +40,6 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary close" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" id="screenshot">Take Photo</button>
-
             </div>
         </div>
     </div>
@@ -90,37 +88,9 @@
                                     </svg>
 
                                 </button>
-
-                                <!--                                <button style="visibility: hidden; " id="screenshot">-->
-                                <!--                                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none"-->
-                                <!--                                         xmlns="http://www.w3.org/2000/svg">-->
-                                <!--                                        <circle cx="15.5643" cy="16.4355" r="14.3665"-->
-                                <!--                                                transform="rotate(179.257 15.5643 16.4355)" fill="white"-->
-                                <!--                                                stroke="#FD8722" stroke-width="2"/>-->
-                                <!--                                        <g clip-path="url(#clip0_1279_53021)">-->
-                                <!--                                            <path d="M18.6074 17.2879C18.6074 19.0381 17.2393 20.4039 15.6161 20.4039C13.9928 20.4039 12.6248 19.0381 12.6248 17.2879C12.6248 15.5377 13.9928 14.1719 15.6161 14.1719C17.2393 14.1719 18.6074 15.5377 18.6074 17.2879Z"-->
-                                <!--                                                  stroke="#FD8722" stroke-width="2" stroke-miterlimit="10"-->
-                                <!--                                                  stroke-linecap="square"/>-->
-                                <!--                                            <path d="M11.6248 11.702L12.1691 11.702L12.4646 11.2449L13.7656 9.23242L17.4666 9.23242L18.7676 11.2449L19.0631 11.702L19.6074 11.702L22.8004 11.702C22.9485 11.702 23.097 11.7624 23.2114 11.8804C23.3269 11.9994 23.3969 12.1673 23.3969 12.3485L23.3969 23.0501C23.3969 23.2313 23.3269 23.3992 23.2114 23.5182C23.097 23.6362 22.9485 23.6966 22.8004 23.6966L8.43173 23.6966C8.28362 23.6966 8.13512 23.6362 8.02072 23.5182C7.90529 23.3992 7.83521 23.2313 7.83521 23.0501L7.83521 12.3485C7.83521 12.1673 7.90529 11.9994 8.02072 11.8804C8.13512 11.7624 8.28362 11.702 8.43173 11.702L11.6248 11.702Z"-->
-                                <!--                                                  stroke="#FD8722" stroke-width="2" stroke-miterlimit="10"-->
-                                <!--                                                  stroke-linecap="square"/>-->
-                                <!--                                            <path d="M10.3478 15.4761C10.8328 15.4761 11.2259 15.0707 11.2259 14.5706C11.2259 14.0705 10.8328 13.665 10.3478 13.665C9.86286 13.665 9.46973 14.0705 9.46973 14.5706C9.46973 15.0707 9.86286 15.4761 10.3478 15.4761Z"-->
-                                <!--                                                  fill="#FD8722"/>-->
-                                <!--                                        </g>-->
-                                <!--                                        <defs>-->
-                                <!--                                            <clipPath>-->
-                                <!--                                                <rect width="19.1583" height="19.757" fill="white"-->
-                                <!--                                                      transform="translate(6.03687 6.58594)"/>-->
-                                <!--                                            </clipPath>-->
-                                <!--                                        </defs>-->
-                                <!--                                    </svg>-->
-
-                                <!--                                </button>-->
                             </div>
                         </div>
                         <div class="profile__photo ">
-                            <!-- <input type="file" id="photoFile" accept="image/*" /> -->
-
                         </div>
                         <div class="visually-hidden">Name:</div>
                         <div id="userName"></div>
@@ -131,7 +101,7 @@
                     <div class="profile__summary">
                         <div class="profile__summary-data">
                             <span class="profile__summary-title">Recipes</span>
-                            <span class="profile__summary-number">*123*</span>
+                            <span id="recipeCount" class="profile__summary-number"></span>
                         </div>
                         <div class="profile__summary-data">
                             <span class="profile__summary-title">Following</span>
@@ -374,7 +344,7 @@
                             </div>
                             <div class="create-rec__field">
                                 <label for="amount">Amount</label>
-                                <input type="number" id="amount">
+                                <input type="text" id="amount">
                             </div>
                         </div>
                         <div class="add--remove--buttons">

@@ -23,6 +23,8 @@ import Swal from "sweetalert2";
 import {Modal} from "bootstrap";
 
 let i = 0;
+let timerInterval
+const reloading = sessionStorage.getItem("reloading");
 export default function init() {
     onAuthStateChanged(auth, async (user) => {
         const userName = document.getElementById("userName");
@@ -35,7 +37,7 @@ export default function init() {
 
         if (user) {
             const uid = user.uid;
-            console.log(uid);
+
             //-----------------Check Sign In user------------\\
 
             const displayName = user.displayName;
@@ -80,16 +82,47 @@ export default function init() {
                 });
             });
 
-            //--Update Photo
+            //----------------------Update Photo----------------------\\
+
             const file = document.getElementById("photoFile").files.length;
             const photo = document.getElementById("photoFile");
             photo.onchange = evt => {
-                console.log('test')
+
+                Swal.fire({
+                    title: 'Saving Picture',
+                    html: 'Saving...',
+                    timer: 3000,
+                    timerProgressBar: true,
+                    confirmButtonColor: "#fd8722",
+                    iconColor: "#ffbc3a",
+                    didOpen: () => {
+                        Swal.showLoading()
+                        const b = Swal.getHtmlContainer().querySelector('b')
+                        timerInterval = setInterval(() => {
+
+                        }, 100)
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                    }
+                }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {
+
+                    }
+                })
                 const [file] = photo.files
                 if (file) {
                     userUpdatePhoto();
                 }
             }
+            //----------------------Count recipes----------------------\\
+         const recipeCount = document.querySelector('#recipeCount');
+
+            const recipeRef = collection(db,`users/${uid}/recipes` );
+            const queryRecipe =  await getDocs(recipeRef);
+            recipeCount.innerHTML = queryRecipe.size;
+
         }
     });
 
@@ -125,7 +158,6 @@ export default function init() {
     document.querySelector(".signOut-btn").addEventListener("click", async () => {
         signOut(auth)
             .then(() => {
-                console.log("user is signed out");
                 Swal.fire({
                     title: "Success",
                     text: "User Sign Out",
@@ -158,6 +190,12 @@ export default function init() {
                 });
             });
     });
+    if (reloading) {
+        console.log('teste')
+        sessionStorage.removeItem("reloading");
+        profileOpenClose(myRecipes);
+        transformBtnNav(profileRecipeBtn);
+    }
 }
 
 
@@ -177,7 +215,7 @@ function userUpdatePhoto() {
 
                 getDownloadURL(profilePhoto)
                     .then((url) => {
-                        console.log('photo loaded')
+
                         updateProfile(user, {
                             photoURL: url,
                         });
@@ -263,20 +301,22 @@ async function recipeCreate(photoURL) {
     };
     let ingredientData = [];
     for (list; list < i; list++) {
-        // console.log(list);
+
         let ingredient = window[`ingredient_${list}`];
         let amount = window[`amount_${list}`];
         ingredient = document.getElementById(`ingredient_${list}`).value;
         amount = document.getElementById(`amount_${list}`).value;
-        console.log(amount);
+
         ingredientData[`ingredient_${list + 1}`] = `${amount} ${ingredient}`;
     }
-console.log(ingredientData)
+
     const docData = {...recipeData, ...ingredientData};
 
     try {
         await addDoc(collection(db, `users/${UID}/recipes`), docData)
             .then(() => {
+                sessionStorage.setItem("reloading", "true");
+
                 Swal.fire({
                     title: "Your reciped has been posted",
                     text: "Horray! Now you can review your recipe in your recipes collection.",
@@ -288,7 +328,8 @@ console.log(ingredientData)
                         htmlContainer: "toast-body"
                     }
                 }).then((result) => {
-                    // location.reload();
+                    location.reload();
+
                 });
             })
             .catch((error) => {
@@ -339,7 +380,7 @@ async function recipes() {
     const recipesCards = document.getElementById("recipesCards");
     const snapshot = collection(db, `users/${UID}/recipes`);
     const allRecipes = await getDocs(snapshot);
-    console.log(allRecipes);
+
 
     allRecipes.forEach((recipe) => {
         const cardLink = document.createElement("a");
@@ -386,9 +427,9 @@ async function recipes() {
     });
 }
 
-// Create heart svg for cards
 
-//----------------------Add/Remove Ingrediente Input----------------------\\
+
+//----------------------Photo Profile Camera----------------------\\
 let photoURL = "";
 
 function camera() {
@@ -432,11 +473,11 @@ function camera() {
     };
 
     cameraPlay.onclick = () => {
-        console.log('cliquei')
+
         if (streamStarted) {
             video.play();
             play.classList.add("d-none");
-            console.log("first if");
+
             return;
         }
         if ("mediaDevices" in navigator && navigator.mediaDevices.getUserMedia) {
@@ -446,12 +487,13 @@ function camera() {
                     exact: cameraOptions.value,
                 },
             };
-            console.log("2 if");
+
             startStream(updatedConstraints);
         }
     };
 
     const doScreenshot = () => {
+
         const user = auth.currentUser;
         const userPhoto = document.getElementById("userPhoto");
         const menuPhoto = document.querySelector(".login-avatar");
@@ -467,8 +509,35 @@ function camera() {
             if (user) {
                 const profilePhoto = ref(storage, `users/${auth.currentUser.uid}/recipes/${Date.now()}`);
                 photoURL = Date.now();
+
+
+                Swal.fire({
+                    title: 'Saving Picture',
+                    html: 'Saving...',
+                    timer: 5000,
+                    timerProgressBar: true,
+                    confirmButtonColor: "#fd8722",
+                    iconColor: "#ffbc3a",
+                    didOpen: () => {
+                        Swal.showLoading()
+                        const b = Swal.getHtmlContainer().querySelector('b')
+                        timerInterval = setInterval(() => {
+
+                        }, 100)
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                    }
+                }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {
+
+                    }
+                })
+
                 uploadBytes(profilePhoto, blob)
                     .then((snapshot) => {
+
                         getDownloadURL(ref(storage, `users/${auth.currentUser.uid}/recipes/${photoURL}`))
                             .then((url) => {
                                 updateProfile(user, {
@@ -478,6 +547,7 @@ function camera() {
                                 menuPhoto.src = url;
                                 document.querySelector(".profile__avatar").innerHTML.reload
                                 document.querySelector(".header__avatar-container").innerHTML.reload
+
                             })
                             .catch((error) => {
                                 const errorCode = error.code;
@@ -517,7 +587,7 @@ function camera() {
 
     getCameraSelection();
 }
-
+//----------------------Add/Remove Ingrediente Input----------------------\\
 addBtn.addEventListener("click", () => {
     const divIngredient = document.createElement("div");
     const divAmount = document.createElement("div");
@@ -539,7 +609,7 @@ addBtn.addEventListener("click", () => {
     // Amounts
     labelAmount.innerHTML = "Amount";
     labelAmount.setAttribute("for", `amount_${i}`);
-    inputAmount.setAttribute("type", "number");
+    inputAmount.setAttribute("type", "text");
     inputAmount.setAttribute("id", `amount_${i}`);
 
     divIngredient.classList.add("create-rec__field");
@@ -620,7 +690,6 @@ const profileShoppingBtn = document.getElementById("shoppingList");
 
 allPages.forEach((menu) => {
     menu.addEventListener("click", () => {
-        console.log("id " + menu.id);
         switch (menu.id) {
             case "profileInfo":
                 profileOpenClose(myProfile);
@@ -643,30 +712,6 @@ profilePrev.forEach((prev) => {
         profileOpenClose(profileNavigation);
     });
 });
-
-// allPages.forEach((menu) => {
-//   menu.addEventListener("click", () => {
-//     console.log("id " + menu.id);
-//     if (menu.id === "profileInfo") {
-//       myProfile.style.display = "block";
-//       myRecipes.style.display = "none";
-//       writeRecipe.style.display = "none";
-//       shoppingListContainer.style.display = "none";
-//       console.log("profile info");
-//     } else if (menu.id === "profileRecipe") {
-//       console.log("profile recipe");
-//       myProfile.style.display = "none";
-//       myRecipes.style.display = "block";
-//       writeRecipe.style.display = "none";
-//       shoppingListContainer.style.display = "none";
-//     } else if (menu.id === "shoppingList") {
-//       myProfile.style.display = "none";
-//       myRecipes.style.display = "none";
-//       shoppingListContainer.style.display = "block";
-//       writeRecipe.style.display = "none";
-//     }
-//   });
-// });
 
 writeRecipeBtn.addEventListener("click", () => {
     profileOpenClose(writeRecipe);
