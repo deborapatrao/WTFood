@@ -7,8 +7,6 @@ import homeHTML from "./pages/home.html";
 import communityHTML from "./pages/community.html";
 import loginHTML from "./pages/login.html";
 import recipesHTML from "./pages/recipes.html";
-import profileInfoHTML from "./pages/profile_info.html";
-import profileRecipeHTML from "./pages/profile_recipe.html";
 import profileHTML from "./pages/profile.html";
 import oneRecipeHTML from "./pages/oneRecipe.html";
 import userRecipeHTML from "./pages/userRecipe.html";

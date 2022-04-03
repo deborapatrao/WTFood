@@ -25,30 +25,22 @@ export default async function init() {
         const time = recipe.data().time;
         const type_recipe = recipe.data().type_recipe;
         const instructions = recipe.data().instructions;
+        const ingredient1 = recipe.data().ingredient;
         const img = document.createElement("img");
         const divInstruction = document.createElement("div");
         const ingredientList = document.createElement("ol");
 
 
         let list = 1;
-        // for (let field in recipe.data()) {
-        //
-        //     console.log(field);
-        //     if (ingredientN === field) {
-        //
-        //         list++;
-        //         console.log(ingredient)
-        //         console.log(ingredientN)
-        //     }
-        // }
-        for (list; list < 20; list++) {
+        ingredientList.innerHTML = `<li>${ingredient1}</li>`
+        for (list; list < 30; list++) {
           let ingredientN = `ingredient_${list}`;
           let ingredient = recipe.data()[ingredientN];
           if (ingredient) {
             ingredientList.innerHTML += `<li>${ingredient}</li>`;
           }
         }
-
+console.log(recipe.data())
         img.src = photo;
 
         recipeName.innerHTML = name;
