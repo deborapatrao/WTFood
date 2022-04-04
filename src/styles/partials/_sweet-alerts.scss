@@ -17,3 +17,7 @@ h2.swal2-title{
 .swal-noborder{
     border: none;
 }
+
+.loader{
+   border-color: $color-primary-dark transparent $color-primary-dark transparent;
+}
