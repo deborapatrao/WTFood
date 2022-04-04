@@ -513,11 +513,15 @@ function camera() {
 
                 Swal.fire({
                     title: 'Saving Picture',
-                    html: 'Saving...',
+                    text: 'Saving...',
                     timer: 7000,
                     timerProgressBar: true,
-                    confirmButtonColor: "#fd8722",
-                    iconColor: "#ffbc3a",
+                    customClass:{
+                        htmlContainer: "toast-body",
+                        loader: "loader",
+                    },
+                    // confirmButtonColor: "#fd8722",
+                    // iconColor: "#ffbc3a",
                     didOpen: () => {
                         Swal.showLoading()
                         const b = Swal.getHtmlContainer().querySelector('b')
