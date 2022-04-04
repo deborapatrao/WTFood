@@ -24,7 +24,7 @@ import {Modal} from "bootstrap";
 
 let i = 0;
 let timerInterval
-const reloading = sessionStorage.getItem("reloading");
+const profile = sessionStorage.getItem("profile");
 export default function init() {
     onAuthStateChanged(auth, async (user) => {
         const userName = document.getElementById("userName");
@@ -83,9 +83,8 @@ export default function init() {
             });
 
             //----------------------Update Photo----------------------\\
-
-            const file = document.getElementById("photoFile").files.length;
             const photo = document.getElementById("photoFile");
+
             photo.onchange = evt => {
 
                 Swal.fire({
@@ -116,6 +115,17 @@ export default function init() {
                     userUpdatePhoto();
                 }
             }
+            //----------------------Preview Recipe Photo----------------------\\
+            const recipePhoto = document.getElementById('recipePhoto');
+            let loadFile = function(event) {
+                console.log('changing')
+               let output = document.getElementById('previewRecipePhoto');
+                output.src = URL.createObjectURL(event.target.files[0]);
+                output.onload = function() {
+                    URL.revokeObjectURL(output.src) // free memory
+                }
+            };
+            recipePhoto.addEventListener('change', loadFile)
             //----------------------Count recipes----------------------\\
          const recipeCount = document.querySelector('#recipeCount');
 
@@ -175,8 +185,7 @@ export default function init() {
                 // Sign-out successful.
             })
             .catch((error) => {
-                // An error happened.
-                // console.log(error.message);
+
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
@@ -190,9 +199,8 @@ export default function init() {
                 });
             });
     });
-    if (reloading) {
-        console.log('teste')
-        sessionStorage.removeItem("reloading");
+    if (profile) {
+        sessionStorage.removeItem("profile");
         profileOpenClose(myRecipes);
         transformBtnNav(profileRecipeBtn);
     }
@@ -236,6 +244,8 @@ function userUpdatePhoto() {
                 console.log(`Code: ${errorCode}`);
                 console.log(`MSG: ${errorMessage}`);
             });
+
+
     }
 }
 
@@ -315,7 +325,7 @@ async function recipeCreate(photoURL) {
     try {
         await addDoc(collection(db, `users/${UID}/recipes`), docData)
             .then(() => {
-                sessionStorage.setItem("reloading", "true");
+                sessionStorage.setItem("profile", "true");
 
                 Swal.fire({
                     title: "Your reciped has been posted",
@@ -433,7 +443,6 @@ async function recipes() {
 let photoURL = "";
 
 function camera() {
-    console.log('oppened');
     const controls = document.querySelector(".controls");
     const divCamera = document.querySelector("#divcamera");
     const cameraPlay = document.querySelector("#cameraStart");
