@@ -202,35 +202,35 @@ export default function init() {
 
   //--------------------------Sign Out--------------------------//
 
-  signOutBtn.addEventListener("click", () => {
-    signOut(auth)
-      .then(() => {
-        console.log("user is signed out");
-        Swal.fire({
-          title: "Success",
-          text: "We will be waiting your return!",
-          icon: "success",
-          confirmButtonColor: "#fd8722",
-          iconColor: "#ffbc3a",
-          color: "#28231e",
-          customClass: {
-            htmlContainer: "toast-body",
-          },
-        }).then((result) => {
-          closeOneModal("exampleModal");
-        });
-        // Sign-out successful.
-      })
-      .catch((error) => {
-        // An error happened.
-        // console.log(error.message);
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Cannot finish the session...",
-        });
-      });
-  });
+  // signOutBtn.addEventListener("click", () => {
+  //   signOut(auth)
+  //     .then(() => {
+  //       console.log("user is signed out");
+  //       Swal.fire({
+  //         title: "Success",
+  //         text: "We will be waiting your return!",
+  //         icon: "success",
+  //         confirmButtonColor: "#fd8722",
+  //         iconColor: "#ffbc3a",
+  //         color: "#28231e",
+  //         customClass: {
+  //           htmlContainer: "toast-body",
+  //         },
+  //       }).then((result) => {
+  //         closeOneModal("exampleModal");
+  //       });
+  //       // Sign-out successful.
+  //     })
+  //     .catch((error) => {
+  //       // An error happened.
+  //       // console.log(error.message);
+  //       Swal.fire({
+  //         icon: "error",
+  //         title: "Oops...",
+  //         text: "Cannot finish the session...",
+  //       });
+  //     });
+  // });
 
   function openCloseFun(close, open) {
     close.classList.remove("profile-open");

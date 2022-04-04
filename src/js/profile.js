@@ -25,6 +25,7 @@ import {Modal} from "bootstrap";
 let i = 0;
 let timerInterval
 const profile = sessionStorage.getItem("profile");
+const shoppinglistPage = sessionStorage.getItem("shoppingList");
 export default function init() {
     onAuthStateChanged(auth, async (user) => {
         const userName = document.getElementById("userName");
@@ -203,6 +204,12 @@ export default function init() {
         sessionStorage.removeItem("profile");
         profileOpenClose(myRecipes);
         transformBtnNav(profileRecipeBtn);
+    }
+    if (shoppinglistPage) {
+        sessionStorage.removeItem("shoppingList");
+        profileOpenClose(shoppingListContainer);
+        transformBtnNav(profileShoppingBtn);
+
     }
 }
 
