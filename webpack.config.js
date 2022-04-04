@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
-let mode = "development";
+let mode = "production";
 let target = "web";
 
 if (process.env.NODE_ENV === "production") {
@@ -25,7 +25,11 @@ module.exports = {
     oneRecipe: "./src/js/oneRecipe.js",
     recipes: "./src/js/recipes.js",
   },
-
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000
+  },
   output: {
     path: path.resolve(__dirname, "dist"),
     // assetModuleFilename: "images/[name][ext][query]",

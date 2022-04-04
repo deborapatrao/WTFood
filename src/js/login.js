@@ -203,6 +203,7 @@ export default function init() {
 
   //--------------------------Sign Out--------------------------//
 
+
   check &&
     signOutBtn.addEventListener("click", () => {
       signOut(auth)
@@ -234,6 +235,7 @@ export default function init() {
           });
         });
     });
+
 
   function openCloseFun(close, open) {
     close.classList.remove("profile-open");
