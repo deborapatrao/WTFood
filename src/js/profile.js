@@ -662,7 +662,11 @@ async function shoppingList() {
         // doc.data() is never undefined for query doc snapshots
 
         const div = document.createElement("div");
+        div.classList.add('shopping-list__item');
         div.innerHTML = `<p>${doc.data().ingredient}</p>`;
+        const btnDeleteItem = document.createElement('button');
+        btnDeleteItem.classList.add('remove-recipe');
+        div.appendChild(btnDeleteItem);
         container.appendChild(div);
     });
     // <![CDATA[
@@ -671,7 +675,26 @@ async function shoppingList() {
         timeout: 5000,
         maximumAge: 0,
     };
+
+    //----------------------Remove items from shopping list-----------------\\
+const removeItemBtn = document.querySelectorAll('.remove-recipe');
+
+removeItemBtn.forEach((button) => {
+    button.addEventListener('click', function() {
+        const parent = this.parentNode;
+        parent.classList.add('removed');
+
+        function remove(item) {
+            item.style.display ="none";
+        }
+        setTimeout(() => remove(parent), 700); 
+    });
+});
+
 }
+
+
+
 
 
 //----------------------Navigate Menu Pages Profile----------------------\\

@@ -527,3 +527,75 @@ video {
     border-bottom: none;
   }
 }
+
+//SHOPPING LIST
+.shopping-list__items{
+  .shopping-list__item{
+    display: flex;
+    justify-content: space-between;
+    transition: all 400ms ease-out 300ms;
+  }
+  p{
+    position: relative;
+  }
+  
+    p::after{
+      content: "";
+      width: 0;
+      height: 2px;
+      background-color: $color-primary-dark;
+      position: absolute;
+      left: 0;
+      top:50%;
+      transition: width 200ms ease-in;
+    }
+  
+    .remove-recipe {
+      border-radius: 50%;
+      border: 2px solid $color-support-dark;
+      padding: 8px;
+      position: relative;
+      align-self: start;
+  
+      &::before,
+      &::after {
+        content: "";
+        width: 12px;
+        height: 2px;
+        background-color: $color-support-dark;
+  
+        position: absolute;
+        inset: 7px 0 0 2px;
+        transition: all 200ms ease-out;
+      }
+  
+      &::before {
+        transform: rotate(45deg);
+      }
+  
+      &::after {
+        transform: rotate(135deg);
+      }
+  
+    &:hover::before{
+      transform: rotate(0deg);
+    }   
+    
+    &:hover::after{
+      transform: rotate(180deg);
+    }   
+    }
+  
+     .removed p::after{
+      content: "";
+      width: 100%;
+    }
+  
+  .shopping-list__item.removed{
+    transform: scaleY(0);
+    transform-origin: top;
+    opacity: .3;
+  }
+  
+  }
+  
