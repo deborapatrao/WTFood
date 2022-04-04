@@ -9,10 +9,9 @@ export default async function init() {
       const recipePrepTime = document.querySelector("#prep-time");
       const recipeCookTime = document.querySelector("#cooking-time");
       const recipeServing = document.querySelector("#serving");
-      const recipeIngredients = document.querySelector(".ingredients-wrapper");
       const recipeInstruction = document.querySelector(".instructions-wrapper");
 
-      console.log(`if: ${recipeID}`);
+
       if (user) {
         const UID = auth.currentUser.uid;
         const docRef = doc(db, `users/${UID}/recipes`, recipeID);
@@ -27,8 +26,13 @@ export default async function init() {
         const instructions = recipe.data().instructions;
         const ingredient1 = recipe.data().ingredient;
         const img = document.createElement("img");
-        const divInstruction = document.createElement("div");
-        const ingredientList = document.createElement("ol");
+
+        const ingredientsContainer = document.querySelector(".ingredients-wrapper");
+        const selectAllBtn = document.createElement("button");
+        selectAllBtn.textContent = "Select all";
+        selectAllBtn.classList.add("btn-noborder");
+        ingredientsContainer.appendChild(selectAllBtn);
+
 
 
         let list = 1;
@@ -36,11 +40,29 @@ export default async function init() {
         for (list; list < 30; list++) {
           let ingredientN = `ingredient_${list}`;
           let ingredient = recipe.data()[ingredientN];
+          const checkboxContainer = document.createElement("div");
+          checkboxContainer.className = "form-check";
+
+          const checkboxInput = document.createElement("input");
+          checkboxInput.className = "form-check-input";
+          checkboxInput.type = "checkbox";
+          checkboxInput.id = ing.id;
+
+          const checkboxLabel = document.createElement("label");
+          checkboxLabel.className = "form-check-label";
+          // checkboxLabel.htmlFor = ing.id;
+
+          // checkboxLabel.textContent = ing.original;
           if (ingredient) {
+          checkboxContainer.appendChild(checkboxInput);
+          checkboxContainer.appendChild(checkboxLabel);
+          ingredientsContainer.appendChild(checkboxContainer);
+
+
             ingredientList.innerHTML += `<li>${ingredient}</li>`;
           }
         }
-console.log(recipe.data())
+
         img.src = photo;
 
         recipeName.innerHTML = name;
@@ -59,7 +81,7 @@ console.log(recipe.data())
   } else {
     const recipeID = window.location.search.substring(4);
     console.log(`else: ${recipeID}`);
-    const apiKey = "1da81bb3780f42a6a0ceb11f31a38886";
+    const apiKey = "da72a5b346e844e38a84019d6cd0cbf5";
     const urlRecipeInfo = `https://api.spoonacular.com/recipes/${recipeID}/information?apiKey=${apiKey}`;
     const urlIngredients = `https://api.spoonacular.com/recipes/${recipeID}/nutritionWidget.json?apiKey=${apiKey}`;
     //   https://api.spoonacular.com/recipes/638086/nutritionWidget.json?apiKey=458fa3b63d9e4e0b8c6b85edb81edd4b
