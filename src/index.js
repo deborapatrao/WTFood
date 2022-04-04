@@ -12,17 +12,13 @@ import oneRecipeHTML from "./pages/oneRecipe.html";
 import userRecipeHTML from "./pages/userRecipe.html";
 
 // JS
-// import 'sweetalert2';
-// import router from "./route/routing.js";
-// import firebase from "firebase";
-// import { db } from "./database";
+import Swal from "sweetalert2";
 import script from "./route/script.js";
 import { auth, onAuthStateChanged } from "./firebase.js";
 
-// import api from "./js/api";
-// import home from "./js/home";
-// import login from "./js/login";
-// import profile from "./js/profile";
+// import login from "./js/login.js";
+// let initLogin = await import(`../js/login.js`); // lazily loading the js files
+// initLogin.default();
 
 // Images
 import imgLogo from "./images/logo.png";
@@ -82,32 +78,34 @@ window.addEventListener("focusin", handleMenuClosure);
 
 // on clicking the link
 navLinks.forEach((navLink) => {
-  navLink.addEventListener("click", (e) => {
-    // console.log("works");
-    const body = document.body;
-    body.classList.toggle("black-overlay");
-    mainNav.setAttribute("data-visible", false);
-    navToggle.setAttribute("aria-expanded", false);
+  if (navLink.id !== "login-nav") {
+    navLink.addEventListener("click", (e) => {
+      // console.log("works");
+      const body = document.body;
+      body.classList.toggle("black-overlay");
+      mainNav.setAttribute("data-visible", false);
+      navToggle.setAttribute("aria-expanded", false);
 
-    // location.assign(location.pathname)
-    // hash from <a> tag
-    const hash = navLink.textContent.toLowerCase();
-    // console.log(hash);
+      // location.assign(location.pathname)
+      // hash from <a> tag
+      const hash = navLink.textContent.toLowerCase();
+      // console.log(hash);
 
-    // Clear search query
-    e.preventDefault();
-    window.location.hash = hash;
+      // Clear search query
+      e.preventDefault();
+      window.location.hash = hash;
 
-    if (window.location.search) {
-      window.location.search = "";
-    }
-    // window.location.search = "";
-    // location.href = `#${hash}`;
-    // console.log(`${window.location.origin}${hash}`)
-  });
+      if (window.location.search) {
+        window.location.search = "";
+      }
+      // window.location.search = "";
+      // location.href = `#${hash}`;
+      // console.log(`${window.location.origin}${hash}`)
+    });
+  }
 });
 
-const loginNav = document.getElementById("login-nav");
+const loginNav = document.querySelector(".login__item");
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
@@ -121,7 +119,7 @@ onAuthStateChanged(auth, (user) => {
         ? user.photoURL
         : "https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg"
     }`;
-    loginNav.textContent = "";
+    loginNav.innerHTML = "";
     avatarDiv.appendChild(cardImage);
     loginNav.appendChild(avatarDiv);
     // loginNav.removeAttribute("data-bs-toggle");
@@ -132,7 +130,11 @@ onAuthStateChanged(auth, (user) => {
     // const uid = user.uid;
     // ...
   } else {
-    loginNav.innerHTML = "login";
+    loginNav.innerHTML = `
+      <a id="login-nav" data-bs-toggle="modal" data-bs-target="#exampleModal" class="nav__link">
+        login
+      </a>
+    `;
     // loginNav.setAttribute("data-bs-toggle", "modal");
     // loginNav.setAttribute("data-bs-target", "#exampleModal");
     // loginNav.removeAttribute("href");
@@ -142,3 +144,37 @@ onAuthStateChanged(auth, (user) => {
     // }
   }
 });
+
+function transformBtnNavLink(btn) {
+  const btnActive = document.querySelector(".nav-active");
+  if (btnActive) {
+    btnActive.classList.remove("nav-active");
+  }
+
+  btn.classList.add("nav-active");
+}
+
+function closeOneModal(modalId) {
+  // get modal
+  const modal = document.getElementById(modalId);
+  // change state like in hidden modal
+  modal.classList.remove("show");
+  document.querySelector("body").classList.remove("modal-open");
+  setTimeout(ariahidden, 300);
+  function ariahidden() {
+    console.log("here");
+    modal.setAttribute("aria-hidden", "true");
+  }
+
+  document.querySelector("body").removeAttribute("style");
+
+  modal.removeAttribute("aria-modal");
+
+  modal.setAttribute("style", "display: none");
+
+  // get modal backdrop
+  const modalBackdrops = document.getElementsByClassName("modal-backdrop");
+
+  // remove opened modal backdrop
+  document.body.removeChild(modalBackdrops[0]);
+}

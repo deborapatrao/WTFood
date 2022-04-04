@@ -60,9 +60,9 @@ export class Router {
             init.default();
           } else {
             Swal.fire({
-              title: "Warning", 
-              text: "Please sing in to use your profile!", 
-              icon: "warning", 
+              title: "Warning",
+              text: "Please sing in to use your profile!",
+              icon: "warning",
               confirmButtonColor: "#fd8722",
               iconColor: "#ffbc3a",
               color: "#28231e",
@@ -73,7 +73,7 @@ export class Router {
               // const modalSign = document.getElementById('exampleModal');
               let myModal = new Modal(document.getElementById("exampleModal"), {});
               myModal.toggle();
-              window.location.href = "#home";
+              window.location.href = "#profile";
             });
           }
         });

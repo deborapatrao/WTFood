@@ -1,6 +1,7 @@
 // Get recipes function
 async function getRecipes(url) {
   console.log(url);
+
   if (url.includes("query")) {
     console.log("recipe name");
     const responseRecipe = await fetch(url);
@@ -30,10 +31,15 @@ export default async function init() {
   const apiKey = "da72a5b346e844e38a84019d6cd0cbf5";
   let requestRecipe = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}`;
   let requestIng = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}`;
+
   const filterBtn = document.querySelectorAll(".filterBtn");
+  const recipesTitle = document.querySelector(".results-title");
+  const loadMoreBtn = document.querySelector("#load-more");
+
   let offset = 0;
   console.log(filterBtn);
 
+  // Query
   if (window.location.search.includes("query")) {
     const inputRecipe = window.location.search.substring(1);
 
@@ -44,29 +50,43 @@ export default async function init() {
     filterBtn.forEach((btn) => {
       btn.addEventListener("click", async () => await applyFilters(requestRecipe + `&offset=${offset}`));
     });
+
+    const titleQuery = inputRecipe.substring(inputRecipe.indexOf("=") + 1);
+    recipesTitle.textContent = titleQuery[0].toUpperCase() + titleQuery.slice(1).toLowerCase();
+
+    // Ingredients
   } else if (window.location.search.includes("ing1")) {
     const inputIngredients = window.location.search.substring(1).split("&");
 
+    let forTitle = [];
     inputIngredients.forEach((ing, index) => {
       const ingredient = ing.substring(ing.indexOf("=") + 1);
-
+      forTitle.push(ingredient[0].toUpperCase() + ingredient.slice(1).toLowerCase());
       if (index === 0) {
         requestRecipe += `&includeIngredients=${ingredient}`;
       } else {
         requestRecipe += `,${ingredient}`;
       }
     });
+    recipesTitle.textContent = forTitle.join(", ");
 
     await getRecipes(requestRecipe);
     filterBtn.forEach((btn) => {
       btn.addEventListener("click", async () => await applyFilters(requestRecipe));
     });
+
+    // Default
   } else {
     await getRecipes(requestRecipe);
     filterBtn.forEach((btn) => {
       btn.addEventListener("click", async () => await applyFilters(requestRecipe));
     });
   }
+
+  loadMoreBtn.addEventListener("click", async () => {
+    offset++;
+    await getRecipes(requestRecipe + `&offset=${offset}`);
+  });
 
   // FILTERS section ================================================ //
   filtersShow();
