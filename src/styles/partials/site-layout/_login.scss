@@ -87,14 +87,20 @@
 .modal-login {
   .modal-content {
     overflow: hidden;
-    border-radius: $std-border-radius;
+    border-radius: none;
+
+    @include mediaQuery($tablet){
+      border-radius: $std-border-radius;
+    }
   }
 
   .modal-header {
-    border-bottom: none;
-    position: absolute;
-    right: 0;
-    z-index: 1000;
+    border-bottom: $border-grey;
+    @include mediaQuery($desktop){
+      border-bottom: none;
+      position: absolute;
+      right: 0;
+    }
   }
 
   .modal-body {
@@ -114,9 +120,9 @@
       }
     }
     &-content {
-      padding: 3rem 1rem 1rem 1rem;
+      padding: 1rem;
       @include mediaQuery($tablet) {
-        padding: 3rem 1.5rem 1rem 1.5rem;
+        padding: 1rem 1.5rem;
       }
 
       @include mediaQuery($desktop) {
@@ -133,6 +139,10 @@
       }
     }
   }
+}
+
+.modal-dialog{
+  pointer-events: auto;
 }
 
 #spinner-container {
