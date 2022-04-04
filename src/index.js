@@ -33,6 +33,8 @@ import imgFavicon192 from "./images/icon-192x192.png";
 import imgFavicon256 from "./images/icon-256x256.png";
 import imgFavicon384 from "./images/icon-384x384.png";
 import imgFavicon512 from "./images/icon-512x512.png";
+import imgFavicon16 from "./images/favicon-16x16.png";
+import imgFavicon32 from "./images/favicon-32x32.png";
 
 import imgLogoWhite from "./images/logo_white.svg";
 // import donuts from "./images/placeholder-donuts.png";
