@@ -73,7 +73,7 @@ export default function init() {
             const modal = document.querySelector('#cameraModal')
             const closeModal = document.querySelectorAll('.close');
             cameraBtn.addEventListener('click', () => {
-                cameraModal.show();
+               cameraModal.show();
 
             });
 
@@ -120,7 +120,7 @@ export default function init() {
             const recipePhoto = document.getElementById('recipePhoto');
             let loadFile = function(event) {
                 console.log('changing')
-                let output = document.getElementById('previewRecipePhoto');
+               let output = document.getElementById('previewRecipePhoto');
                 output.src = URL.createObjectURL(event.target.files[0]);
                 output.onload = function() {
                     URL.revokeObjectURL(output.src) // free memory
@@ -128,7 +128,7 @@ export default function init() {
             };
             recipePhoto.addEventListener('change', loadFile)
             //----------------------Count recipes----------------------\\
-            const recipeCount = document.querySelector('#recipeCount');
+         const recipeCount = document.querySelector('#recipeCount');
 
             const recipeRef = collection(db,`users/${uid}/recipes` );
             const queryRecipe =  await getDocs(recipeRef);
