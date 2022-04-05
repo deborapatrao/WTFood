@@ -12,13 +12,14 @@ nav a {
   flex-flow: column nowrap;
   justify-content: center;
   gap: 1rem;
-  padding: 2rem 0.75rem 0.75rem 0.75rem;
+  padding: 15vh 0.75rem 0.75rem 0.75rem;
   z-index: 100;
 
   transform: translateX(-100%);
   transition: all ease-in-out 400ms;
 
   @include mediaQuery($desktop) {
+    padding: .75rem;
     position: relative;
     flex-flow: row nowrap;
     justify-content: end;
