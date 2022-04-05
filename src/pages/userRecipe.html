@@ -1,305 +1,292 @@
-
-
 <div class="one-recipe">
-    <div class="recipe-banner">
-        <div id="recipe-image-wrapper"></div>
-        <div class="recipe-summary container">
-            <h2 id="recipe-title"></h2>
-            <!-- RATING GOES HERE -->
-            <div class="recipe-summary-info">
-                <ul>
-                    <li class="recipe-summary-item">
-                        <span>Prep time</span>
-                        <div id="prep-time"></div>
-                    </li>
-                    <li class="recipe-summary-item">
-                        <span>Cooking time</span>
-                        <span id="cooking-time"></span>
-                    </li>
-                    <li class="recipe-summary-item">
-                        <span>Serving</span>
-                        <span id="serving"></span>
-                    </li>
-                </ul>
-            </div>
-            <div class="rating-stars"></div>
-            <!-- Social Share Buttons -->
-            <div class="social-share">
-                <ul>
-                    <li>
-                        <a href=""><i></i>Facebook</a>
-                    </li>
-                    <li>
-                        <a href=""><i></i>Twitter</a>
-                    </li>
-                    <li>
-                        <a href=""><i></i>Instagram</a>
-                    </li>
-                    <li>
-                        <a href=""><i></i>Pinterest</a>
-                    </li>
-                    <li>
-                        <a href=""><i></i>Share Link</a>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- About the recipe -->
-<!--            <div class="about-recipe" id="about-recipe">-->
-<!--                <p>-->
-<!--                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi qui-->
-<!--                    beatae laudantium soluta? Natus molestiae sint odio perferendis-->
-<!--                    tempore nam mollitia. Praesentium accusamus suscipit sint dolor, illo-->
-<!--                    sapiente blanditiis minima!-->
-<!--                </p>-->
-<!--            </div>-->
-        </div>
-    </div>
-
-    <!-- Recipe details section -->
-    <div class="recipe__details-tab container">
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button
-                        class="nav-link"
-                        id="ingredients-tab"
-                        data-bs-toggle="tab"
-                        data-bs-target="#ingredients"
-                        type="button"
-                        role="tab"
-                        aria-controls="ingredients"
-                        aria-selected="false"
-                >
-                    Ingredients
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button
-                        class="nav-link"
-                        id="instructions-tab"
-                        data-bs-toggle="tab"
-                        data-bs-target="#instructions"
-                        type="button"
-                        role="tab"
-                        aria-controls="instructions"
-                        aria-selected="false"
-                >
-                    Instructions
-                </button>
-            </li>
+  <div class="recipe-banner">
+    <div id="recipe-image-wrapper"></div>
+    <div class="recipe-summary container">
+      <h2 id="recipe-title"></h2>
+      <!-- RATING GOES HERE -->
+      <div class="recipe-summary-info">
+        <ul>
+          <li class="recipe-summary-item">
+            <span>Prep time</span>
+            <div id="prep-time"></div>
+          </li>
+          <li class="recipe-summary-item">
+            <span>Cooking time</span>
+            <span id="cooking-time"></span>
+          </li>
+          <li class="recipe-summary-item">
+            <span>Serving</span>
+            <span id="serving"></span>
+          </li>
         </ul>
-        <div class="tab-content" id="myTabContent">
-            <div
-                    class="tab-pane fade"
-                    id="ingredients"
-                    role="tabpanel"
-                    aria-labelledby="ingredients-tab"
-            >
-                <div class="ingredients-wrapper"></div>
-            </div>
-            <div
-                    class="tab-pane fade"
-                    id="instructions"
-                    role="tabpanel"
-                    aria-labelledby="instructions-tab"
-            >
-                <div class="instructions-wrapper"></div>
-            </div>
-        </div>
+      </div>
+      <div class="rating-stars"></div>
+      <!-- Social Share Buttons -->
+      <div class="social-share">
+        <ul>
+          <li>
+            <a href=""><i></i>Facebook</a>
+          </li>
+          <li>
+            <a href=""><i></i>Twitter</a>
+          </li>
+          <li>
+            <a href=""><i></i>Instagram</a>
+          </li>
+          <li>
+            <a href=""><i></i>Pinterest</a>
+          </li>
+          <li>
+            <a href=""><i></i>Share Link</a>
+          </li>
+        </ul>
+      </div>
     </div>
+  </div>
 
+  <!-- Recipe details section -->
+  <div class="recipe__details-tab container">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="ingredients-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#ingredients"
+          type="button"
+          role="tab"
+          aria-controls="ingredients"
+          aria-selected="false"
+        >
+          Ingredients
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="instructions-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#instructions"
+          type="button"
+          role="tab"
+          aria-controls="instructions"
+          aria-selected="false"
+        >
+          Instructions
+        </button>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div
+        class="tab-pane fade"
+        id="ingredients"
+        role="tabpanel"
+        aria-labelledby="ingredients-tab"
+      >
+        <div class="ingredients-wrapper"></div>
+      </div>
+      <div
+        class="tab-pane fade"
+        id="instructions"
+        role="tabpanel"
+        aria-labelledby="instructions-tab"
+      >
+        <div class="instructions-wrapper"></div>
+      </div>
+    </div>
+  </div>
 
-    <section class="background-light-grey">
-        <div class="container">
-            <div
-                    class="section__heading d-flex justify-content-between align-items-center"
-            >
-                <h2>You may also like</h2>
-                <a href="#" class="view-all">view all</a>
+  <section class="background-light-grey">
+    <div class="container">
+      <div
+        class="section__heading d-flex justify-content-between align-items-center"
+      >
+        <h2>You may also like</h2>
+        <a href="#" class="view-all">view all</a>
+      </div>
+
+      <div
+        class="carousel__container-wh d-flex justify-content-between align-items-start"
+      >
+        <a href="" class="card-link recipe-card">
+          <div class="card">
+            <div class="recipe-card__img">
+              <button></button>
+              <img
+                src="https://picsum.photos/300"
+                alt=""
+                class="card-img-top"
+              />
             </div>
-
-            <div
-                    class="carousel__container-wh d-flex justify-content-between align-items-start"
-            >
-                <a href="" class="card-link recipe-card">
-                    <div class="card">
-                        <div class="recipe-card__img">
-                            <button></button>
-                            <img
-                                    src="https://picsum.photos/300"
-                                    alt=""
-                                    class="card-img-top"
-                            />
-                        </div>
-                        <div class="card-body">
-                            <div class="rating-stars"></div>
-                            <h3 class="card-title">Salmon Salad</h3>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="" class="card-link recipe-card">
-                    <div class="card">
-                        <div class="recipe-card__img">
-                            <button></button>
-                            <img
-                                    src="https://picsum.photos/300"
-                                    alt=""
-                                    class="card-img-top"
-                            />
-                        </div>
-                        <div class="card-body">
-                            <div class="rating-stars"></div>
-                            <h3 class="card-title">Grilled Chicken with Chips</h3>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="" class="card-link recipe-card">
-                    <div class="card">
-                        <div class="recipe-card__img">
-                            <button></button>
-                            <img
-                                    src="https://picsum.photos/300"
-                                    alt=""
-                                    class="card-img-top"
-                            />
-                        </div>
-                        <div class="card-body">
-                            <div class="rating-stars"></div>
-                            <h3 class="card-title">Spagetti carbonara</h3>
-                        </div>
-                    </div>
-                </a>
-                <a href="" class="card-link recipe-card">
-                    <div class="card">
-                        <div class="recipe-card__img">
-                            <button></button>
-                            <img
-                                    src="https://picsum.photos/300"
-                                    alt=""
-                                    class="card-img-top"
-                            />
-                        </div>
-                        <div class="card-body">
-                            <div class="rating-stars"></div>
-                            <h3 class="card-title">Ceaser Salad</h3>
-                        </div>
-                    </div>
-                </a>
-                <a href="" class="card-link recipe-card">
-                    <div class="card">
-                        <div class="recipe-card__img">
-                            <button></button>
-                            <img
-                                    src="https://picsum.photos/300"
-                                    alt=""
-                                    class="card-img-top"
-                            />
-                        </div>
-                        <div class="card-body">
-                            <div class="rating-stars"></div>
-                            <h3 class="card-title">Pasta with Hot Dogs</h3>
-                        </div>
-                    </div>
-                </a>
-                <a href="" class="card-link recipe-card">
-                    <div class="card">
-                        <div class="recipe-card__img">
-                            <button></button>
-                            <img
-                                    src="https://picsum.photos/300"
-                                    alt=""
-                                    class="card-img-top"
-                            />
-                        </div>
-                        <div class="card-body">
-                            <div class="rating-stars"></div>
-                            <h3 class="card-title">Empanadas</h3>
-                        </div>
-                    </div>
-                </a>
+            <div class="card-body">
+              <div class="rating-stars"></div>
+              <h3 class="card-title">Salmon Salad</h3>
             </div>
-        </div>
-    </section>
+          </div>
+        </a>
 
-    <!-- Share recipe section -->
-    <section class="share-recipe">
-        <div class="container">
-            <div class="share-recipe__content">
-                <h2>Share your recipe?</h2>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
-                    aliquid ea provident voluptate ipsa cupiditate totam debitis at est
-                    praesentium. Laudantium non vero fugiat culpa sunt, consequatur magnam
-                    quidem quam?
-                </p>
-                <a href="" class="btn-white">Share recipe</a>
+        <a href="" class="card-link recipe-card">
+          <div class="card">
+            <div class="recipe-card__img">
+              <button></button>
+              <img
+                src="https://picsum.photos/300"
+                alt=""
+                class="card-img-top"
+              />
             </div>
-            <img
-                    src="https://firebasestorage.googleapis.com/v0/b/wtfood-3d70f.appspot.com/o/website%20images%2Ffood13.png?alt=media&token=d4419231-7c36-42de-b91a-bb3c608ae4c5"
-                    alt=""
-            />
-        </div>
-    </section>
-    <hr />
-    <!-- Leave a review section -->
+            <div class="card-body">
+              <div class="rating-stars"></div>
+              <h3 class="card-title">Grilled Chicken with Chips</h3>
+            </div>
+          </div>
+        </a>
 
-    <section>
-        <div class="container">
-            <h2>Leave a Review</h2>
-            <form>
-                <!-- RATING GOES HERE -->
-                <div class="mb-3">
-                    <label for="inputName" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="inputName" />
-                </div>
-                <div class="mb-3">
-                    <label for="inputEmail1" class="form-label">Email address</label>
-                    <input
-                            type="email"
-                            class="form-control"
-                            id="inputEmail1"
-                            aria-describedby="emailHelp"
-                    />
-                    <div id="emailHelp" class="form-text">
-                        We'll never share your email with anyone else.
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="inputMessage" class="form-label">Comment</label>
-                    <input type="textarea" class="form-control" id="inputMessage" />
-                </div>
-                <button type="submit" class="btn btn-orange">Post Comment</button>
-                <button class="btn btn-orange-light">Upload Photo</button>
-            </form>
-        </div>
-    </section>
-    <hr />
-    <!-- Reviews section -->
-    <section>
-        <div class="container">
-            <h2>Reviews</h2>
-            <!-- Review card -->
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-user">
-                        <img src="#" alt="" />
-                        <div class="card-user-info">
-                            <span class="card-user-name">User name</span>
-                            <span class="card-posting-time">XX time ago</span>
-                            <!-- RATING GOES HERE -->
-                        </div>
-                    </div>
-                    <p class="card-text">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, illum,
-                        nostrum accusantium beatae et dicta amet doloremque consequatur
-                        facere accusamus esse quis, assumenda est quos in culpa voluptatum
-                        reprehenderit cum.
-                    </p>
-                </div>
-                <img src="#" class="card-img-bottom" alt="..." />
+        <a href="" class="card-link recipe-card">
+          <div class="card">
+            <div class="recipe-card__img">
+              <button></button>
+              <img
+                src="https://picsum.photos/300"
+                alt=""
+                class="card-img-top"
+              />
             </div>
+            <div class="card-body">
+              <div class="rating-stars"></div>
+              <h3 class="card-title">Spagetti carbonara</h3>
+            </div>
+          </div>
+        </a>
+        <a href="" class="card-link recipe-card">
+          <div class="card">
+            <div class="recipe-card__img">
+              <button></button>
+              <img
+                src="https://picsum.photos/300"
+                alt=""
+                class="card-img-top"
+              />
+            </div>
+            <div class="card-body">
+              <div class="rating-stars"></div>
+              <h3 class="card-title">Ceaser Salad</h3>
+            </div>
+          </div>
+        </a>
+        <a href="" class="card-link recipe-card">
+          <div class="card">
+            <div class="recipe-card__img">
+              <button></button>
+              <img
+                src="https://picsum.photos/300"
+                alt=""
+                class="card-img-top"
+              />
+            </div>
+            <div class="card-body">
+              <div class="rating-stars"></div>
+              <h3 class="card-title">Pasta with Hot Dogs</h3>
+            </div>
+          </div>
+        </a>
+        <a href="" class="card-link recipe-card">
+          <div class="card">
+            <div class="recipe-card__img">
+              <button></button>
+              <img
+                src="https://picsum.photos/300"
+                alt=""
+                class="card-img-top"
+              />
+            </div>
+            <div class="card-body">
+              <div class="rating-stars"></div>
+              <h3 class="card-title">Empanadas</h3>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Share recipe section -->
+  <section class="share-recipe">
+    <div class="container">
+      <div class="share-recipe__content">
+        <h2>Share your recipe?</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
+          aliquid ea provident voluptate ipsa cupiditate totam debitis at est
+          praesentium. Laudantium non vero fugiat culpa sunt, consequatur magnam
+          quidem quam?
+        </p>
+        <a href="" class="btn-white">Share recipe</a>
+      </div>
+      <img
+        src="https://firebasestorage.googleapis.com/v0/b/wtfood-3d70f.appspot.com/o/website%20images%2Ffood13.png?alt=media&token=d4419231-7c36-42de-b91a-bb3c608ae4c5"
+        alt=""
+      />
+    </div>
+  </section>
+  <hr />
+  <!-- Leave a review section -->
+
+  <section>
+    <div class="container">
+      <h2>Leave a Review</h2>
+      <form>
+        <!-- RATING GOES HERE -->
+        <div class="mb-3">
+          <label for="inputName" class="form-label">Name</label>
+          <input type="text" class="form-control" id="inputName" />
         </div>
-    </section>
+        <div class="mb-3">
+          <label for="inputEmail1" class="form-label">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            id="inputEmail1"
+            aria-describedby="emailHelp"
+          />
+          <div id="emailHelp" class="form-text">
+            We'll never share your email with anyone else.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="inputMessage" class="form-label">Comment</label>
+          <input type="textarea" class="form-control" id="inputMessage" />
+        </div>
+        <button type="submit" class="btn btn-orange">Post Comment</button>
+        <button class="btn btn-orange-light">Upload Photo</button>
+      </form>
+    </div>
+  </section>
+  <hr />
+  <!-- Reviews section -->
+  <section>
+    <div class="container">
+      <h2>Reviews</h2>
+      <!-- Review card -->
+      <div class="card">
+        <div class="card-body">
+          <div class="card-user">
+            <img src="#" alt="" />
+            <div class="card-user-info">
+              <span class="card-user-name">User name</span>
+              <span class="card-posting-time">XX time ago</span>
+              <!-- RATING GOES HERE -->
+            </div>
+          </div>
+          <p class="card-text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, illum,
+            nostrum accusantium beatae et dicta amet doloremque consequatur
+            facere accusamus esse quis, assumenda est quos in culpa voluptatum
+            reprehenderit cum.
+          </p>
+        </div>
+        <img src="#" class="card-img-bottom" alt="..." />
+      </div>
+    </div>
+  </section>
 </div>

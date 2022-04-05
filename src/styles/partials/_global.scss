@@ -50,6 +50,10 @@ body.black-overlay:after {
 .recipe-card {
   display: block;
 
+  @include mediaQuery($desktop){
+    max-width: 318px;
+  }
+
   &.card-link {
     margin: 0;
     @include fontBody1Semibold();
@@ -182,4 +186,8 @@ a{
 
 .swal2-styled.swal2-default-outline:focus{
 box-shadow: $focus-box-shadow !important;
+}
+
+button, a{
+  cursor: pointer;
 }
