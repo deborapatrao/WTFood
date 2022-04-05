@@ -63,13 +63,18 @@
               </div>
             </button>
             <ul id="mainNav" class="navigation__list" data-visible="false">
-
               <li class="nav__item login__item">
-                <a id="login-nav" data-bs-toggle="modal" data-bs-target="#exampleModal" class="nav__link"></a>
-
+                <a
+                  id="login-nav"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                  class="nav__link"
+                ></a>
               </li>
               <li class="nav__item profile__item">
-                <a href="#profile" class="nav__link">profile</a>
+                <a href="#profile" class="nav__link" id="headerProfile"
+                  >profile</a
+                >
               </li>
               <li class="nav__item">
                 <a href="#home" class="nav__link nav-active">home</a>
@@ -93,7 +98,7 @@
                 <a href="#faq" class="nav__link">FAQ</a>
               </li>
               <li class="nav__item header__shopping">
-                <a href="#" \>
+                <button>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -119,12 +124,12 @@
                     </g>
                   </svg>
                   <span class="visually-hidden">Shopping Cart</span>
-                </a>
+                </button>
               </li>
             </ul>
           </nav>
           <div class="header__shopping hide-desktop">
-            <a href="#" id="headerShoppingCart">
+            <button id="headerShoppingCart">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -150,7 +155,7 @@
                 </g>
               </svg>
               <span class="visually-hidden">Shopping Cart</span>
-            </a>
+            </button>
           </div>
         </div>
       </div>
