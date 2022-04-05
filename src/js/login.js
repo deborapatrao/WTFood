@@ -75,8 +75,7 @@ export default function init() {
                   photoURL:
                     "https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg",
                 });
-                console.log(user.displayName);
-                console.log(user.photoURL);
+
                 try {
                   await addDoc(collection(db, "users"), {
                     name: user.displayName,
@@ -185,7 +184,7 @@ export default function init() {
           // This gives you a Facebook Access Token. You can use it to access the Facebook API.
           const credential = FacebookAuthProvider.credentialFromResult(result);
           const accessToken = credential.accessToken;
-          console.log(user, credential);
+
           // ...
         })
         .catch((error) => {

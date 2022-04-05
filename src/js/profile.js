@@ -5,6 +5,7 @@ import {
     storage,
     ref,
     db,
+    deleteDoc,
     onAuthStateChanged,
     updateProfile,
     updateEmail,
@@ -73,7 +74,7 @@ export default function init() {
             const modal = document.querySelector('#cameraModal')
             const closeModal = document.querySelectorAll('.close');
             cameraBtn.addEventListener('click', () => {
-               cameraModal.show();
+                cameraModal.show();
 
             });
 
@@ -118,20 +119,20 @@ export default function init() {
             }
             //----------------------Preview Recipe Photo----------------------\\
             const recipePhoto = document.getElementById('recipePhoto');
-            let loadFile = function(event) {
+            let loadFile = function (event) {
                 console.log('changing')
-               let output = document.getElementById('previewRecipePhoto');
+                let output = document.getElementById('previewRecipePhoto');
                 output.src = URL.createObjectURL(event.target.files[0]);
-                output.onload = function() {
+                output.onload = function () {
                     URL.revokeObjectURL(output.src) // free memory
                 }
             };
             recipePhoto.addEventListener('change', loadFile)
             //----------------------Count recipes----------------------\\
-         const recipeCount = document.querySelector('#recipeCount');
+            const recipeCount = document.querySelector('#recipeCount');
 
-            const recipeRef = collection(db,`users/${uid}/recipes` );
-            const queryRecipe =  await getDocs(recipeRef);
+            const recipeRef = collection(db, `users/${uid}/recipes`);
+            const queryRecipe = await getDocs(recipeRef);
             recipeCount.innerHTML = queryRecipe.size;
 
         }
@@ -209,10 +210,8 @@ export default function init() {
         sessionStorage.removeItem("shoppingList");
         profileOpenClose(shoppingListContainer);
         transformBtnNav(profileShoppingBtn);
-
     }
 }
-
 
 
 //-----------------------Upload Photo-----------------------\\
@@ -445,13 +444,11 @@ async function recipes() {
 }
 
 
-
 //----------------------Photo Profile Camera----------------------\\
 let photoURL = "";
 
 function camera() {
     const controls = document.querySelector(".controls");
-    const divCamera = document.querySelector("#divcamera");
     const cameraPlay = document.querySelector("#cameraStart");
     const cameraSS = document.querySelector("#screenshot");
     const cameraOptions = document.querySelector(".video-options>select");
@@ -532,7 +529,7 @@ function camera() {
                     text: 'Saving...',
                     timer: 7000,
                     timerProgressBar: true,
-                    customClass:{
+                    customClass: {
                         htmlContainer: "toast-body",
                         loader: "loader",
                     },
@@ -607,6 +604,7 @@ function camera() {
 
     getCameraSelection();
 }
+
 //----------------------Add/Remove Ingrediente Input----------------------\\
 addBtn.addEventListener("click", () => {
     const divIngredient = document.createElement("div");
@@ -660,12 +658,12 @@ async function shoppingList() {
 
     querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
-
         const div = document.createElement("div");
         div.classList.add('shopping-list__item');
         div.innerHTML = `<p>${doc.data().ingredient}</p>`;
         const btnDeleteItem = document.createElement('button');
         btnDeleteItem.classList.add('remove-recipe');
+        btnDeleteItem.setAttribute('id', doc.id)
         div.appendChild(btnDeleteItem);
         container.appendChild(div);
     });
@@ -677,25 +675,53 @@ async function shoppingList() {
     };
 
     //----------------------Remove items from shopping list-----------------\\
-const removeItemBtn = document.querySelectorAll('.remove-recipe');
+    const removeItemBtn = document.querySelectorAll('.remove-recipe');
 
-removeItemBtn.forEach((button) => {
-    button.addEventListener('click', function() {
-        const parent = this.parentNode;
-        parent.classList.add('removed');
+    removeItemBtn.forEach((button) => {
+        const user = auth.currentUser;
 
-        function remove(item) {
-            item.style.display ="none";
-        }
-        setTimeout(() => remove(parent), 700); 
+        button.addEventListener('click', async function () {
+
+            const parent = this.parentNode;
+            parent.classList.add('removed');
+
+            await deleteDoc(doc(db, `users/${user.uid}/shoppinglist`, button.id));
+
+            function remove(item) {
+                item.style.display = "none";
+            }
+
+            setTimeout(() => remove(parent), 700);
+        });
     });
-});
+
+    const removeALl = document.getElementById('removeListAll');
+    const itemList = document.querySelectorAll('.shopping-list__items')
+    removeALl.addEventListener('click', async () => {
+        const docsRef = collection(db, `users/${user.uid}/shoppinglist`);
+        const collections = await getDocs(docsRef);
+
+        collections.forEach(item => {
+            deleteDoc(doc(db, `users/${user.uid}/shoppinglist`, item.id));
+        })
+        itemList.forEach((button) => {
+
+            button.classList.add('removed');
+
+            function remove(item) {
+
+                item.style.display = "none";
+            }
+
+            setTimeout(() => remove(button), 700);
+
+
+        });
+
+    });
+
 
 }
-
-
-
-
 
 //----------------------Navigate Menu Pages Profile----------------------\\
 
