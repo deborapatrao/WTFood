@@ -5,7 +5,7 @@
   background-repeat: no-repeat;
 
   padding: $std-section-padding;
-  min-height: 44vh;
+  min-height: 400px;
 }
 
 .home,
@@ -26,6 +26,7 @@
 .home .section__heading {
   padding-bottom: 1rem;
   gap: 1rem;
+  align-items: start;
 }
 
 .food-world__card a {

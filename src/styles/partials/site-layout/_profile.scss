@@ -245,6 +245,13 @@
 }
 
 .photo-recipe{
+  width: 216px;
+  height: 216px;
+  border-radius: $std-border-radius;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  
   input{
     display: none
   }

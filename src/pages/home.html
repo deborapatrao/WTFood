@@ -22,8 +22,14 @@
                   class="b"
                   d="M15.63,1.56l-.23,.23C12.19,.15,7.65,1.09,4.37,4.38,1.1,7.66,.15,12.19,1.79,15.4l-.23,.23c-.36,.38-.56,.88-.56,1.4,0,.52,.21,1.02,.58,1.39,.37,.37,.87,.58,1.39,.58,.52,0,1.02-.2,1.4-.56l.23-.23c3.21,1.64,7.75,.7,11.02-2.59,3.28-3.28,4.23-7.81,2.59-11.02l.23-.23c.36-.38,.56-.88,.56-1.4,0-.52-.21-1.02-.58-1.39-.37-.37-.87-.58-1.39-.58-.52,0-1.02,.2-1.4,.56h0Z"
                 />
-                <path class="c" d="M9,15.97c.55,0,.99-.45,.99-.99s-.45-.99-.99-.99-.99,.45-.99,.99,.45,.99,.99,.99Z" />
-                <path class="c" d="M12.98,13.98c.55,0,.99-.45,.99-.99s-.45-.99-.99-.99-.99,.45-.99,.99,.45,.99,.99,.99Z" />
+                <path
+                  class="c"
+                  d="M9,15.97c.55,0,.99-.45,.99-.99s-.45-.99-.99-.99-.99,.45-.99,.99,.45,.99,.99,.99Z"
+                />
+                <path
+                  class="c"
+                  d="M12.98,13.98c.55,0,.99-.45,.99-.99s-.45-.99-.99-.99-.99,.45-.99,.99,.45,.99,.99,.99Z"
+                />
               </svg>
               Ingredients
             </button>
@@ -38,9 +44,15 @@
               aria-selected="false"
             >
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.18 20">
-                <path class="b" d="M10.82,5.91v2.45c0,.9-.73,1.64-1.64,1.64h-1.64c-.9,0-1.64-.73-1.64-1.64v-2.45" />
+                <path
+                  class="b"
+                  d="M10.82,5.91v2.45c0,.9-.73,1.64-1.64,1.64h-1.64c-.9,0-1.64-.73-1.64-1.64v-2.45"
+                />
                 <path class="b" d="M8.36,5.91V14.91" />
-                <path class="b" d="M1,1H14.09c.9,0,1.64,.73,1.64,1.64v14.73c0,.9-.73,1.64-1.64,1.64H1V1Z" />
+                <path
+                  class="b"
+                  d="M1,1H14.09c.9,0,1.64,.73,1.64,1.64v14.73c0,.9-.73,1.64-1.64,1.64H1V1Z"
+                />
                 <path class="b" d="M18.18,4.27v3.27" />
                 <path class="b" d="M18.18,11v3.27" />
               </svg>
@@ -50,29 +62,65 @@
         </nav>
         <div class="tab-content" id="nav-tabContent">
           <!-- SEARCH BY INGREDIENTS TAB -->
-          <div class="tab-pane fade show active" id="nav-ingredients" role="tabpanel" aria-labelledby="nav-ingredients-tab">
+          <div
+            class="tab-pane fade show active"
+            id="nav-ingredients"
+            role="tabpanel"
+            aria-labelledby="nav-ingredients-tab"
+          >
             <div id="ingForm" class="tab__search-form">
               <legend>Get recipes by ingredients</legend>
               <label>
-                <input id="ing1" type="text" placeholder="Hungry for something?" />
+                <input
+                  id="ing1"
+                  type="text"
+                  placeholder="Hungry for something?"
+                />
               </label>
               <label>
-                <input id="ing2" type="text" placeholder="Hungry for something?" />
+                <input
+                  id="ing2"
+                  type="text"
+                  placeholder="Hungry for something?"
+                />
               </label>
               <label>
-                <input id="ing3" type="text" placeholder="Hungry for something?" />
+                <input
+                  id="ing3"
+                  type="text"
+                  placeholder="Hungry for something?"
+                />
               </label>
-              <input type="submit" value="Search" id="ingSearch" class="btn-orange" />
+              <input
+                type="submit"
+                value="Search"
+                id="ingSearch"
+                class="btn-orange"
+              />
             </div>
           </div>
           <!-- SEARCH BY RECIPES TAB -->
-          <div class="tab-pane fade" id="nav-recipes" role="tabpanel" aria-labelledby="nav-recipes-tab">
+          <div
+            class="tab-pane fade"
+            id="nav-recipes"
+            role="tabpanel"
+            aria-labelledby="nav-recipes-tab"
+          >
             <div id="recipeForm" class="tab__search-form">
               <legend>Hungry for something?</legend>
               <label>
-                <input type="text" placeholder="Hungry for something?" id="recipeQuery" />
+                <input
+                  type="text"
+                  placeholder="Hungry for something?"
+                  id="recipeQuery"
+                />
               </label>
-              <input type="submit" value="Search" id="recipeSearch" class="btn-orange" />
+              <input
+                type="submit"
+                value="Search"
+                id="recipeSearch"
+                class="btn-orange"
+              />
             </div>
           </div>
         </div>
@@ -84,7 +132,7 @@
 
   <section>
     <div class="container">
-      <div class="section__heading d-flex justify-content-between align-items-center">
+      <div class="section__heading d-flex justify-content-between">
         <h2>Food of the World</h2>
         <a href="#" class="view-all">view all</a>
       </div>
@@ -183,7 +231,7 @@
 
   <section class="background-light-grey">
     <div class="container swiper-box">
-      <div class="section__heading d-flex justify-content-between align-items-center">
+      <div class="section__heading d-flex justify-content-between">
         <h2>What's Hot</h2>
         <a href="#" class="view-all">view all</a>
       </div>
@@ -194,7 +242,10 @@
             <div class="card">
               <div class="recipe-card__img">
                 <button>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20.13">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 22 20.13"
+                  >
                     <path
                       class="heart"
                       d="M19.41,2.61c-1.02-1.02-2.41-1.6-3.85-1.6s-2.83,.57-3.85,1.6c-.26,.26-.49,.54-.69,.84-.42-.64-.97-1.18-1.61-1.59-.64-.41-1.36-.68-2.12-.8-.75-.12-1.53-.07-2.26,.13s-1.42,.56-2.01,1.04c-.59,.48-1.07,1.09-1.42,1.77-.34,.68-.54,1.43-.58,2.19-.04,.76,.09,1.52,.36,2.24,.28,.71,.7,1.36,1.24,1.9l8.4,8.4,8.4-8.4c1.02-1.02,1.6-2.41,1.6-3.85s-.57-2.83-1.6-3.85h0Z"
@@ -217,7 +268,10 @@
             <div class="card">
               <div class="recipe-card__img">
                 <button>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20.13">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 22 20.13"
+                  >
                     <path
                       class="heart"
                       d="M19.41,2.61c-1.02-1.02-2.41-1.6-3.85-1.6s-2.83,.57-3.85,1.6c-.26,.26-.49,.54-.69,.84-.42-.64-.97-1.18-1.61-1.59-.64-.41-1.36-.68-2.12-.8-.75-.12-1.53-.07-2.26,.13s-1.42,.56-2.01,1.04c-.59,.48-1.07,1.09-1.42,1.77-.34,.68-.54,1.43-.58,2.19-.04,.76,.09,1.52,.36,2.24,.28,.71,.7,1.36,1.24,1.9l8.4,8.4,8.4-8.4c1.02-1.02,1.6-2.41,1.6-3.85s-.57-2.83-1.6-3.85h0Z"
@@ -240,7 +294,10 @@
             <div class="card">
               <div class="recipe-card__img">
                 <button>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20.13">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 22 20.13"
+                  >
                     <path
                       class="heart"
                       d="M19.41,2.61c-1.02-1.02-2.41-1.6-3.85-1.6s-2.83,.57-3.85,1.6c-.26,.26-.49,.54-.69,.84-.42-.64-.97-1.18-1.61-1.59-.64-.41-1.36-.68-2.12-.8-.75-.12-1.53-.07-2.26,.13s-1.42,.56-2.01,1.04c-.59,.48-1.07,1.09-1.42,1.77-.34,.68-.54,1.43-.58,2.19-.04,.76,.09,1.52,.36,2.24,.28,.71,.7,1.36,1.24,1.9l8.4,8.4,8.4-8.4c1.02-1.02,1.6-2.41,1.6-3.85s-.57-2.83-1.6-3.85h0Z"
@@ -263,7 +320,10 @@
             <div class="card">
               <div class="recipe-card__img">
                 <button>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20.13">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 22 20.13"
+                  >
                     <path
                       class="heart"
                       d="M19.41,2.61c-1.02-1.02-2.41-1.6-3.85-1.6s-2.83,.57-3.85,1.6c-.26,.26-.49,.54-.69,.84-.42-.64-.97-1.18-1.61-1.59-.64-.41-1.36-.68-2.12-.8-.75-.12-1.53-.07-2.26,.13s-1.42,.56-2.01,1.04c-.59,.48-1.07,1.09-1.42,1.77-.34,.68-.54,1.43-.58,2.19-.04,.76,.09,1.52,.36,2.24,.28,.71,.7,1.36,1.24,1.9l8.4,8.4,8.4-8.4c1.02-1.02,1.6-2.41,1.6-3.85s-.57-2.83-1.6-3.85h0Z"
@@ -286,7 +346,10 @@
             <div class="card">
               <div class="recipe-card__img">
                 <button>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20.13">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 22 20.13"
+                  >
                     <path
                       class="heart"
                       d="M19.41,2.61c-1.02-1.02-2.41-1.6-3.85-1.6s-2.83,.57-3.85,1.6c-.26,.26-.49,.54-.69,.84-.42-.64-.97-1.18-1.61-1.59-.64-.41-1.36-.68-2.12-.8-.75-.12-1.53-.07-2.26,.13s-1.42,.56-2.01,1.04c-.59,.48-1.07,1.09-1.42,1.77-.34,.68-.54,1.43-.58,2.19-.04,.76,.09,1.52,.36,2.24,.28,.71,.7,1.36,1.24,1.9l8.4,8.4,8.4-8.4c1.02-1.02,1.6-2.41,1.6-3.85s-.57-2.83-1.6-3.85h0Z"
@@ -309,7 +372,10 @@
             <div class="card">
               <div class="recipe-card__img">
                 <button>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20.13">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 22 20.13"
+                  >
                     <path
                       class="heart"
                       d="M19.41,2.61c-1.02-1.02-2.41-1.6-3.85-1.6s-2.83,.57-3.85,1.6c-.26,.26-.49,.54-.69,.84-.42-.64-.97-1.18-1.61-1.59-.64-.41-1.36-.68-2.12-.8-.75-.12-1.53-.07-2.26,.13s-1.42,.56-2.01,1.04c-.59,.48-1.07,1.09-1.42,1.77-.34,.68-.54,1.43-.58,2.19-.04,.76,.09,1.52,.36,2.24,.28,.71,.7,1.36,1.24,1.9l8.4,8.4,8.4-8.4c1.02-1.02,1.6-2.41,1.6-3.85s-.57-2.83-1.6-3.85h0Z"
@@ -348,7 +414,9 @@
 
   <section>
     <div class="container swiper-box">
-      <div class="section__heading d-flex justify-content-between align-items-center">
+      <div
+        class="section__heading d-flex justify-content-between align-items-center"
+      >
         <h2>Easy Recipes for Every Occasions</h2>
         <a href="#" class="view-all">view all</a>
       </div>
@@ -359,7 +427,10 @@
             <div class="card">
               <div class="recipe-card__img">
                 <button>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20.13">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 22 20.13"
+                  >
                     <path
                       class="heart"
                       d="M19.41,2.61c-1.02-1.02-2.41-1.6-3.85-1.6s-2.83,.57-3.85,1.6c-.26,.26-.49,.54-.69,.84-.42-.64-.97-1.18-1.61-1.59-.64-.41-1.36-.68-2.12-.8-.75-.12-1.53-.07-2.26,.13s-1.42,.56-2.01,1.04c-.59,.48-1.07,1.09-1.42,1.77-.34,.68-.54,1.43-.58,2.19-.04,.76,.09,1.52,.36,2.24,.28,.71,.7,1.36,1.24,1.9l8.4,8.4,8.4-8.4c1.02-1.02,1.6-2.41,1.6-3.85s-.57-2.83-1.6-3.85h0Z"
@@ -382,7 +453,10 @@
             <div class="card">
               <div class="recipe-card__img">
                 <button>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20.13">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 22 20.13"
+                  >
                     <path
                       class="heart"
                       d="M19.41,2.61c-1.02-1.02-2.41-1.6-3.85-1.6s-2.83,.57-3.85,1.6c-.26,.26-.49,.54-.69,.84-.42-.64-.97-1.18-1.61-1.59-.64-.41-1.36-.68-2.12-.8-.75-.12-1.53-.07-2.26,.13s-1.42,.56-2.01,1.04c-.59,.48-1.07,1.09-1.42,1.77-.34,.68-.54,1.43-.58,2.19-.04,.76,.09,1.52,.36,2.24,.28,.71,.7,1.36,1.24,1.9l8.4,8.4,8.4-8.4c1.02-1.02,1.6-2.41,1.6-3.85s-.57-2.83-1.6-3.85h0Z"
@@ -405,7 +479,10 @@
             <div class="card">
               <div class="recipe-card__img">
                 <button>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20.13">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 22 20.13"
+                  >
                     <path
                       class="heart"
                       d="M19.41,2.61c-1.02-1.02-2.41-1.6-3.85-1.6s-2.83,.57-3.85,1.6c-.26,.26-.49,.54-.69,.84-.42-.64-.97-1.18-1.61-1.59-.64-.41-1.36-.68-2.12-.8-.75-.12-1.53-.07-2.26,.13s-1.42,.56-2.01,1.04c-.59,.48-1.07,1.09-1.42,1.77-.34,.68-.54,1.43-.58,2.19-.04,.76,.09,1.52,.36,2.24,.28,.71,.7,1.36,1.24,1.9l8.4,8.4,8.4-8.4c1.02-1.02,1.6-2.41,1.6-3.85s-.57-2.83-1.6-3.85h0Z"
@@ -428,7 +505,10 @@
             <div class="card">
               <div class="recipe-card__img">
                 <button>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20.13">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 22 20.13"
+                  >
                     <path
                       class="heart"
                       d="M19.41,2.61c-1.02-1.02-2.41-1.6-3.85-1.6s-2.83,.57-3.85,1.6c-.26,.26-.49,.54-.69,.84-.42-.64-.97-1.18-1.61-1.59-.64-.41-1.36-.68-2.12-.8-.75-.12-1.53-.07-2.26,.13s-1.42,.56-2.01,1.04c-.59,.48-1.07,1.09-1.42,1.77-.34,.68-.54,1.43-.58,2.19-.04,.76,.09,1.52,.36,2.24,.28,.71,.7,1.36,1.24,1.9l8.4,8.4,8.4-8.4c1.02-1.02,1.6-2.41,1.6-3.85s-.57-2.83-1.6-3.85h0Z"
@@ -451,7 +531,10 @@
             <div class="card">
               <div class="recipe-card__img">
                 <button>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20.13">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 22 20.13"
+                  >
                     <path
                       class="heart"
                       d="M19.41,2.61c-1.02-1.02-2.41-1.6-3.85-1.6s-2.83,.57-3.85,1.6c-.26,.26-.49,.54-.69,.84-.42-.64-.97-1.18-1.61-1.59-.64-.41-1.36-.68-2.12-.8-.75-.12-1.53-.07-2.26,.13s-1.42,.56-2.01,1.04c-.59,.48-1.07,1.09-1.42,1.77-.34,.68-.54,1.43-.58,2.19-.04,.76,.09,1.52,.36,2.24,.28,.71,.7,1.36,1.24,1.9l8.4,8.4,8.4-8.4c1.02-1.02,1.6-2.41,1.6-3.85s-.57-2.83-1.6-3.85h0Z"
@@ -474,7 +557,10 @@
             <div class="card">
               <div class="recipe-card__img">
                 <button>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20.13">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 22 20.13"
+                  >
                     <path
                       class="heart"
                       d="M19.41,2.61c-1.02-1.02-2.41-1.6-3.85-1.6s-2.83,.57-3.85,1.6c-.26,.26-.49,.54-.69,.84-.42-.64-.97-1.18-1.61-1.59-.64-.41-1.36-.68-2.12-.8-.75-.12-1.53-.07-2.26,.13s-1.42,.56-2.01,1.04c-.59,.48-1.07,1.09-1.42,1.77-.34,.68-.54,1.43-.58,2.19-.04,.76,.09,1.52,.36,2.24,.28,.71,.7,1.36,1.24,1.9l8.4,8.4,8.4-8.4c1.02-1.02,1.6-2.41,1.6-3.85s-.57-2.83-1.6-3.85h0Z"
