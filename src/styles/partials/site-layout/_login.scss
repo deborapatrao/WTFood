@@ -96,6 +96,7 @@
 
   .modal-header {
     border-bottom: $border-grey;
+    z-index: 1000;
     @include mediaQuery($desktop){
       border-bottom: none;
       position: absolute;
