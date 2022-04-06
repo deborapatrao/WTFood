@@ -178,3 +178,29 @@ function closeOneModal(modalId) {
   // remove opened modal backdrop
   document.body.removeChild(modalBackdrops[0]);
 }
+const constructionPage = document.querySelectorAll('.construction');
+
+constructionPage.forEach((click) => {
+    click.addEventListener('click', () => {
+        Swal.fire({
+            title: "Warning",
+            text: "Please sing in to use your profile!",
+            icon: "warning",
+            confirmButtonColor: "#fd8722",
+            iconColor: "#ffbc3a",
+            color: "#28231e",
+            showDenyButton: true,
+            denyButtonText: `Go to Homepage`,
+            denyButtonColor: "#ffbc3a",
+            customClass: {
+                htmlContainer: "toast-body",
+            },
+        }).then((result) => {
+            // const modalSign = document.getElementById('exampleModal');
+            if (result.isDenied) {
+                location.hash = "profile";
+            }
+            window.location.href = "#home";
+        });
+    });
+});
