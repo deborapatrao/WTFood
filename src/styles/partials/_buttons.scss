@@ -296,3 +296,18 @@ padding: 1rem 0 0 0;
   }
 }
 
+.swal2-styled.swal2-deny.btn-noborder{
+  padding: $padding-small;
+  background-color: $color-white !important;
+  color: $color-primary-dark !important;
+  @include fontButton();
+  text-decoration: none;
+}
+
+.construction-btn{
+  flex-direction: column;
+}
+
+.swal2-icon.swal-noborder{
+  border: none;
+}
