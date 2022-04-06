@@ -11,6 +11,7 @@ Router.init("mainArea", [
   new Page("#oneRecipe", "pages/oneRecipe.html"),
   new Page("#userRecipe", "pages/userRecipe.html"),
   new Page("#recipes", "pages/recipes.html"),
+  new Page("#contact", "pages/contact.html"),
   // new Page("#login", "pages/login.html"),
   // add new pages here
 ]);

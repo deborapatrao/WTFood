@@ -24,11 +24,13 @@ module.exports = {
     profile: "./src/js/profile.js",
     oneRecipe: "./src/js/oneRecipe.js",
     recipes: "./src/js/recipes.js",
+    contact: "./src/js/contact.js",
+    community: "./src/js/community.js",
   },
   performance: {
     hints: false,
     maxEntrypointSize: 512000,
-    maxAssetSize: 512000
+    maxAssetSize: 512000,
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -116,5 +118,8 @@ module.exports = {
   },
   optimization: {
     runtimeChunk: "single",
+    // chunkIds: false,
+    // mergeDuplicateChunks: true,
+    // minimize: true,
   },
 };

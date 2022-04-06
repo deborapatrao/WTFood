@@ -47,11 +47,26 @@ export class Router {
 
   static async goToPage(page) {
     try {
+      const hashPage = window.location.hash;
+      // Links active
+      const navLinks = document.querySelectorAll(".nav__link");
+      const activeLinks = document.querySelectorAll(`.nav__item a[href="${hashPage}"]`);
+
+      navLinks.forEach((link) => {
+        if (link.classList.contains("nav-active")) {
+          link.classList.remove("nav-active");
+        }
+      });
+
+      activeLinks.forEach((link) => {
+        link.classList.add("nav-active");
+      });
+
       // get the HTML pages content
       const response = await fetch(page.htmlName);
       const txt = await response.text();
 
-      if (window.location.hash == "#profile")
+      if (hashPage == "#profile")
         onAuthStateChanged(auth, async (user) => {
           const userCheck = user?.auth?.currentUser;
           if (userCheck) {
@@ -73,85 +88,22 @@ export class Router {
               // const modalSign = document.getElementById('exampleModal');
               let myModal = new Modal(document.getElementById("exampleModal"), {});
               myModal.toggle();
-              window.location.href = "#profile";
+              window.location.href = "#home";
             });
           }
         });
 
       Router.rootElem.innerHTML = txt;
 
-      if (window.location.hash !== "#profile") {
+      if (hashPage !== "#profile" && hashPage !== "#community" && hashPage !== "#contact") {
         let init = await import(`../js/${page.jsName}`); // lazily loading the js files
         init.default();
       }
 
       let initLogin = await import(`../js/login.js`); // lazily loading the js files
       initLogin.default();
-
-      // if the page requires auth, load the header(auth-template) first and then hook the pages in the #mainArea
-      // if (page.authRequired) {
-      //   if (!document.getElementById('header')) {
-      //     await Router.initAuthTemplatePage();
-      //   }
-      //   document.getElementById('mainArea').innerHTML = txt;
-      //   Router.markActiveLink();
-      // } else {
-      //   Router.rootElem.innerHTML = txt;
-      // }
-      //testik
-
-      // const cutName = page.jsName.substring(3);
     } catch (error) {
       console.error(error);
     }
   }
-
-  // static async goToPage(page) {
-
-  //   try {
-  //     const response = await fetch(page.htmlName);
-  //     const txt = await response.text();
-  //     // const jsSRC = page.jsName;
-
-  //     Router.rootElem.innerHTML = txt;
-  //     // //append JS part to run.
-
-  //     const script = document.createElement("script");
-  //     script.setAttribute("src", `${page.jsName}?cachebuster=${new Date().getTime()}`);
-  //     script.setAttribute("type", "text/javascript");
-  //     script.setAttribute("id", 'myscript');
-
-  //     Router.rootElem.appendChild(script);
-
-  //     // const oldScript = document.getElementById('myscript');
-  //     // if(oldScript) {
-  //     //   const scriptNew = document.createElement('script');
-  //     //   scriptNew.src= oldScript.src;
-  //     //   Router.rootElem.appendChild(scriptNew);
-  //     //   console.log('reloading done')
-  //     // } else {
-  //     //   const script = document.createElement("script");
-  //     // script.setAttribute("src", `${page.jsName}?cachebuster=${new Date().getTime()}`);
-  //     // script.setAttribute("type", "text/javascript");
-  //     // script.setAttribute("id", 'myscript');
-
-  //     // Router.rootElem.appendChild(script);
-  //     // }
-
-  //     // defer
-  //     //append API JS part to run.
-  //     // const scriptAPI = document.createElement("script");
-  //     // scriptAPI.setAttribute("src", "js/api.js");
-  //     // scriptAPI.setAttribute("type", "text/javascript");
-  //     // Router.rootElem.appendChild(scriptAPI);
-
-  //     //append API JS part to run.
-  //     const scriptLogin = document.createElement("script");
-  //     scriptLogin.setAttribute("src", "js/login.js");
-  //     scriptLogin.setAttribute("type", "text/javascript");
-  //     Router.rootElem.appendChild(scriptLogin);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
 }
