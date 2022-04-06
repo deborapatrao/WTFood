@@ -363,30 +363,50 @@ async function recipeCreate(photoURL) {
 const el = document.getElementById("publish");
 
 el.addEventListener("click", () => {
-    try {
-        const recipePhotoFile = document.getElementById("recipePhoto").files[0];
-        const recipePhoto = ref(storage, `users/${auth.currentUser.uid}/recipes/${Date.now()}`);
-        uploadBytes(recipePhoto, recipePhotoFile)
-            .then((snapshot) => {
-                getDownloadURL(recipePhoto)
-                    .then((url) => {
-                        recipeCreate(url);
-                    })
-                    .catch((error) => {
-                        const errorCode = error.code;
-                        const errorMessage = error.message;
-                        console.log("URL photo:" + errorCode + errorMessage);
-                    });
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log("URL photo:" + errorCode + errorMessage);
-            });
-    } catch (error) {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode + errorMessage);
+    const name = document.getElementById("recipeTitle").value;
+    const ingredient = document.getElementById("ingredient").value;
+    const amount = document.getElementById("amount").value;
+    const recipePhotoFile = document.getElementById("recipePhoto").files[0] === 0;
+    const recipePhoto = ref(storage, `users/${auth.currentUser.uid}/recipes/${Date.now()}`);
+console.log(recipePhotoFile)
+    if (name === '' && ingredient === '' && amount === '') {
+
+        Swal.fire({
+            title: "Ops!",
+            text: "Dont be shy, At least put a name and one ingredient! ",
+            icon: "warning",
+            confirmButtonColor: "#fd8722",
+            iconColor: "#ffbc3a",
+            color: "#28231e",
+            customClass: {
+                htmlContainer: "toast-body"
+            }
+        })
+    } else {
+        try {
+
+            uploadBytes(recipePhoto, recipePhotoFile)
+                .then((snapshot) => {
+                    getDownloadURL(recipePhoto)
+                        .then((url) => {
+                            recipeCreate(url);
+                        })
+                        .catch((error) => {
+                            const errorCode = error.code;
+                            const errorMessage = error.message;
+                            console.log("URL photo:" + errorCode + errorMessage);
+                        });
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.log("URL photo:" + errorCode + errorMessage);
+                });
+        } catch (error) {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode + errorMessage);
+        }
     }
 });
 
