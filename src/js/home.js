@@ -11,7 +11,7 @@ export default function init() {
   // Check first whether searchBtnIng element exists on the given page or not
   const searchIngredientsFunction = async (e) => {
     const message = `test in about page ${Date.now()}`;
-    const arrOfIngs = [ing1.value, ing2.value, ing3.value];
+    const arrOfIngs = [ing1.value.trim(), ing2.value.trim(), ing3.value.trim()];
 
     let ingredients = "";
     arrOfIngs.forEach((ing, index) => {
@@ -34,7 +34,7 @@ export default function init() {
 
   const searchRecipeFunction = async (e) => {
     const message = `test in about page2 ${Date.now()}`;
-    let inputRecipe = recipeQuery.value;
+    let inputRecipe = recipeQuery.value.trim();
 
     e.preventDefault();
     // window.location.hash = `recipes`;
