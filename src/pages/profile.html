@@ -1,18 +1,32 @@
 <div class="profile-overlay"></div>
 <h1 class="visually-hidden">Profile</h1>
 <!-- Camera Modal -->
-<div class="modal fade modal-photo" id="cameraModal" tabindex="-1" role="dialog" aria-labelledby="cameraModal" aria-hidden="true">
+<div
+  class="modal fade modal-photo"
+  id="cameraModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="cameraModal"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">Profile Picture</h5>
 
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <button type="button" class="btn-orange" id="cameraStart">Start Camera</button>
+        <button type="button" class="btn-orange" id="cameraStart">
+          Start Camera
+        </button>
         <div id="divcamera" class="display-cover">
           <video autoplay></video>
           <canvas id="canvasCamera" class="d-none"></canvas>
@@ -25,16 +39,28 @@
           <!-- This is the img that appear after taking a photo -->
           <img class="screenshot-image d-none" alt="" />
           <div class="controls">
-            <button style="visibility: hidden" class="btn btn-danger play" title="Play">
+            <button
+              style="visibility: hidden"
+              class="btn btn-danger play"
+              title="Play"
+            >
               <i data-feather="play-circle"></i>
             </button>
-            <button style="visibility: hidden" class="btn btn-outline-success screenshot d-none" title="ScreenShot"></button>
+            <button
+              style="visibility: hidden"
+              class="btn btn-outline-success screenshot d-none"
+              title="ScreenShot"
+            ></button>
           </div>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn-orange" id="screenshot">Take Photo</button>
-        <button type="button" class="btn-noborder close" data-dismiss="modal">Close</button>
+        <button type="button" class="btn-orange" id="screenshot">
+          Take Photo
+        </button>
+        <button type="button" class="btn-noborder close" data-dismiss="modal">
+          Close
+        </button>
       </div>
     </div>
   </div>
@@ -42,7 +68,10 @@
 <main>
   <div class="container">
     <div class="profile">
-      <div class="profile__main profile-open profile-container" id="profileNavigation">
+      <div
+        class="profile__main profile-open profile-container"
+        id="profileNavigation"
+      >
         <div class="profile-main__wrapper">
           <div class="profile__user-info">
             <div class="profile__avatar">
@@ -52,8 +81,19 @@
               <input type="file" id="photoFile" accept="image/*" />
 
               <div class="add-photo-btns">
-                <button id="cameraBtn" type="button" data-toggle="modal" data-target="#cameraModal">
-                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <button
+                  id="cameraBtn"
+                  type="button"
+                  data-toggle="modal"
+                  data-target="#cameraModal"
+                >
+                  <svg
+                    width="32"
+                    height="32"
+                    viewBox="0 0 32 32"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
                     <circle
                       cx="15.5643"
                       cy="16.4355"
@@ -85,7 +125,12 @@
                     </g>
                     <defs>
                       <clipPath>
-                        <rect width="19.1583" height="19.757" fill="white" transform="translate(6.03687 6.58594)" />
+                        <rect
+                          width="19.1583"
+                          height="19.757"
+                          fill="white"
+                          transform="translate(6.03687 6.58594)"
+                        />
                       </clipPath>
                     </defs>
                   </svg>
@@ -120,22 +165,37 @@
               <li>
                 <a class="profile-menu profile-active" id="profileInfo">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
-                    <path class="b" d="M11,11.67c1.84,0,3.33-1.49,3.33-3.33s-1.49-3.33-3.33-3.33-3.33,1.49-3.33,3.33,1.49,3.33,3.33,3.33Z" />
+                    <path
+                      class="b"
+                      d="M11,11.67c1.84,0,3.33-1.49,3.33-3.33s-1.49-3.33-3.33-3.33-3.33,1.49-3.33,3.33,1.49,3.33,3.33,3.33Z"
+                    />
                     <path
                       class="b"
                       d="M17.6,18.49c-.6-1.25-1.53-2.3-2.7-3.03-1.17-.74-2.52-1.13-3.9-1.13s-2.73,.39-3.9,1.13c-1.17,.74-2.11,1.79-2.7,3.03"
                     />
-                    <path class="b" d="M11,21c5.52,0,10-4.48,10-10S16.52,1,11,1,1,5.48,1,11s4.48,10,10,10Z" />
+                    <path
+                      class="b"
+                      d="M11,21c5.52,0,10-4.48,10-10S16.52,1,11,1,1,5.48,1,11s4.48,10,10,10Z"
+                    />
                   </svg>
                   My Profile</a
                 >
               </li>
               <li>
                 <a class="profile-menu" id="profileRecipe">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.18 20">
-                    <path class="b" d="M10.82,5.91v2.45c0,.9-.73,1.64-1.64,1.64h-1.64c-.9,0-1.64-.73-1.64-1.64v-2.45" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 19.18 20"
+                  >
+                    <path
+                      class="b"
+                      d="M10.82,5.91v2.45c0,.9-.73,1.64-1.64,1.64h-1.64c-.9,0-1.64-.73-1.64-1.64v-2.45"
+                    />
                     <path class="b" d="M8.36,5.91V14.91" />
-                    <path class="b" d="M1,1H14.09c.9,0,1.64,.73,1.64,1.64v14.73c0,.9-.73,1.64-1.64,1.64H1V1Z" />
+                    <path
+                      class="b"
+                      d="M1,1H14.09c.9,0,1.64,.73,1.64,1.64v14.73c0,.9-.73,1.64-1.64,1.64H1V1Z"
+                    />
                     <path class="b" d="M18.18,4.27v3.27" />
                     <path class="b" d="M18.18,11v3.27" />
                   </svg>
@@ -143,8 +203,11 @@
                 >
               </li>
               <li>
-                <a class="profile-menu">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.56 20">
+                <a class="profile-menu construction">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 15.56 20"
+                  >
                     <path
                       class="c"
                       d="M13.33,0H2.22C1,0,.01,1,.01,2.22V20l7.77-3.33,7.78,3.33V2.22c0-1.22-1-2.22-2.22-2.22Zm0,16.67l-5.56-2.42-5.56,2.42V2.22H13.33v14.44Z"
@@ -155,7 +218,11 @@
               </li>
               <li>
                 <a class="profile-menu" id="shoppingList">
-                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 20 20.33">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 20 20.33"
+                  >
                     <defs>
                       <clipPath>
                         <rect class="f" y=".17" width="20" height="20" />
@@ -164,8 +231,14 @@
                     <g class="g">
                       <g>
                         <path class="e" d="M1.67,4.33H18.33" />
-                        <path class="d" d="M18.33,19.33H1.67V4.33L5,1H15l3.33,3.33v15Z" />
-                        <path class="d" d="M14.17,8.5c0,2.33-1.83,4.17-4.17,4.17s-4.17-1.83-4.17-4.17" />
+                        <path
+                          class="d"
+                          d="M18.33,19.33H1.67V4.33L5,1H15l3.33,3.33v15Z"
+                        />
+                        <path
+                          class="d"
+                          d="M14.17,8.5c0,2.33-1.83,4.17-4.17,4.17s-4.17-1.83-4.17-4.17"
+                        />
                       </g>
                     </g>
                   </svg>
@@ -310,7 +383,12 @@
             <div id="input-ingredient" class="create-rec__ingredients">
               <h3>Ingredients</h3>
               <div class="create-rec__field">
-                <label for="ingredient" id="ingredientLabel" class="ingredientLabel">Ingredient Name</label>
+                <label
+                  for="ingredient"
+                  id="ingredientLabel"
+                  class="ingredientLabel"
+                  >Ingredient Name</label
+                >
                 <input type="text" id="ingredient" class="ingredient" />
               </div>
               <div class="create-rec__field">
@@ -319,8 +397,12 @@
               </div>
             </div>
             <div class="add--remove--buttons">
-              <button type="button" id="addBtn" class="btn-noborder">+ Add More</button>
-              <button type="button" id="removeBtn" class="btn-noborder">Remove</button>
+              <button type="button" id="addBtn" class="btn-noborder">
+                + Add More
+              </button>
+              <button type="button" id="removeBtn" class="btn-noborder">
+                Remove
+              </button>
             </div>
           </div>
 
@@ -328,13 +410,25 @@
           <div class="create-rec__instructions">
             <h3>Instructions</h3>
             <div class="create-rec__field">
-              <label for="instruction" class="visually-hidden">Instructions</label>
-              <textarea name="instruction" id="instruction" cols="10" rows="5"></textarea>
+              <label for="instruction" class="visually-hidden"
+                >Instructions</label
+              >
+              <textarea
+                name="instruction"
+                id="instruction"
+                cols="10"
+                rows="5"
+              ></textarea>
             </div>
             <div class="instructions__btns">
-              <input type="button" value="Publish" id="publish" class="btn-orange" />
+              <input
+                type="button"
+                value="Publish"
+                id="publish"
+                class="btn-orange"
+              />
 
-              <button class="btn-noborder">save as draft</button>
+              <button class="btn-noborder construction">save as draft</button>
             </div>
           </div>
         </div>
@@ -343,7 +437,11 @@
       <!-- Shopping List Section -->
 
       <div id="shoppingListSection" class="profile-close profile-container">
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLR77YqsfcQjR5__v8Jy3g9gc3rBuUMNY&callback=initMap" async defer></script>
+        <script
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLR77YqsfcQjR5__v8Jy3g9gc3rBuUMNY&callback=initMap"
+          async
+          defer
+        ></script>
         <div id="map"></div>
         <div class="profile__shopping-list">
           <a class="btn-noborder profile-prev">
@@ -355,7 +453,10 @@
           <div class="shopping-list__heading">
             <h2>Shopping List</h2>
             <span>All the ingredients you need!</span>
-            <p>Find the nearest stores to buy your ingredients or select and remove if you don't need it anymore</p>
+            <p>
+              Find the nearest stores to buy your ingredients or select and
+              remove if you don't need it anymore
+            </p>
           </div>
 
           <div class="shopping-list__container">

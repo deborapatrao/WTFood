@@ -259,20 +259,20 @@ a.profile-prev{
 }
 
 //FB and Google buttons
-#signInFb,
-#signInGoogle {
+.signInFb,
+.signInGoogle {
   width: 100%;
   padding: $padding-small;
   border-radius: $std-border-radius;
   @include fontBody2Semibold();
 }
 
-#signInFb {
+.signInFb {
   background-color: #1877f2;
   color: white;
 }
 
-#signInGoogle {
+.signInGoogle {
   border: $border-grey;
   margin-top: 1rem;
 }
