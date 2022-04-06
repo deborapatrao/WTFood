@@ -244,6 +244,7 @@ async function applyFilters(baseURL) {
   // const defaultRecipes = await responseDefaultRecipes.json();
 
   // console.log(defaultRecipes);
+  document.querySelector(".btn-close-filters").click();
   resultArea.innerHTML = "";
   // outputCards(defaultRecipes);
   await getRecipes(url);
