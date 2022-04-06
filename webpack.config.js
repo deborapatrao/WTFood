@@ -24,8 +24,6 @@ module.exports = {
     profile: "./src/js/profile.js",
     oneRecipe: "./src/js/oneRecipe.js",
     recipes: "./src/js/recipes.js",
-    contact: "./src/js/contact.js",
-    community: "./src/js/community.js",
   },
   performance: {
     hints: false,
