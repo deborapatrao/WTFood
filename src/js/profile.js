@@ -94,8 +94,10 @@ export default function init() {
                     html: 'Saving...',
                     timer: 3000,
                     timerProgressBar: true,
-                    confirmButtonColor: "#fd8722",
-                    iconColor: "#ffbc3a",
+                    customClass: {
+                        htmlContainer: "toast-body",
+                        loader: "loader",
+                    },
                     didOpen: () => {
                         Swal.showLoading()
                         const b = Swal.getHtmlContainer().querySelector('b')
@@ -533,8 +535,7 @@ function camera() {
                         htmlContainer: "toast-body",
                         loader: "loader",
                     },
-                    // confirmButtonColor: "#fd8722",
-                    // iconColor: "#ffbc3a",
+                   
                     didOpen: () => {
                         Swal.showLoading()
                         const b = Swal.getHtmlContainer().querySelector('b')

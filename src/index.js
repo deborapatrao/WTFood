@@ -183,17 +183,19 @@ const constructionPage = document.querySelectorAll('.construction');
 constructionPage.forEach((click) => {
     click.addEventListener('click', () => {
         Swal.fire({
-            title: "Warning",
-            text: "Please sing in to use your profile!",
-            icon: "warning",
+            title: "Coming Soon",
+            text: "Oops! This feature is still brewing.",
+            iconHtml: '<svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M9.625 52.5V34.125" stroke="#FFBC3A" stroke-width="2" stroke-miterlimit="10" stroke-linecap="square"/> <path d="M14.875 34.125V52.5" stroke="#FFBC3A" stroke-width="2" stroke-miterlimit="10" stroke-linecap="square"/> <path d="M4.375 52.5H20.125" stroke="#FFBC3A" stroke-width="2" stroke-miterlimit="10" stroke-linecap="square"/> <path d="M14.875 8.75V3.5H9.625V8.75" stroke="#FFBC3A" stroke-width="2" stroke-miterlimit="10" stroke-linecap="square"/> <path d="M41.125 52.5V34.125" stroke="#FFBC3A" stroke-width="2" stroke-miterlimit="10" stroke-linecap="square"/> <path d="M46.375 34.125V52.5" stroke="#FFBC3A" stroke-width="2" stroke-miterlimit="10" stroke-linecap="square"/> <path d="M35.875 52.5H51.625" stroke="#FFBC3A" stroke-width="2" stroke-miterlimit="10" stroke-linecap="square"/> <path d="M46.375 8.75V3.5H41.125V8.75" stroke="#FFBC3A" stroke-width="2" stroke-miterlimit="10" stroke-linecap="square"/> <path d="M2.625 9.625L22.75 29.75" stroke="#FFBC3A" stroke-width="2" stroke-miterlimit="10"/> <path d="M2.625 20.125L12.25 29.75" stroke="#FFBC3A" stroke-width="2" stroke-miterlimit="10"/> <path d="M43.75 8.75L53.375 18.375" stroke="#FFBC3A" stroke-width="2" stroke-miterlimit="10"/> <path d="M33.25 8.75L53.375 28.875" stroke="#FFBC3A" stroke-width="2" stroke-miterlimit="10"/> <path d="M22.75 8.75L43.75 29.75" stroke="#FFBC3A" stroke-width="2" stroke-miterlimit="10"/> <path d="M12.25 8.75L33.25 29.75" stroke="#FFBC3A" stroke-width="2" stroke-miterlimit="10"/><path d="M53.375 8.75H2.625V29.75H53.375V8.75Z" stroke="#FFBC3A" stroke-width="2" stroke-miterlimit="10" stroke-linecap="square"/></svg>',
             confirmButtonColor: "#fd8722",
             iconColor: "#ffbc3a",
             color: "#28231e",
             showDenyButton: true,
             denyButtonText: `Go to Homepage`,
-            denyButtonColor: "#ffbc3a",
             customClass: {
                 htmlContainer: "toast-body",
+                denyButton: 'btn-noborder',
+                icon: "swal-noborder",
+                actions: 'construction-btn',
             },
         }).then((result) => {
             // const modalSign = document.getElementById('exampleModal');
