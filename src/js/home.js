@@ -1,19 +1,18 @@
 "use strict";
-// console.log('initializing about.js :' + new Date());
-// console.log("home beginning");
-import { Swiper, SwiperSlide } from "swiper/bundle";
-import "swiper/css/bundle";
+
+import { Swiper, SwiperSlide } from 'swiper/bundle';
+import 'swiper/css/bundle';
 
 export default function init() {
   // init1();
-  let searchBtnIng = document.querySelector("#ingSearch");
-  let searchBtnRecipe = document.querySelector("#recipeSearch");
+  let searchBtnIng = document.querySelector('#ingSearch');
+  let searchBtnRecipe = document.querySelector('#recipeSearch');
   // Check first whether searchBtnIng element exists on the given page or not
   const searchIngredientsFunction = async (e) => {
     const message = `test in about page ${Date.now()}`;
     const arrOfIngs = [ing1.value.trim(), ing2.value.trim(), ing3.value.trim()];
 
-    let ingredients = "";
+    let ingredients = '';
     arrOfIngs.forEach((ing, index) => {
       if (ing) {
         if (index === 0) {
@@ -26,8 +25,7 @@ export default function init() {
 
     if (ingredients) {
       e.preventDefault();
-      // window.location.hash = `recipes`;
-      // window.location.search = `${ingredients}`;
+
       window.location.href = `?${ingredients}#recipes`;
     }
   };
@@ -37,21 +35,20 @@ export default function init() {
     let inputRecipe = recipeQuery.value.trim();
 
     e.preventDefault();
-    // window.location.hash = `recipes`;
-    // window.location.search = `query=${inputRecipe}`;
+
     window.location.href = `?query=${inputRecipe}#recipes`;
   };
 
   if (searchBtnIng) {
     //INGREDIENTS SEARCH event listener
-    searchBtnIng.addEventListener("click", (e) => searchIngredientsFunction(e));
+    searchBtnIng.addEventListener('click', (e) => searchIngredientsFunction(e));
   }
   // Check first whether searchBtnRecipe element exists on the given page or not
   if (searchBtnRecipe) {
     //RECIPES SEARCH  event listener
-    searchBtnRecipe.addEventListener("click", (e) => searchRecipeFunction(e));
+    searchBtnRecipe.addEventListener('click', (e) => searchRecipeFunction(e));
 
-    window.addEventListener("keypress", (e) => {
+    window.addEventListener('keypress', (e) => {
       if (e.keyCode === 13 && recipeQuery.value) {
         searchRecipeFunction(e);
       } else if (e.keyCode === 13 && (ing1.value || ing2.value || ing3.value)) {
@@ -61,8 +58,8 @@ export default function init() {
   }
 
   //=============SWIPER
-  const swiper3 = new Swiper(".swiper-3", {
-    direction: "horizontal",
+  const swiper3 = new Swiper('.swiper-3', {
+    direction: 'horizontal',
     slidesPerView: 3,
     spaceBetween: 30,
     freeMode: true,
@@ -81,15 +78,15 @@ export default function init() {
       992: {
         slidesPerView: 6,
         navigation: {
-          nextEl: ".swiper-next",
-          prevEl: ".swiper-prev",
+          nextEl: '.swiper-next',
+          prevEl: '.swiper-prev',
         },
       },
     },
   });
 
-  const swiper2 = new Swiper(".swiper-2", {
-    direction: "horizontal",
+  const swiper2 = new Swiper('.swiper-2', {
+    direction: 'horizontal',
     slidesPerView: 2,
     spaceBetween: 30,
     freeMode: true,
@@ -104,8 +101,8 @@ export default function init() {
       992: {
         slidesPerView: 3,
         navigation: {
-          nextEl: ".swiper-next2",
-          prevEl: ".swiper-prev2",
+          nextEl: '.swiper-next2',
+          prevEl: '.swiper-prev2',
         },
       },
     },

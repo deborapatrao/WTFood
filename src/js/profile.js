@@ -28,389 +28,369 @@ let timerInterval
 const profile = sessionStorage.getItem("profile");
 const shoppinglistPage = sessionStorage.getItem("shoppingList");
 export default function init() {
-    onAuthStateChanged(auth, async (user) => {
-        const userName = document.getElementById("userName");
-        const userEmail = document.getElementById("userEmail");
-        const userPhoto = document.getElementById("userPhoto");
+  onAuthStateChanged(auth, async (user) => {
+    const userName = document.getElementById('userName');
+    const userEmail = document.getElementById('userEmail');
+    const userPhoto = document.getElementById('userPhoto');
 
-        const fnamePlaceholder = document.getElementById("updateFName");
-        const snamePlaceholder = document.getElementById("updateSName");
-        const emailPlaceholder = document.getElementById("updateEmail");
+    const fnamePlaceholder = document.getElementById('updateFName');
+    const snamePlaceholder = document.getElementById('updateSName');
+    const emailPlaceholder = document.getElementById('updateEmail');
 
-        if (user) {
-            const uid = user.uid;
+    if (user) {
+      const uid = user.uid;
 
-            //-----------------Check Sign In user------------\\
+      //-----------------Check Sign In user------------\\
 
-            const displayName = user.displayName;
-            const displayEmail = user.email;
-            const displayPassword = user.password;
-            const displayPhoto = user.photoURL
-                ? user.photoURL
-                : "https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg";
-            // User is signed in, see docs for a list of available properties
-            // https://firebase.google.com/docs/reference/js/firebase.User
-            if (displayName !== null) {
-                const [firstName, lastName] = displayName.split(" ");
-                fnamePlaceholder.value = firstName;
-                snamePlaceholder.value = lastName;
-            }
+      const displayName = user.displayName;
+      const displayEmail = user.email;
+      const displayPassword = user.password;
+      const displayPhoto = user.photoURL
+        ? user.photoURL
+        : 'https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg';
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      if (displayName !== null) {
+        const [firstName, lastName] = displayName.split(' ');
+        fnamePlaceholder.value = firstName;
+        snamePlaceholder.value = lastName;
+      }
 
-            userName.innerHTML = displayName;
-            userEmail.innerHTML = displayEmail;
-            userPhoto.src = displayPhoto;
-            emailPlaceholder.value = displayEmail;
-            //----------------------Update User----------------------\\
+      userName.innerHTML = displayName;
+      userEmail.innerHTML = displayEmail;
+      userPhoto.src = displayPhoto;
+      emailPlaceholder.value = displayEmail;
+      //----------------------Update User----------------------\\
 
-            updateButton.addEventListener("click", () => {
-                userUpdate();
-            });
-            //----------------------Functions----------------------\\
-            camera();
-            recipes();
-            shoppingList();
-            //----------------------Modal----------------------\\
-            const cameraModal = new Modal(document.getElementById("cameraModal"), {});
-            const modal = document.querySelector('#cameraModal')
-            const closeModal = document.querySelectorAll('.close');
-            cameraBtn.addEventListener('click', () => {
-                cameraModal.show();
+      updateButton.addEventListener('click', () => {
+        userUpdate();
+      });
+      //----------------------Functions----------------------\\
+      camera();
+      recipes();
+      shoppingList();
+      //----------------------Modal----------------------\\
+      const cameraModal = new Modal(document.getElementById('cameraModal'), {});
+      const modal = document.querySelector('#cameraModal');
+      const closeModal = document.querySelectorAll('.close');
+      cameraBtn.addEventListener('click', () => {
+        cameraModal.show();
+      });
 
-            });
+      closeModal.forEach((btnClick) => {
+        btnClick.addEventListener('click', () => {
+          cameraModal.hide();
+        });
+      });
 
-            closeModal.forEach(btnClick => {
-                btnClick.addEventListener('click', () => {
-                    cameraModal.hide();
-                });
-            });
+      //----------------------Update Photo----------------------\\
+      const photo = document.getElementById('photoFile');
 
-            //----------------------Update Photo----------------------\\
-            const photo = document.getElementById("photoFile");
-
-            photo.onchange = evt => {
-
-                Swal.fire({
-                    title: 'Saving Picture',
-                    html: 'Saving...',
-                    timer: 3000,
-                    timerProgressBar: true,
-                    customClass: {
-                        htmlContainer: "toast-body",
-                        loader: "loader",
-                    },
-                    didOpen: () => {
-                        Swal.showLoading()
-                        const b = Swal.getHtmlContainer().querySelector('b')
-                        timerInterval = setInterval(() => {
-
-                        }, 100)
-                    },
-                    willClose: () => {
-                        clearInterval(timerInterval)
-                    }
-                }).then((result) => {
-                    /* Read more about handling dismissals below */
-                    if (result.dismiss === Swal.DismissReason.timer) {
-
-                    }
-                })
-                const [file] = photo.files
-                if (file) {
-                    userUpdatePhoto();
-                }
-            }
-            //----------------------Preview Recipe Photo----------------------\\
-            const recipePhoto = document.getElementById('recipePhoto');
-            let loadFile = function (event) {
-                console.log('changing')
-                let output = document.getElementById('previewRecipePhoto');
-                output.src = URL.createObjectURL(event.target.files[0]);
-                output.onload = function () {
-                    URL.revokeObjectURL(output.src) // free memory
-                }
-            };
-            recipePhoto.addEventListener('change', loadFile)
-            //----------------------Count recipes----------------------\\
-            const recipeCount = document.querySelector('#recipeCount');
-
-            const recipeRef = collection(db, `users/${uid}/recipes`);
-            const queryRecipe = await getDocs(recipeRef);
-            recipeCount.innerHTML = queryRecipe.size;
-
+      photo.onchange = (evt) => {
+        Swal.fire({
+          title: 'Saving Picture',
+          html: 'Saving...',
+          timer: 3000,
+          timerProgressBar: true,
+          customClass: {
+            htmlContainer: 'toast-body',
+            loader: 'loader',
+          },
+          didOpen: () => {
+            Swal.showLoading();
+            const b = Swal.getHtmlContainer().querySelector('b');
+            timerInterval = setInterval(() => {}, 100);
+          },
+          willClose: () => {
+            clearInterval(timerInterval);
+          },
+        }).then((result) => {
+          /* Read more about handling dismissals below */
+          if (result.dismiss === Swal.DismissReason.timer) {
+          }
+        });
+        const [file] = photo.files;
+        if (file) {
+          userUpdatePhoto();
         }
-    });
+      };
+      //----------------------Preview Recipe Photo----------------------\\
+      const recipePhoto = document.getElementById('recipePhoto');
+      let loadFile = function (event) {
+        let output = document.getElementById('previewRecipePhoto');
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function () {
+          URL.revokeObjectURL(output.src); // free memory
+        };
+      };
+      recipePhoto.addEventListener('change', loadFile);
+      //----------------------Count recipes----------------------\\
+      const recipeCount = document.querySelector('#recipeCount');
 
-    updateButton.addEventListener("click", () => {
-    });
+      const recipeRef = collection(db, `users/${uid}/recipes`);
+      const queryRecipe = await getDocs(recipeRef);
+      recipeCount.innerHTML = queryRecipe.size;
+    }
+  });
 
-    //---------------------- Change Desktop Layout ------------------\\
-    let screenWidth = window.innerWidth;
-    let myProfile = document.getElementById("myProfile");
+  updateButton.addEventListener('click', () => {});
+
+  //---------------------- Change Desktop Layout ------------------\\
+  let screenWidth = window.innerWidth;
+  let myProfile = document.getElementById('myProfile');
+  displayUpdate();
+
+  window.addEventListener('resize', () => {
+    screenWidth = window.innerWidth;
+
     displayUpdate();
+  });
 
-    window.addEventListener("resize", () => {
-        screenWidth = window.innerWidth;
+  function displayUpdate() {
+    if (screenWidth > 992) {
+      profileNavigation.classList.remove('profile-open');
+      let myProfile = document.getElementById('myProfile');
 
-        displayUpdate();
-    });
+      myProfile.classList.remove('profile-close');
+      myProfile.classList.add('profile-open');
+    } else {
+      profileNavigation.classList.add('profile-open');
 
-    function displayUpdate() {
-        if (screenWidth > 992) {
-            profileNavigation.classList.remove("profile-open");
-            let myProfile = document.getElementById("myProfile");
-
-            myProfile.classList.remove("profile-close");
-            myProfile.classList.add("profile-open");
-        } else {
-            profileNavigation.classList.add("profile-open");
-
-            myProfile.classList.remove("profile-open");
-            myProfile.classList.add("profile-close");
-        }
+      myProfile.classList.remove('profile-open');
+      myProfile.classList.add('profile-close');
     }
+  }
 
-    document.querySelector(".signOut-btn").addEventListener("click", async () => {
-        signOut(auth)
-            .then(() => {
-                Swal.fire({
-                    title: "Success",
-                    text: "User Sign Out",
-                    icon: "success",
-                    confirmButtonColor: "#fd8722",
-                    iconColor: "#ffbc3a",
-                    color: "#28231e",
-                    customClass: {
-                        htmlContainer: "toast-body"
-                    }
-                }).then((result) => {
-                    closeOneModal("exampleModal");
-                });
-                window.location.search = '';
-                window.location.href = "#home";
-                // Sign-out successful.
-            })
-            .catch((error) => {
-
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Cannot finish the session...",
-                    confirmButtonColor: "#fd8722",
-                    iconColor: "#fd5722",
-                    color: "#28231e",
-                    customClass: {
-                        htmlContainer: "toast-body"
-                    }
-                });
-            });
-    });
-    if (profile) {
-        sessionStorage.removeItem("profile");
-        profileOpenClose(myRecipes);
-        transformBtnNav(profileRecipeBtn);
-    }
-    if (shoppinglistPage) {
-        sessionStorage.removeItem("shoppingList");
-        profileOpenClose(shoppingListContainer);
-        transformBtnNav(profileShoppingBtn);
-    }
+  document.querySelector('.signOut-btn').addEventListener('click', async () => {
+    signOut(auth)
+      .then(() => {
+        Swal.fire({
+          title: 'Success',
+          text: 'User Sign Out',
+          icon: 'success',
+          confirmButtonColor: '#fd8722',
+          iconColor: '#ffbc3a',
+          color: '#28231e',
+          customClass: {
+            htmlContainer: 'toast-body',
+          },
+        }).then((result) => {
+          closeOneModal('exampleModal');
+        });
+        window.location.search = '';
+        window.location.href = '#home';
+        // Sign-out successful.
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Cannot finish the session...',
+          confirmButtonColor: '#fd8722',
+          iconColor: '#fd5722',
+          color: '#28231e',
+          customClass: {
+            htmlContainer: 'toast-body',
+          },
+        });
+      });
+  });
+  if (profile) {
+    sessionStorage.removeItem('profile');
+    profileOpenClose(myRecipes);
+    transformBtnNav(profileRecipeBtn);
+  }
+  if (shoppinglistPage) {
+    sessionStorage.removeItem('shoppingList');
+    profileOpenClose(shoppingListContainer);
+    transformBtnNav(profileShoppingBtn);
+  }
 }
-
 
 //-----------------------Upload Photo-----------------------\\
 
 function userUpdatePhoto() {
-    const photo = document.getElementById("photoFile").files[0];
-    const user = auth.currentUser;
-    const uid = user.uid;
-    const userPhoto = document.getElementById("userPhoto");
-    const menuPhoto = document.querySelector(".login-avatar");
-    if (user) {
-        const profilePhoto = ref(storage, `users/${uid}/profile/photo`);
-        uploadBytes(profilePhoto, photo)
-            .then((snapshot) => {
-
-                getDownloadURL(profilePhoto)
-                    .then((url) => {
-
-                        updateProfile(user, {
-                            photoURL: url,
-                        });
-                        userPhoto.src = url;
-                        menuPhoto.src = url;
-                        document.querySelector(".profile__avatar").innerHTML.reload
-                        document.querySelector(".header__avatar-container").innerHTML.reload
-                    })
-                    .catch((error) => {
-                        const errorCode = error.code;
-                        const errorMessage = error.message;
-                        console.log("URL photo:" + errorCode + errorMessage);
-                    });
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log(`Code: ${errorCode}`);
-                console.log(`MSG: ${errorMessage}`);
+  const photo = document.getElementById('photoFile').files[0];
+  const user = auth.currentUser;
+  const uid = user.uid;
+  const userPhoto = document.getElementById('userPhoto');
+  const menuPhoto = document.querySelector('.login-avatar');
+  if (user) {
+    const profilePhoto = ref(storage, `users/${uid}/profile/photo`);
+    uploadBytes(profilePhoto, photo)
+      .then((snapshot) => {
+        getDownloadURL(profilePhoto)
+          .then((url) => {
+            updateProfile(user, {
+              photoURL: url,
             });
-
-
-    }
+            userPhoto.src = url;
+            menuPhoto.src = url;
+            document.querySelector('.profile__avatar').innerHTML.reload;
+            document.querySelector('.header__avatar-container').innerHTML.reload;
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log('URL photo:' + errorCode + errorMessage);
+          });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(`Code: ${errorCode}`);
+        console.log(`MSG: ${errorMessage}`);
+      });
+  }
 }
 
 //----------------------Update User info-------------------\\
 function userUpdate() {
-    const fname = document.getElementById("updateFName").value;
-    const sname = document.getElementById("updateSName").value;
-    const user = auth.currentUser;
-    const name = `${fname} ${sname}`;
+  const fname = document.getElementById('updateFName').value;
+  const sname = document.getElementById('updateSName').value;
+  const user = auth.currentUser;
+  const name = `${fname} ${sname}`;
 
-    if (user) {
-        updateProfile(user, {
-            displayName: name,
-
-        })
-            .then(() => {
-                Swal.fire({
-                    title: "Success",
-                    text: "User Updated!",
-                    icon: "success",
-                    confirmButtonColor: "#fd8722",
-                    iconColor: "#ffbc3a",
-                    color: "#28231e",
-                    customClass: {
-                        htmlContainer: "toast-body"
-                    }
-                }).then((result) => {
-                    location.reload();
-                });
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log(errorCode + errorMessage);
-            });
-    }
+  if (user) {
+    updateProfile(user, {
+      displayName: name,
+    })
+      .then(() => {
+        Swal.fire({
+          title: 'Success',
+          text: 'User Updated!',
+          icon: 'success',
+          confirmButtonColor: '#fd8722',
+          iconColor: '#ffbc3a',
+          color: '#28231e',
+          customClass: {
+            htmlContainer: 'toast-body',
+          },
+        }).then((result) => {
+          location.reload();
+        });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode + errorMessage);
+      });
+  }
 }
 
 //----------------------Create Recipe----------------------\\
 async function recipeCreate(photoURL) {
-    let list = 0;
-    const UID = auth.currentUser.uid;
-    const name = document.getElementById("recipeTitle").value;
-    const time = document.getElementById("cookingTime").value;
-    const prep_time = document.getElementById("prepTime").value;
-    const serving = document.getElementById("serving").value;
-    const typeRecipe = document.getElementById("typeRecipe").value;
-    const dietaryPref = document.getElementById("dietaryPref").value;
-    const instructions = document.getElementById("instruction").value;
-    const ingredient = document.getElementById("ingredient").value;
-    const amount = document.getElementById("amount").value;
-    const recipeData = {
-        name: name,
-        time: time,
-        photo: photoURL,
-        prep_time: prep_time,
-        serving: serving,
-        type_recipe: typeRecipe,
-        dietary_pref: dietaryPref,
-        instructions: instructions,
-        createdAt: Timestamp.now(),
-        ingredient: `${amount} ${ingredient}`
-    };
-    let ingredientData = [];
-    for (list; list < i; list++) {
+  let list = 0;
+  const UID = auth.currentUser.uid;
+  const name = document.getElementById('recipeTitle').value;
+  const time = document.getElementById('cookingTime').value;
+  const prep_time = document.getElementById('prepTime').value;
+  const serving = document.getElementById('serving').value;
+  const typeRecipe = document.getElementById('typeRecipe').value;
+  const dietaryPref = document.getElementById('dietaryPref').value;
+  const instructions = document.getElementById('instruction').value;
+  const ingredient = document.getElementById('ingredient').value;
+  const amount = document.getElementById('amount').value;
+  const recipeData = {
+    name: name,
+    time: time,
+    photo: photoURL,
+    prep_time: prep_time,
+    serving: serving,
+    type_recipe: typeRecipe,
+    dietary_pref: dietaryPref,
+    instructions: instructions,
+    createdAt: Timestamp.now(),
+    ingredient: `${amount} ${ingredient}`,
+  };
+  let ingredientData = [];
+  for (list; list < i; list++) {
+    let ingredient = window[`ingredient_${list}`];
+    let amount = window[`amount_${list}`];
+    ingredient = document.getElementById(`ingredient_${list}`).value;
+    amount = document.getElementById(`amount_${list}`).value;
 
-        let ingredient = window[`ingredient_${list}`];
-        let amount = window[`amount_${list}`];
-        ingredient = document.getElementById(`ingredient_${list}`).value;
-        amount = document.getElementById(`amount_${list}`).value;
+    ingredientData[`ingredient_${list + 1}`] = `${amount} ${ingredient}`;
+  }
 
-        ingredientData[`ingredient_${list + 1}`] = `${amount} ${ingredient}`;
-    }
+  const docData = { ...recipeData, ...ingredientData };
 
-    const docData = {...recipeData, ...ingredientData};
+  try {
+    await addDoc(collection(db, `users/${UID}/recipes`), docData)
+      .then(() => {
+        sessionStorage.setItem('profile', 'true');
 
-    try {
-        await addDoc(collection(db, `users/${UID}/recipes`), docData)
-            .then(() => {
-                sessionStorage.setItem("profile", "true");
-
-                Swal.fire({
-                    title: "Your reciped has been posted",
-                    text: "Horray! Now you can review your recipe in your recipes collection.",
-                    icon: "success",
-                    confirmButtonColor: "#fd8722",
-                    iconColor: "#ffbc3a",
-                    color: "#28231e",
-                    customClass: {
-                        htmlContainer: "toast-body"
-                    }
-                }).then((result) => {
-                    location.reload();
-
-                });
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log(errorCode + errorMessage);
-            });
-    } catch (error) {
+        Swal.fire({
+          title: 'Your reciped has been posted',
+          text: 'Horray! Now you can review your recipe in your recipes collection.',
+          icon: 'success',
+          confirmButtonColor: '#fd8722',
+          iconColor: '#ffbc3a',
+          color: '#28231e',
+          customClass: {
+            htmlContainer: 'toast-body',
+          },
+        }).then((result) => {
+          location.reload();
+        });
+      })
+      .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode + errorMessage);
-    }
+      });
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorCode + errorMessage);
+  }
 }
 
-const el = document.getElementById("publish");
+const el = document.getElementById('publish');
 
-el.addEventListener("click", () => {
-    const name = document.getElementById("recipeTitle").value;
-    const ingredient = document.getElementById("ingredient").value;
-    const amount = document.getElementById("amount").value;
-    const recipePhotoFile = document.getElementById("recipePhoto").files[0] === 0;
-    const recipePhoto = ref(storage, `users/${auth.currentUser.uid}/recipes/${Date.now()}`);
-console.log(recipePhotoFile)
-    if (name === '' && ingredient === '' && amount === '') {
-
-        Swal.fire({
-            title: "Ops!",
-            text: "Dont be shy, At least put a name and one ingredient! ",
-            icon: "warning",
-            confirmButtonColor: "#fd8722",
-            iconColor: "#ffbc3a",
-            color: "#28231e",
-            customClass: {
-                htmlContainer: "toast-body"
-            }
+el.addEventListener('click', () => {
+  const name = document.getElementById('recipeTitle').value;
+  const ingredient = document.getElementById('ingredient').value;
+  const amount = document.getElementById('amount').value;
+  const recipePhotoFile = document.getElementById('recipePhoto').files[0] === 0;
+  const recipePhoto = ref(storage, `users/${auth.currentUser.uid}/recipes/${Date.now()}`);
+  if (name === '' && ingredient === '' && amount === '') {
+    Swal.fire({
+      title: 'Ops!',
+      text: 'Dont be shy, At least put a name and one ingredient! ',
+      icon: 'warning',
+      confirmButtonColor: '#fd8722',
+      iconColor: '#ffbc3a',
+      color: '#28231e',
+      customClass: {
+        htmlContainer: 'toast-body',
+      },
+    });
+  } else {
+    try {
+      uploadBytes(recipePhoto, recipePhotoFile)
+        .then((snapshot) => {
+          getDownloadURL(recipePhoto)
+            .then((url) => {
+              recipeCreate(url);
+            })
+            .catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              console.log('URL photo:' + errorCode + errorMessage);
+            });
         })
-    } else {
-        try {
-
-            uploadBytes(recipePhoto, recipePhotoFile)
-                .then((snapshot) => {
-                    getDownloadURL(recipePhoto)
-                        .then((url) => {
-                            recipeCreate(url);
-                        })
-                        .catch((error) => {
-                            const errorCode = error.code;
-                            const errorMessage = error.message;
-                            console.log("URL photo:" + errorCode + errorMessage);
-                        });
-                })
-                .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                    console.log("URL photo:" + errorCode + errorMessage);
-                });
-        } catch (error) {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode + errorMessage);
-        }
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log('URL photo:' + errorCode + errorMessage);
+        });
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode + errorMessage);
     }
+  }
 });
 
 //----------------------Load Recipes----------------------\\

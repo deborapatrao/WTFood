@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack serve",
     "watch": "webpack --watch",
-    "build": "NODE_ENV=production webpack",
+    "build": "webpack",
     "build-dev": "webpack",
     "clean": "rmdir /s /q dist"
   },

@@ -66,57 +66,56 @@ export default function init() {
                 .then(async (userCredential) => {
                   // Signed up
                   const user = userCredential.user;
-                  console.log(user.uid);
 
                   //await is REALLY important ...
                   await updateProfile(user, {
                     displayName: fullName,
                     photoURL:
-                      "https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg",
+                      'https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg',
                   });
 
                   try {
-                    await addDoc(collection(db, "users"), {
+                    await addDoc(collection(db, 'users'), {
                       name: user.displayName,
                       email: email,
                       photoURL: user.photoURL,
                     });
 
                     Swal.fire({
-                      title: "Success",
-                      text: "User Created",
-                      icon: "success",
-                      confirmButtonColor: "#fd8722",
-                      iconColor: "#ffbc3a",
-                      color: "#28231e",
+                      title: 'Success',
+                      text: 'User Created',
+                      icon: 'success',
+                      confirmButtonColor: '#fd8722',
+                      iconColor: '#ffbc3a',
+                      color: '#28231e',
                       customClass: {
-                        htmlContainer: "toast-body",
+                        htmlContainer: 'toast-body',
                       },
                     }).then((result) => {
-                      inputCleans.forEach((input) => (input.value = ""));
-                      document.querySelector(".btn-close").click();
-                      window.location.href = "#profile";
+                      inputCleans.forEach((input) => (input.value = ''));
+                      document.querySelector('.btn-close').click();
+                      window.location.href = '#profile';
                     });
                   } catch (e) {
-                    console.error("Error adding document: ", e);
+                    console.error('Error adding document: ', e);
                   }
                 })
                 .catch((error) => {
                   Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong! Please enter valid email or password!",
-                    confirmButtonColor: "#fd8722",
-                    iconColor: "#fd5722",
-                    color: "#28231e",
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong! Please enter valid email or password!',
+                    confirmButtonColor: '#fd8722',
+                    iconColor: '#fd5722',
+                    color: '#28231e',
                     customClass: {
-                      htmlContainer: "toast-body",
+                      htmlContainer: 'toast-body',
                     },
                   });
                 });
             } else {
-              console.log("nope");
-              document.querySelector(".sign-up .popup__container--form-email").innerHTML += '<div style="color:red;">This email is invalid</div>';
+              document.querySelector('.sign-up .popup__container--form-email').innerHTML +=
+                '<div style="color:red;">This email is invalid</div>';
             }
           });
       } else {
