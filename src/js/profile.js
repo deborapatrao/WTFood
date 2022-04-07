@@ -185,6 +185,7 @@ export default function init() {
                 }).then((result) => {
                     closeOneModal("exampleModal");
                 });
+                window.location.search = '';
                 window.location.href = "#home";
                 // Sign-out successful.
             })
