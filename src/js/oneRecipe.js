@@ -57,7 +57,6 @@ export default async function init() {
         checkboxLabel1.innerHTML = ingredient1;
         checkboxContainer1.appendChild(checkboxInput1);
         checkboxContainer1.appendChild(checkboxLabel1);
-        console.log(checkboxContainer1);
         ingredientsContainer.appendChild(checkboxContainer1);
 
         let list = 1;
@@ -92,7 +91,6 @@ export default async function init() {
           labels.forEach(async (label) => {
             const input = document.getElementById(`${label.getAttribute("for")}`);
             if (input.checked) {
-              console.log(label.textContent);
               const docData = {
                 ingredient: label.textContent,
               };
@@ -125,7 +123,6 @@ export default async function init() {
               icon: "swal-noborder",
             },
           }).then((result) => {
-            console.log("ingredients added");
             const labels = document.querySelectorAll(".form-check-label");
             labels.forEach(async (label) => {
               const input = document.getElementById(`${label.getAttribute("for")}`);
@@ -176,7 +173,6 @@ export default async function init() {
 
   } else {
     const recipeID = window.location.search.substring(4);
-    console.log(`else: ${recipeID}`);
     const apiKey = "da72a5b346e844e38a84019d6cd0cbf5";
     const urlRecipeInfo = `https://api.spoonacular.com/recipes/${recipeID}/information?apiKey=${apiKey}`;
     const urlIngredients = `https://api.spoonacular.com/recipes/${recipeID}/nutritionWidget.json?apiKey=${apiKey}`;
@@ -195,8 +191,6 @@ export default async function init() {
     const recipe = await responseRecipe.json();
     const responseIngredients = await fetch(urlIngredients);
     const ingredients = await responseIngredients.json();
-    console.log(recipe);
-    console.log(ingredients);
 
     // title
     recipeTitle.textContent = recipe.title;
@@ -260,7 +254,6 @@ export default async function init() {
       labels.forEach(async (label) => {
         const input = document.getElementById(`${label.getAttribute("for")}`);
         if (input.checked) {
-          console.log(label.textContent);
           const docData = {
             ingredient: label.textContent,
           };
@@ -285,7 +278,6 @@ export default async function init() {
                       icon: "swal-noborder",
                     },
                   }).then((result) => {
-                    console.log("ingredients added");
                     const labels = document.querySelectorAll(".form-check-label");
                     labels.forEach(async (label) => {
                       const input = document.getElementById(`${label.getAttribute("for")}`);

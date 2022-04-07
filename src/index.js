@@ -16,10 +16,6 @@ import Swal from "sweetalert2";
 import script from "./route/script.js";
 import { auth, onAuthStateChanged } from "./firebase.js";
 
-// import login from "./js/login.js";
-// let initLogin = await import(`../js/login.js`); // lazily loading the js files
-// initLogin.default();
-
 // Images
 import imgLogo from "./images/logo.png";
 import imgFavicon48 from "./images/icon-48x48.png";
@@ -86,10 +82,7 @@ navLinks.forEach((navLink) => {
       mainNav.setAttribute("data-visible", false);
       navToggle.setAttribute("aria-expanded", false);
 
-      // location.assign(location.pathname)
-      // hash from <a> tag
       const hash = navLink.textContent.toLowerCase();
-      // console.log(hash);
 
       // Clear search query
       e.preventDefault();
@@ -98,9 +91,7 @@ navLinks.forEach((navLink) => {
       if (window.location.search) {
         window.location.search = "";
       }
-      // window.location.search = "";
-      // location.href = `#${hash}`;
-      // console.log(`${window.location.origin}${hash}`)
+    
     });
   }
 });
@@ -129,13 +120,7 @@ onAuthStateChanged(auth, (user) => {
     avatarDiv.appendChild(linkWrap);
     loginNav.appendChild(avatarDiv);
     headerProfile.style.display = 'none';
-    // loginNav.removeAttribute("data-bs-toggle");
-    // loginNav.removeAttribute("data-bs-target");
-    // loginNav.setAttribute("href", "#profile");
-    // loginNav.innerHTML = "YOU ARE SIGNED IN";
 
-    // const uid = user.uid;
-    // ...
   } else {
     loginNav.innerHTML = `
       <a id="login-nav" data-bs-toggle="modal" data-bs-target="#exampleModal" class="nav__link">
@@ -143,13 +128,6 @@ onAuthStateChanged(auth, (user) => {
       </a>
     `;
     headerProfile.style.display = 'block';
-    // loginNav.setAttribute("data-bs-toggle", "modal");
-    // loginNav.setAttribute("data-bs-target", "#exampleModal");
-    // loginNav.removeAttribute("href");
-    // if (window.location.hash == "profile") {
-    //   alert("user is NOT signed in");
-    //   window.location.href = "#home";
-    // }
   }
 });
 

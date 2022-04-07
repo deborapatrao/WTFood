@@ -2,7 +2,7 @@
 
 import { auth, onAuthStateChanged } from "../firebase.js";
 import Swal from "sweetalert2";
-// window.bootstrap = require("bootstrap/dist/js/bootstrap.bundle.js");
+
 import { Modal } from "bootstrap";
 export class Page {
   constructor(name, htmlName, jsName) {
