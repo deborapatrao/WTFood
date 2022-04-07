@@ -110,6 +110,11 @@ const loginNav = document.querySelector(".login__item");
 onAuthStateChanged(auth, (user) => {
   if (user) {
     // alert('SIGNED in')
+    const headerProfile = document.querySelector('#headerProfile');
+
+
+    const linkWrap = document.createElement('a');
+    linkWrap.setAttribute('href', '#profile')
     const cardImage = document.createElement("img");
     cardImage.classList.add("login-avatar");
     const avatarDiv = document.createElement("div");
@@ -120,8 +125,10 @@ onAuthStateChanged(auth, (user) => {
         : "https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg"
     }`;
     loginNav.innerHTML = "";
-    avatarDiv.appendChild(cardImage);
+    linkWrap.appendChild(cardImage)
+    avatarDiv.appendChild(linkWrap);
     loginNav.appendChild(avatarDiv);
+    headerProfile.style.display = 'none';
     // loginNav.removeAttribute("data-bs-toggle");
     // loginNav.removeAttribute("data-bs-target");
     // loginNav.setAttribute("href", "#profile");
@@ -135,6 +142,7 @@ onAuthStateChanged(auth, (user) => {
         login
       </a>
     `;
+    headerProfile.style.display = 'block';
     // loginNav.setAttribute("data-bs-toggle", "modal");
     // loginNav.setAttribute("data-bs-target", "#exampleModal");
     // loginNav.removeAttribute("href");
