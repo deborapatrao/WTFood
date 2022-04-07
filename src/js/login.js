@@ -119,8 +119,8 @@ export default function init() {
             }
           });
       } else {
-        termsLabel.style.color = "red;";
-        termsCheckbox.style = "border: 2px solid red;";
+        termsLabel.style.color = "red";
+        termsCheckbox.style = "border: 2px solid red";
       }
     });
 

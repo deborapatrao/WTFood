@@ -352,10 +352,11 @@ el.addEventListener('click', () => {
   const name = document.getElementById('recipeTitle').value;
   const ingredient = document.getElementById('ingredient').value;
   const amount = document.getElementById('amount').value;
-  const recipePhotoFile = document.getElementById('recipePhoto').files[0] === 0;
+  const recipePhotoFile = document.getElementById('recipePhoto').files[0];
   const recipePhoto = ref(storage, `users/${auth.currentUser.uid}/recipes/${Date.now()}`);
+
   if (name === '' && ingredient === '' && amount === '') {
-    Swal.fire({
+      Swal.fire({
       title: 'Ops!',
       text: 'Dont be shy, At least put a name and one ingredient! ',
       icon: 'warning',
@@ -367,7 +368,8 @@ el.addEventListener('click', () => {
       },
     });
   } else {
-    try {
+
+      try {
       uploadBytes(recipePhoto, recipePhotoFile)
         .then((snapshot) => {
           getDownloadURL(recipePhoto)
