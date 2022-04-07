@@ -75,20 +75,20 @@ export class Router {
             init.default();
           } else {
             Swal.fire({
-              title: "Warning",
-              text: "Please sing in to use your profile!",
-              icon: "warning",
-              confirmButtonColor: "#fd8722",
-              iconColor: "#ffbc3a",
-              color: "#28231e",
+              title: 'Warning',
+              text: 'Please sign in to use your profile!',
+              icon: 'warning',
+              confirmButtonColor: '#fd8722',
+              iconColor: '#ffbc3a',
+              color: '#28231e',
               customClass: {
-                htmlContainer: "toast-body",
+                htmlContainer: 'toast-body',
               },
             }).then((result) => {
               // const modalSign = document.getElementById('exampleModal');
-              let myModal = new Modal(document.getElementById("exampleModal"), {});
+              let myModal = new Modal(document.getElementById('exampleModal'), {});
               myModal.toggle();
-              window.location.href = "#home";
+              window.location.href = '#home';
             });
           }
         });
